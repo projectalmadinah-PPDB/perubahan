@@ -1,0 +1,107 @@
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(52, 211, 153);
+    border-radius: 20px;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/dists/assets/fonts/poppins.ttf');
+}
+
+@font-face {
+    font-family: 'Evoria';
+    src: url('/dists/assets/fonts/Evoria.ttf');
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+.font-poppins {
+    font-family: 'Poppins';
+}
+
+.font-evoria {
+    font-family: 'Evoria';
+}
+
+.section {
+    display: flex;
+    padding: 1.25rem;
+    margin: 1.25rem 0;
+    border-radius: 45px;
+    box-shadow: 0 2px 7px -2.5px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-inner {
+    box-shadow: 0 3px 7px -2.5px rgba(0, 0, 0, 0.3) inset!important;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    white-space: nowrap;
+}
+
+.divider-horizontal {
+    margin: 2rem 1rem;
+    height: auto;
+    width: .1rem;
+    flex-direction: column;
+}
+
+.nav-active {
+    position: relative;
+}
+
+.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    right: 50%;
+    translate: -50% 0;
+
+    width: 2rem; height: 2.5px;
+    border-radius: 2px;
+    background-color: #10B981;
+}
+
+.title {
+    position: relative;
+    letter-spacing: 0.030rem;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+
+    width: 6rem; height: 3px;
+    border-radius: 2px;
+    background-color: #10B981;
+}
+
+.dropdown-title > p {
+    position: relative;
+}
+
+.dropdown-title > p::before {
+    content: '+';
+    margin-right: 1rem;
+}
+
+.dropdown-title.show > p::before {
+    content: '-';
+    margin-right: 1.12rem;
+}

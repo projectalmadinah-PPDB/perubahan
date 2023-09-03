@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../assets/style.css"/>
+    <link rel="stylesheet" href="/../dist/output.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        patokan warna:
+
+            dasar: '#FCFCFC',
+            primer: '#001A42',
+            sekunder: '#10B981',
+            peringatan: '#FEDF7B',
+            infone: '#F8F3D3',
+            berhasil: '#00B8A9',
+            larangan: '#F7406C',
+        
+            begitu;
+     -->
+    <div class="bg-gradient-to-br from-dasar via-sky-50 to-sky-200 w-full h-auto font-poppins caret-sekunder accent-primer">
+        <!-- nav dasboard -->
+        <nav 
+        class="z-[1000] w-full bg-primer backdrop-blur-md px-5 sm:px-7 md:px-10 md:border-b md:border-sekunder/20 fixed flex justify-between items-center">
+            <!-- logo -->
+            <a href="index.html"
+                class="p-2 flex gap-2 items-center">
+                <img id="logo" class="h-8 md:h-9" src="../images/logo_only_white.svg">
+                <span class="font-extrabold text-xl hidden sm:block text-primer">AR-ROMUSHA</span>
+            </a>
+
+            <div class="flex justify-end items-center gap-x-2">
+                <a href="" 
+                    class="text-sm p-2 tracking-wide border-[1.5px] border-larangan text-larangan font-semibold ms-3 hover:bg-larangan hover:text-white duration-200"
+                >Logout</a>
+                <div role="button" class="group md:hidden flex flex-col justify-center items-center gap-y-1 cursor-pointer py-2 px-4 border border-dasar duration-200 hover:bg-dasar rounded-full hover:-rotate-90" id="barMobile">
+                    <div class="w-1 h-1 rounded-full bg-dasar group-hover:bg-primer"></div>
+                    <div class="w-1 h-1 rounded-full bg-dasar group-hover:bg-primer"></div>
+                    <div class="w-1 h-1 rounded-full bg-dasar group-hover:bg-primer"></div>
+                </div>
+            </div>
+        </nav>
+        <nav id="navMobile" 
+            class="w-full md:px-10 md:py-3 bg-sekunder md:fixed top-[49px] md:top-[53px] relative hidden md:block z-[999]">
+            <div
+                class="absolute w-full bg-sekunder md:bg-transparent md:relative flex flex-col items-end justify-start md:block">
+                <a href="" 
+                    class="text-sm p-5 w-full text-end tracking-wide rounded-b-xl text-dasar hover:bg-dasar hover:text-primer duration-200"
+                >Dashboard</a>
+                <a href="" 
+                    class="text-sm p-5 w-full text-end tracking-wide rounded-b-xl text-primer bg-dasar hover:bg-dasar hover:text-primer duration-200"
+                >Profil</a>
+                <a href="" 
+                    class="text-sm p-5 w-full text-end tracking-wide rounded-b-xl text-dasar hover:bg-dasar hover:text-primer duration-200"
+                >Informasi</a>
+                <a href="" 
+                    class="text-sm p-5 w-full text-end tracking-wide rounded-b-xl text-dasar hover:bg-dasar hover:text-primer duration-200"
+                >Q&A</a>
+            </div>
+        </nav>
+        
+        <!-- script nav menu mobile -->
+        <script>
+            const barMobile = document.getElementById("barMobile");
+            var dotMobile = document.querySelectorAll("barMobile div");
+            const navMobile = document.getElementById("navMobile");
+
+            barMobile.addEventListener("click", function(e) {
+                navMobile.classList.toggle("hidden");
+            });
+        </script>
+
+        <main class="w-full min-h-screen h-auto pt-12 md:pt-24">
+            <!-- alert -->
+            <section id="alertProfile" class="w-full pt-3 pb-2 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-5">
+                <div class="flex justify-between items-center w-full py-1 px-5 bg-berhasil text-dasar rounded-full">
+                    <p class="">Selamat Anda Telah dinyatakan lulus.!</p>
+                    <span role="button" id="closeAlert" onclick="document.getElementById('alertProfile').classList.add('hidden')" 
+                        class="px-1.5 rounded-full border border-dasar hover:bg-dasar text-dasar hover:text-primer duration-200">
+                        &#10006;
+                    </span>
+                </div>
+            </section>
+
+            <!--  -->
+
+            <!-- footer -->
+            <footer
+                class="py-1 px-3 text-end text-xs bg-transparent fixed bottom-0 w-full text-primer">
+                © 2023 - 
+                <a class="tracking-wide" href="https://tailwind-elements.com/"
+                    >Sekolah Ar-Romusha</a
+                >
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
