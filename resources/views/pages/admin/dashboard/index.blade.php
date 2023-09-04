@@ -163,34 +163,9 @@
             </div>
                 <div class="col-md-12">
                     <div class="card">
-                        <div style="height: 450px;width:100%">
-                            <canvas id="myChart" style="height: 10px"></canvas>
-                          </div>
-                          
-                          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                          
-                          <script>
-                            const ctx = document.getElementById('myChart');
-                          
-                            new Chart(ctx, {
-                              type: 'line',
-                              data: {
-                                labels: ['Peserta', 'Registrasi', 'Informasi','Document'],
-                                datasets: [{
-                                  label: '# of Votes',
-                                  data: [{{$student->count()}}, {{$users->count()}}, {{$informasi->count()}},{{$document->count()}}],
-                                  borderWidth: 1
-                                }]
-                              },
-                              options: {
-                                scales: {
-                                  y: {
-                                    beginAtZero: true
-                                  }
-                                }
-                              }
-                            });
-                          </script>
+                        <div class="card-body">
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -280,3 +255,4 @@
     </footer>
 </div>
 @endsection
+

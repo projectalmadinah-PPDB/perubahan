@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     use Fonnte;
-    public function index()
+    public function login()
     {
         return view('front.login');
     }
 
-    public function login(Request $request)
+    public function loginProses(Request $request)
     {
         $phone = $request->nomor;
         if (Str::startsWith($phone, '0')) {

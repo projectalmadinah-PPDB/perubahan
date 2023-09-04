@@ -6,12 +6,21 @@
 <main class="w-full min-h-screen h-auto pt-12 md:pt-24">
     <!-- content biodata -->
     <section class="w-full flex flex-wrap justify-center items-start px-10 md:px-20 pt-10 pb-14 gap-10">
+        @if ($user->student)
+        @if ($user->student->status == 'Belum')
+        <a href="" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+            Silahkan Menunggu Kabar Kamu Belum Di Verifikasi
+        </a>
+        @elseif ($user->student->status == 'TidakSah')
+        <a href="" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+            Data Mu Mungkin Tidak Sah Silahkan Menunggu Kabar Dari Kami
+        </a>
+        @else
         @if (!$user->student)
-                lol
-                @else
+        <a href="{{route('user.kelengkapan')}}" class="py-2 px-4 border-2 rounded-full font-semibold tracking-wider border-sekunder bg-sekunder hover:bg-sekunder/50 duration-200 ease-in-out text-white">!Silahkan Lengkapi Data Diri!</a>
+        @elseif(!$user->document)
         <div class="flex flex-col justify-start items-start gap-y-5 ring-1 ring-sekunder rounded-lg w-full md:w-[48%] py-3 px-7">
             <h1 class="text-lg font-bold border-b-2 border-sekunder mt-4 leading-5">Biodata Peserta</h1>
-            
                 <table class="w-full border-none text-sm text-slate-600">
                     <tbody>
                         <tr>
@@ -136,9 +145,7 @@
                 </thead>
                 <tbody>
                     @if (!$user->document)
-                        <tr>
-                            <td>Belum Mengapload Data</td>
-                        </tr>
+                    <a href="{{route('user.document')}}" class="w-full text-center py-2 px-4 border-2 rounded-full font-semibold tracking-wider border-sekunder bg-sekunder hover:bg-sekunder/50 duration-200 ease-in-out text-white">!Silahkan Lengkapi Data Diri!</a> 
                     @else
                     <tr class="border border-primer">
                         <td class="px-1 py-3 w-1/4">
@@ -179,6 +186,9 @@
             </table>
         </div>
         @endif
+        @endif
+        @endif
+        
     </section>
 
     <!-- footer -->

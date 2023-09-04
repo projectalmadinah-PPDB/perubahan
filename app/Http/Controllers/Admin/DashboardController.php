@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Article;
-use App\Models\Document;
-use App\Models\Student;
 use App\Models\User;
+use App\Models\Article;
+use App\Models\Student;
+use App\Models\Document;
 use Illuminate\Http\Request;
+use App\Charts\PendaftarChart;
+use App\Http\Controllers\Controller;
+use Khill\Lavacharts\Lavacharts;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        
         $users = User::where('role','user')->get();
         $student = Student::all();
         $document = Document::all();

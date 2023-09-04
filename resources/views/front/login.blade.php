@@ -23,7 +23,7 @@
                   Selamat Datang Peserta
                 </p>
                 @endif
-                <form class="mt-4 w-full" action="{{route('user.login')}}" method="post">
+                <form class="mt-4 w-full" action="{{route('user.login')}}" method="POST">
                   @csrf
                   @method('POST')
                     <div class="mb-3">

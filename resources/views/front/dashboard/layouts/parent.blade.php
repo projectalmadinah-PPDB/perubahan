@@ -7,6 +7,7 @@
     <title>Muhammad Farhan | @yield('title')</title>
     @include('front.layouts.include')
     @vite(['resources/css/real.css'])
+    @stack('css')
 </head>
 <body>
     <div class="bg-gradient-to-br from-dasar via-sky-50 to-sky-200 w-full h-auto font-poppins caret-sekunder accent-primer">

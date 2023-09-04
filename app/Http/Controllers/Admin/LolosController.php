@@ -6,9 +6,11 @@ use App\Models\User;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Traits\Fonnte;
 
 class LolosController extends Controller
 {
+    use Fonnte;
     public function index(Request $request)
     {
         if($request->has('search')){
@@ -27,20 +29,25 @@ class LolosController extends Controller
         $notif = User::where('notify_id',$id)->first();
         $student = Student::find($id);
         $data = $request->validate([
-            'status' => 'required|in:lolos,gagal'
+            'status' => 'required|in:Belum,TidakSah,Verifikasi'
         ]);
         $student->update($data);
-        if($student->status == 'lolos'){
+        if($student->status == 'Verifikasi'){
 
-            $messages = $notif->notifys->notif_lolos;
+            $messages = $notif->notifys->notif_verify;
     
             $this->send_message($student->user->nomor,$messages);
-        }else{
-            $messages = $notif->notifys->gagal;
+        }elseif($student->status == 'Belum'){
+            $messages = $notif->notifys->notif_belum_verify;
 
             $this->send_message($student->user->nomor,$messages);
         }
-        return redirect()->route('admin.pendaftaran.index');
+        else{
+            $messages = $notif->notifys->notif_tidak_sah;
+
+            $this->send_message($student->user->nomor,$messages);
+        }
+        return redirect()->route('admin.peserta.index');
     }
 
     public function update(Request $request,$id)

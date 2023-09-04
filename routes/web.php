@@ -33,8 +33,6 @@ Route::get('/', [FrontController::class,'index'])->name('front');
 
 Route::get('/informasi',[FrontController::class,'informasi'])->name('informasi');
 
-Route::get('/detail-informasi/{slug}',[FrontController::class,'detail_informasi'])->name('informasi.detail');
-
 Route::get('/about-us',[FrontController::class,'about'])->name('about');
 
 Route::prefix('/admin')->name('admin.')->group(function(){
@@ -132,18 +130,19 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     
 Route::prefix('/user')->name('user.')->group(function(){
 
-    // Route::get('/apa', function(){ 
-    //   return view('front.index');
-    // });
-    // Route::get('/verification', [UserController::class, 'verifyEmail'])->name('verification');
+    Route::get('/apa', function(){ 
+      return view('front.index');
+    });
+    Route::get('/verification', [UserController::class, 'verifyEmail'])->name('verification');
 
-    // Route::post('/verification/resend-email-verification', [UserController::class, 'resendEmailVerification'])->name('resend-email-verification');
+    Route::post('/verification/resend-email-verification', [UserController::class, 'resendEmailVerification'])->name('resend-email-verification');
 
-    // Route::get('/verification/success/{token}', [UserController::class, 'verifyEmailProcess'])->name('verification.process');
-    // login register
+    Route::get('/verification/success/{token}', [UserController::class, 'verifyEmailProcess'])->name('verification.process');
+    //login register
+
     Route::get('/login', [UserController::class,'index'])->name('index');
 
-    Route::post('login/proses', [UserController::class,'login'])->name('login');
+    Route::post('/login/proses', [UserController::class,'loginProses'])->name('login.proses');
 
     Route::get('/register',[UserController::class,'show'])->name('show');
 
@@ -160,6 +159,7 @@ Route::prefix('/user')->name('user.')->group(function(){
         Route::get('/dashboard', [UserDashboardController::class,'index'])->name('dashboard');
         Route::get('/profile',[UserDashboardController::class,'profile'])->name('profile');
         Route::get('/informasi',[UserDashboardController::class,'informasi'])->name('informasi');
+        Route::get('/detail-informasi/{slug}',[FrontController::class,'detail_informasi'])->name('informasi.detail');
         Route::get('/kelengkapan' ,[LengkapiController::class,'index'])->name('kelengkapan');
         Route::post('/kelengkapan/process' ,[LengkapiController::class,'store'])->name('kelengkapan.process');
         Route::get('/document',[LengkapiController::class,'document'])->name('document');

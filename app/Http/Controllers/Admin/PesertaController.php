@@ -26,14 +26,14 @@ class PesertaController extends Controller
         // $pendaftaran = User::with('student')->findOrFail($id);
         $pendaftaran = User::with('parents')->findOrFail($id);
 
-        return view('pages.admin.dashboard.data.show',compact('pendaftaran'));
+        return view('pages.admin.dashboard.peserta.show',compact('pendaftaran'));
     }
 
     public function edit($id)
     {
         $data = User::with('student','document')->findOrFail($id);
 
-        return view('pages.admin.dashboard.data.edit',compact('data'));
+        return view('pages.admin.dashboard.peserta.edit',compact('data'));
     }
 
     public function update(Request $request,$id)

@@ -27,19 +27,19 @@ class PendaftarController extends Controller
         // $pendaftaran = User::with('student')->findOrFail($id);
         $pendaftaran = User::with('parents')->findOrFail($id);
 
-        return view('pages.admin.dashboard.biodata.show',compact('pendaftaran'));
+        return view('pages.admin.dashboard.pendaftar.show',compact('pendaftaran'));
     }
 
     public function show_document($id)
     {
         $document = Document::with('user')->findOrFail($id);
-        return view('pages.admin.dashboard.biodata.show_document',compact('document'));
+        return view('pages.admin.dashboard.pendaftar.show_document',compact('document'));
     }
 
     public function edit($id)
     {
         $biodata = User::with('pendaftaran','document')->findOrFail($id);
-        return view('pages.admin.dashboard.biodata.edit',compact('biodata'));
+        return view('pages.admin.dashboard.pendaftar.edit',compact('biodata'));
     }
 
     public function update(Request $request,$id)
@@ -89,12 +89,12 @@ class PendaftarController extends Controller
         $document->save();
 
 
-        return redirect()->route('admin.biodata.index')->with('edit', 'Profile berhasil diupdate.');
+        return redirect()->route('admin.pendaftar.index')->with('edit', 'Profile berhasil diupdate.');
     }
 
     public function create()
     {
-        return view('pages.admin.dashboard.biodata.create');
+        return view('pages.admin.dashboard.pendaftar.create');
     }
 
     // public function store(Request $request)
