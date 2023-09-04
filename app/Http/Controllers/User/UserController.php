@@ -13,70 +13,151 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     use Fonnte;
-    public function login()
+    public function __construct()
+    {
+        $this->middleware('guest', [
+            'except' => [
+                'logout',
+                'verifyEmailProcess',
+                'verifyEmailSuccess',
+                'verifyEmail',
+                'sendEmailVerification',
+                'resendEmailVerification'
+            ]
+        ]);
+    }
+
+    public function sendEmailVerification()
+    {
+        try {
+            $user = auth()->user();
+
+            // if (RateLimiter::tooManyAttempts(auth()->user()->email, 3)){
+            //     $seconds = RateLimiter::availableIn(auth()->user()->email);
+            //     $second  = $seconds <= 60 ? $seconds.' detik' : ceil($seconds/60).' menit';
+            //     return 'Anda sudah melakukan 6 kali percobaan silahkan tunggu '.$second.' lagi untuk mencoba kirim kembali';
+            // }
+
+            $token = Crypt::encrypt($user->password);
+
+            $actionLink = route('user.verification.process', $token);
+            $body = 'Silahkan Verifikasi Email anda dari website <strong>Finval</strong> akun dengan email <strong>'.$user->email.'</strong>, Verifikasi Email anda dengan mengklik link berikut';
+
+            // RateLimiter::hit($user->email, 1800);
+
+            Mail::send('email.email-verification', compact('body', 'actionLink'), function($message) use ($user) {
+                // $message->from('finval@gmail.com');
+                $message->to($user->email)
+                        ->subject('Verifikasi Email');
+            });
+
+            RateLimiter::clear($user->email);
+
+            return true;
+        } catch (\Throwable $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function verifyEmailProcess($token)
+    {
+        $user            = auth()->user();
+        $token_decrypted = Crypt::decryptString($token);
+
+        if (explode('"', $token_decrypted)[1] != $user->password){
+            return redirect()->route('user.verification')->with('error', 'Token tidak valid');
+        }
+
+        $user = User::findOrFail(auth()->user()->id);
+        $user->update([
+            "email_verified_at" => Date('Y-m-d'),
+        ]);
+
+        return redirect()->route('user.profile')->with('success','Anda Berhasil Masuk');
+    }
+
+    public function resendEmailVerification()
+    {
+
+        $is_send_email = $this->sendEmailVerification();
+
+        if (gettype($is_send_email) == 'string'){
+            $type    = 'error';
+            $message = $is_send_email;
+        }else {
+            $type    = 'success';
+            $message = 'Berhasil kirim email verifikasi';
+        }
+
+        $this->sendEmailVerification();
+        return redirect()->route('user.verification')->with($type, $message);
+    }
+
+    public function verifyEmail()
+    {
+        return view('pages.user.email-verification');
+    }
+    public function index()
     {
         return view('front.login');
     }
 
-    public function loginProses(Request $request)
+    public function login(Request $request)
     {
         $phone = $request->nomor;
         if (Str::startsWith($phone, '0')) {
             $phone = '62' . substr($phone, 1);
         }
-        $messages = [
-            'nomor.required' => 'Nomor Harus Diisi Dengan Benar',
-            'nomor.string' => 'Nomor Harus String',
-            'password.required' => 'Password Wajib Diisi',
-            'password.min' => 'Password Minimal :min Angka/Huruf' 
-        ];
         $request->validate([
-            'nomor' => 'required|string',
-            'password' => 'required|min:8'
-        ],$messages);
+            'nomor' => 'required|exists:users,nomor',
+            'password' => 'required'
+        ]);
+        $infologin = [
+            'nomor' => $phone,
+            'password' => $request->password
+        ];
 
-    $infologin = [
-        'nomor' => $phone,
-        'password' => $request->password
-    ];
-    $user = User::where('nomor', $phone)->first();
+        $credentials = $request->only('nomor', 'password');
+        $authenticated = Auth::attempt($credentials, $request->has('remember'));
 
-    if (!$user) {
-        // Pengguna dengan nomor telepon tertentu tidak ditemukan
-        return redirect()->route('user.login')->with('gagal', 'Nomor Anda tidak ditemukan.');
-    }
-    
-    $notif = User::find($user->id);
-    
-    if ($user->active == 0) {
-        return redirect()->route('user.activication')->with('gagal', 'Kamu Harus Mengisi Kode OTP Yang Dikirim');
-    }
-    if (Auth::attempt($infologin)) {
-        if(auth()->user()->role == 'user'){
-            $request->session()->regenerate();
-            
+        if (!$authenticated){
+            return redirect()->back()->with('error', 'email atau password salah.');
+        }
+        return redirect()->route('user.dashboard');
+
+
+        $this->validate($request, [
+            'nomor' => 'required',
+            'password' => 'required',
+        ]);
+
+        if(auth()->attempt(array('nomor' => $input['nomor'], 'password' => $input['password'])))
+        {
+            $user = User::where('nomor',$phone)->first();
+        
+            $notif = User::where('id',$user->id);
+
             $messages = $notif->notifys->notif_pembayaran;
 
             $this->send_message($phone,$messages);
-            return redirect()->route('user.dashboard')->with('success','Yey Berhasil Login');
-        }else{ 
-            return back()->withErrors([
-                'nomor' => 'Kamu Bukan User'
-            ])->onlyInput('nomor');
-        }
-        if(auth()->user()->role == 'user'){
-            $request->session()->regenerate();
-            return redirect()->route('user.dashboard');
+            
+            if($user->active == 0){
+                return redirect()->route('user.activication')->with('gagal','Kamu Harus Mengisi Kode OTP Yang Dikirim');
+            }
+            if (auth()->user()->role == 'user') {
+                $messages = $notif->notifys->notif_pembayaran;
+
+                $this->send_message($phone,$messages);
+                return redirect()->route('user.dashboard')->with('success','Yey Berhasil Login');
+            }else{
+                return redirect()->back()->withErrors([
+                    'nomor' => 'Kamu bukan user'
+                ]);
+            }
         }else{
-            return back()->withErrors([
-                'nomor' => 'Kamu Bukan User'
-            ])->onlyInput('nomor');
+            return redirect()->route('login')
+                ->with('error','Nomor And Password Are Wrong.');
         }
-    }
-    return back()->withErrors([
-        'nomor' => 'Nomor Anda Salah / Sudah Di Pakai',
-        'password' => 'Password Salah'
-    ])->onlyInput('nomor','password');
     }
 
     public function show()

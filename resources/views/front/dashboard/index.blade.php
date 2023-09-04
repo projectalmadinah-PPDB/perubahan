@@ -5,83 +5,103 @@
 @section('content')
 <main class="w-full min-h-screen h-auto pt-12 md:pt-24">
     <!-- section one -->
-    @if($user->student->status == 'Belum')
-    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
-        <!-- status pendaftaran -->
-        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
-            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Untuk Kabar Selanjutnya Kami Akan Memberikan Informasi Lewat Whatshap Anda Terima Kasih</p>
-            <a href="" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                Anda Belum Di Verifikasi Silahkan Menuggu
-            </a>
-        </div>
+    @if($user->student)
+        @if($user->student->status == 'Belum')
+        <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+            <!-- status pendaftaran -->
+            <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
+                <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
+                <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Untuk Kabar Selanjutnya Kami Akan Memberikan Informasi Lewat Whatshap Anda Terima Kasih</p>
+                <a href="" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                    Anda Belum Di Verifikasi Silahkan Menuggu
+                </a>
+            </div>
 
-        <!-- cta ikuti tes -->
-        <div class="flex flex-col justify-center items-center gap-4">
-        </div>
+            <!-- cta ikuti tes -->
+            <div class="flex flex-col justify-center items-center gap-4">
+            </div>
 
-        <!-- alur pendaftaran dan status -->
-    </section>
-    @elseif ($user->student->status == 'TidakSah')
-    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
-        <!-- status pendaftaran -->
-        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
-            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Untuk Kabar Selanjutnya Kami Akan Memberikan Informasi Lewat Whatshap Anda Terima Kasih</p>
-            <a href="" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                Pendaftaran Kamu Tidak Sah
-            </a>
-        </div>
+            <!-- alur pendaftaran dan status -->
+        </section>
+        @elseif ($user->student->status == 'TidakSah')
+        <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+            <!-- status pendaftaran -->
+            <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
+                <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
+                <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Untuk Kabar Selanjutnya Kami Akan Memberikan Informasi Lewat Whatshap Anda Terima Kasih</p>
+                <a href="" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                    Pendaftaran Kamu Tidak Sah
+                </a>
+            </div>
 
-        <!-- cta ikuti tes -->
-        <div class="flex flex-col justify-center items-center gap-4">
-        </div>
+            <!-- cta ikuti tes -->
+            <div class="flex flex-col justify-center items-center gap-4">
+            </div>
 
-        <!-- alur pendaftaran dan status -->
-    </section>
+            <!-- alur pendaftaran dan status -->
+        </section>
+        @else
+        @if (!$user->student)
+            <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+                <!-- status pendaftaran -->
+                <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
+                    <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang Budi!</h1>
+                    <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Lengkapi Data diri kamu untuk melanjutkan proses pendaftaran, melalui tombol dibawah ini.</p>
+                    <a href="{{route('user.kelengkapan')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                        Lengkapi Data Diri 
+                    </a>
+                </div>
+
+                <!-- cta ikuti tes -->
+                <div class="flex flex-col justify-center items-center gap-4">
+                </div>
+
+                <!-- alur pendaftaran dan status -->
+            </section>   
+            @elseif(!$user->document)
+            <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+                <!-- status pendaftaran -->
+                <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
+                    <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang Budi!</h1>
+                    <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Lengkapi Data diri kamu untuk melanjutkan proses pendaftaran, melalui tombol dibawah ini.</p>
+                    <a href="{{route('user.document')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                        Lengkapi Document
+                    </a>
+                </div>
+
+                <!-- cta ikuti tes -->
+                <div class="flex flex-col justify-center items-center gap-4">
+                </div>
+
+                <!-- alur pendaftaran dan status -->
+            </section>
+            @else
+            <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+                <!-- status pendaftaran -->
+                <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
+                    <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
+                    <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Kamu Telah Melengkapi Pendaftaran Silahkan Menunggu Jadwal Kelulusan</p>
+                    <a href="{{route('user.profile')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                        Halo Data Diri Saya {{$user->name}}
+                    </a>
+                </div>
+
+                <!-- cta ikuti tes -->
+                <div class="flex flex-col justify-center items-center gap-4">
+                </div>
+
+                <!-- alur pendaftaran dan status -->
+            </section> 
+            @endif
+        @endif
     @else
-    @if (!$user->student)
-    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
-        <!-- status pendaftaran -->
-        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang Budi!</h1>
-            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Lengkapi Data diri kamu untuk melanjutkan proses pendaftaran, melalui tombol dibawah ini.</p>
-            <a href="{{route('user.kelengkapan')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                Lengkapi Data Diri 
-            </a>
-        </div>
-
-        <!-- cta ikuti tes -->
-        <div class="flex flex-col justify-center items-center gap-4">
-        </div>
-
-        <!-- alur pendaftaran dan status -->
-    </section>   
-    @elseif(!$user->document)
-    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
-        <!-- status pendaftaran -->
-        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang Budi!</h1>
-            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Lengkapi Data diri kamu untuk melanjutkan proses pendaftaran, melalui tombol dibawah ini.</p>
-            <a href="{{route('user.document')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                Lengkapi Document
-            </a>
-        </div>
-
-        <!-- cta ikuti tes -->
-        <div class="flex flex-col justify-center items-center gap-4">
-        </div>
-
-        <!-- alur pendaftaran dan status -->
-    </section>
-    @else
     <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
         <!-- status pendaftaran -->
         <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
             <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
-            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Kamu Telah Melengkapi Pendaftaran Silahkan Menunggu Jadwal Kelulusan</p>
+            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Halo Anda Telah Berhasil Mendaftar</p>
             <a href="{{route('user.profile')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                Halo Data Diri Saya {{$user->name}}
+                 Silahkan Tunggu Informasi Selanjutnya di Whatshap
             </a>
         </div>
 
@@ -91,7 +111,6 @@
 
         <!-- alur pendaftaran dan status -->
     </section> 
-    @endif
     @endif
     <!-- pengumuman -->
     <section 

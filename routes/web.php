@@ -142,7 +142,7 @@ Route::prefix('/user')->name('user.')->group(function(){
 
     Route::get('/login', [UserController::class,'index'])->name('index');
 
-    Route::post('/login/proses', [UserController::class,'loginProses'])->name('login.proses');
+    Route::post('/login/proses', [UserController::class,'login'])->name('login');
 
     Route::get('/register',[UserController::class,'show'])->name('show');
 
