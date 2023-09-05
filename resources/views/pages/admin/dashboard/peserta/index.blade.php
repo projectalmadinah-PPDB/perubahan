@@ -51,6 +51,7 @@
                         <th>Nomor Hp</th>
                         <th>Biodata</th>
                         <th>Status</th>
+                        <th>Status Test</th>
                         {{-- <th>Tanggal Lahir</th>
                         <th>Jenis Kelamin</th> --}}
                         {{-- <th>NIK</th> --}}
@@ -79,12 +80,23 @@
                             <button class="badge badge-danger border-0">Tidak Legkap</button></td>
                           @endif
                           <td>
-                            @if ($item->student->status == 'Belum')
+                            @if ($item->status == 'Belum')
                                 <button class="badge badge-warning border-0">Belum Verifikasi</button>
-                            @elseif($item->student->status == 'Verifikasi')
+                            @elseif($item->status == 'Verifikasi')
                                 <button class="badge badge-success border-0">TerVerifikasi</button>
-                            @elseif($item->student->status == 'TidakSah')
+                            @elseif($item->status == 'TidakSah')
                                 <button class="badge badge-danger border-0">Tidak Sah</button>
+                            @else
+                            
+                            @endif
+                          </td>
+                          <td>
+                            @if ($item->student->status == 'Lulus')
+                                <button class="badge badge-success border-0">Lulus</button>
+                            @elseif($item->student->status == 'Gagal')
+                                <button class="badge badge-danger border-0">Tidak Lulus</button>
+                            @elseif($item->student->status == 'Wawancara')
+                                <button class="badge badge-primary border-0">Wawancara</button>
                             @else
                             
                             @endif
@@ -115,9 +127,9 @@
                                   @csrf
                                   @method('POST')
                                   <div class="d-flex flex-wrap">
-                                    <button type="submit" name="status" value="Verifikasi" class="border-0 bg-success w-100 text-bold text-white" >Verifikasi</button>
-                                    <button type="submit" name="status" value="Belum" class="border-0 bg-warning w-100 text-bold text-white" >Belum Verifikasi</button>
-                                    <button name="status" type="submit" class="border-0 bg-danger w-100 text-bold text-white" value="TidakSah">Tidak Sah</button>
+                                    <button type="submit" name="status" value="Lulus" class="border-0 bg-success w-100 text-bold text-white" >Lolos Semua</button>
+                                    <button name="status" type="submit" class="border-0 bg-danger w-100 text-bold text-white" value="Wawancara">Lanjut Wawancara</button>
+                                    <button type="submit" name="status" value="Gagal" class="border-0 bg-warning w-100 text-bold text-white" >Gagal / Gugur</button>
                                   </div>
                                   {{-- <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
                                     @csrf

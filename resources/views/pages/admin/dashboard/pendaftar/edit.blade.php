@@ -13,7 +13,7 @@
             <div class="card-header">
               <div class="card-title">Base Form Control</div>
             </div>
-            <form action="{{route('admin.biodata.update',$biodata->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.pendaftar.update',$biodata->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -110,7 +110,7 @@
                       @endif
                     <div class="card-action">
                       <button class="btn btn-success" type="submit">Submit</button>
-                      <a href="{{route('admin.biodata.index')}}" class="btn btn-warning" type="button">Back</a>
+                      <a href="{{route('admin.pendaftar.index')}}" class="btn btn-warning" type="button">Back</a>
                     </div>  
                 </div>
             </form>

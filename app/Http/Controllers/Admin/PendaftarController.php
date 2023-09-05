@@ -8,10 +8,11 @@ use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\Fonnte;
 
 class PendaftarController extends Controller
 {
-    // use Fonnte;
+    use Fonnte;
     public function index(Request $request)
     {
         if($request->has('search')){
@@ -38,24 +39,25 @@ class PendaftarController extends Controller
 
     public function edit($id)
     {
-        $biodata = User::with('pendaftaran','document')->findOrFail($id);
+        $biodata = User::with('student','document')->findOrFail($id);
         return view('pages.admin.dashboard.pendaftar.edit',compact('biodata'));
     }
 
     public function update(Request $request,$id)
     {
         $user = User::find($id);
-        $pendaftaran = $user->pendaftaran; // Tidak perlu tanda kurung
+        $pendaftaran = $user->student; // Tidak perlu tanda kurung
 
         $data = $request->validate([
             'name' => 'required|string',
             'nomor' => 'required|unique:users,nomor,' . $user->id,
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
+            // 'status' => 'required'
         ]);
 
         $user->update($data);
-
+        return redirect()->route('admin.pendaftar.index')->with('edit', 'Profile berhasil diupdate.');
         $pendaftaranData = $request->validate([
             'nik' => 'required',
             'nama_ayah' => 'required|string',
@@ -66,6 +68,7 @@ class PendaftarController extends Controller
         ]);
 
         $pendaftaran->update($pendaftaranData);
+        return redirect()->route('admin.pendaftar.index')->with('edit', 'Profile berhasil diupdate.');
         $document = $user->document;
         // Update document files if uploaded
         if ($request->hasFile('kk')) {
@@ -95,6 +98,35 @@ class PendaftarController extends Controller
     public function create()
     {
         return view('pages.admin.dashboard.pendaftar.create');
+    }
+
+    public function verify(Request $request,$id)
+    {
+        $user = User::where('id',$id);
+        // $notify = User::where('notify_id',$user)->first();
+        $data = $request->validate([
+            'status' => 'required'
+        ]);
+        $user->update($data);
+        $notify = User::find($id);
+        if($notify->status == 'Verifikasi'){
+
+            $messages = $notify->notifys->notif_verify;
+    
+            $this->send_message($notify->nomor,$messages);
+        }elseif($notify->status == 'Belum'){
+
+            $messages = $notify->notifys->notif_belum_verify;
+
+            $this->send_message($notify->nomor,$messages);
+        }
+        else{
+            $messages = $notify->notifys->notif_tidak_sah;
+
+            $this->send_message($notify->nomor,$messages);
+        }
+        
+        return redirect()->route('admin.pendaftar.index');
     }
 
     // public function store(Request $request)

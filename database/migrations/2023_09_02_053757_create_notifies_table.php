@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('notifies', function (Blueprint $table) {
             $table->id();
-            $table->text('notif_otp');
-            $table->text('notif_pembayaran');
-            $table->text('notif_lolos');
-            $table->text('notif_gagal');
-            $table->text('notif_info');
+            $table->text('notif_otp')->nullable();
+            $table->text('notif_gagal_otp')->nullable();
+            $table->text('notif_pembayaran')->nullable();
+            $table->text('notif_lolos')->nullable();
+            $table->text('notif_gagal')->nullable();
+            $table->text('notif_info')->nullable();
+            $table->text('notif_verify')->nullable();
+            $table->text('notif_belum_verify')->nullable();
+            $table->text('notif_tidak_sah')->nullable();
             $table->timestamps();
         });
     }

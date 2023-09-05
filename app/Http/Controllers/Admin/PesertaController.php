@@ -17,7 +17,7 @@ class PesertaController extends Controller
             $data = User::where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $data = User::where('role','user')->orderBy('id','desc')->with('student','document')->whereHas('student')->paginate(5);
+            $data = User::where('status','Verifikasi')->where('role','user')->orderBy('id','desc')->paginate(5);
         }
         return view('pages.admin.dashboard.peserta.index',compact('data'));
     }

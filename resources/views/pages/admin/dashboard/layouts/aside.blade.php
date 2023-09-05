@@ -55,16 +55,16 @@
 					<p>Peserta</p>
 				</a>
 			</li>
+			<li class="nav-item {{ Route::is('admin.wawancara.*') ? 'active' : '' }}">
+				<a href="{{ route('admin.wawancara.index') }}" class="py-1 px-3">
+					<i class="bi bi-broadcast"></i>
+					<p>Wawancara</p>
+				</a>
+			</li>
 			<li class="nav-item {{ Route::is('admin.lolos.*') ? 'active' : '' }}">
 				<a href="{{ route('admin.lolos.index') }}" class="py-1 px-3">
 					<i class="bi bi-reply-all"></i>
 					<p>Lolos</p>
-				</a>
-			</li>
-			<li class="nav-item {{ Route::is('admin.document.*') ? 'active' : '' }}">
-				<a href="{{ route('admin.document.index') }}" class="py-1 px-3">
-					<i class="bi bi-files"></i>
-					<p>Dokumen</p>
 				</a>
 			</li>
 			<li class="nav-item">

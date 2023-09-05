@@ -118,6 +118,25 @@ class UserController extends Controller
         ];
 
         $credentials = $request->only('nomor', 'password');
+        $user = User::where('nomor',$credentials)->first();
+
+        if($user->active){
+            $notif = User::find($user->id);
+
+            $messages = $notif->notifys->notif_belum_verify;
+
+            $this->send_message($phone,$messages);
+        }else{
+            $notif = User::find($user->id);
+
+            $messages = $notif->notifys->notif_gagal;
+
+            $this->send_message($phone,$messages);
+        }
+        if($user->active == 0){
+            
+            return redirect()->route('user.activication')->with('gagal','Kamu Harus Mengisi Kode OTP Yang Dikirim');
+        }
         $authenticated = Auth::attempt($credentials, $request->has('remember'));
 
         if (!$authenticated){
@@ -130,20 +149,9 @@ class UserController extends Controller
             'nomor' => 'required',
             'password' => 'required',
         ]);
-
+        
         if(auth()->attempt(array('nomor' => $input['nomor'], 'password' => $input['password'])))
         {
-            $user = User::where('nomor',$phone)->first();
-        
-            $notif = User::where('id',$user->id);
-
-            $messages = $notif->notifys->notif_pembayaran;
-
-            $this->send_message($phone,$messages);
-            
-            if($user->active == 0){
-                return redirect()->route('user.activication')->with('gagal','Kamu Harus Mengisi Kode OTP Yang Dikirim');
-            }
             if (auth()->user()->role == 'user') {
                 $messages = $notif->notifys->notif_pembayaran;
 

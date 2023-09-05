@@ -17,7 +17,7 @@ class LolosController extends Controller
             $lolos = User::where('role','user')->where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $lolos = Student::where('status','lolos')->orderBy('id','desc')->paginate(5);
+            $lolos = Student::where('status','Lulus')->orderBy('id','desc')->paginate(5);
         }
         
         return view('pages.admin.dashboard.lolos.index',compact('lolos'));
@@ -29,21 +29,21 @@ class LolosController extends Controller
         $notif = User::where('notify_id',$id)->first();
         $student = Student::find($id);
         $data = $request->validate([
-            'status' => 'required|in:Belum,TidakSah,Verifikasi'
+            'status' => 'required'
         ]);
         $student->update($data);
-        if($student->status == 'Verifikasi'){
+        if($student->status == 'Lulus'){
 
-            $messages = $notif->notifys->notif_verify;
+            $messages = $notif->notifys->notif_lolos;
     
             $this->send_message($student->user->nomor,$messages);
-        }elseif($student->status == 'Belum'){
-            $messages = $notif->notifys->notif_belum_verify;
+        }elseif($student->status == 'Gagal'){
+            $messages = $notif->notifys->notif_gagal;
 
             $this->send_message($student->user->nomor,$messages);
         }
         else{
-            $messages = $notif->notifys->notif_tidak_sah;
+            $messages = $notif->notifys->notif_info;
 
             $this->send_message($student->user->nomor,$messages);
         }
@@ -52,7 +52,7 @@ class LolosController extends Controller
 
     public function update(Request $request,$id)
     {
-        $lolos = Student::where('status','lolos')->findOrFail($id);
+        $lolos = Student::where('status','Lulus')->findOrFail($id);
         $data = $request->validate([
             'status' => 'required'
         ]);

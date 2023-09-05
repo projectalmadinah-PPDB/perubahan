@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('jenis_kelamin');
             $table->date('tanggal_lahir');
             $table->string('password');
+            $table->string('status')->default('Belum');
             $table->enum('role',['user','admin'])->default('user');
             $table->integer('token')->nullable();
             $table->boolean('active')->default(0);

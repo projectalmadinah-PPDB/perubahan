@@ -75,6 +75,11 @@ class User extends Authenticatable
         return $this->hasOne(Document::class);
     }
 
+    public function wawancara()
+    {
+        return $this->hasOne(Wawancara::class);
+    }
+
     public function notifys()
     {
         return $this->belongsTo(Notify::class,'notify_id');

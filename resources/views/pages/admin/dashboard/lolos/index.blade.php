@@ -78,8 +78,9 @@
                                     <label for="email">Status</label>
                                     <select name="status" id="" class="form-select">
                                         <option disabled selected>Pilih Status</option>
-                                        <option value="lolos" {{$item->status == 'lolos' ? 'selected' : ''}}>Lolos</option>
-                                        <option value="gagal" {{$item->status == 'gagal' ? 'selected' : ''}}>Gagal</option>
+                                        <option value="Lulus" {{$item->status == 'Lulus' ? 'selected' : ''}}>Lolos</option>
+                                        <option value="Wawancara" {{$item->status == 'Wawancara' ? 'selected' : ''}}>Wawancara</option>
+                                        <option value="Gagal" {{$item->status == 'Gagal' ? 'selected' : ''}}>Gagal</option>
                                     </select>
                                   </div>
                                   <div class="modal-footer">

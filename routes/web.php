@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PendaftarController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
+use App\Http\Controllers\WawancaraController;
+use App\Models\Wawancara;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +78,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
     // pendaftar
     Route::get('/pendaftar',[PendaftarController::class,'index'])->name('pendaftar.index');
+
+    Route::post('/pendaftar/verify/{id}',[PendaftarController::class,'verify'])->name('pendaftar.verify');
     
     Route::get('/pendaftar/create',[PendaftarController::class,'create'])->name('pendaftar.create');
     
@@ -102,6 +106,12 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
     Route::get('/peserta/show/{id}',[PesertaController::class,'show'])->name('peserta.show');
 
+    // wawancara
+    Route::get('/wawancara',[WawancaraController::class,'index'])->name('wawancara.index');
+
+    Route::post('/wawancara/{id}',[WawancaraController::class,'store'])->name('wawancara.create');
+
+    Route::put('/wawancara/update/{id}',[WawancaraController::class,'update'])->name('wawancara.update');
     // siswa yang Lolos
     Route::get('/peserta/lolos',[LolosController::class,'index'])->name('lolos.index');
 
