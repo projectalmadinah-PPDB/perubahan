@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\General;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,6 +19,38 @@ class SettingController extends Controller
     {
         $user = User::find(Auth::user()->id);
         return view('front.edit-profile',compact('user'));
+    }
+    
+    public function general()
+    {
+        $generals = General::first();
+        return view('pages.admin.dashboard.setting.general', compact('generals'));
+    }
+
+    public function update_general(Request $request)
+    {
+        $generals = General::first();
+
+        $data = $request->validate([
+            'school_name' => 'required|string',
+            'school_logo' => 'max:8192',
+            'school_email' => 'required|email|max:255',
+            'school_phone' => 'string|max:16',
+            'school_address' => 'required',
+            'desc' => 'required'
+        ]);
+
+        if ($request->school_logo) {
+            $logo = $request->file('school_logo')->store('logo', 'public');
+            $data['school_logo'] = $logo;
+        } else {
+            $data['school_logo'] = $generals->school_logo;
+        }
+
+        // dd($data);
+
+        $generals->update($data);
+        return redirect()->route('admin.settings.general', compact('generals'))->with('tersimpan', true);
     }
 
     public function profile()
