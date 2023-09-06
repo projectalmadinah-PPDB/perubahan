@@ -1,6 +1,6 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
-@section('title','Lolos')
+@section('title','Wawancara')
 
 @section('content')
     <div class="main-panel">
@@ -48,6 +48,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Tanggal Wawancara</th>
+                        <th>Waktu Wawancara</th>
                         <th>Link</th>
                         <th>Action</th>
                       </tr>
@@ -56,10 +57,16 @@
                         @foreach ($data as $index => $item)
                         <tr>
                           <td>{{$index + 1}}</td>
-                          <td>{{$item->name}}</td>
+                          <td>{{$item->user->name}}</td>
                           <td>
                             @if ($item->wawancara)
                                 {{$item->wawancara->tanggal}}
+                            @else
+                                Belum Ada
+                            @endif
+                          </td>
+                          <td>@if ($item->wawancara)
+                            {{$item->wawancara->jam}}
                             @else
                                 Belum Ada
                             @endif
@@ -70,13 +77,14 @@
                                 Belum Ada
                             @endif
                           </td>
-                          @if($item->wawancara)
                           <td>
-                            <form action="{{route('admin.wawancara.update',$item->wawancara->id)}}" method="post">
+                            <div class="d-flex">
+                            @if($item->wawancara)
+                            <form action="{{route('admin.wawancara.update',$item->id)}}" method="post">
                             @csrf
                             @method('PUT')
                             <button type="button" class="badge badge-primary border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                              Update Wawancara
+                              Update
                             </button>
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -89,8 +97,12 @@
                                   <div class="modal-body">
                                     <div class="mb-2">
                                         <label for="">Tanggal Wawancara</label>
-                                        <input type="datetime-local" class="form-control" name="tanggal" value="{{$item->wawancara->tanggal}}">
+                                        <input type="date" class="form-control" name="tanggal" value="{{$item->wawancara->tanggal}}">
                                     </div>
+                                    <div class="mb-2">
+                                      <label for="">Waktu Wawancara</label>
+                                      <input type="time" class="form-control" name="jam" value="{{$item->wawancara->jam}}">
+                                  </div>
                                     <div class="mb-2">
                                         <label for="">Link Wawancara</label>
                                         <input type="text" class="form-control" name="link" value="{{$item->wawancara->link}}">
@@ -104,12 +116,10 @@
                               </div>
                             </div>
                           </form>
-                          </td>
-                          @else
-                          <td>
-                            <form action="{{route('admin.wawancara.create',$item->id)}}" method="post">
-                            @csrf
-                            @method('POST')
+                          @else 
+                          <form action="{{route('admin.wawancara.create',$item->id)}}" method="post">
+                          @csrf
+                          @method('POST')
                             <button type="button" class="badge badge-primary border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                               Input wawancara
                             </button>
@@ -124,7 +134,11 @@
                                   <div class="modal-body">
                                     <div class="mb-2">
                                         <label for="">Tanggal Wawancara</label>
-                                        <input type="datetime-local" class="form-control" name="tanggal">
+                                        <input type="date" class="form-control" name="tanggal">
+                                    </div>
+                                    <div class="mb-2">
+                                      <label for="">Waktu Wawancara</label>
+                                      <input type="time" class="form-control" name="jam">
                                     </div>
                                     <div class="mb-2">
                                         <label for="">Link Wawancara</label>
@@ -139,8 +153,9 @@
                               </div>
                             </div>
                           </form>
-                          </td>
                           @endif
+                        </div>
+                        </td>
                         </tr>
                         @endforeach
                     </tbody>

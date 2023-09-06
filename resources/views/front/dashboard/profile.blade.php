@@ -6,12 +6,12 @@
 <main class="w-full min-h-screen h-auto pt-12 md:pt-24">
     <!-- content biodata -->
     <section class="w-full flex flex-wrap justify-center items-start px-10 md:px-20 pt-10 pb-14 gap-10">
-        @if ($user->student)
-        @if ($user->student->status == 'Belum')
+        @if ($user)
+        @if ($user->status == 'Belum')
         <a href="" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
             Silahkan Menunggu Kabar Kamu Belum Di Verifikasi
         </a>
-        @elseif ($user->student->status == 'TidakSah')
+        @elseif ($user->status == 'TidakSah')
         <a href="" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
             Data Mu Mungkin Tidak Sah Silahkan Menunggu Kabar Dari Kami
         </a>

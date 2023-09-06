@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('notif_lolos')->nullable();
             $table->text('notif_gagal')->nullable();
             $table->text('notif_info')->nullable();
+            $table->text('notif_wawancara')->nullable();
             $table->text('notif_verify')->nullable();
             $table->text('notif_belum_verify')->nullable();
             $table->text('notif_tidak_sah')->nullable();

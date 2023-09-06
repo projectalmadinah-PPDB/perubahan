@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 
 class PesertaController extends Controller
 {
@@ -17,7 +18,7 @@ class PesertaController extends Controller
             $data = User::where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $data = User::where('status','Verifikasi')->where('role','user')->orderBy('id','desc')->paginate(5);
+            $data = Student::all();
         }
         return view('pages.admin.dashboard.peserta.index',compact('data'));
     }

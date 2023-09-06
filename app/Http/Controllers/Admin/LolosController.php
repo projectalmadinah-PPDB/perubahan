@@ -43,7 +43,7 @@ class LolosController extends Controller
             $this->send_message($student->user->nomor,$messages);
         }
         else{
-            $messages = $notif->notifys->notif_info;
+            $messages = $notif->notifys->notif_wawancara;
 
             $this->send_message($student->user->nomor,$messages);
         }

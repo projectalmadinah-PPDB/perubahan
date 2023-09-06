@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('wawancaras', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
+            $table->foreignId('student_id')->nullable();
             $table->date('tanggal');
+            $table->text('jam');
             $table->text('link');
             $table->timestamps();
         });

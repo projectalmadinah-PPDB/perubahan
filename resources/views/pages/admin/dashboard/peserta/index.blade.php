@@ -62,14 +62,14 @@
                       @foreach ($data as $index => $item)
                         <tr>
                           <td>{{$index + 1}}</td>
-                          <td>{{$item->name}}</td>
-                          <td>{{$item->nomor}}</td>
+                          <td>{{$item->user->name}}</td>
+                          <td>{{$item->user->nomor}}</td>
                           {{-- <td>{{$item->tanggal_lahir}}</td>
                           <td>{{$item->jenis_kelamin}}</td> --}}
                           {{-- <td>{{$item->nik}}</td> --}}
-                          @if($item->student && $item->document)
+                          @if($item && $item->user->document)
                           <td><button class="badge badge-success border-0">Lengkap &#x2714;</button></td>
-                          @elseif ($item->student && !$item->document)
+                          @elseif ($item && !$item->user->document)
                           <td>
                             <button class="badge badge-success border-0">data &#x2714;
                             </button>
@@ -80,25 +80,25 @@
                             <button class="badge badge-danger border-0">Tidak Legkap</button></td>
                           @endif
                           <td>
-                            @if ($item->status == 'Belum')
+                            @if ($item->user->status == 'Belum')
                                 <button class="badge badge-warning border-0">Belum Verifikasi</button>
-                            @elseif($item->status == 'Verifikasi')
+                            @elseif($item->user->status == 'Verifikasi')
                                 <button class="badge badge-success border-0">TerVerifikasi</button>
-                            @elseif($item->status == 'TidakSah')
+                            @elseif($item->user->status == 'TidakSah')
                                 <button class="badge badge-danger border-0">Tidak Sah</button>
                             @else
                             
                             @endif
                           </td>
                           <td>
-                            @if ($item->student->status == 'Lulus')
+                            @if ($item->status == 'Lulus')
                                 <button class="badge badge-success border-0">Lulus</button>
-                            @elseif($item->student->status == 'Gagal')
+                            @elseif($item->status == 'Gagal')
                                 <button class="badge badge-danger border-0">Tidak Lulus</button>
-                            @elseif($item->student->status == 'Wawancara')
+                            @elseif($item->status == 'Wawancara')
                                 <button class="badge badge-primary border-0">Wawancara</button>
                             @else
-                            
+                                <button class="badge badge-warning border-0">Tidak Ada Status</button>
                             @endif
                           </td>
                           <td>
@@ -123,7 +123,7 @@
                               </a>
                             
                               <div class="dropdown-menu" aria-labelledby="customDropdown">
-                                <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
+                                <form action="{{route('admin.pengecekan',$item->id)}}" method="post">
                                   @csrf
                                   @method('POST')
                                   <div class="d-flex flex-wrap">

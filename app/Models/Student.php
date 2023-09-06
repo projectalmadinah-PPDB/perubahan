@@ -29,4 +29,9 @@ class Student extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+
+    public function wawancara()
+    {
+        return $this->hasOne(Wawancara::class);
+    }
 }

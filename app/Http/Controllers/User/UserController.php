@@ -120,18 +120,14 @@ class UserController extends Controller
         $credentials = $request->only('nomor', 'password');
         $user = User::where('nomor',$credentials)->first();
 
-        if($user->active){
+        if($user->status == 'Belum'){
             $notif = User::find($user->id);
 
             $messages = $notif->notifys->notif_belum_verify;
 
             $this->send_message($phone,$messages);
         }else{
-            $notif = User::find($user->id);
-
-            $messages = $notif->notifys->notif_gagal;
-
-            $this->send_message($phone,$messages);
+            
         }
         if($user->active == 0){
             

@@ -112,6 +112,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     Route::post('/wawancara/{id}',[WawancaraController::class,'store'])->name('wawancara.create');
 
     Route::put('/wawancara/update/{id}',[WawancaraController::class,'update'])->name('wawancara.update');
+
+    Route::delete('/wawancara/delete/{id}',[WawancaraController::class,'delete'])->name('wawancara.delete');
     // siswa yang Lolos
     Route::get('/peserta/lolos',[LolosController::class,'index'])->name('lolos.index');
 
