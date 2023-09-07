@@ -979,16 +979,18 @@ class="relative section flex-col shadow-lg bg-[#23AA8A]/70 mx-20 md:mx-32 mt-10"
             Temukan berbagai pertanyaan seputar pendaftaran Sekolah Ar-Romusha dibawah ini.
         </p>
         <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
-            <!-- foreach here -->
+            @foreach ($qna as $index => $item)
+                <!-- foreach here -->
             <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                 <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                    <p class="tracking-wide">Lorem Ipsum?</p>
+                    <p class="tracking-wide">{{$item->question}}</p>
                 </div>
                 <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, est aspernatur delectus, quisquam dolore quis quidem cupiditate vitae officia nihil possimus cumque perferendis, quibusdam laudantium quo magnam. Ratione, sed repudiandae?
+                    {{$item->answer}}
                 </div>
             </div>
             <!-- endforeach here -->
+            @endforeach
         </div>
 
         <script>

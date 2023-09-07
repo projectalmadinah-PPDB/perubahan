@@ -26,7 +26,7 @@ class LolosController extends Controller
     public function pengecekan(Request $request,$id)
     {
         // dd($request->all());
-        $notif = User::where('notify_id',$id)->first();
+        $notif = User::where('notify_id',1)->first();
         $student = Student::find($id);
         $data = $request->validate([
             'status' => 'required'

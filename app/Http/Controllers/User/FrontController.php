@@ -5,13 +5,15 @@ namespace App\Http\Controllers\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Question;
 
 class FrontController extends Controller
 {
     public function index()
     {
         $article = Article::all();
-        return view('front.index',compact('article'));
+        $qna = Question::where('active','on')->get();
+        return view('front.index',compact('article','qna'));
     }
 
     public function informasi()

@@ -83,11 +83,11 @@
                             <form action="{{route('admin.wawancara.update',$item->id)}}" method="post">
                             @csrf
                             @method('PUT')
-                            <button type="button" class="badge badge-primary border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="badge badge-primary border-0" data-bs-toggle="modal" data-bs-target="#exampleModal{{$item->id}}">
                               Update
                             </button>
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel{{$item->id}}" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                   <div class="modal-header">

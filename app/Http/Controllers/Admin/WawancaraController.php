@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Notify;
-use App\Models\Student;
 use App\Models\User;
+use App\Models\Student;
 use App\Models\Wawancara;
-use App\Traits\Fonnte;
 use Illuminate\Http\Request;
+use App\Traits\Fonnte;
+use App\Http\Controllers\Controller;
 
 class WawancaraController extends Controller
 {

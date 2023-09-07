@@ -16,8 +16,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PendaftarController;
+use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
-use App\Http\Controllers\WawancaraController;
+use App\Http\Controllers\Admin\WawancaraController;
 use App\Models\Wawancara;
 
 /*
@@ -124,7 +125,12 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     Route::delete('/peserta/lolos/delete/{id}',[LolosController::class,'destroy'])->name('lolos.destroy');
 
     Route::post('/peserta/pengecekan/{id}',[LolosController::class,'pengecekan'])->name('pengecekan');
+    //q&a
+    Route::get('/question',[QuestionController::class,'index'])->name('question.index');
 
+    Route::post('/question/create',[QuestionController::class,'create'])->name('question.create');
+
+    Route::put('/question/active/{id}',[QuestionController::class,'active'])->name('question.active');
     // profile admin
     Route::get('/profile',[SettingController::class,'profile'])->name('setting.profile.index');
 

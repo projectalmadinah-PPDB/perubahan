@@ -73,6 +73,12 @@
 					<p>Document</p>
 				</a>
 			</li>
+			<li class="nav-item {{ Route::is('admin.question.*') ? 'active' : '' }}">
+				<a href="{{ route('admin.question.index') }}" class="py-1 px-3">
+					<i class="bi bi-question-octagon"></i>
+					<p>Q&A</p>
+				</a>
+			</li>
 			<li class="nav-item">
 				<a href="" class="py-1 px-3">
 					<i class="bi bi-credit-card"></i>
