@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\General;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\General;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
