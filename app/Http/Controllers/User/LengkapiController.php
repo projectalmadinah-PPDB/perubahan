@@ -7,17 +7,20 @@ use App\Models\Student;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Generasi;
 use Illuminate\Support\Facades\Auth;
 
 class LengkapiController extends Controller
 {
     public function index()
     {
-        return view('front.dashboard.pendaftaran');
+        $generasi = Generasi::where('status','on')->first();
+        return view('front.dashboard.pendaftaran',compact('generasi'));
     }
 
     public function store(Request $request)
     {
+        $generasi_id = Generasi::where('status','on')->first();
         $user = Auth::user()->id;
 
         $student = $request->validate([
@@ -29,8 +32,9 @@ class LengkapiController extends Controller
             'last_graduate' => 'required',
             'old_school' => 'required',
             'organization_exp' => 'required',
-            'address' => 'required'
+            'address' => 'required',
         ]);
+        $student['generasi_id'] = $generasi_id->id;
         $student['user_id'] = $user;
         Student::create($student);
 

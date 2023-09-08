@@ -12,7 +12,7 @@ class Student extends Model
 
     protected $fillable = [
         'user_id',
-        // 'generation_id',
+        'generasi_id',
         'birthplace',
         'nik',
         'nisn',
@@ -33,5 +33,10 @@ class Student extends Model
     public function wawancara()
     {
         return $this->hasOne(Wawancara::class);
+    }
+
+    public function generasi()
+    {
+        return $this->hasMany(Generasi::class);
     }
 }

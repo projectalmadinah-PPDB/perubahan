@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('generasis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->string('generasi');
             $table->string('status');
-            $table->string('no_invoice');
-            $table->string('amount');
-            $table->text('link');
+            $table->string('start_at');
+            $table->string('end_at');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('generasis');
     }
 };

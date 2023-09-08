@@ -15,6 +15,7 @@ use App\Http\Controllers\User\LengkapiController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GenerasiController;
 use App\Http\Controllers\Admin\PendaftarController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
@@ -131,6 +132,15 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     Route::post('/question/create',[QuestionController::class,'create'])->name('question.create');
 
     Route::put('/question/active/{id}',[QuestionController::class,'active'])->name('question.active');
+    //generasi
+    Route::get('/generasi',[GenerasiController::class,'index'])->name('generasi.index');
+
+    Route::post('/generasi/create',[GenerasiController::class,'create'])->name('generasi.create');
+
+    Route::put('/generasi/status/{id}',[GenerasiController::class,'status'])->name('generasi.status');
+
+    Route::put('/generasi/update/{id}',[GenerasiController::class,'update'])->name('generasi.update');
+    
     // profile admin
     Route::get('/profile',[SettingController::class,'profile'])->name('setting.profile.index');
 
@@ -179,12 +189,25 @@ Route::prefix('/user')->name('user.')->group(function(){
 
     Route::middleware(['auth','role:user'])->group(function(){
         Route::get('/dashboard', [UserDashboardController::class,'index'])->name('dashboard');
+        Route::get('/payment/{id}',[UserDashboardController::class,'pay'])->name('pay');
         Route::get('/profile',[UserDashboardController::class,'profile'])->name('profile');
         Route::get('/informasi',[UserDashboardController::class,'informasi'])->name('informasi');
         Route::get('/detail-informasi/{slug}',[FrontController::class,'detail_informasi'])->name('informasi.detail');
+      });
+    Route::middleware(['payment'])->group(function(){
         Route::get('/kelengkapan' ,[LengkapiController::class,'index'])->name('kelengkapan');
         Route::post('/kelengkapan/process' ,[LengkapiController::class,'store'])->name('kelengkapan.process');
         Route::get('/document',[LengkapiController::class,'document'])->name('document');
         Route::post('/document/process',[LengkapiController::class,'upload'])->name('document.process');
-      });
+    });
+});
+Route::prefix('/callback')->name('callback.')->group(function(){
+  Route::get('/return',function(){
+      return view('front.callback.return');
+  })->name('return');
+  Route::get('/cancel',function(){
+      return view('front.callback.return-cancel');
+  })->name('cancel');
+
+  Route::post('/notify',[TransactionController::class,'notify'])->name('notify');
 });

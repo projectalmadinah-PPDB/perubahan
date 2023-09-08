@@ -79,6 +79,12 @@
 					<p>Q&A</p>
 				</a>
 			</li>
+			<li class="nav-item {{ Route::is('admin.generasi.*') ? 'active' : '' }}">
+				<a href="{{ route('admin.generasi.index') }}" class="py-1 px-3">
+					<i class="bi bi-person-fill-lock"></i>
+					<p>Generasi</p>
+				</a>
+			</li>
 			<li class="nav-item">
 				<a href="" class="py-1 px-3">
 					<i class="bi bi-credit-card"></i>

@@ -1,6 +1,6 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
-@section('title','Article')
+@section('title','Question')
 
 @section('content')
 <div class="main-panel">

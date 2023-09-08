@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Payment extends Model
+class Generasi extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'generasi',
         'status',
-        'no_invoice',
-        'amount',
-        'link'
+        'start_at',
+        'end_at'
     ];
 
-    public function user()
+    public function student()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Student::class);
     }
 }
