@@ -19,14 +19,17 @@
 					class="collapse in" id="profileUser" aria-expanded="true">
 					<ul class="nav">
 						<li>
-							<a href="">
+							<a href="{{ route('admin.setting.profile.index') }}">
 								<span class="link-collapse">My Profile</span>
 							</a>
 						</li>
 						<li>
-							<a href="">
-								<span class="link-collapse">Edit Profile</span>
-							</a>
+							<a  
+                                href="{{ Route::is('admin.setting.profile.index') ? '' : route('admin.setting.profile.index') }}" 
+                                @if (Route::is('admin.setting.profile.index')) role="button" 
+								data-bs-toggle="modal" data-bs-target="#exampleModal" @endif>
+                                <span class="link-collapse">Edit Profile</span>
+                            </a>
 						</li>
 					</ul>
 				</div>
