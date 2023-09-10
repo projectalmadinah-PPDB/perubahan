@@ -38,15 +38,31 @@
                         <div class="col-md-6">
                             <div class="mb-2">
                                 <label for="" class="form-label">Notifikasi OTP</label>
-                                <textarea class="form-control" name="notif_otp">{{$notif->notif_otp}}</textarea>
+                                <textarea class="form-control" rows="5" name="notif_otp">{{$notif->notif_otp}}</textarea>
                             </div>
                             <div class="mb-2">
+                              <label for="" class="form-label">Notifikasi Gagal OTP</label>
+                              <textarea class="form-control" rows="5" name="notif_gagal_otp">{{$notif->notif_gagal_otp}}</textarea>
+                          </div>
+                            <div class="mb-2">
                                 <label for="" class="form-label">Notifikasi Lolos</label>
-                                <textarea name="notif_lolos" id="" class="form-control">{{$notif->notif_lolos}}</textarea>
+                                <textarea name="notif_lolos" rows="5" id="" class="form-control">{{$notif->notif_lolos}}</textarea>
                             </div>
                             <div class="mb-2">
                                 <label for="" class="form-label">Notifikasi Gagal</label>
-                                <textarea name="notif_gagal" id="" class="form-control">{{$notif->notif_gagal}}</textarea>
+                                <textarea name="notif_gagal" rows="5" id="" class="form-control">{{$notif->notif_gagal}}</textarea>
+                            </div>
+                            <div class="mb-2">
+                              <label for="" class="form-label">Notifikasi Verifikasi</label>
+                              <textarea name="notif_verify" rows="5" id="" class="form-control">{{$notif->notif_verify}}</textarea>
+                            </div>
+                            <div class="mb-2">
+                              <label for="" class="form-label">Notifikasi Belum Verifikasi</label>
+                              <textarea name="notif_belum_verify" rows="5" id="" class="form-control">{{$notif->notif_belum_verify}}</textarea>
+                            </div>
+                            <div class="mb-2">
+                              <label for="" class="form-label">Notifikasi Tidak Sah</label>
+                              <textarea name="notif_tidak_sah" id="" rows="5" class="form-control">{{$notif->notif_tidak_sah}}</textarea>
                             </div>
                             <div class="mb-2">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -55,13 +71,20 @@
                         <div class="col-md-6">
                             <div class="mb-2">
                                 <label for="" class="form-label">Notifikasi Pembayaran</label>
-                                <textarea name="notif_pembayaran" id="" class="form-control">{{$notif->notif_pembayaran}}</textarea>
+                                <textarea name="notif_pembayaran" rows="5" id="" class="form-control">{{$notif->notif_pembayaran}}</textarea>
                             </div>
                             <div class="mb-2">
-                                <label for="" class="form-label">Notifikasi Informasi</label>
-                                <textarea name="notif_info" id="" class="form-control">{{$notif->notif_info}}</textarea>
+                                <label for="" class="form-label">Notifikasi Informasi Wawancara</label>
+                                <textarea name="notif_info" rows="5" id="" class="form-control">{{$notif->notif_info}}</textarea>
                             </div>
-                            
+                            <div class="mb-2">
+                              <label for="" class="form-label">Notifikasi Wawancara</label>
+                              <textarea name="notif_wawancara" rows="5" id="" class="form-control">{{$notif->notif_wawancara}}</textarea>
+                          </div>
+                          <div class="mb-2">
+                              <label for="" class="form-label">Notifikasi Wawancara Info</label>
+                              <textarea name="notif_info" rows="5" id="" class="form-control">{{$notif->notif_info}}</textarea>
+                          </div>
                         </div>
                     </div>
                 </form>

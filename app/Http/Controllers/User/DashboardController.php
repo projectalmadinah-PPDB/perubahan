@@ -7,19 +7,22 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Traits\Fonnte;
 use App\Traits\Ipaymu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class DashboardController extends Controller
 {
+    use Fonnte;
     use Ipaymu;
     public function index()
     {
         $users = Auth::user()->id;
         $user = User::with('student')->findOrFail($users);
+        $userId = Payment::where('user_id',$users)->get();
         $informasi = Article::all();
-        return view('front.dashboard.index',compact('user','informasi'));
+        return view('front.dashboard.index',compact('user','informasi','userId'));
     }
 
     public function profile()
@@ -37,19 +40,21 @@ class DashboardController extends Controller
 
     public function pay($id)
     {
-        $video = User::find($id);
+        $pendaftaran = User::find($id);
+        $phone = User::where('nomor',$pendaftaran->nomor)->first();
 
         $payment = json_decode(json_encode($this->redirect_payment($id)),true);
-
         // dd($payment);
-
         $Transaction = Payment::create([
-            'user_id' => Auth::user()->id,
+            'user_id' => $pendaftaran->id,
             'status' => 'pending',
             'no_invoice' => $payment['Data']['SessionID'],
             'link' => $payment['Data']['Url'],
             'amount' => 100000
         ]);
+        $messages = $pendaftaran->notifys->notif_pembayaran.$Transaction->link;
+
+        $this->send_message($phone,$messages);
         return Redirect::to($Transaction->link);
     }
 }

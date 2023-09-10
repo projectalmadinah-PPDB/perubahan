@@ -16,10 +16,12 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GenerasiController;
+use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
 use App\Http\Controllers\Admin\PendaftarController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\WawancaraController;
+use App\Http\Controllers\User\PaymentController;
 use App\Models\Wawancara;
 
 /*
@@ -140,7 +142,9 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     Route::put('/generasi/status/{id}',[GenerasiController::class,'status'])->name('generasi.status');
 
     Route::put('/generasi/update/{id}',[GenerasiController::class,'update'])->name('generasi.update');
-    
+    //payment
+    Route::get('/payment',[AdminPaymentController::class,'index'])->name('payment.index');
+    ROute::put('/payment/edit/{id}',[AdminPaymentController::class,'update'])->name('payment.update');
     // profile admin
     Route::get('/profile',[SettingController::class,'profile'])->name('setting.profile.index');
 
@@ -200,14 +204,13 @@ Route::prefix('/user')->name('user.')->group(function(){
         Route::get('/document',[LengkapiController::class,'document'])->name('document');
         Route::post('/document/process',[LengkapiController::class,'upload'])->name('document.process');
     });
-});
-Route::prefix('/callback')->name('callback.')->group(function(){
-  Route::get('/return',function(){
-      return view('front.callback.return');
-  })->name('return');
-  Route::get('/cancel',function(){
-      return view('front.callback.return-cancel');
-  })->name('cancel');
-
-  Route::post('/notify',[TransactionController::class,'notify'])->name('notify');
-});
+  });
+  Route::prefix('/callback')->name('callback.')->group(function(){
+    Route::get('/return',function(){
+        return view('front.callback.return');
+    })->name('return');
+    Route::get('/cancel',function(){
+        return view('front.callback.return-cancel');
+    })->name('cancel');
+    Route::post('/notify',[PaymentController::class,'notify'])->name('notify');
+  });

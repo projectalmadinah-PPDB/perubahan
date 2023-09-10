@@ -18,8 +18,8 @@ class DashboardController extends Controller
         
         $users = User::where('role','user')->get();
         $student = Student::all();
-        $document = Document::all();
+        $lulus = Student::where('status','Lulus')->get();
         $informasi = Article::all();
-        return view('pages.admin.dashboard.index',compact('users','informasi','student','document'));
+        return view('pages.admin.dashboard.index',compact('users','informasi','student','lulus'));
     }
 }

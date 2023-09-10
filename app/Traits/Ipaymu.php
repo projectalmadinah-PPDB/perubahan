@@ -37,9 +37,6 @@ trait Ipaymu {
         $body['account']    = $va;
         $signature    = $this->signature($body,$method);
 
-        
-
-
         $headers = array(
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
@@ -70,14 +67,14 @@ trait Ipaymu {
 
         $user = User::find($id);
 
-        $body['name'] = Auth::user()->name;
-        $body['phone'] = Auth::user()->nomor;
+        $body['name'] = $user->name;
+        $body['phone'] = $user->nomor;
         $body['product'][] = 'Pendaftaran';
         $body['qty'][]    = 1;
         $body['price'][]    = 100000;
         $body['referenceId']    = 'ID'.rand(1111,9999);
         $body['returnUrl']    = route('callback.return');
-        $body['notifyUrl']    = 'https://42e7-139-0-84-151.ngrok-free.app/callback/notify';
+        $body['notifyUrl']    = 'https://f63a-139-0-84-151.ngrok-free.app/callback/notify';
         $body['cancelUrl']    = route('callback.cancel');
         $body['paymentMethod'] = 'qris';
         $body['expired']    = 24;

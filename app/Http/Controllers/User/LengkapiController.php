@@ -52,7 +52,7 @@ class LengkapiController extends Controller
         $parent['user_id'] = $user;
         Parents::create($parent);
 
-        return redirect()->route('user.dashboard')->with('success','Berhasil Melengkapi Data Pribadi');
+        return redirect()->route('user.document')->with('pribadi','Kamu Sudah Memasukkan Data Pribadi Dan Org Tua Selanjutnya Data Document');
     }
 
     public function document()
@@ -97,7 +97,7 @@ class LengkapiController extends Controller
             
             Document::create($data);
             
-            return redirect()->route('user.dashboard')->with('success', 'Document Baru Berhasil Di Tambahkan');
+            return redirect()->route('user.dashboard')->with('lengkap', 'Semua Data Kamu Sudah Di Lengkapi');
         }
     
         return redirect()->route('user.dashboard')->with('error', 'Gagal mengunggah files.');

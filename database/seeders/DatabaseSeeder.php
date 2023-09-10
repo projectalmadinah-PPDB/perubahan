@@ -38,11 +38,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Notify::create([
-            'notif_otp' => 'lorem ipsum dolor sit amet consect',
-            'notif_pembayaran' => 'lorem ipsum dolor sit amet consect',
-            'notif_lolos' => 'lorem ipsum dolor sit amet consect',
-            'notif_gagal' => 'lorem ipsum dolor sit amet consect',
-            'notif_info' => 'lorem ipsum dolor sit amet consect',
+            'notif_otp' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Telah Melakukan Pendaftaran Untuk Bisa Menggunakan Akun Silahkan Masukkan Kode Otp Berikut ',
+            'notif_pembayaran' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Telah di Verifikasi Silahkan Melakukan Pembayaran Di Link Berikut ',
+            'notif_lolos' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Di nyatakan Lulus Seleksi Awal Silahkan Menunggu Informasi Selanjutnya Terima Kasih',
+            'notif_gagal' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Di nyatakan Gagal Seleksi Penyebabnya mungkin data pribadi anda tidak lengkap Terima kasih',
+            'notif_info' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Harus Bersiap - siap Untuk Tes Wawancara Pada Tanggal ',
+            'notif_wawancara' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Berhasil Melanjutkan Ke Tahap Wawancara Silahkan Mengggu Waktu Dan Link Dari Administrator',
+            'notif_tidak_sah' => 'Halo Kami Dari Pondok Al-Romusa , Data Pribadi kamu Terlihat Palsu Atau Kamu Di Anggap Tidak Lulus Terima Kasih',
+            'notif_verify' => 'Halo Kami Dari Pondok Al-Romusa , Akun Kamu Sudah Di Verifikasi Sama Penyelenggara Silahkan Masukkan Data Diri Anda Terima Kasih',
+            'notif_belum_verify' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Telah Berhasil Login Silahkan Menunggu Jawaban Dari Penyelenggara PPDB Pondok Terima Kasih',
+            'notif_gagal_otp' => 'Halo Kami Dari Pondok Al-Romusa , Pesan Otp Kamu Gagal Di Kirim silahkan Hubungi 082346739790'
         ]);
     }
 }

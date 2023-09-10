@@ -19,8 +19,8 @@
                                 </div>
                                 <div class="col-7 d-flex align-items-center">
                                     <div class="numbers">
-                                        <p class="card-category">Registrasi</p>
-                                        <li>{{ $users->count() }}</li>
+                                        <p class="card-category">Pendaftar</p>
+                                        <h4 class="card-title">{{ $users->count() }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -76,8 +76,8 @@
                                 </div>
                                 <div class="col-7 d-flex align-items-center">
                                     <div class="numbers">
-                                        <p class="card-category">Document</p>
-                                        <h4 class="card-title">{{$document->count()}}</h4>
+                                        <p class="card-category">Lulus</p>
+                                        <h4 class="card-title">{{$lulus->count()}}</h4>
                                     </div>
                                 </div>
                             </div>

@@ -85,8 +85,8 @@
 					<p>Generasi</p>
 				</a>
 			</li>
-			<li class="nav-item">
-				<a href="" class="py-1 px-3">
+			<li class="nav-item {{ Route::is('admin.payment.*') ? 'active' : '' }}">
+				<a href="{{route('admin.payment.index')}}" class="py-1 px-3">
 					<i class="bi bi-credit-card"></i>
 					<p>Pembayaran</p>
 				</a>

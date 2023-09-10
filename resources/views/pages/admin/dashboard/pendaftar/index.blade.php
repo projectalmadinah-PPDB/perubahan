@@ -50,7 +50,7 @@
                         <th>Name</th>
                         <th>Nomor Hp</th>
                         <th>Biodata</th>
-                        <th>Status</th>
+                        <th>Status Pembayaran</th>
                         {{-- <th>Tanggal Lahir</th>
                         <th>Jenis Kelamin</th> --}}
                         {{-- <th>NIK</th> --}}
@@ -72,14 +72,16 @@
                           <td><button class="badge badge-danger border-0">Tidak Legkap</button></td>
                           @endif
                           <td>
-                            @if ($item->status == 'Belum')
-                                <button class="badge badge-warning border-0">Belum Verifikasi</button>
-                            @elseif($item->status == 'Verifikasi')
-                                <button class="badge badge-success border-0">TerVerifikasi</button>
-                            @elseif($item->status == 'TidakSah')
-                                <button class="badge badge-danger border-0">Tidak Sah</button>
+                            @if (!$item->payment)
+                            <button class="badge badge-primary border-0">Belum Membayar</button>
                             @else
-                            
+                              @if ($item->payment->status == 'berhasil')
+                                <button class="badge badge-success border-0">{{$item->payment->status}}</button>
+                              @elseif($item->payment->status == 'expired')
+                              <button class="badge badge-danger border-0">{{$item->payment->status}}</button>
+                              @else
+                              <button class="badge badge-warning border-0">{{$item->payment->status}}</button>
+                              @endif
                             @endif
                           </td>
                           <td>
@@ -99,29 +101,6 @@
                               @method('DELETE')
                               <button type="submit" class="badge badge-danger border-0">Delete</button>
                             </form>
-                            <div class="dropdown d-inline">
-                              <a class="dropdown-toggle" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bi bi-three-dots-vertical"></i>
-                              </a>
-                            
-                              <div class="dropdown-menu" aria-labelledby="customDropdown">
-                                <form action="{{route('admin.pendaftar.verify',$item->id)}}" method="post">
-                                  @csrf
-                                  @method('POST')
-                                  <div class="d-flex flex-wrap">
-                                    <button type="submit" name="status" value="Verifikasi" class="border-0 bg-success w-100 text-bold text-white" >Verifikasi</button>
-                                    <button type="submit" name="status" value="Belum" class="border-0 bg-warning w-100 text-bold text-white" >Belum Verifikasi</button>
-                                    <button name="status" type="submit" class="border-0 bg-danger w-100 text-bold text-white" value="TidakSah">Tidak Sah</button>
-                                  </div>
-                                  {{-- <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
-                                    @csrf
-                                    @method('POST')
-                                    <button type="submit" name="status" value="lolos" class="badge badge-success border-0">Lulus</button>
-                                    <button type="submit" name="status" value="gagal" class="badge badge-danger border-0">Gagal</button>
-                                  </form> --}}
-                                </form>
-                              </div>
-                            </div>
                           </td>
                         </tr>
                       @endforeach
