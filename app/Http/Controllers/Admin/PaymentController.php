@@ -24,4 +24,15 @@ class PaymentController extends Controller
 
         return redirect()->route('admin.payment.index')->with('edit','Success Edit Status');
     }
+    public function deleteAll(Request $request)
+{
+    $selectedIds = explode(',', $request->input('selectedIds'));
+
+    // Lakukan penghapusan item berdasarkan $selectedIds
+    // Misalnya, jika Anda memiliki model 'Payment':
+    Payment::whereIn('id', $selectedIds)->delete();
+
+    return response()->json(['message' => 'Item yang dipilih berhasil dihapus.']);
+}
+
 }

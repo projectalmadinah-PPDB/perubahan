@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\WawancaraController;
 use App\Http\Controllers\User\PaymentController;
+use App\Http\Controllers\UsersController;
 use App\Models\Wawancara;
 
 /*
@@ -41,7 +42,7 @@ Route::get('/', [FrontController::class,'index'])->name('front');
 Route::get('/informasi',[FrontController::class,'informasi'])->name('informasi');
 
 Route::get('/about-us',[FrontController::class,'about'])->name('about');
-
+Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 Route::prefix('/admin')->name('admin.')->group(function(){
     Route::get('/login', [AdminController::class,'index'])->name('index');
 
@@ -145,6 +146,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     //payment
     Route::get('/payment',[AdminPaymentController::class,'index'])->name('payment.index');
     ROute::put('/payment/edit/{id}',[AdminPaymentController::class,'update'])->name('payment.update');
+    Route::delete('/delete-all', [AdminPaymentController::class,'deleteAll'])->name('delete-all');
     // profile admin
     Route::get('/profile',[SettingController::class,'profile'])->name('setting.profile.index');
 

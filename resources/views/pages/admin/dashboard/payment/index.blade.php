@@ -69,163 +69,46 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Pembayaran Siswa</div>
+                  <button type="button" class="btn btn-danger m-0" id="delete-all-button">Delete All</button>
                 </div>
               </div>
               <div class="card-body">
+                <form action="{{route('admin.lolos.index')}}" method="get">
+                  @csrf
+                  <div class="position-relative w-25" style="display: inline-flex">
+                    <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
+                    <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
+                  </div>
+                  </form>
                 <div class="d-block">
-                  <table class="table table-striped data">
+                  <form id="my-form" method="post" action="{{ route('admin.delete-all') }}">
+                    @csrf
+                    @method('delete')
+                  <table class="table data">
                     <thead>
-                      <tr>			
-                        <th>Nama</th>
-                        <th>Alamat</th>
-                        <th>Pekerjaan</th>
-                        <th>Usia</th>
+                      <tr>
+                        <th><input type="checkbox" name="" id="select-all"></th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Nomor Hp</th>
                         <th>Status</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
+                      @foreach ($payment as $index => $item)
+                      <tr>
+                        <td><input type="checkbox" class="checkbox-item" data-id="{{$item->id}}"></td>
+                        <td>{{$index + 1}}</td>
+                        <td>{{$item->user->name}}</td>
+                        <td>{{$item->user->nomor}}</td>
+                        <td>{{$item->status}}</td>
+                        <td></td>
                       </tr>
-                      <tr>				
-                        <td>Malas Ngoding</td>
-                        <td>Bandung</td>
-                        <td>Web Developer</td>
-                        <td>26</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Malas Ngoding</td>
-                        <td>Bandung</td>
-                        <td>Web Developer</td>
-                        <td>26</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
-                      <tr>				
-                        <td>Andi</td>
-                        <td>Jakarta</td>
-                        <td>Web Designer</td>
-                        <td>21</td>
-                        <td>Aktif</td>
-                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
+                  </form>
                 </div>
                 </div>
               </div>
@@ -237,16 +120,52 @@
   </div>
 @endsection
 @push('add-script')
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
-<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+            // Event handler untuk tombol "Select All"
+            $('#select-all').change(function() {
+                var checkboxes = $('.checkbox-item'); // Mengambil semua checkbox item
+                checkboxes.prop('checked', this.checked); // Mengatur status semua checkbox item sesuai dengan "Select All"
+            });
+        });
+        $(document).ready(function() {
+        // Mengatur event handler untuk tombol "Delete All"
+        $('#delete-all-button').click(function() {
+            var selectedIds = [];
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.data').DataTable();
-	});
+            // Loop melalui checkbox item
+            $('.checkbox-item:checked').each(function() {
+                selectedIds.push($(this).data('id'));
+            });
+
+            if (selectedIds.length > 0) {
+                // Menyiapkan data yang akan dikirim dalam permintaan AJAX
+                var data = {
+                    _token: '{{ csrf_token() }}',
+                    _method: 'DELETE',
+                    selectedIds: selectedIds.join(',')
+                };
+
+                // Kirim permintaan AJAX untuk menghapus item yang dipilih
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('admin.delete-all') }}',
+                    data: data,
+                    success: function(response) {
+                        // Tanggapi hasil penghapusan atau tampilkan pesan sukses
+                        console.log(response.message);
+                        // Refresh halaman atau lakukan tindakan lain yang sesuai
+                        window.location.reload(); // Refresh halaman
+                    },
+                    error: function(error) {
+                        console.error('Terjadi kesalahan:', error);
+                    }
+                });
+            } else {
+                alert('Pilih setidaknya satu item untuk dihapus.');
+            }
+        });
+    });
 </script>
 @endpush
