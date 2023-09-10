@@ -8,7 +8,7 @@
         </button>
         <button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
     </div>
-    <nav class="navbar navbar-header navbar-expand-lg">
+    <nav class="navbar navbar-header navbar-expand-lg" style="padding-top: 0!important; padding-bottom: 0!important;">
         <div class="container-fluid">
             <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                 <li class="nav-item dropdown">

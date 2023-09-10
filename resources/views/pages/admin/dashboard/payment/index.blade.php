@@ -2,6 +2,46 @@
 
 @section('title','Payment')
 
+@push('add-styles')
+  <style>
+    .dataTables_filter input {
+      border-radius: 2rem!important;
+    }
+
+    .dataTables_filter label {
+      font-weight: bold!important;
+    }
+    
+    .dataTables_length select {
+      width: 60px!important;
+      border-radius: 2rem!important;
+    }
+
+    .page-item {
+      padding: 0!important;
+      border: 0!important;
+    }
+
+    .page-item:hover {
+      background: none!important;
+      border: 0!important;
+    }
+
+    .page-item.active:hover a.page-link {
+      background: #0067d5!important;
+    }
+
+    .page-item:active {
+      box-shadow: none!important;
+    }
+
+    a.page-link {
+      margin: 0px!important;
+      padding: .3rem .7rem!important;
+    }
+  </style>
+@endpush
+
 @section('content')
     <div class="main-panel">
     <div class="content">
@@ -25,15 +65,15 @@
         @endif
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
+            <div class="card rounded-4">
               <div class="card-header">
                 <div class="d-flex justify-content-between">
-                  <div class="card-title">Siswa Pembayaran Table</div>
+                  <div class="card-title">Daftar Pembayaran Siswa</div>
                 </div>
               </div>
               <div class="card-body">
                 <div class="d-block">
-                  <table class="table table-striped table-bordered data">
+                  <table class="table table-striped data">
                     <thead>
                       <tr>			
                         <th>Nama</th>

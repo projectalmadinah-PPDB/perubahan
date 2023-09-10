@@ -80,8 +80,8 @@
                             @endif
                           </td>
                           <td class="d-flex justify-content-center align-items-center gap-1">
-                              <button type="button" data-bs-toggle="modal" data-bs-target="#updateUser{{ $user->id }}" class="badge border-0 m-0 badge-primary" style="padding: .35rem;">
-                                  <i class="bi bi-pencil" style="font-size: 16px"></i>
+                              <button type="button" data-bs-toggle="modal" data-bs-target="#updateUser{{ $user->id }}" class="badge border-0 m-0 badge-primary" style="padding: .45rem;">
+                                  <i class="bi bi-pencil" style="font-size: 13px"></i>
                               </button>
 
                               {{-- Modal Edit --}}

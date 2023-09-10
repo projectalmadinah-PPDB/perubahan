@@ -1,5 +1,5 @@
-<aside class="sidebar">
-	<div class="scrollbar-inner sidebar-wrapper">
+<aside class="sidebar" style="padding-top: 3.5rem!important">
+	<div class="scrollbar-inner sidebar-wrapper" style="padding-top: 0px!important">
 		<div class="user">
 			<div class="photo">
 				<img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60">
@@ -86,7 +86,7 @@
 			<h1 class="mb-0 fw-bolder text-body-tertiary text-uppercase ps-3" style="font-size: 10px">Master</h1>
 			
 			<li class="nav-item
-			 {{-- {{ Route::is('admin.document.*') ? 'active' : '' }} --}}
+			{{ (Route::is('admin.article.*') || Route::is('admin.users.*')) ? 'active' : '' }}
 			 ">
 				<a href="#collapseUsers" data-toggle="collapse" aria-expanded="true" class="py-1 px-3">
 					<i class="bi bi-people"></i>
@@ -95,22 +95,24 @@
 				</a>
 			</li>
 
+			<style>.child-nav:hover {background: #fafafa;}</style>
+
 			{{-- collapse users --}}
 			<div class="collapse in" id="collapseUsers">
-				<ul class="ps-3 list-group list-group-flush">
-					<li class="list-group-item py-1">
+				<ul class=" list-group list-group-flush">
+					<li class="py-1 ps-3 child-nav">
 						<a href="{{ route('admin.users.index') }}" class="nav-link link-secondary fw-bold">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Admin</span>
 						</a>
 					</li>
-					<li class="list-group-item py-1">
+					<li class="py-1 ps-3 child-nav">
 						<a href="{{ route('admin.users.users') }}" class="nav-link link-secondary fw-bold">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">User</span>
 						</a>
 					</li>
-					{{-- <li class="list-group-item py-1">
+					{{-- <li class="py-1 ps-3 child-nav">
 						<a href="" class="nav-link link-secondary fw-bold">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Peserta</span>
@@ -133,20 +135,20 @@
 
 			{{-- collapse articles --}}
 			<div class="collapse in" id="collapseArticles">
-				<ul class="ps-3 list-group list-group-flush">
-					<li class="list-group-item py-1">
+				<ul class=" list-group list-group-flush">
+					<li class="py-1 ps-3 child-nav">
 						<a href="{{ route('admin.article.index') }}" class="nav-link link-secondary fw-bold {{ Route::is('admin.article.index') ? 'text-primary' : '' }}">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Daftar Artikel</span>
 						</a>
 					</li>
-					<li class="list-group-item py-1">
+					<li class="py-1 ps-3 child-nav">
 						<a href="{{ route('admin.article.create') }}" class="nav-link link-secondary fw-bold" {{ Route::is('admin.article.create') ? 'text-primary' : '' }}>
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Tambah Artikel</span>
 						</a>
 					</li>
-					<li class="list-group-item py-1">
+					<li class="py-1 ps-3 child-nav">
 						<a href="{{route('admin.category.index')}}" class="nav-link link-secondary fw-bold {{ Route::is('admin.category.*') ? 'text-primary' : '' }}" >
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Kategori</span>
@@ -189,26 +191,26 @@
 
 			{{-- collapse settings --}}
 			<div class="collapse in mb-5" id="collapseSettings">
-				<ul class="ps-3 list-group list-group-flush">
-					<li class="list-group-item py-1">
+				<ul class=" list-group list-group-flush">
+					<li class="py-1 ps-3 child-nav">
 						<a href="{{route('admin.setting.profile.index')}}" class="nav-link link-secondary fw-bold {{ Route::is('admin.setting.profile.index') ? 'text-primary' : '' }}">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Profile</span>
 						</a>
 					</li>
-					<li class="list-group-item py-1">
+					<li class="py-1 ps-3 child-nav">
 						<a href="{{route('admin.settings.general')}}" class="nav-link link-secondary fw-bold {{ Route::is('admin.settings.general') ? 'text-primary' : '' }}">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Pengaturan Umum</span>
 						</a>
 					</li>
-					<li class="list-group-item py-1">
+					<li class="py-1 ps-3 child-nav">
 						<a href="" class="nav-link link-secondary fw-bold">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Halaman Home</span>
 						</a>
 					</li>
-					<li class="list-group-item py-1">
+					<li class="py-1 ps-3 child-nav">
 						<a href="{{route('admin.setting.notify.index')}}" class="nav-link link-secondary fw-bold">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Notifikasi</span>

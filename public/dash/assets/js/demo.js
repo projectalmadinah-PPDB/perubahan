@@ -15,16 +15,16 @@ Circles.create({
 })
 
 $.notify({
-	icon: 'la la-bell',
-	title: 'Bootstrap notify',
-	message: 'Turning standard Bootstrap alerts into "notify" like notifications',
+	icon: '',
+	title: 'Welcome User!',
+	message: '',
 },{
 	type: 'success',
 	placement: {
 		from: "bottom",
 		align: "right"
 	},
-	time: 1000,
+	time: 500,
 });
 
 // monthlyChart
