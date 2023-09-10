@@ -51,7 +51,7 @@ class LengkapiController extends Controller
         ]);
         $parent['user_id'] = $user;
         Parents::create($parent);
-
+        
         return redirect()->route('user.document')->with('pribadi','Kamu Sudah Memasukkan Data Pribadi Dan Org Tua Selanjutnya Data Document');
     }
 

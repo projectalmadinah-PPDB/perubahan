@@ -46,6 +46,7 @@
                   <table class="table table-bordered">
                     <thead>
                       <tr>
+                        <th><input class="align-items-center" type="checkbox" id="chkCheckAll"></th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Nomor Hp</th>
@@ -59,7 +60,8 @@
                     </thead>
                     <tbody>
                       @foreach ($users as $index => $item)
-                        <tr>
+                        <tr id="sid{{$item->id}}">
+                          <td><input type="checkbox" name="ids" class="checkBoxClass" value="{{$item->id}}"></td>
                           <td>{{$index + 1}}</td>
                           <td>{{$item->name}}</td>
                           <td>{{$item->nomor}}</td>
@@ -116,3 +118,21 @@
     </div>
   </div>
 @endsection
+@push('add-script')
+
+<!-- jQuery library -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(function(e)){
+    $("#chkCheckAll").click(function(){
+      $(".checkBoxClass").prop('checked',$(this).prop('checked'));
+    });
+  }
+  </script>
+@endpush
