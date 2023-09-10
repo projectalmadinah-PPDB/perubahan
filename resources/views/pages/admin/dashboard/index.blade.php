@@ -9,7 +9,7 @@
             <h4 class="page-title">Dashboard</h4>
             <div class="row">
                 <div class="col-md-3">
-                    <div class="card card-stats card-warning">
+                    <div class="card card-stats rounded-4 card-warning">
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-5">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card card-stats card-success">
+                    <div class="card card-stats rounded-4 card-success">
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-5">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card card-stats card-danger">
+                    <div class="card card-stats rounded-4 card-danger">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-5">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card card-stats card-primary">
+                    <div class="card card-stats rounded-4 card-primary">
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-5">
@@ -162,7 +162,7 @@
                 </div> -->
             </div>
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card card-tasks rounded-4">
                         <div class="card-body">
                             
                         </div>
@@ -171,7 +171,7 @@
             </div>
             <div class="row ms-3">
                 <div class="col-md-6">
-                    <div class="card card-tasks">
+                    <div class="card card-tasks rounded-4">
                         <div class="card-header ">
                             <h4 class="card-title">Calon Siswa</h4>
                             <p class="card-category">Calon Siswa 2024</p>
@@ -218,7 +218,9 @@
                         <div class="card-footer ">
                             <div class="stats">
                                 @foreach ($users as $user)
-                                    {{$user->created_at}}
+                                    @if($loop->last)
+                                        {{ $user->created_at }}
+                                    @endif
                                 @endforeach
                             </div>
                         </div>

@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PPDB | @yield('title')</title>
     @include('pages.admin.dashboard.layouts.include')
+    @stack('add-styles')
   </head>
   <body>
       @include('pages.admin.dashboard.layouts.navbar')
-      <div class="wrapper">     
+      <div class="wrapper">
         @yield('content')
       </div>
-      @include('pages.admin.dashboard.layouts.aside') 
-      {{-- @include('pages.admin.dashboard.layouts.sidebar')  --}}
+      @include('pages.admin.dashboard.layouts.aside')
     @include('pages.admin.dashboard.layouts.script')
     @stack('add-script')
   </body>

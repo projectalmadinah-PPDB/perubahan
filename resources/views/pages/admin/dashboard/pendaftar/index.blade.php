@@ -25,23 +25,21 @@
         @endif
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
+            <div class="card rounded-4">
               <div class="card-header">
                 <div class="d-flex justify-content-between">
-                  <div class="card-title">Pendaftar Table</div>
+                  <div class="card-title">Daftar Pendaftar</div>
                   {{-- <a href="{{route('admin.biodata.create')}}" class="btn btn-primary float-end text-white">Create New</a> --}}
                 </div>
               </div>
               <div class="card-body">
                 <form action="{{route('admin.pendaftar.index')}}" method="get">
-                @csrf
-                <div class="d-flex">
-                  <input type="text" class="form-control w-25 mb-3" name="search">
-                  <div>
-                    <button class="btn btn-primary" type="submit">Find</button>
+                  @csrf
+                  <div class="position-relative w-25" style="display: inline-flex">
+                    <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
+                    <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
                   </div>
-                </div>
-                </form>
+                  </form>
                 <div class="table-responsive">
                   <table class="table table-bordered">
                     <thead>

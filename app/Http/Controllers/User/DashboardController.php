@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\User;
-use App\Models\Article;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Payment;
 use App\Traits\Fonnte;
 use App\Traits\Ipaymu;
+use App\Models\Article;
+use App\Models\Payment;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
