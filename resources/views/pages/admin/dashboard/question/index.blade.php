@@ -6,7 +6,7 @@
 <div class="main-panel">
   <div class="content">
     <div class="container-fluid">
-      <h4 class="page-title">Question</h4>
+      <h4 class="page-title">Q&A</h4>
       @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
               {{session('success')}}
@@ -22,16 +22,14 @@
           {{session('edit')}}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        @endif
+      @endif
       <div class="row">
         <div class="col-md-12">
-          <div class="card">
+          <div class="card rounded-4">
             <div class="card-header">
               <div class="d-flex justify-content-between">
-                <div class="card-title">Q&A Table</div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Edit Profile
-                 </button>
+                <div class="card-title">Daftar Q&A</div>
+                <button type="button" class="btn btn-primary rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah +</button>
                  
                  <!-- Modal -->
                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -65,16 +63,13 @@
               </div>
             </div>
             <div class="card-body">
-              <form action="{{route('admin.article.index')}}" method="get">
+              <form action="" method="get">
                 @csrf
-                @method('get')
-                <div class="d-flex">
-                  <input type="text" name="search" class="form-control w-25 mb-3" >
-                  <div>
-                    <button class="btn btn-primary" type="submit">Find</button>
-                  </div>
+                <div class="position-relative w-25" style="display: inline-flex">
+                  <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
+                  <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
                 </div>
-              </form>
+                </form>
               <div class="table-responsive">
                 <table class="table table-bordered">
                   <thead>

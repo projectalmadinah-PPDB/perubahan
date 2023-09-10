@@ -24,14 +24,12 @@
         @endif
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
+            <div class="card rounded-4">
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <div class="card-title">Profile</div>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                       Edit Profile
-                    </button>
+                    <button type="button" class="btn btn-primary rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</button>
                     
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -47,23 +45,23 @@
                                 <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control" value="{{$profile->name}}">
+                                    <input type="text" name="name" class="form-control rounded-4" value="{{$profile->name}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" value="{{$profile->email}}">
+                                    <input type="email" name="email" class="form-control rounded-4" value="{{$profile->email}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Password Lama</label>
-                                    <input type="password" name="old_password" class="form-control">
+                                    <input type="password" name="old_password" class="form-control rounded-4">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Password Baru</label>
-                                    <input type="password" name="password" class="form-control">
+                                    <input type="password" name="password" class="form-control rounded-4">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Confirm Password Baru</label>
-                                    <input type="password" name="password_confirmation" class="form-control">
+                                    <input type="password" name="password_confirmation" class="form-control rounded-4">
                                 </div>
                                 </div>
                                 <div class="modal-footer">
@@ -81,11 +79,11 @@
                     <div class="col-md-12">
                         <div class="mb-2">
                             <label for="" class="form-label">Name</label>
-                            <input type="text" class="form-control" value="{{$profile->name}}" disabled>
+                            <input type="text" class="form-control rounded-4" value="{{$profile->name}}" disabled>
                         </div>
                         <div class="mb-2">
                             <label for="" class="form-label">Email</label>
-                            <input type="text" class="form-control" value="{{$profile->email}}" disabled>
+                            <input type="text" class="form-control rounded-4" value="{{$profile->email}}" disabled>
                         </div>
                     </div>
                 </div>

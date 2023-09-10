@@ -6,7 +6,7 @@
   <div class="main-panel">
     <div class="content">
       <div class="container-fluid">
-        <h4 class="page-title">Document</h4>
+        <h4 class="page-title">Dokumen</h4>
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
               {{session('success')}}
@@ -25,20 +25,21 @@
         @endif
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
+            <div class="card rounded-4">
               <div class="card-header">
                 <div class="d-flex justify-content-between">
-                  <div class="card-title">Document Table</div>
-                  <a href="{{route('admin.document.create')}}" class="btn btn-primary float-end text-white">Create New</a>
+                  <div class="card-title">Daftar Dokumen</div>
+                  <a href="{{route('admin.document.create')}}" class="btn btn-primary float-end text-white rounded-4">Tambah +</a>
                 </div>
               </div>
               <div class="card-body">
-                <div class="d-flex">
-                  <input type="text" class="form-control w-25 mb-3" name="search">
-                  <div>
-                    <button class="btn btn-primary" type="submit">Find</button>
+                <form action="" method="get">
+                  @csrf
+                  <div class="position-relative w-25" style="display: inline-flex">
+                    <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
+                    <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
                   </div>
-                </div>
+                </form>
                 <div class="table-responsive">
                   <table class="table table-bordered">
                     <thead>

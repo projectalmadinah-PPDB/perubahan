@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\Fonnte;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -213,7 +215,7 @@ class UserController extends Controller
     $notif_otp = $notify->notif_otp;
     $messages = $notif_otp . $user->token;
         
-    $this->send_message($user->nomor, $messages);    
+    $this->send_message($user->nomor, $messages);
      
     return redirect()->route('user.activication')->with('success','Kode Otp Telah Di Kirim Di Nomor Whatshapp');
     }

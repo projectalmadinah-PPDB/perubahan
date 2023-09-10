@@ -6,24 +6,24 @@
 <div class="main-panel">
   <div class="content">
     <div class="container-fluid">
-      <h4 class="page-title">Category Forms</h4>
+      <h4 class="page-title">Kategori</h4>
       <div class="row">
         <div class="col-md-12">
-          <div class="card">
+          <div class="card rounded-4">
             <div class="card-header">
-              <div class="card-title">Category Control</div>
+              <div class="card-title">Tambah Kategori</div>
             </div>
             <form action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">
               @csrf
               @method('POST')
               <div class="card-body">
                 <div class="form-group">
-                  <label for="Title">Name Category</label>
-                  <input type="text" class="form-control"  name="name" placeholder="Enter Category">
+                  <label for="Title">Nama Kategori</label>
+                  <input type="text" class="form-control"  name="name" placeholder="category name">
                 </div>
               </div>
               <div class="card-action">
-                <button class="btn btn-success" type="submit">Submit</button>
+                <button class="btn btn-success px-4" type="submit">Submit</button>
               </div>
             </div>
             </form>

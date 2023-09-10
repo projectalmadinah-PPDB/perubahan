@@ -73,19 +73,7 @@
 			<li class="nav-item {{ Route::is('admin.document.*') ? 'active' : '' }}">
 				<a href="{{ route('admin.document.index') }}" class="py-1 px-3">
 					<i class="bi bi-file-earmark-person-fill"></i>
-					<p>Document</p>
-				</a>
-			</li>
-			<li class="nav-item {{ Route::is('admin.question.*') ? 'active' : '' }}">
-				<a href="{{ route('admin.question.index') }}" class="py-1 px-3">
-					<i class="bi bi-question-octagon"></i>
-					<p>Q&A</p>
-				</a>
-			</li>
-			<li class="nav-item {{ Route::is('admin.generasi.*') ? 'active' : '' }}">
-				<a href="{{ route('admin.generasi.index') }}" class="py-1 px-3">
-					<i class="bi bi-person-fill-lock"></i>
-					<p>Generasi</p>
+					<p>Dokumen</p>
 				</a>
 			</li>
 			<li class="nav-item {{ Route::is('admin.payment.*') ? 'active' : '' }}">
@@ -111,17 +99,23 @@
 			<div class="collapse in" id="collapseUsers">
 				<ul class="ps-3 list-group list-group-flush">
 					<li class="list-group-item py-1">
-						<a href="" class="nav-link link-secondary fw-bold">
+						<a href="{{ route('admin.users.index') }}" class="nav-link link-secondary fw-bold">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Admin</span>
 						</a>
 					</li>
 					<li class="list-group-item py-1">
+						<a href="{{ route('admin.users.users') }}" class="nav-link link-secondary fw-bold">
+							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
+							<span class="ms-2 link-collapse">User</span>
+						</a>
+					</li>
+					{{-- <li class="list-group-item py-1">
 						<a href="" class="nav-link link-secondary fw-bold">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Peserta</span>
 						</a>
-					</li>
+					</li> --}}
 				</ul>
 			</div>
 			{{-- end collapse users --}}
@@ -141,15 +135,15 @@
 			<div class="collapse in" id="collapseArticles">
 				<ul class="ps-3 list-group list-group-flush">
 					<li class="list-group-item py-1">
-						<a href="{{ route('admin.article.create') }}" class="nav-link link-secondary fw-bold" {{ Route::is('admin.article.create') ? 'text-primary' : '' }}>
-							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
-							<span class="ms-2 link-collapse">Tambah Artikel</span>
-						</a>
-					</li>
-					<li class="list-group-item py-1">
 						<a href="{{ route('admin.article.index') }}" class="nav-link link-secondary fw-bold {{ Route::is('admin.article.index') ? 'text-primary' : '' }}">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Daftar Artikel</span>
+						</a>
+					</li>
+					<li class="list-group-item py-1">
+						<a href="{{ route('admin.article.create') }}" class="nav-link link-secondary fw-bold" {{ Route::is('admin.article.create') ? 'text-primary' : '' }}>
+							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
+							<span class="ms-2 link-collapse">Tambah Artikel</span>
 						</a>
 					</li>
 					<li class="list-group-item py-1">
@@ -164,6 +158,18 @@
 
 			<h1 class="mb-0 fw-bolder text-body-tertiary text-uppercase ps-3" style="font-size: 10px">Lain-Lain</h1>
 
+			<li class="nav-item {{ Route::is('admin.generasi.*') ? 'active' : '' }}">
+				<a href="{{ route('admin.generasi.index') }}" class="py-1 px-3">
+					<i class="bi bi-person-fill-lock"></i>
+					<p>Generasi</p>
+				</a>
+			</li>
+			<li class="nav-item {{ Route::is('admin.question.*') ? 'active' : '' }}">
+				<a href="{{ route('admin.question.index') }}" class="py-1 px-3">
+					<i class="bi bi-question-octagon"></i>
+					<p>Q&A</p>
+				</a>
+			</li>
 			<li class="nav-item">
 				<a href="" class="py-1 px-3">
 					<i class="bi bi-credit-card"></i>

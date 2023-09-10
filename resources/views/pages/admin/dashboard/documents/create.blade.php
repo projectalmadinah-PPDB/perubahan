@@ -6,12 +6,12 @@
 <div class="main-panel">
   <div class="content">
     <div class="container-fluid">
-      <h4 class="page-title">Forms</h4>
+      <h4 class="page-title">Dokumen</h4>
       <div class="row">
         <div class="col-md-12">
-          <div class="card">
+          <div class="card rounded-4">
             <div class="card-header">
-              <div class="card-title">Base Form Control</div>
+              <div class="card-title">Tambah Dokumen</div>
             </div>
             <form action="{{route('admin.document.store')}}" method="post" enctype="multipart/form-data">
               @csrf
@@ -35,7 +35,8 @@
                 </div>
               </div>
               <div class="card-action">
-                <button class="btn btn-success" type="submit">Submit</button>
+                <button class="btn btn-success px-4" type="submit">Submit</button>
+                <a href="{{ route('admin.document.index') }}" class="btn btn-warning">Back</a>
               </div>
             </div>
             </form>

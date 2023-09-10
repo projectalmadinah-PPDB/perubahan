@@ -6,7 +6,7 @@
 <div class="main-panel">
   <div class="content">
     <div class="container-fluid">
-      <h4 class="page-title">Article</h4>
+      <h4 class="page-title">Artikel</h4>
       @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
               {{session('success')}}
@@ -25,24 +25,21 @@
         @endif
       <div class="row">
         <div class="col-md-12">
-          <div class="card">
+          <div class="card rounded-4">
             <div class="card-header">
               <div class="d-flex justify-content-between">
-                <div class="card-title">Article Table</div>
-                <a href="{{route('admin.article.create')}}" class="btn btn-primary float-end text-white">Create New</a>
+                <div class="card-title">Daftar Artikel</div>
+                <a href="{{route('admin.article.create')}}" class="btn btn-primary float-end text-white rounded-4">Tambah +</a>
               </div>
             </div>
             <div class="card-body">
               <form action="{{route('admin.article.index')}}" method="get">
                 @csrf
-                @method('get')
-                <div class="d-flex">
-                  <input type="text" name="search" class="form-control w-25 mb-3" >
-                  <div>
-                    <button class="btn btn-primary" type="submit">Find</button>
-                  </div>
+                <div class="position-relative w-25" style="display: inline-flex">
+                  <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
+                  <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
                 </div>
-              </form>
+                </form>
               <div class="table-responsive">
                 <table class="table table-bordered">
                   <thead>

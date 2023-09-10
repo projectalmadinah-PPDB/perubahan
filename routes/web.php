@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GenerasiController;
 use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
 use App\Http\Controllers\Admin\PendaftarController;
+use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\WawancaraController;
@@ -52,94 +53,93 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     // dashboard admin
     Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
-    });
 
-    // article dashboard
-    Route::get('/article' , [ArticleController::class,'index'])->name('article.index');
+      // article dashboard
+      Route::get('/article' , [ArticleController::class,'index'])->name('article.index');
 
-    Route::get('/article/create', [ArticleController::class,'create'])->name('article.create');
+      Route::get('/article/create', [ArticleController::class,'create'])->name('article.create');
+        
+      Route::post('/articles/create/proses', [ArticleController::class,'store'])->name('article.store');
+        
+      Route::get('/articles/edit/{slug}', [ArticleController::class,'edit'])->name('article.edit');
+        
+      Route::put('/articles/update/{slug}', [ArticleController::class,'update'])->name('article.update');
+
+      Route::get('/articles/{id}', [ArticleController::class,'show'])->name('article.show');
+
+      Route::delete('/articles/delete/{id}', [ArticleController::class, 'destroy'])->name('article.delete');
+
+      // category dashboard
+      Route::get('/category',[CategoryController::class,'index'])->name('category.index');
+
+      Route::get('/category/create',[CategoryController::class,'create'])->name('category.create');
+
+      Route::post('/category/create/process',[CategoryController::class,'store'])->name('category.store');
+
+      Route::put('/category/edit/process/{id}',[CategoryController::class,'update'])->name('category.update');
+
+      Route::delete('/category/delete/{id}',[CategoryController::class,'delete'])->name('category.destroy');
+
+      // pendaftar
+      Route::get('/pendaftar',[PendaftarController::class,'index'])->name('pendaftar.index');
+
+      Route::post('/pendaftar/verify/{id}',[PendaftarController::class,'verify'])->name('pendaftar.verify');
       
-    Route::post('/articles/create/proses', [ArticleController::class,'store'])->name('article.store');
+      Route::get('/pendaftar/create',[PendaftarController::class,'create'])->name('pendaftar.create');
       
-    Route::get('/articles/edit/{slug}', [ArticleController::class,'edit'])->name('article.edit');
+      Route::post('/pendaftar/process',[PendaftarController::class,'store'])->name('pendaftar.store');
+
+      Route::get('/pendaftar/edit/{id}',[PendaftarController::class,'edit'])->name('pendaftar.edit');
       
-    Route::put('/articles/update/{slug}', [ArticleController::class,'update'])->name('article.update');
-
-    Route::get('/articles/{id}', [ArticleController::class,'show'])->name('article.show');
-
-    Route::delete('/articles/delete/{id}', [ArticleController::class, 'destroy'])->name('article.delete');
-
-    // category dashboard
-    Route::get('/category',[CategoryController::class,'index'])->name('category.index');
-
-    Route::get('/category/create',[CategoryController::class,'create'])->name('category.create');
-
-    Route::post('/category/create/process',[CategoryController::class,'store'])->name('category.store');
-
-    Route::put('/category/edit/process/{id}',[CategoryController::class,'update'])->name('category.update');
-
-    Route::delete('/category/delete/{id}',[CategoryController::class,'delete'])->name('category.destroy');
-
-    // pendaftar
-    Route::get('/pendaftar',[PendaftarController::class,'index'])->name('pendaftar.index');
-
-    Route::post('/pendaftar/verify/{id}',[PendaftarController::class,'verify'])->name('pendaftar.verify');
+      Route::put('/pendaftar/update/{id}',[PendaftarController::class,'update'])->name('pendaftar.update');
     
-    Route::get('/pendaftar/create',[PendaftarController::class,'create'])->name('pendaftar.create');
-    
-    Route::post('/pendaftar/process',[PendaftarController::class,'store'])->name('pendaftar.store');
+      Route::get('/pendaftar/show/{id}',[PendaftarController::class,'show'])->name('pendaftar.show');
 
-    Route::get('/pendaftar/edit/{id}',[PendaftarController::class,'edit'])->name('pendaftar.edit');
-    
-    Route::put('/pendaftar/update/{id}',[PendaftarController::class,'update'])->name('pendaftar.update');
-   
-    Route::get('/pendaftar/show/{id}',[PendaftarController::class,'show'])->name('pendaftar.show');
+      Route::get('/pendaftar/document/{id}',[PendaftarController::class,'show_document'])->name('pendaftar.show_document');
 
-    Route::get('/pendaftar/document/{id}',[PendaftarController::class,'show_document'])->name('pendaftar.show_document');
+      Route::delete('/pendaftar/delete/{id}',[PendaftarController::class,'destroy'])->name('pendaftar.destroy');
 
-    Route::delete('/pendaftar/delete/{id}',[PendaftarController::class,'destroy'])->name('pendaftar.destroy');
+      // peserta
+      Route::get('/peserta',[PesertaController::class,'index'])->name('peserta.index');
 
-    // peserta
-    Route::get('/peserta',[PesertaController::class,'index'])->name('peserta.index');
+      Route::get('/peserta/edit/{id}',[PesertaController::class,'edit'])->name('peserta.edit');
 
-    Route::get('/peserta/edit/{id}',[PesertaController::class,'edit'])->name('peserta.edit');
+      Route::put('/peserta/process/{id}',[PesertaController::class,'update'])->name('peserta.update');
 
-    Route::put('/peserta/process/{id}',[PesertaController::class,'update'])->name('peserta.update');
+      Route::get('/peserta/delete/{id}',[PesertaController::class,'destroy'])->name('peserta.destroy');
 
-    Route::get('/peserta/delete/{id}',[PesertaController::class,'destroy'])->name('peserta.destroy');
+      Route::get('/peserta/show/{id}',[PesertaController::class,'show'])->name('peserta.show');
 
-    Route::get('/peserta/show/{id}',[PesertaController::class,'show'])->name('peserta.show');
+      // wawancara
+      Route::get('/wawancara',[WawancaraController::class,'index'])->name('wawancara.index');
 
-    // wawancara
-    Route::get('/wawancara',[WawancaraController::class,'index'])->name('wawancara.index');
+      Route::post('/wawancara/{id}',[WawancaraController::class,'store'])->name('wawancara.create');
 
-    Route::post('/wawancara/{id}',[WawancaraController::class,'store'])->name('wawancara.create');
+      Route::put('/wawancara/update/{id}',[WawancaraController::class,'update'])->name('wawancara.update');
 
-    Route::put('/wawancara/update/{id}',[WawancaraController::class,'update'])->name('wawancara.update');
+      Route::delete('/wawancara/delete/{id}',[WawancaraController::class,'delete'])->name('wawancara.delete');
+      // siswa yang Lolos
+      Route::get('/peserta/lolos',[LolosController::class,'index'])->name('lolos.index');
 
-    Route::delete('/wawancara/delete/{id}',[WawancaraController::class,'delete'])->name('wawancara.delete');
-    // siswa yang Lolos
-    Route::get('/peserta/lolos',[LolosController::class,'index'])->name('lolos.index');
+      Route::get('/peserta/lolos/edit/{id}',[LolosController::class,'edit'])->name('lolos.edit');
 
-    Route::get('/peserta/lolos/edit/{id}',[LolosController::class,'edit'])->name('lolos.edit');
+      Route::put('/peserta/lolos/process/{id}',[LolosController::class,'update'])->name('lolos.update');
 
-    Route::put('/peserta/lolos/process/{id}',[LolosController::class,'update'])->name('lolos.update');
+      Route::delete('/peserta/lolos/delete/{id}',[LolosController::class,'destroy'])->name('lolos.destroy');
 
-    Route::delete('/peserta/lolos/delete/{id}',[LolosController::class,'destroy'])->name('lolos.destroy');
+      Route::post('/peserta/pengecekan/{id}',[LolosController::class,'pengecekan'])->name('pengecekan');
+      //q&a
+      Route::get('/question',[QuestionController::class,'index'])->name('question.index');
 
-    Route::post('/peserta/pengecekan/{id}',[LolosController::class,'pengecekan'])->name('pengecekan');
-    //q&a
-    Route::get('/question',[QuestionController::class,'index'])->name('question.index');
+      Route::post('/question/create',[QuestionController::class,'create'])->name('question.create');
 
-    Route::post('/question/create',[QuestionController::class,'create'])->name('question.create');
+      Route::put('/question/active/{id}',[QuestionController::class,'active'])->name('question.active');
+      //generasi
+      Route::get('/generasi',[GenerasiController::class,'index'])->name('generasi.index');
 
-    Route::put('/question/active/{id}',[QuestionController::class,'active'])->name('question.active');
-    //generasi
-    Route::get('/generasi',[GenerasiController::class,'index'])->name('generasi.index');
+      Route::post('/generasi/create',[GenerasiController::class,'create'])->name('generasi.create');
 
-    Route::post('/generasi/create',[GenerasiController::class,'create'])->name('generasi.create');
-
-    Route::put('/generasi/status/{id}',[GenerasiController::class,'status'])->name('generasi.status');
+      Route::put('/generasi/status/{id}',[GenerasiController::class,'status'])->name('generasi.status');
 
     Route::put('/generasi/update/{id}',[GenerasiController::class,'update'])->name('generasi.update');
     //payment
@@ -148,20 +148,33 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     // profile admin
     Route::get('/profile',[SettingController::class,'profile'])->name('setting.profile.index');
 
-    Route::put('/profile/edit',[SettingController::class,'update_profile'])->name('setting.profile.update');
+      Route::put('/profile/edit',[SettingController::class,'update_profile'])->name('setting.profile.update');
 
-    // notify setting
-    Route::get('/notify',[NotifyController::class,'index'])->name('setting.notify.index');
+      // notify setting
+      Route::get('/notify',[NotifyController::class,'index'])->name('setting.notify.index');
 
-    Route::put('/notify/update',[NotifyController::class,'update'])->name('setting.notify.update');
-    
-    Route::get('/settings',[SettingController::class,'general'])->name('settings.general');
+      Route::put('/notify/update',[NotifyController::class,'update'])->name('setting.notify.update');
+      
+      // general settings
+      Route::get('/settings',[SettingController::class,'general'])->name('settings.general');
 
-    Route::put('/settings/update', [SettingController::class,'update_general'])->name('settings.update_general');
+      Route::put('/settings/update', [SettingController::class,'update_general'])->name('settings.update_general');
 
-    // document
-    Route::resource('/document',DocumentController::class);
-    
+      // user database
+      Route::get('/admins', [PenggunaController::class, 'admins'])->name('users.index');
+      Route::get('/users', [PenggunaController::class, 'pesertas'])->name('users.users');
+
+      Route::get('/users/create', [PenggunaController::class, 'create_users'])->name('users.create');
+      Route::post('/users/create/process', [PenggunaController::class, 'create_users_process'])->name('users.store');
+
+      Route::put('/users/update/{id}', [PenggunaController::class, 'update_users'])->name('users.update');
+      Route::put('/users/update/active/{id}', [PenggunaController::class, 'update_active'])->name('users.update_active');
+
+      Route::delete('/users/delete/{id}', [PenggunaController::class, 'delete_users'])->name('users.delete');
+
+      // document
+      Route::resource('/document',DocumentController::class);
+    });
   });
     
 Route::prefix('/user')->name('user.')->group(function(){
