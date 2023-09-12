@@ -7,22 +7,7 @@
   <div class="content">
     <div class="container-fluid">
       <h4 class="page-title">Artikel</h4>
-      @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{session('success')}}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @elseif(session('delete'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          {{session('delete')}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @elseif(session('edit'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          {{session('edit')}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
+      
       <div class="row">
         <div class="col-md-12">
           <div class="card rounded-4">

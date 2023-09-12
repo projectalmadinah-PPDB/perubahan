@@ -29,6 +29,13 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Peserta</div>
+                  <div class="d-flex justify-content-between">
+                    {{-- <button type="button" id="" class="btn btn-warning me-3">Edit Selected</button> --}}
+                    
+                    </a>
+                </div>
+                <!-- Modal Edit All -->
+                <!-- Form modal Edit All -->
                   {{-- <a href="{{route('admin.document.create')}}" class="btn btn-primary float-end text-white">Create New</a> --}}
                 </div>
               </div>
@@ -40,10 +47,24 @@
                     <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
                   </div>
                   </form>
+                <!-- Tombol "Action" di atas tabel -->  
+
+                <!-- Dropdown Action -->
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="actionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Choose Action
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="actionDropdown">
+                      <a class="dropdown-item" href="#" id="actionEdit">Edit</a>
+                      <a class="dropdown-item" href="#" id="actionDelete">Delete</a>
+                      <!-- Tambahkan opsi lain yang Anda butuhkan di sini -->
+                  </div>
+                </div>
                 <div class="table-responsive">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered data">
                     <thead>
                       <tr>
+                        <th><input type="checkbox" id="select-all"></th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Nomor Hp</th>
@@ -59,6 +80,8 @@
                     <tbody>
                       @foreach ($data as $index => $item)
                         <tr>
+                          <td><input type="checkbox" class="checkbox-item" value="{{ $item->id }}"></td>
+                          
                           <td>{{$index + 1}}</td>
                           <td>{{$item->user->name}}</td>
                           <td>{{$item->user->nomor}}</td>
@@ -99,6 +122,7 @@
                                 <button class="badge badge-warning border-0">Tidak Ada Status</button>
                             @endif
                           </td>
+                          </form>
                           <td>
                             @if($item->student == NULL)
                             <a href="" class="badge badge-danger">Tidak Ada Data</a>
@@ -152,3 +176,75 @@
     </div>
   </div>
 @endsection
+@push('add-script')
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        // Fungsi untuk menangani saat tombol "Action" di atas tabel diklik
+        $('#actionButton').click(function() {
+            // Dapatkan ID siswa yang dipilih
+            var selectedIds = [];
+            $('.checkbox-item:checked').each(function() {
+                selectedIds.push($(this).val());
+            });
+
+            // Dapatkan tindakan yang dipilih dari dropdown
+            var selectedAction = $('#actionDropdown').val();
+
+            // Lakukan sesuai dengan tindakan yang dipilih
+            if (selectedAction === 'edit') {
+                // Lakukan tindakan edit
+                // ...
+            } else if (selectedAction === 'delete') {
+                // Lakukan tindakan delete
+                // ...
+            }
+        });
+    });
+  $(document).ready(function() {
+            // Event handler untuk tombol "Select All"
+            $('#select-all').change(function() {
+                var checkboxes = $('.checkbox-item'); // Mengambil semua checkbox item
+                checkboxes.prop('checked', this.checked); // Mengatur status semua checkbox item sesuai dengan "Select All"
+            });
+        });
+        $(document).ready(function() {
+        // Mengatur event handler untuk tombol "Delete All"
+        $('#update-all-button').click(function() {
+            var selectedIds = [];
+
+            // Loop melalui checkbox item
+            $('.checkbox-item:checked').each(function() {
+                selectedIds.push($(this).data('id'));
+            });
+
+            if (selectedIds.length > 0) {
+                // Menyiapkan data yang akan dikirim dalam permintaan AJAX
+                var data = {
+                    _token: '{{ csrf_token() }}',
+                    _method: 'PUT',
+                    selectedIds: selectedIds.join(',')
+                };
+
+                // Kirim permintaan AJAX untuk menghapus item yang dipilih
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('admin.peserta.edit-all') }}',
+                    data: data,
+                    success: function(response) {
+                        // Tanggapi hasil penghapusan atau tampilkan pesan sukses
+                        console.log(response.message);
+                        // Refresh halaman atau lakukan tindakan lain yang sesuai
+                        window.location.reload(); // Refresh halaman
+                    },
+                    error: function(error) {
+                        console.error('Terjadi kesalahan:', error);
+                    }
+                });
+            } else {
+                alert('Pilih setidaknya satu item untuk dihapus.');
+            }
+        });
+    });
+  </script>
+@endpush

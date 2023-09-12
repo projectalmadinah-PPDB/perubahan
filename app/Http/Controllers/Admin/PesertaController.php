@@ -120,4 +120,29 @@ class PesertaController extends Controller
         
         // return redirect()->route('admin.pendaftaran.index')->with('edit',"Data Pendaftaran Sudah Di Ganti");
     }
+
+    public function editStatus(Request $request)
+    {
+        // Validasi input
+    $request->validate([
+        'new_status' => 'required|in:Lulus,Gagal,Wawancara', // Sesuaikan aturan validasi dengan opsi status Anda
+        'student_ids' => 'required|array', // Pastikan student_ids adalah array
+    ]);
+
+    // Dapatkan nilai status baru dari input
+    $newStatus = $request->input('new_status');
+    // Dapatkan ID siswa yang dipilih dari input sebagai array
+    $selectedIds = $request->input('student_ids');
+
+    // Loop melalui ID siswa yang dipilih dan perbarui status mereka
+    foreach ($selectedIds as $studentId) {
+        $student = Student::find($studentId);
+        $student->status = $newStatus;
+        $student->save();
+    }
+
+    // Redirect kembali dengan pesan sukses
+    return redirect()->route('admin.peserta.index')->with('success', 'Status siswa berhasil diperbarui.');
+    }
+
 }

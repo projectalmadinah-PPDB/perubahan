@@ -79,7 +79,7 @@
                             </form>
                             @endif
                           </td>
-                          <td class="d-flex justify-content-center align-items-center gap-1">
+                          <td>
                               <button type="button" data-bs-toggle="modal" data-bs-target="#updateUser{{ $user->id }}" class="badge border-0 m-0 badge-primary" style="padding: .45rem;">
                                   <i class="bi bi-pencil" style="font-size: 13px"></i>
                               </button>
@@ -174,7 +174,7 @@
                                   </form>
                               </div>
 
-                              <button type="button" data-bs-toggle="modal" data-bs-target="#detailUser{{ $user->id }}" class="badge border-0 m-0 p-1 badge-warning">
+                              <button type="button" data-bs-toggle="modal" data-bs-target="#detailUser{{ $user->id }}" class="badge border-0 m-0 p-1 badge-warning d-inline">
                                   <i class="bi bi-info fs-5"></i>
                               </button>
                       
@@ -220,7 +220,7 @@
                                   </form>
                               </div>
                               
-                              <form method="POST" action="{{ route('admin.users.delete', $user->id) }}">
+                              <form method="POST" class="d-inline" action="{{ route('admin.users.delete', $user->id) }}">
                                   @csrf
                                   @method('DELETE')
                                   <button type="button" onclick="confirm('Yakin ingin menghapus data?') ? this.form.submit() : ''" class="badge p-1 badge-danger border-0">

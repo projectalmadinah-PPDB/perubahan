@@ -56,7 +56,7 @@ class ArticleController extends Controller
 
 
         Article::create($data);
-        return redirect()->route('admin.article.index')->with('success' , 'Article Berhasil Di Tambahkan');
+        return redirect()->route('admin.article.index')->with('success','Berhasil Menambahkan Article');
     }
 
     /**
