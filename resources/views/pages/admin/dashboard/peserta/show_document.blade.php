@@ -14,7 +14,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Detail Document {{$document->user->name}}</div>
-                  <a href="{{route('admin.biodata.index')}}" class="btn btn-primary float-end text-white">Back</a>
+                  <a href="{{route('admin.peserta.index')}}" class="btn btn-primary float-end text-white">Back</a>
                 </div>
               </div>
               <div class="card-body">

@@ -1,7 +1,9 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
 @section('title','Wawancara')
-
+@push('add-styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
 @section('content')
     <div class="main-panel">
     <div class="content">
@@ -55,7 +57,7 @@
                         @foreach ($data as $index => $item)
                         <tr>
                           <td>{{$index + 1}}</td>
-                          <td>{{$item->user->name}}</td>
+                          <td>{{$item->name}}</td>
                           <td>
                             @if ($item->wawancara)
                                 {{$item->wawancara->tanggal}}
@@ -167,3 +169,31 @@
     </div>
   </div>
 @endsection
+@push('add-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@if (session('success'))
+<script>
+  toastr.options = {
+    "progressBar" : true,
+    "closeButton" : true
+  }
+  toastr.success("{{ session('success') }}");
+</script>
+@elseif(session('delete'))
+<script>
+toastr.options = {
+  "progressBar" : true,
+  "closeButton" : true
+}
+toastr.error("{{ session('delete') }}");
+</script>
+@elseif(session('edit'))
+<script>
+toastr.options = {
+  "progressBar" : true,
+  "closeButton" : true
+}
+toastr.warning("{{ session('edit') }}");
+</script>
+@endif
+@endpush

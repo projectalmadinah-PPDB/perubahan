@@ -17,7 +17,7 @@ class LolosController extends Controller
             $lolos = User::where('role','user')->where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $lolos = Student::where('status','Lulus')->orderBy('id','desc')->paginate(5);
+            $lolos = User::where('status','Lulus')->orderBy('id','desc')->paginate(5);
         }
         
         return view('pages.admin.dashboard.lolos.index',compact('lolos'));
@@ -26,8 +26,9 @@ class LolosController extends Controller
     public function pengecekan(Request $request,$id)
     {
         // dd($request->all());
+        // $users = $id;
+        $student = User::findOrFail($id);
         $notif = User::where('notify_id',1)->first();
-        $student = Student::find($id);
         $data = $request->validate([
             'status' => 'required'
         ]);
@@ -36,23 +37,23 @@ class LolosController extends Controller
 
             $messages = $notif->notifys->notif_lolos;
     
-            $this->send_message($student->user->nomor,$messages);
+            $this->send_message($student->nomor,$messages);
         }elseif($student->status == 'Gagal'){
             $messages = $notif->notifys->notif_gagal;
 
-            $this->send_message($student->user->nomor,$messages);
+            $this->send_message($student->nomor,$messages);
         }
         else{
             $messages = $notif->notifys->notif_wawancara;
 
-            $this->send_message($student->user->nomor,$messages);
+            $this->send_message($student->nomor,$messages);
         }
         return redirect()->route('admin.peserta.index');
     }
 
     public function update(Request $request,$id)
     {
-        $lolos = Student::where('status','Lulus')->findOrFail($id);
+        $lolos = User::where('status','Lulus')->findOrFail($id);
         $data = $request->validate([
             'status' => 'required'
         ]);
@@ -63,7 +64,7 @@ class LolosController extends Controller
 
     public function destroy($id)
     {
-        $delete = Student::where('status', 'lolos')->delete();
+        $delete = User::where('status', 'Lulus')->delete();
     
         return redirect()->route('admin.lolos.index');
     }

@@ -54,8 +54,8 @@
                         @foreach ($lolos as $index => $item)
                         <tr>
                           <td>{{$index + 1}}</td>
-                          <td>{{$item->user->name}}</td>
-                          <td>{{$item->user->nomor}}</td>
+                          <td>{{$item->name}}</td>
+                          <td>{{$item->nomor}}</td>
                           <td><button class="badge badge-success border-0">{{$item->status}}</button></td>
                           <td>
                             <form action="{{route('admin.lolos.update',$item->id)}}" method="post">

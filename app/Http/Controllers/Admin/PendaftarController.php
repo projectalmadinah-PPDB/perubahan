@@ -92,7 +92,7 @@ class PendaftarController extends Controller
         $document->save();
 
 
-        return redirect()->route('admin.pendaftar.index')->with('edit', 'Profile berhasil diupdate.');
+        return redirect()->route('admin.pendaftar.index')->with('edit', 'Data Pendaftar Berhasil Di Edit');
     }
 
     public function create()
@@ -107,10 +107,12 @@ class PendaftarController extends Controller
 
         $user->document()->delete();
         
-        $user->pendaftaran()->delete();
+        $user->payment()->delete();
+
+        $user->student()->delete();
 
         $user->delete();
 
-        return redirect()->route('admin.biodata.index')->with('delete',"Berhasil Menghapus Pendaftaran $user->name");
+        return redirect()->route('admin.pendaftar.index')->with('delete',"Berhasil Menghapus Pendaftaran $user->name");
     }
 }

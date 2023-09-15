@@ -14,7 +14,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Detail Biodata {{$pendaftaran->name}}</div>
-                  <a href="{{route('admin.biodata.index')}}" class="btn btn-primary float-end text-white">Back</a>
+                  <a href="{{route('admin.peserta.index')}}" class="btn btn-primary float-end text-white">Back</a>
                 </div>
               </div>
               <div class="card-body">
@@ -23,7 +23,7 @@
                     <h5>Data Pribadi</h5>
                     <div class="mb-2">
                       <label for="">Nama Lengkap : </label>
-                      <strong>{{$pendaftaran->name}}</strong>
+                      <strong>{{$pendaftaran->user->name}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Nomor Hp : </label>
@@ -39,46 +39,46 @@
                     </div>
                     <div class="mb-2">
                       <label for="">Tempat Lahir : </label>
-                      <strong>{{$pendaftaran->student->birthplace}}</strong>
+                      <strong>{{$pendaftaran->birthplace}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">NIK : </label>
-                      <strong>{{$pendaftaran->student->nik}}</strong>
+                      <strong>{{$pendaftaran->nik}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">NISN : </label>
-                      <strong>{{$pendaftaran->student->nisn}}</strong>
+                      <strong>{{$pendaftaran->nisn}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Hobby : </label>
-                      <strong>{{$pendaftaran->student->hobby}}</strong>
+                      <strong>{{$pendaftaran->hobby}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Cita - Cita : </label>
-                      <strong>{{$pendaftaran->student->ambition}}</strong>
+                      <strong>{{$pendaftaran->ambition}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Asal Sekolah : </label>
-                      <strong>{{$pendaftaran->student->old_school}}</strong>
+                      <strong>{{$pendaftaran->old_school}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Pendidikan Terakhir : </label>
-                      <strong>{{$pendaftaran->student->last_graduate}}</strong>
+                      <strong>{{$pendaftaran->last_graduate}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Organisasi Yang Pernah Diikuti : </label>
-                      <strong>{{$pendaftaran->student->organization_exp}}</strong>
+                      <strong>{{$pendaftaran->organization_exp}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Alamat : </label>
-                      <strong>{{$pendaftaran->student->address}}</strong>
+                      <strong>{{$pendaftaran->address}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Status : </label>
                       <strong>
-                      @if ($pendaftaran->student->status == 'tidak')
+                      @if ($pendaftaran->status == 'tidak')
                         Belum Di Cek
-                      @elseif($pendaftaran->student->status == 'gagal')
+                      @elseif($pendaftaran->status == 'gagal')
                         Gagal
                       @else
                         Lolos
@@ -90,36 +90,36 @@
                     <h5>Data Org Tua</h5>
                     <div class="mb-2">
                       <label for="">Nama Ayah : </label>
-                      <strong>{{$pendaftaran->parents->father_name}}</strong>
+                      <strong>{{$pendaftaran->father_name}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Nomor Ayah : </label>
-                      <strong>{{$pendaftaran->parents->father_phone}}</strong>
+                      <strong>{{$pendaftaran->father_phone}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Nama Ibu : </label>
-                      <strong>{{$pendaftaran->parents->mother_name}}</strong>
+                      <strong>{{$pendaftaran->mother_name}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Nomor Ibu : </label>
-                      <strong>{{$pendaftaran->parents->mother_phone}}</strong>
+                      <strong>{{$pendaftaran->mother_phone}}</strong>
                     </div>
                     <div>
                       <label for="">Pekerjaan Ayah : </label>
-                      <strong>{{$pendaftaran->parents->father_job}}</strong>
+                      <strong>{{$pendaftaran->father_job}}</strong>
                     </div>
                     <div>
                       <label for="">Pekerjaan Ibu : </label>
-                      <strong>{{$pendaftaran->parents->mother_job}}</strong>
+                      <strong>{{$pendaftaran->mother_job}}</strong>
                     </div>
                     <div>
                       <label for="">Penghasilan Ayah Sebulan : </label>
                       <strong>
-                        @if ($pendaftaran->parents->parent_earning == 'A')
+                        @if ($pendaftaran->parent_earning == 'A')
                           Kurang dari 1.000.000
-                          @elseif($pendaftaran->parents->parent_earning == 'B')
+                          @elseif($pendaftaran->parent_earning == 'B')
                           1.000.000 - 5.000.000
-                          @elseif($pendaftaran->parents->parent_earning == 'C')
+                          @elseif($pendaftaran->parent_earning == 'C')
                           5.000.000 - 10.000.000
                           @else
                           Lebih dari 10.000.000
@@ -129,11 +129,11 @@
                     </div>
                     <div>
                       <label for="">Anak Ke Berapa : </label>
-                      <strong>{{$pendaftaran->parents->child_no}}</strong>
+                      <strong>{{$pendaftaran->child_no}}</strong>
                     </div>
                     <div>
                       <label for="">Dari Berapa Soudara : </label>
-                      <strong>{{$pendaftaran->parents->no_of_sibling}}</strong>
+                      <strong>{{$pendaftaran->no_of_sibling}}</strong>
                     </div>
                   </div>
                 </div>

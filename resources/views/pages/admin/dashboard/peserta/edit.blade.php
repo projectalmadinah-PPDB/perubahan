@@ -13,7 +13,7 @@
             <div class="card-header">
               <div class="card-title">Pendaftaran Edit "{{$data->name}}"</div>
             </div>
-            <form action="{{route('admin.pendaftaran.update',$data->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.peserta.update',$data->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -101,6 +101,10 @@
                             <input name="father_phone" class="form-control" type="text" value="{{$data->parents->father_phone}}">
                           </div>
                           <div class="form-group">
+                            <label for="nomor">Nomor Ibu</label>
+                            <input name="mother_phone" class="form-control" type="text" value="{{$data->parents->mother_phone}}">
+                          </div>
+                          <div class="form-group">
                             <label for="email">Nama Ibu</label>
                             <input name="mother_name" class="form-control" type="text" value="{{$data->parents->mother_name}}">
                           </div>
@@ -134,7 +138,7 @@
                         </div>
                       </div>
                       @endif
-                      @if($data->document)
+                      {{-- @if($data->document)
                       <div class="col-md-12">
                         <div class="card-body d-flex flex-wrap">
                           <div class="form-group" style="width: 300px">
@@ -208,10 +212,10 @@
                           </div>
                         </div>
                       </div> 
-                      @endif
+                      @endif --}}
                     <div class="card-action">
                       <button class="btn btn-success" type="submit">Submit</button>
-                      <a href="{{route('admin.pendaftaran.index')}}" class="btn btn-warning" type="button">Back</a>
+                      <a href="{{route('admin.peserta.index')}}" class="btn btn-warning" type="button">Back</a>
                     </div>  
                 </div>
             </form>

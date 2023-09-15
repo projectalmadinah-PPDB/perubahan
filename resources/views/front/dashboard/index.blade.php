@@ -2,6 +2,9 @@
 
 @section('title','Dashboard')
 
+@push('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
 @section('content')
 <main class="w-full min-h-screen h-auto pt-12 md:pt-24">
     <!-- section one -->
@@ -75,24 +78,23 @@
     </section>
     @else
     @if ($user->payment->status == 'pending')
-        <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
-            <!-- status pendaftaran -->
-            <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-                <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
-                <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Lengkapi Data diri kamu untuk melanjutkan proses pendaftaran, melalui tombol dibawah ini.</p>
-                
-                <a href="{{route('user.pay',$user->id)}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                    Silahkan Lakukan Pembayaran Untuk Melengkapi Data Diri 
-                </a>
-            </div>
+    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+        <!-- status pendaftaran -->
+        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
+            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
+            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Silahkan Melakukan Pembayaran Administrasi Sebelum Melengkapi Data Diri</p>
+            <a href="{{route('user.pay',$user->id)}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                !Click Here!
+            </a>
+        </div>
 
-            <!-- cta ikuti tes -->
-            <div class="flex flex-col justify-center items-center gap-4">
-            </div>
+        <!-- cta ikuti tes -->
+        <div class="flex flex-col justify-center items-center gap-4">
+        </div>
 
-            <!-- alur pendaftaran dan status -->
-        </section>
-        <section 
+        <!-- alur pendaftaran dan status -->
+    </section>
+    <section 
         class="py-16 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
         <h1 class="mt-2 text-3xl mb-8 font-bold title">Informasi Untuk Membayar</h1>
         <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
@@ -142,7 +144,7 @@
                     })
                 })
         </script>
-        </section>
+    </section>
         @elseif ($user->payment->status == 'expired')
         <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
                 <!-- status pendaftaran -->
@@ -462,3 +464,39 @@
     </footer>
 </main>
 @endsection
+@push('my-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@if (session('pribadi'))
+<script>
+  toastr.options = {
+    "progressBar" : true,
+    "closeButton" : true
+  }
+  toastr.success(" session('pribadi')");
+</script>
+@elseif(session('lengkapi'))
+<script>
+    toastr.options = {
+      "progressBar" : true,
+      "closeButton" : true
+    }
+    toastr.success(" session('lengkapi')");
+  </script>
+@elseif(session('eror'))
+<script>
+toastr.options = {
+  "progressBar" : true,
+  "closeButton" : true
+}
+toastr.error("{{ session('error') }}");
+</script>
+@else
+<script>
+toastr.options = {
+  "progressBar" : true,
+  "closeButton" : true
+}
+toastr.warning("{{ session('edit') }}");
+</script>
+@endif
+@endpush

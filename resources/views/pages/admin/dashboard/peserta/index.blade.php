@@ -2,27 +2,14 @@
 
 @section('title','Peserta')
 
+@push('add-styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
 @section('content')
 <div class="main-panel">
     <div class="content">
       <div class="container-fluid">
         <h4 class="page-title">Peserta</h4>
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{session('success')}}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @elseif(session('delete'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          {{session('delete')}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @elseif(session('edit'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          {{session('edit')}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
         <div class="row">
           <div class="col-md-12">
             <div class="card rounded-4">
@@ -30,13 +17,9 @@
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Peserta</div>
                   <div class="d-flex justify-content-between">
-                    {{-- <button type="button" id="" class="btn btn-warning me-3">Edit Selected</button> --}}
-                    
+                    <button class="btn btn-primary" onclick="edit()">Ubah Data</button>
                     </a>
                 </div>
-                <!-- Modal Edit All -->
-                <!-- Form modal Edit All -->
-                  {{-- <a href="{{route('admin.document.create')}}" class="btn btn-primary float-end text-white">Create New</a> --}}
                 </div>
               </div>
               <div class="card-body">
@@ -48,28 +31,18 @@
                   </div>
                   </form>
                 <!-- Tombol "Action" di atas tabel -->  
-
-                <!-- Dropdown Action -->
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="actionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Choose Action
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="actionDropdown">
-                      <a class="dropdown-item" href="#" id="actionEdit">Edit</a>
-                      <a class="dropdown-item" href="#" id="actionDelete">Delete</a>
-                      <!-- Tambahkan opsi lain yang Anda butuhkan di sini -->
-                  </div>
-                </div>
                 <div class="table-responsive">
+                  <form action="" name="form1" id="form1" method="POST">
+                    @csrf
                   <table class="table table-bordered data">
                     <thead>
                       <tr>
-                        <th><input type="checkbox" id="select-all"></th>
+                        <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Nomor Hp</th>
                         <th>Biodata</th>
-                        <th>Status</th>
+                        <th>Status Pembayaran</th>
                         <th>Status Test</th>
                         {{-- <th>Tanggal Lahir</th>
                         <th>Jenis Kelamin</th> --}}
@@ -79,21 +52,21 @@
                     </thead>
                     <tbody>
                       @foreach ($data as $index => $item)
+                      
                         <tr>
-                          <td><input type="checkbox" class="checkbox-item" value="{{ $item->id }}"></td>
-                          
+                          <td><input type="checkbox" name="id[{{$item->id}}]" class="checkbox1" value="{{$item->id}}"></td>
                           <td>{{$index + 1}}</td>
-                          <td>{{$item->user->name}}</td>
-                          <td>{{$item->user->nomor}}</td>
+                          <td>{{$item->name}}</td>
+                          <td>{{$item->nomor}}</td>
                           {{-- <td>{{$item->tanggal_lahir}}</td>
                           <td>{{$item->jenis_kelamin}}</td> --}}
                           {{-- <td>{{$item->nik}}</td> --}}
-                          @if($item && $item->user->document)
-                          <td><button class="badge badge-success border-0">Lengkap &#x2714;</button></td>
-                          @elseif ($item && !$item->user->document)
+                          @if($item && $item->document)
+                          <td><a class="badge badge-success border-0 text-white">Lengkap &#x2714;</a></td>
+                          @elseif ($item && !$item->document)
                           <td>
-                            <button class="badge badge-success border-0">data &#x2714;
-                            </button>
+                            <a class="badge badge-success border-0 text-white">data &#x2714;
+                            </a>
                             <a href="" class="badge badge-danger">Document &#x2715;</a>
                           </td>
                           @else
@@ -101,39 +74,39 @@
                             <button class="badge badge-danger border-0">Tidak Legkap</button></td>
                           @endif
                           <td>
-                            @if ($item->user->status == 'Belum')
-                                <button class="badge badge-warning border-0">Belum Verifikasi</button>
-                            @elseif($item->user->status == 'Verifikasi')
-                                <button class="badge badge-success border-0">TerVerifikasi</button>
-                            @elseif($item->user->status == 'TidakSah')
-                                <button class="badge badge-danger border-0">Tidak Sah</button>
+                            @if (!$item->payment)
+                            <a class="badge badge-danger border-0 text-white">Belum Bayar</a>
+                            @elseif($item->payment->status == 'berhasil')
+                            <a class="badge badge-success border-0 text-white">Lunas</a>
+                            @elseif($item->paymnet->status == 'pending')
+                            <a class="badge badge-warning border-0 text-white">Pending</a>
                             @else
-                            
+                            <a class="badge badge-danger border-0 text-white">Expired</a>
                             @endif
                           </td>
                           <td>
-                            @if ($item->status == 'Lulus')
-                                <button class="badge badge-success border-0">Lulus</button>
+                            @if (!$item->status)
+                                <a class="badge badge-danger border-0 text-white">Tidak Ada Status</a>
                             @elseif($item->status == 'Gagal')
-                                <button class="badge badge-danger border-0">Tidak Lulus</button>
+                                <a class="badge badge-danger border-0 text-white">Tidak Lulus</a>
                             @elseif($item->status == 'Wawancara')
-                                <button class="badge badge-primary border-0">Wawancara</button>
-                            @else
-                                <button class="badge badge-warning border-0">Tidak Ada Status</button>
+                                <a class="badge badge-primary border-0 text-white">Wawancara</a>
+                            @elseif($item->status == 'Lulus')
+                                <a class="badge badge-success border-0 text-white">Lulus</a>
                             @endif
                           </td>
                           </form>
                           <td>
-                            @if($item->student == NULL)
+                            @if(!$item)
                             <a href="" class="badge badge-danger">Tidak Ada Data</a>
                             @else
-                            <a href="{{route('admin.pendaftar.show',$item->id)}}" class="badge badge-primary">Data Pribadi</a>
+                            <a href="{{route('admin.peserta.show',$item->id)}}" class="badge badge-primary">Data Pribadi</a>
                             @endif
                             @if ($item->document) 
-                            <a href="{{route('admin.pendaftar.show_document',$item->document->id)}}" class="badge badge-warning">Document</a>
+                            <a href="{{route('admin.peserta.document',$item->document->id)}}" class="badge badge-warning">Document</a>
                             @endif
                             <a href="{{route('admin.peserta.edit',$item->id)}}" class="badge badge-warning">Edit</a>
-                            <form action="{{route('admin.pendaftar.destroy',$item->id)}}" method="post" class="d-inline">
+                            <form action="{{route('admin.peserta.destroy',$item->id)}}" method="post" class="d-inline">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="badge badge-danger border-0">Delete</button>
@@ -167,6 +140,7 @@
                       @endforeach
                     </tbody>
                   </table>
+                </form>
                 </div>
               </div>
             </div>
@@ -177,74 +151,59 @@
   </div>
 @endsection
 @push('add-script')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#select_all').on('click',function(){
+            if(this.checked){
+                $('.checkbox1').each(function(){
+                    this.checked = true;
+                })
+            }else{
+                $('.checkbox1').each(function(){
+                    this.checked = false;
+                })
+            }
+        })
+
+        $('.checkbox1'),on('click',function(){
+            if($('.checkbox1:checked').length == $('.checkbox1').length){
+                $('#select_all').prop('checked',true)
+            }else{
+                $('#select_all').prop('checked',false)
+            }
+        })
+    });
+
+    function edit() {
+        document.form1.action = "/admin/peserta/coba/edit"
+        document.form1.submit()
+    }
+</script>
+  @if (session('success'))
   <script>
-    $(document).ready(function() {
-        // Fungsi untuk menangani saat tombol "Action" di atas tabel diklik
-        $('#actionButton').click(function() {
-            // Dapatkan ID siswa yang dipilih
-            var selectedIds = [];
-            $('.checkbox-item:checked').each(function() {
-                selectedIds.push($(this).val());
-            });
-
-            // Dapatkan tindakan yang dipilih dari dropdown
-            var selectedAction = $('#actionDropdown').val();
-
-            // Lakukan sesuai dengan tindakan yang dipilih
-            if (selectedAction === 'edit') {
-                // Lakukan tindakan edit
-                // ...
-            } else if (selectedAction === 'delete') {
-                // Lakukan tindakan delete
-                // ...
-            }
-        });
-    });
-  $(document).ready(function() {
-            // Event handler untuk tombol "Select All"
-            $('#select-all').change(function() {
-                var checkboxes = $('.checkbox-item'); // Mengambil semua checkbox item
-                checkboxes.prop('checked', this.checked); // Mengatur status semua checkbox item sesuai dengan "Select All"
-            });
-        });
-        $(document).ready(function() {
-        // Mengatur event handler untuk tombol "Delete All"
-        $('#update-all-button').click(function() {
-            var selectedIds = [];
-
-            // Loop melalui checkbox item
-            $('.checkbox-item:checked').each(function() {
-                selectedIds.push($(this).data('id'));
-            });
-
-            if (selectedIds.length > 0) {
-                // Menyiapkan data yang akan dikirim dalam permintaan AJAX
-                var data = {
-                    _token: '{{ csrf_token() }}',
-                    _method: 'PUT',
-                    selectedIds: selectedIds.join(',')
-                };
-
-                // Kirim permintaan AJAX untuk menghapus item yang dipilih
-                $.ajax({
-                    type: 'POST',
-                    url: '{{ route('admin.peserta.edit-all') }}',
-                    data: data,
-                    success: function(response) {
-                        // Tanggapi hasil penghapusan atau tampilkan pesan sukses
-                        console.log(response.message);
-                        // Refresh halaman atau lakukan tindakan lain yang sesuai
-                        window.location.reload(); // Refresh halaman
-                    },
-                    error: function(error) {
-                        console.error('Terjadi kesalahan:', error);
-                    }
-                });
-            } else {
-                alert('Pilih setidaknya satu item untuk dihapus.');
-            }
-        });
-    });
+    toastr.options = {
+      "progressBar" : true,
+      "closeButton" : true
+    }
+    toastr.success("{{ session('success') }}");
   </script>
+@elseif(session('delete'))
+<script>
+  toastr.options = {
+    "progressBar" : true,
+    "closeButton" : true
+  }
+  toastr.error("{{ session('delete') }}");
+</script>
+@elseif(session('edit'))
+<script>
+  toastr.options = {
+    "progressBar" : true,
+    "closeButton" : true
+  }
+  toastr.warning("{{ session('edit') }}");
+</script>
+@endif
 @endpush

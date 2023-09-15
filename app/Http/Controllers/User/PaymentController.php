@@ -19,10 +19,10 @@ class PaymentController extends Controller
         if($status == 'berhasil'){
             $transaction->status = $status;
             $transaction->update();
-            return view('front.callback.return');
+            return redirect()->route('callback.return')->with('success','Berhasil Membayar Biaya');
         }else{
-            return view('front.callback.return-cancel');
+            return view('front.callback.return-cancel')->with('success','Gagal Membayar Biaya');
         }
-        return response()->json(['status' => 'ok']);
+        return redirect()->with('success');
     }
 }

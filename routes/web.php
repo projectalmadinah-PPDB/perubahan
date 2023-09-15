@@ -113,6 +113,12 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::get('/peserta/show/{id}',[PesertaController::class,'show'])->name('peserta.show');
 
+      Route::get('/peserta/show-document/{id}',[PesertaController::class,'document'])->name('peserta.document');
+
+      // Route::get('/peserta/coba',[PesertaController::class,'coba'])->name('peserta.coba');
+      Route::post('/peserta/coba/edit',[PesertaController::class,'coba'])->name('peserta.coba.edit');
+      Route::patch('/peserta/coba/update',[PesertaController::class,'cobaUpdate'])->name('peserta.coba.update');
+
       // wawancara
       Route::get('/wawancara',[WawancaraController::class,'index'])->name('wawancara.index');
 

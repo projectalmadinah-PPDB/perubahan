@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\General;
+use App\Models\Generasi;
 use App\Models\Notify;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AdminSeeder;
@@ -27,6 +28,12 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class
         ]);
 
+        Generasi::create([
+            'generasi' => '',
+            'status' => '',
+            'start_at' => '2023-09-12',
+            'end_at' => '2023-09-13'
+        ]);
         General::create([
             'school_name' => 'Ar-Romusha',
             'school_logo' => 'logo\9ZvJ5Vsa1yncP9zqNcoaeI98mIjccgA0zvF5WcsS.svg',

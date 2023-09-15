@@ -15,7 +15,7 @@ class WawancaraController extends Controller
     public function index()
     {
         // $wawancara = Wawancara::with('student');
-        $data = Student::where('status','Wawancara')->paginate(5);
+        $data = User::where('status','Wawancara')->paginate(5);
         // $wawancara = Wawancara::find();
         return view('pages.admin.dashboard.wawancara.index',compact('data'));
     }
@@ -24,8 +24,8 @@ class WawancaraController extends Controller
     {
         $user = User::where('id',$request->id)->first();
         // $users = User::where('nomor',$request->id)->first();
-        $notify = User::where('notify_id',$request->id)->first();
-        $student = Student::find($request->id); // Mengambil objek Student berdasarkan ID
+        $notify = User::where('notify_id',1)->first();
+        $student = User::find($request->id); // Mengambil objek Student berdasarkan ID
         $studentId = $student->id; // Mengambil ID dari objek Student
 
         $data = $request->validate([
@@ -42,7 +42,7 @@ class WawancaraController extends Controller
         Wawancara::create($data);
         // $wawancara = Wawancara::find($request->id);
 
-        return redirect()->route('admin.wawancara.index');
+        return redirect()->route('admin.wawancara.index')->with('success','Berhasil Menambahkan Jadwal Dan Link Wawancara');
     }
 
     public function update(Request $request, $id)
@@ -72,6 +72,6 @@ class WawancaraController extends Controller
         $this->send_message($student->user->nomor,$messages);
         $wawancara->update($data);
 
-        return redirect()->route('admin.wawancara.index');
+        return redirect()->route('admin.wawancara.index')->with('edit','Berhasil Edit Waktu Wawancara Dan Link');
     }
 }
