@@ -25,7 +25,10 @@ class DatabaseSeeder extends Seeder
         // ]);
         
         $this->call([
-            AdminSeeder::class
+            AdminSeeder::class,
+            UserSeeder::class,
+            StudentSeeder::class,
+            GenerasiSeeder::class,
         ]);
 
         Generasi::create([
@@ -39,9 +42,9 @@ class DatabaseSeeder extends Seeder
             'school_logo' => 'logo\9ZvJ5Vsa1yncP9zqNcoaeI98mIjccgA0zvF5WcsS.svg',
             'school_phone' => '123456789',
             'school_email' => 'arrhomusha@mail.com',
-            'school_address' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ad recusandae asperiores voluptatum autem eaque voluptatem eius unde aut aspernatur.',
+            'school_address' => fake()->address,
             'social_media' => '',
-            'desc' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ad recusandae asperiores voluptatum autem eaque voluptatem eius unde aut aspernatur.'
+            'desc' => fake()->paragraph()
         ]);
 
         Notify::create([
