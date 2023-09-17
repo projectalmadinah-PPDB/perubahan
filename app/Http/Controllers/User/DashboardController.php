@@ -24,6 +24,15 @@ class DashboardController extends Controller
         return view('front.dashboard.index',compact('user','informasi','userId'));
     }
 
+    public function coba()
+    {
+        $users = Auth::user()->id;
+        $user = User::with('student')->findOrFail($users);
+        $userId = Payment::where('user_id',$users)->get();
+        $informasi = Article::all();
+        return view('front.dashboard.coba',compact('user','informasi','userId'));
+    }
+
     public function profile()
     {
         $users = Auth::user()->id;
@@ -51,7 +60,7 @@ class DashboardController extends Controller
             'link' => $payment['Data']['Url'],
             'amount' => 100000
         ]);
-        $messages = $pendaftaran->notifys->notif_pembayaran.$Transaction->link;
+        $messages = $pendaftaran->notifys->notif_pembayaran . $Transaction->link;
 
         $this->send_message($phone,$messages);
         return Redirect::to($Transaction->link);

@@ -174,7 +174,7 @@
                     <div class="card card-tasks rounded-4">
                         <div class="card-header ">
                             <h4 class="card-title">Calon Siswa</h4>
-                            <p class="card-category">Calon Siswa 2024</p>
+                            <p class="card-category">Calon Siswa {{ $generations->generasi }}</p>
                         </div>
                         <div class="card-body ">
                             <div class="table-full-width">
@@ -194,7 +194,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $item)
+                                        @foreach ($users->take(7) as $item)
                                         <tr>
                                             {{-- <td>
                                                 <div class="form-check">
@@ -218,7 +218,7 @@
                         <div class="card-footer ">
                             <div class="stats">
                                 @foreach ($users as $user)
-                                    @if($loop->last)
+                                    @if($loop->first)
                                         {{ $user->created_at }}
                                     @endif
                                 @endforeach

@@ -13,7 +13,9 @@
         <!-- status pendaftaran -->
         <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
             <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
-            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Silahkan Melakukan Pembayaran Administrasi Sebelum Melengkapi Data Diri</p>
+            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">
+                Silahkan Melakukan Pembayaran Administrasi Sebelum Melengkapi Data Diri
+            </p>
             <a href="{{route('user.pay',$user->id)}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
                 !Click Here!
             </a>

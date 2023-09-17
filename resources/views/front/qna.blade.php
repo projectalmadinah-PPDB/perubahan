@@ -1,53 +1,56 @@
 @extends('front.layouts.parent')
 
-@section('title','About Us')
+@section('title','Q&A')
 
 @section('content')
 <main class="w-full pt-14">
-    <!-- about -->
-    <section class="w-full px-7 md:px-20 py-16 flex flex-col text-center justify-start items-center">
-        <h1 class="text-4xl font-extrabold tracking-wide title mb-2">Tentang Kami.</h1>
-        <p class="text-sm tracking-wide font-semibold text-gray-400 mb-10">
-            Ingin berkonsultasi <i class="font-light">face to face</i> dengan kami ?
-        </p>
-        <article class="prose !max-w-full pt-8 pb-20 px-20">
-            <blockquote>
-                {{ App\Models\General::first()->desc }}
-            </blockquote>
-        </article>
-        <div class="flex flex-col md:flex-row justify-start md:justify-center items-center gap-10">
-            <div class="min-w-[21rem] h-fit py-5 px-7 ring-2 ring-sekunder ring-offset-2 hover:ring-offset-8  hover:rounded-3xl duration-200">
-                <div class="flex items-center justify-center gap-x-3 mb-3">
-                    
-                    <h3 class="text-lg font-semibold">Email</h3>
-                </div>
-                <p class="tracking-wide text-slate-600">
-                    {{ App\Models\General::first()->school_email }}
-                </p>
-            </div>
-            <div class="min-w-[21rem] h-fit py-5 px-7 ring-2 ring-sekunder ring-offset-2 hover:ring-offset-8 hover:rounded-3xl duration-200">
-                <div class="flex items-center justify-center gap-x-3 mb-3">
 
-                    <h3 class="text-lg font-semibold">Alamat</h3>
-                </div>
-                <p class="tracking-wide text-slate-600 text-sm">
-                    {{ App\Models\General::first()->school_address }}
-                </p>
-            </div>
-            <div class="min-w-[21rem] h-fit py-5 px-7 ring-2 ring-sekunder ring-offset-2 hover:ring-offset-8  hover:rounded-3xl duration-200">
-                <div class="flex items-center justify-center gap-x-3 mb-3">
-
-                    <h3 class="text-lg font-semibold">Telepon</h3>
-                </div>
-                <p class="tracking-wide text-slate-600">
-                    {{ App\Models\General::first()->school_phone }}  
-                </p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- kotak bantuan -->
+    <span class="sr-only" id="listQna">list qna</span>
+    <!-- Q&A -->
     <section 
+        class="bg-dasar py-16 px-20 flex flex-col justify-start items-center min-h-[75vh]">
+        <span class="inline-flex items-center rounded-[3rem] bg-emerald-200 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-700">Q.&.A</span>
+        <h1 class="mt-2 text-3xl font-bold title">Question and Answer.</h1>
+        <p class="mt-2 mb-7 text-sm text-gray-700 tracking-wide">
+            Temukan berbagai pertanyaan seputar pendaftaran Sekolah Ar-Romusha dibawah ini.
+        </p>
+        <div class="flex flex-col justify-start items-center gap-y-3 w-full px-10 sm:px-18 md:px-32">
+            @foreach ($qna as $index => $item)
+                <!-- foreach here -->
+            <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
+                <div class="dropdown-title font-[600] p-3 px-7 text-[17px] flex justify-between items-center">
+                    <p class="tracking-wider">{{$item->question}}</p>
+                </div>
+                <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
+                    {{$item->answer}}
+                </div>
+            </div>
+            <!-- endforeach here -->
+            @endforeach
+        </div>
+
+        <script>
+            // accordion question
+                const ItemHeaders = document.querySelectorAll('div.dropdown-title');
+                
+                ItemHeaders.forEach(ItemHeader => {
+                    ItemHeader.addEventListener('click', event => {
+                        ItemHeader.classList.toggle('show');
+                        
+                        const ItemBody = ItemHeader.nextElementSibling;
+                        
+                        if(ItemHeader.classList.contains('show')) {
+                            ItemBody.classList.remove('hidden');
+                        } else {
+                            ItemBody.classList.add('hidden');
+                        }
+                    })
+                })
+        </script>
+    </section>
+
+    <!-- kotak bantuan -->
+    {{-- <section 
         class="bg-gradient-to-t from-primer to-sky-900 py-16 px-10 md:px-20 flex flex-col justify-start text-dasar">
         <div class="mx-auto text-center w-7/12 mb-8 gap-y-3">
             <h1 class="text-4xl font-bold">Hubungi Kami.</h1>
@@ -84,8 +87,8 @@
                 kami berterima kasih atas masukan yang kamu berikan.
             </p>
         </div>
-    </section>
-
+    </section> --}}
+    
     <!--Footer container-->
     <footer class="w-full bg-primer text-center text-white">
         <div class="px-6">
@@ -144,7 +147,7 @@
                 </a>
 
                 <a href="#" class="w-20 mx-8">
-                    <img src="/dists/images/logo_only_currentColor.svg">
+                    <img src="dists/images/logo_only_currentColor.svg">
                 </a>
         
                 <!-- isntagram -->

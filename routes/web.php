@@ -41,8 +41,12 @@ Route::get('/', [FrontController::class,'index'])->name('front');
 
 Route::get('/informasi',[FrontController::class,'informasi'])->name('informasi');
 
+Route::get('/qna', [FrontController::class,'qna'])->name('qna');
+
 Route::get('/about-us',[FrontController::class,'about'])->name('about');
+
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+
 Route::prefix('/admin')->name('admin.')->group(function(){
     Route::get('/login', [AdminController::class,'index'])->name('index');
 
@@ -215,25 +219,26 @@ Route::prefix('/user')->name('user.')->group(function(){
     Route::post('/activication/process',[UserController::class,'activication_process'])->name('activication.process');
 
     Route::middleware(['auth','role:user'])->group(function(){
-        Route::get('/dashboard', [UserDashboardController::class,'index'])->name('dashboard');
-        Route::get('/payment/{id}',[UserDashboardController::class,'pay'])->name('pay');
-        Route::get('/profile',[UserDashboardController::class,'profile'])->name('profile');
-        Route::get('/informasi',[UserDashboardController::class,'informasi'])->name('informasi');
-        Route::get('/detail-informasi/{slug}',[FrontController::class,'detail_informasi'])->name('informasi.detail');
-      });
+      Route::get('/coba', [UserDashboardController::class, 'coba'])->name('coba');
+      Route::get('/dashboard', [UserDashboardController::class,'index'])->name('dashboard');
+      Route::get('/payment/{id}',[UserDashboardController::class,'pay'])->name('pay');
+      Route::get('/profile',[UserDashboardController::class,'profile'])->name('profile');
+      Route::get('/informasi',[UserDashboardController::class,'informasi'])->name('informasi');
+      Route::get('/detail-informasi/{slug}',[FrontController::class,'detail_informasi'])->name('informasi.detail');
+    });
     Route::middleware(['payment'])->group(function(){
-        Route::get('/kelengkapan' ,[LengkapiController::class,'index'])->name('kelengkapan');
-        Route::post('/kelengkapan/process' ,[LengkapiController::class,'store'])->name('kelengkapan.process');
-        Route::get('/document',[LengkapiController::class,'document'])->name('document');
-        Route::post('/document/process',[LengkapiController::class,'upload'])->name('document.process');
+      Route::get('/kelengkapan' ,[LengkapiController::class,'index'])->name('kelengkapan');
+      Route::post('/kelengkapan/process' ,[LengkapiController::class,'store'])->name('kelengkapan.process');
+      Route::get('/document',[LengkapiController::class,'document'])->name('document');
+      Route::post('/document/process',[LengkapiController::class,'upload'])->name('document.process');
     });
   });
   Route::prefix('/callback')->name('callback.')->group(function(){
     Route::get('/return',function(){
-        return view('front.callback.return');
+      return view('front.callback.return');
     })->name('return');
     Route::get('/cancel',function(){
-        return view('front.callback.return-cancel');
+      return view('front.callback.return-cancel');
     })->name('cancel');
     Route::post('/notify',[PaymentController::class,'notify'])->name('notify');
   });

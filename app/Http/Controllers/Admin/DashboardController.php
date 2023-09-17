@@ -9,6 +9,7 @@ use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Charts\PendaftarChart;
 use App\Http\Controllers\Controller;
+use App\Models\Generasi;
 use Khill\Lavacharts\Lavacharts;
 
 class DashboardController extends Controller
@@ -16,10 +17,11 @@ class DashboardController extends Controller
     public function index()
     {
         
-        $users = User::where('role','user')->get();
+        $users = User::where('role','user')->orderBy('id', 'DESC')->get();
         $student = Student::all();
         $lulus = Student::where('status','Lulus')->get();
         $informasi = Article::all();
-        return view('pages.admin.dashboard.index',compact('users','informasi','student','lulus'));
+        $generations = Generasi::orderBy('id', 'DESC')->first();
+        return view('pages.admin.dashboard.index',compact('users','informasi','student','lulus','generations'));
     }
 }

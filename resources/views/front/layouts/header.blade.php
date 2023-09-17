@@ -18,14 +18,14 @@
             <a href="{{route('user.show')}}" 
                 class="text-sm p-2 {{Route::is('user.show') ? 'nav-active' : '' }}"
             >Daftar</a>
-            <a href="{{route('user.informasi')}}" 
+            <a href="{{route('informasi')}}" 
                 class="text-sm p-2 {{Route::is('informasi') ? 'nav-active' : '' }}"
             >Informasi</a>
             <a href="{{route('about')}}" 
                 class="text-sm p-2 {{Route::is('about') ? 'nav-active' : '' }}"
             >About</a>
-            <a href="" 
-                class="text-sm p-2"
+            <a href="{{route('qna')}}" 
+                class="text-sm p-2 {{Route::is('qna') ? 'nav-active' : '' }}"
             >Q&A</a>
             <a href="{{route('user.index')}}" 
                 class="text-sm p-2 border-[1.5px] border-sekunder text-sekunder font-semibold ms-3 hover:bg-sekunder hover:text-white duration-200 {{Route::is('user.index') ? 'nav-active' : '' }}"

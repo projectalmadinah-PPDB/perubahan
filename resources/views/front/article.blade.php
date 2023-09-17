@@ -5,7 +5,7 @@
 @section('content')
 <main class="w-full pt-14">
     <!-- hero section -->
-    <section 
+    {{-- <section 
         class="w-full h-[30rem] bg-primer bg-cover bg-center flex flex-col justify-center items-center gap-y-4 text-center text-white"
         style="background-image: url('/dists/images/bg-hero.jpg');">
         <h1 
@@ -23,11 +23,11 @@
                 class="text-sm p-2 px-4 font-semibold border-2 border-sekunder bg-sekunder hover:bg-sekunder/50 text-white duration-200"
             >Jelajahi Lebih Banyak</a>
         </div>
-    </section>
+    </section> --}}
 
     <span class="sr-only" id="listArticle">list artikel</span>
     <!-- list article -->
-    <section class="w-full pt-20 pb-16 px:10 md:px-20 flex flex-col justify-start items-center">
+    <section class="w-full pt-20 pb-16 px:10 md:px-20 flex flex-col justify-start items-center min-h-[75vh]">
         <span
             class="inline-flex items-center rounded-[3rem] bg-emerald-200 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-700 mb-3"
         >I.N.F.O</span>
@@ -57,7 +57,7 @@
     </section>
 
     <!-- kotak bantuan -->
-    <section 
+    {{-- <section 
         class="bg-gradient-to-t from-primer to-sky-900 py-16 px-10 md:px-20 flex flex-col justify-start text-dasar">
         <div class="mx-auto text-center w-7/12 mb-8 gap-y-3">
             <h1 class="text-4xl font-bold">Hubungi Kami.</h1>
@@ -94,7 +94,7 @@
                 kami berterima kasih atas masukan yang kamu berikan.
             </p>
         </div>
-    </section>
+    </section> --}}
     
     <!--Footer container-->
     <footer class="w-full bg-primer text-center text-white">
@@ -154,7 +154,7 @@
                 </a>
 
                 <a href="#" class="w-20 mx-8">
-                    <img src="./images/logo_only_currentColor.svg">
+                    <img src="dists/images/logo_only_currentColor.svg">
                 </a>
         
                 <!-- isntagram -->
