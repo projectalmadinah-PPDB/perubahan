@@ -1,28 +1,14 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
 @section('title','Generasi')
-
+@push('add-styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
 @section('content')
 <div class="main-panel">
   <div class="content">
     <div class="container-fluid">
       <h4 class="page-title">Generasi</h4>
-      @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{session('success')}}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @elseif(session('delete'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          {{session('delete')}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @elseif(session('edit'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          {{session('edit')}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
       <div class="row">
         <div class="col-md-12">
           <div class="card rounded-4">
@@ -176,3 +162,31 @@
   </div>
 </div>
 @endsection
+@push('add-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
+@if (session('success'))
+<script>
+  toastr.options = {
+    "progressBar" : true,
+    "closeButton" : true
+  }
+  toastr.success("{{ session('success') }}");
+</script>
+@elseif(session('delete'))
+<script>
+toastr.options = {
+  "progressBar" : true,
+  "closeButton" : true
+}
+toastr.error("{{ session('delete') }}");
+</script>
+@elseif(session('edit'))
+<script>
+toastr.options = {
+  "progressBar" : true,
+  "closeButton" : true
+}
+toastr.warning("{{ session('edit') }}");
+</script>
+@endif
+@endpush

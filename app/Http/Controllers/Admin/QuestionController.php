@@ -10,7 +10,7 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $question = Question::get();
+        $question = Question::orderby('id','desc')->get();
         return view('pages.admin.dashboard.question.index',compact('question'));
     }
 
@@ -18,13 +18,25 @@ class QuestionController extends Controller
     {
         $data = $request->validate([
             'question' => 'required',
-            'answer' => 'required'
+            'answer' => ''
         ]);
-        $data['active'] = 'on';
+        $data['active'] = 'off';
 
         Question::create($data);
 
-        return redirect()->route('admin.question.index');
+        return redirect()->route('admin.question.index')->with('success','Berhasil Membuat Pertanyaan Dan Jawaban');
+    }
+
+    public function jawab(Request $request,$id)
+    {
+        $jawab = Question::find($id);
+        $data = $request->validate([
+            'answer' => 'required'
+        ]);
+
+        $jawab->update($data);
+
+        return redirect()->route('admin.question.index')->with('success','Berhasil Mejawab Pertanyaan');
     }
 
     public function active(Request $request,$id)
@@ -34,16 +46,20 @@ class QuestionController extends Controller
             'active' => 'required'
         ]);
 
-        if($question->active == 'off')
-        {
-            $data['active'] == 'on';
-            $question->update($data);
-        }else
-        {
-            $data['active'] == 'off';
-            $question->update($data);
+        if(!$question->answer){
+            return redirect()->route('admin.question.index')->with('delete',"Harus Ada Jawaban Jika Ingin Aktif");
+        }else{
+            if($question->active == 'off')
+            {
+                $data['active'] == 'on';
+                $question->update($data);
+            }else
+            {
+                $data['active'] == 'off';
+                $question->update($data);
+            }
+            return redirect()->route('admin.question.index')->with('success',"Berhasil Menganti Status");
         }
 
-        return redirect()->route('admin.question.index');
     }
 }

@@ -25,7 +25,7 @@ class GenerasiController extends Controller
 
         Generasi::create($data);
 
-        return redirect()->route('admin.generasi.index');
+        return redirect()->route('admin.generasi.index')->with('success','Berhasil Menambahkan Generasi Baru ');
     }
 
     public function update(Request $request,$id)
@@ -39,7 +39,7 @@ class GenerasiController extends Controller
 
         $generasi->update($data);
 
-        return redirect()->route('admin.generasi.index');
+        return redirect()->route('admin.generasi.index')->with('edit','Berhasil Mengupdate Data Generasi');
     }
 
     public function status(Request $request,$id)
@@ -51,6 +51,6 @@ class GenerasiController extends Controller
 
         $generasi->update($data);
 
-        return redirect()->route('admin.generasi.index');
+        return redirect()->route('admin.generasi.index')->with('success','Berhasil Mengganti Status Generasi');
     }
 }

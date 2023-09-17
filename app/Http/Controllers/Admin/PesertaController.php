@@ -16,10 +16,10 @@ class PesertaController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $data = User::where('name','LIKE','%'.$request->search.'%')->paginate(5);
+            $data = User::where('name','LIKE','%'.$request->search.'%')->where('role','user')->paginate(5);
         }
         else{
-            $data = User::where('role','user')->get();
+            $data = User::where('role','user')->paginate(5);
         }
         return view('pages.admin.dashboard.peserta.index',compact('data'));
     }
@@ -144,5 +144,31 @@ class PesertaController extends Controller
         }
         return redirect()->route('admin.peserta.index');
     }
+
+    public function delete_all(Request $request)
+{
+    $userIds = $request->id; // Jika Anda menerima lebih dari satu ID, pastikan $request->id adalah array
+
+    
+    // Loop melalui setiap ID pengguna
+    foreach ($userIds as $userId) {
+        $user = User::find($userId);
+
+        // Hapus semua entri terkait dalam tabel `document`
+        $user->document()->delete();
+
+        // Hapus semua entri terkait dalam tabel `payment`
+        $user->payment()->delete();
+
+        // Hapus entri terkait dalam tabel `student`
+        $user->student()->delete();
+
+        // Hapus pengguna itu sendiri
+        $user->delete();
+    }
+
+    return redirect()->route('admin.peserta.index');
+}
+
 
 }

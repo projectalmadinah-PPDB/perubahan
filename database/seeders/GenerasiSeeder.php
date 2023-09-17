@@ -52,30 +52,5 @@ class GenerasiSeeder extends Seeder
 
     public function run(): void
     {
-        $generations = [
-            [
-                'generasi'   => '2021',
-                'status'     => 'on',
-                'start_at'   => '2020-09-01',
-                'end_at' => '2021-08-31'
-            ],
-            [
-                'generasi'   => '2022',
-                'status'     => 'on',
-                'start_at'   => '2021-09-01',
-                'end_at' => '2022-08-31'
-            ],
-            [
-                'generasi'   => '2023',
-                'status'     => 'on',
-                'start_at'   => '2022-09-01',
-                'end_at' => '2023-08-31'
-            ]
-        ];
-        
-        foreach ($generations as $generation)
-        {
-            Generasi::create($generation);
-        }
     }
 }

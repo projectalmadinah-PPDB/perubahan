@@ -28,12 +28,12 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             UserSeeder::class,
             StudentSeeder::class,
-            GenerasiSeeder::class,
+            // GenerasiSeeder::class,
         ]);
 
         Generasi::create([
-            'generasi' => '',
-            'status' => '',
+            'generasi' => date("Y"),
+            'status' => 'on',
             'start_at' => '2023-09-12',
             'end_at' => '2023-09-13'
         ]);

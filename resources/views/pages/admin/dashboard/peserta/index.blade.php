@@ -18,6 +18,7 @@
                   <div class="card-title">Daftar Peserta</div>
                   <div class="d-flex justify-content-between">
                     <button class="btn btn-primary" onclick="edit()">Ubah Data</button>
+                    <button class="btn btn-danger ms-2 float-end" onclick="destroy(event)">Delete</button>
                     </a>
                 </div>
                 </div>
@@ -55,7 +56,7 @@
                       
                         <tr>
                           <td><input type="checkbox" name="id[{{$item->id}}]" class="checkbox1" value="{{$item->id}}"></td>
-                          <td>{{$index + 1}}</td>
+                          <td>{{$index + $data->firstItem()}}</td>
                           <td>{{$item->name}}</td>
                           <td>{{$item->nomor}}</td>
                           {{-- <td>{{$item->tanggal_lahir}}</td>
@@ -85,7 +86,7 @@
                             @endif
                           </td>
                           <td>
-                            @if (!$item->status)
+                            @if ($item->status == 'Belum')
                                 <a class="badge badge-danger border-0 text-white">Tidak Ada Status</a>
                             @elseif($item->status == 'Gagal')
                                 <a class="badge badge-danger border-0 text-white">Tidak Lulus</a>
@@ -140,6 +141,7 @@
                       @endforeach
                     </tbody>
                   </table>
+                  {{$data->links()}}
                 </form>
                 </div>
               </div>
@@ -151,7 +153,8 @@
   </div>
 @endsection
 @push('add-script')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -179,6 +182,37 @@
     function edit() {
         document.form1.action = "/admin/peserta/coba/edit"
         document.form1.submit()
+    }
+
+    function destroy(event) {
+      event.preventDefault()
+      if($('.checkbox1').is(':checked')){
+        Swal.fire({
+        title: 'Kamu Yakin?',
+        text: "Yakin Ingin Menghapus Banyak Data",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.form1.action = "/admin/peserta/delete-all"
+          document.form1.submit()
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
+      }else{
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Select Data Yang Ingin Di Hapus Massal',
+      })
+      }
     }
 </script>
   @if (session('success'))

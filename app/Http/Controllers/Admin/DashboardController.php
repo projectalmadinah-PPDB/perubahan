@@ -16,9 +16,9 @@ class DashboardController extends Controller
     public function index()
     {
         
-        $users = User::where('role','user')->get();
+        $users = User::where('role','user')->orderby('id','desc')->paginate(10);
         $student = Student::all();
-        $lulus = Student::where('status','Lulus')->get();
+        $lulus = User::where('status','Lulus')->where('role','user')->orderby('id','desc')->paginate(10);
         $informasi = Article::all();
         return view('pages.admin.dashboard.index',compact('users','informasi','student','lulus'));
     }

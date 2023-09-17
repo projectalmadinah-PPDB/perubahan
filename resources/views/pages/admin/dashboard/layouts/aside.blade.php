@@ -86,7 +86,7 @@
 			<h1 class="mb-0 fw-bolder text-body-tertiary text-uppercase ps-3" style="font-size: 10px">Master</h1>
 			
 			<li class="nav-item
-			{{ (Route::is('admin.article.*') || Route::is('admin.users.*')) ? 'active' : '' }}
+			{{ (Route::is('admin.users.*') || Route::is('admin.users.*')) ? 'active' : '' }}
 			 ">
 				<a href="#collapseUsers" data-toggle="collapse" aria-expanded="true" class="py-1 px-3">
 					<i class="bi bi-people"></i>
