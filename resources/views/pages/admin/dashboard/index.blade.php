@@ -190,7 +190,7 @@
                                                 </div>
                                             </th> --}}
                                             <th>Nama</th>
-                                            <th>Status</th>
+                                            <th>Status Pembayaran</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -205,10 +205,72 @@
                                                 </div>
                                             </td> --}}
                                             <td>{{$item->name}}</td>
+                                            <td>
+                                                @if (!$item->payment)
+                                                    <a href="" class="badge badge-danger">Belum Bayar</a>
+                                                @elseif($item->payment->status == 'berhasil')
+                                                    <a href="" class="badge badge-success">Lunas</a>
+                                                @elseif($item->payment->status == 'pending')
+                                                    <a href="" class="badge badge-warning">Transaksi</a>
+                                                @elseif($item->payment->status == 'expired')
+                                                    <a href="" class="badge badge-danger">Expire</a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer ">
+                            <div class="stats">
+                                @foreach ($users as $user)
+                                    @if($loop->last)
+                                        {{ $user->created_at }}
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-tasks rounded-4">
+                        <div class="card-header ">
+                            <h4 class="card-title">Calon Siswa</h4>
+                            <p class="card-category">Calon Siswa 2024</p>
+                        </div>
+                        <div class="card-body ">
+                            <div class="table-full-width">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            {{-- <th>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
+                                                        <span class="form-check-sign"></span>
+                                                    </label>
+                                                </div>
+                                            </th> --}}
+                                            <th>Nama</th>
+                                            <th>Status Test</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($lulus as $item)
+                                        <tr>
                                             {{-- <td>
-                                                <button class="badge @if ($item->pendaftaran->status == 'lolos') 
-                                                    badge-success @else badge-danger @endif border-0">{{$item->pendaftaran->status}}</button>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input task-select" type="checkbox">
+                                                        <span class="form-check-sign"></span>
+                                                    </label>
+                                                </div>
                                             </td> --}}
+                                            <td>{{$item->name}}</td>
+                                            <td>
+                                                <a href="" class="badge badge-success border-0">{{$item->status}}</a>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

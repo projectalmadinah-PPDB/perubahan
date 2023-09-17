@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ExportPendaftar;
 use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
 use Dotenv\Util\Str;
 use App\Models\Document;
 use Illuminate\Http\Request;
@@ -19,9 +21,14 @@ class PendaftarController extends Controller
             $users = User::where('role','user')->where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $users = User::where('role','user')->orderBy('id','desc')->with('student','document')->paginate(5);
+            $users = User::where('role','user')->orderBy('id','desc')->with('student','document','payment')->paginate(5);
         }
         return view('pages.admin.dashboard.pendaftar.index',compact('users'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new ExportPendaftar,"pendaftar.xlsx");
     }
 
     public function show($id){
@@ -115,4 +122,20 @@ class PendaftarController extends Controller
 
         return redirect()->route('admin.pendaftar.index')->with('delete',"Berhasil Menghapus Pendaftaran $user->name");
     }
+
+    public function destroyAll(Request $request)
+    {
+        if($request->id){
+            foreach($request->id as $key => $value){
+                $user = User::find($key);
+                $user->student()->delete();
+                $user->payment()->delete();
+                $user->document()->delete();
+                $user->delete();
+            }
+        }
+
+        return redirect()->route('admin.pendaftar.index')->with('success', count($request->id) . ' users and related data deleted.');
+    }
+
 }

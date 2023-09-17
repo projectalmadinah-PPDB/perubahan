@@ -41,27 +41,18 @@ class StudentSeeder extends Seeder
     public function run(): void
     {
         $users = User::skip(1)->take(25)->get();
-        $generations= Generasi::all();
+        $generations= Generasi::where('status','on')->first();
 
+        
         foreach ($users as $user)
         {
             $student = Student::factory()->create([
                 'user_id' => $user->id,
+                // 'generasi_id' => $generations->id
             ]);
 
             // Hubungkan siswa dengan sebuah generasi secara acak
             // $student->generasi()->associate($generations->random())->save();
-        }
-    }
-
-    private function connectStudentWithGeneration()
-    {
-        $students = Student::all();
-        $generations = Generasi::all();
-
-        foreach ($students as $student)
-        {
-            $student->update(['generasi_id' => $generations->random()->id]);
         }
     }
 }

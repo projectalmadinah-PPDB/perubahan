@@ -95,7 +95,7 @@
   }
   toastr.error("{{ session('delete') }}");
 </script>
-@else
+@elseif(session('edit'))
 <script>
   toastr.options = {
     "progressBar" : true,

@@ -91,6 +91,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::post('/pendaftar/verify/{id}',[PendaftarController::class,'verify'])->name('pendaftar.verify');
       
       Route::get('/pendaftar/create',[PendaftarController::class,'create'])->name('pendaftar.create');
+
+      Route::get('/pendaftar/export',[PendaftarController::class,'export'])->name('pendaftar.export');
       
       Route::post('/pendaftar/process',[PendaftarController::class,'store'])->name('pendaftar.store');
 
@@ -103,6 +105,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::get('/pendaftar/document/{id}',[PendaftarController::class,'show_document'])->name('pendaftar.show_document');
 
       Route::delete('/pendaftar/delete/{id}',[PendaftarController::class,'destroy'])->name('pendaftar.destroy');
+
+      Route::delete('/pendaftar/delete-all',[PendaftarController::class,'destroyAll'])->name('pendaftar.destroyAll');
 
       // peserta
       Route::get('/peserta',[PesertaController::class,'index'])->name('peserta.index');
@@ -121,7 +125,11 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       // Route::get('/peserta/coba',[PesertaController::class,'coba'])->name('peserta.coba');
       Route::post('/peserta/coba/edit',[PesertaController::class,'coba'])->name('peserta.coba.edit');
+
       Route::patch('/peserta/coba/update',[PesertaController::class,'cobaUpdate'])->name('peserta.coba.update');
+
+      Route::post('/peserta/delete-all',[PesertaController::class,'delete_all'])->name('peserta.delete_all');
+
 
       // wawancara
       Route::get('/wawancara',[WawancaraController::class,'index'])->name('wawancara.index');
@@ -141,12 +149,15 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::delete('/peserta/lolos/delete/{id}',[LolosController::class,'destroy'])->name('lolos.destroy');
 
       Route::post('/peserta/pengecekan/{id}',[LolosController::class,'pengecekan'])->name('pengecekan');
+
       //q&a
       Route::get('/question',[QuestionController::class,'index'])->name('question.index');
 
       Route::post('/question/create',[QuestionController::class,'create'])->name('question.create');
 
       Route::put('/question/active/{id}',[QuestionController::class,'active'])->name('question.active');
+
+      Route::put('/question/jawab/{id}',[QuestionController::class,'jawab'])->name('question.jawab');
       //generasi
       Route::get('/generasi',[GenerasiController::class,'index'])->name('generasi.index');
 
@@ -155,6 +166,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::put('/generasi/status/{id}',[GenerasiController::class,'status'])->name('generasi.status');
 
     Route::put('/generasi/update/{id}',[GenerasiController::class,'update'])->name('generasi.update');
+    
     //payment
     Route::get('/payment',[AdminPaymentController::class,'index'])->name('payment.index');
     ROute::put('/payment/edit/{id}',[AdminPaymentController::class,'update'])->name('payment.update');

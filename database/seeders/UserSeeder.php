@@ -14,6 +14,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->count(25)->create();
+        for ($i = 0; $i < 25; $i++) {
+            User::factory()->create(['notify_id' => 1]);
+        }
     }
 }
