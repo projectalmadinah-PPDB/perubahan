@@ -74,7 +74,13 @@
                         <td>{{$index + 1}}</td>
                         <td>{{$item->question}}</td>
                         <td>{{$item->answer}}</td>
-                        <td>{{$item->active}}</td>
+                        <td>
+                          @if ($item->active == 'on')
+                            <button class="badge badge-success border-0">{{$item->active}}</button>
+                          @else
+                            <button class="badge badge-danger border-0">{{$item->active}}</button>
+                          @endif
+                        </td>
                         <td>
                             <div class="d-flex">
                               <form action="{{route('admin.question.active',$item->id)}}" method="post">

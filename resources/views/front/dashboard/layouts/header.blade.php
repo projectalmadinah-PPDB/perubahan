@@ -31,8 +31,8 @@
                 <a href="{{route('user.informasi')}}" 
                     class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.informasi') ? 'text-primer bg-dasar' : ''}} hover:bg-dasar hover:text-primer duration-200"
                 >Informasi</a>
-                <a href="" 
-                    class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.dashboard' ? 'text-primer bg-dasar' : '')}} hover:bg-dasar hover:text-primer duration-200"
+                <a href="{{route('user.qna')}}" 
+                    class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.qna' ? 'text-primer bg-dasar' : '')}} hover:bg-dasar hover:text-primer duration-200"
                 >Q&A</a>
             </div>
         </nav>

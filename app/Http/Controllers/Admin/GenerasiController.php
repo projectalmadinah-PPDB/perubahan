@@ -10,7 +10,7 @@ class GenerasiController extends Controller
 {
     public function index()
     {
-        $generasi = Generasi::get();
+        $generasi = Generasi::orderby('id','desc')->get();
         return view('pages.admin.dashboard.generasi.index',compact('generasi'));
     }
 
@@ -48,8 +48,9 @@ class GenerasiController extends Controller
         $data = $request->validate([
             'status' => 'required'
         ]);
-
+        
         $generasi->update($data);
+
 
         return redirect()->route('admin.generasi.index')->with('success','Berhasil Mengganti Status Generasi');
     }

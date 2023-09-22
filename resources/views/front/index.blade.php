@@ -775,17 +775,17 @@ class="relative section flex-col shadow-lg bg-[#23AA8A]/70 mx-20 md:mx-32 mt-10"
         style="background-image: url('dists/images/bg-hero.jpg');">
         <h1 
             class="text-3xl md:text-5xl font-bold mb-0 leading-none">
-            Sistem PPDB Online
+            Sekolah {{ App\Models\General::first()->school_name }}
         </h1>
         <p class="w-1/3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quod rem quas optio facere iure, minus deleniti dolorum perspiciatis eius placeat architecto dolore, delectus, pariatur similique laborum itaque nihil vero?
+            {{ App\Models\General::first()->desc }}
         </p>
         <div class="flex flex-row-reverse gap-x-4 mt-5">
             <a href="" 
-                class="text-sm p-2 px-4 font-semibold border-2 border-sekunder hover:bg-sekunder/50 text-white duration-200"
+                class="text-sm p-2 px-4 tracking-wider border-2 border-sekunder hover:bg-sekunder/50 text-white duration-200"
             >Pelajari Lebih Lanjut</a>
             <a href="{{route('user.show')}}" 
-                class="text-sm p-2 px-4 font-semibold border-2 border-sekunder bg-sekunder hover:bg-sekunder/50 text-white duration-200"
+                class="text-sm p-2 px-4 tracking-wider border-2 border-sekunder bg-sekunder hover:bg-sekunder/50 text-white duration-200"
             >Daftar</a>
         </div>
     </section>
@@ -982,10 +982,10 @@ class="relative section flex-col shadow-lg bg-[#23AA8A]/70 mx-20 md:mx-32 mt-10"
             @foreach ($qna as $index => $item)
                 <!-- foreach here -->
             <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
-                <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                    <p class="tracking-wide">{{$item->question}}</p>
+                <div class="dropdown-title font-[600] p-2 px-5 text-[17px] flex justify-between items-center">
+                    <p class="tracking-wider">{{$item->question}}</p>
                 </div>
-                <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
+                <div class="dropdown-content pb-3 px-7 tracking-wide hidden">
                     {{$item->answer}}
                 </div>
             </div>

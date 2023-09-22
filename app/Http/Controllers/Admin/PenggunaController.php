@@ -12,7 +12,7 @@ class PenggunaController extends Controller
     
     public function admins()
     {
-        $users = User::orderby('active',0)->where('role', 'admin')->paginate(10);
+        $users = User::orderby('active','desc')->where('role', 'admin')->paginate(10);
         return view('pages.admin.dashboard.pengguna.admin', compact('users'));
     }
     

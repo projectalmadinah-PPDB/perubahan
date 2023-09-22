@@ -155,15 +155,21 @@ class PesertaController extends Controller
 
     public function cobaUpdate(Request $request)
     {
-        foreach($request->ids as $key => $value){
+        $status = $request->status; // Ambil nilai status dari input seleksi
+        
+        foreach ($request->ids as $key => $id) {
             $data = array(
-                'status' => $request->status[$key],
+                'status' => $status,
             );
-            User::where('id',$request->ids[$key])
-            ->update($data);
+
+            User::where('id', $id)
+                ->update($data);
         }
-        return redirect()->route('admin.peserta.index');
+
+        return redirect()->route('admin.peserta.index')->with('edit','Berhasil Mengedit Massal');
     }
+
+
 
     public function delete_all(Request $request)
 {

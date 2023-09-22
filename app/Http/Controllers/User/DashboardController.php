@@ -8,6 +8,7 @@ use App\Traits\Ipaymu;
 use App\Models\Article;
 use App\Models\Payment;
 use App\Http\Controllers\Controller;
+use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -24,6 +25,15 @@ class DashboardController extends Controller
         return view('front.dashboard.index',compact('user','informasi','userId'));
     }
 
+    public function coba()
+    {
+        $users = Auth::user()->id;
+        $user = User::with('student')->findOrFail($users);
+        $userId = Payment::where('user_id',$users)->get();
+        $informasi = Article::all();
+        return view('front.dashboard.coba',compact('user','informasi','userId'));
+    }
+
     public function profile()
     {
         $users = Auth::user()->id;
@@ -37,16 +47,18 @@ class DashboardController extends Controller
         return view('front.dashboard.informasi',compact('article'));
     }
 
+    public function qna()
+    {
+        $question = Question::all();
+        return view('front.dashboard.qna',compact('question'));
+    }
+
     public function pay($id)
     {
         $pendaftaran = User::find($id);
         $phone = User::where('nomor',$pendaftaran->nomor)->first();
         $status = 'pending';
-        if ($pendaftaran->payment->status == 'expired' && $pendaftaran->payment->no_invoice) {
-            $pendaftaran->payment->status = $status;
-            $pendaftaran->payment->save(); // Simpan perubahan status pembayaran
-            return back();
-        }
+        
         
         $payment = json_decode(json_encode($this->redirect_payment($id)),true);
         // dd($payment);
@@ -57,7 +69,12 @@ class DashboardController extends Controller
             'link' => $payment['Data']['Url'],
             'amount' => 100000
         ]);
-        $messages = $pendaftaran->notifys->notif_pembayaran.$Transaction->link;
+        if ($pendaftaran->payment->status == 'expired' && $pendaftaran->payment->no_invoice) {
+            $pendaftaran->payment->status = $status;
+            $pendaftaran->payment->save(); // Simpan perubahan status pembayaran
+            return back();
+        }
+        $messages = $pendaftaran->notifys->notif_pembayaran . $Transaction->link;
 
         $this->send_message($phone,$messages);
         return Redirect::to($Transaction->link);

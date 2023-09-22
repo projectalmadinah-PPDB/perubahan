@@ -50,4 +50,10 @@ class FrontController extends Controller
 
     //     return redirect()->route('user.profile')->with('success','Berhasil Melengkapi Data');
     // }
+    
+    public function qna()
+    {
+        $qna = Question::where('active', 'on')->get();
+        return view('front.qna', compact('qna'));
+    }
 }

@@ -8,6 +8,25 @@
         <div class="container-fluid">
             <h4 class="page-title">Dashboard</h4>
             <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-stats rounded-4 card-success">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="icon-big text-center">
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </div>
+                                </div>
+                                <div class="col-7 d-flex align-items-center">
+                                    <div class="numbers">
+                                        <p class="card-category">Jumlah Pemasukan</p>
+                                        <h4 class="card-title">Rp {{ number_format($uang) }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-3">
                     <div class="card card-stats rounded-4 card-warning">
                         <div class="card-body ">
@@ -205,121 +224,123 @@
                     </div>
                 </div>
             </div>
-            <div class="row ms-3">
-                <div class="col-md-6">
-                    <div class="card card-tasks rounded-4">
-                        <div class="card-header ">
-                            <h4 class="card-title">Peserta Baru</h4>
-                            <p class="card-category">Peserta 2024</p>
-                        </div>
-                        <div class="card-body ">
-                            <div class="table-full-width">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            {{-- <th>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </th> --}}
-                                            <th>Nama</th>
-                                            <th>Status Pembayaran</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($users as $item)
-                                        <tr>
-                                            {{-- <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input task-select" type="checkbox">
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </td> --}}
-                                            <td>{{$item->name}}</td>
-                                            <td>
-                                                @if (!$item->payment)
-                                                    <a href="" class="badge badge-danger">Belum Bayar</a>
-                                                @elseif($item->payment->status == 'berhasil')
-                                                    <a href="" class="badge badge-success">Lunas</a>
-                                                @elseif($item->payment->status == 'pending')
-                                                    <a href="" class="badge badge-warning">Transaksi</a>
-                                                @elseif($item->payment->status == 'expired')
-                                                    <a href="" class="badge badge-danger">Expire</a>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+            <div class="container">
+                <div class="row ms-3">
+                    <div class="col-md-6">
+                        <div class="card card-tasks rounded-4">
+                            <div class="card-header ">
+                                <h4 class="card-title">Pendaftar Baru</h4>
+                                <p class="card-category">Pendaftar Terbaru Tahun {{ $generations->generasi }}</p>
                             </div>
-                        </div>
-                        <div class="card-footer ">
-                            <div class="stats">
-                                @foreach ($users as $user)
-                                    @if($loop->last)
-                                        {{ $user->created_at }}
-                                    @endif
-                                @endforeach
+                            <div class="card-body ">
+                                <div class="table-full-width">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                {{-- <th>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                    </div>
+                                                </th> --}}
+                                                <th>Nama</th>
+                                                <th>Status Pembayaran</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($users->take(7) as $item)
+                                            <tr>
+                                                {{-- <td>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input task-select" type="checkbox">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                    </div>
+                                                </td> --}}
+                                                <td>{{$item->name}}</td>
+                                                <td>
+                                                    @if (!$item->payment)
+                                                        <a href="" class="badge badge-danger">Belum Bayar</a>
+                                                    @elseif($item->payment->status == 'berhasil')
+                                                        <a href="" class="badge badge-success">Lunas</a>
+                                                    @elseif($item->payment->status == 'pending')
+                                                        <a href="" class="badge badge-warning">Transaksi</a>
+                                                    @elseif($item->payment->status == 'expired')
+                                                        <a href="" class="badge badge-danger">Expire</a>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <div class="stats">
+                                    @foreach ($users as $user)
+                                        @if($loop->last)
+                                            {{ $user->created_at }}
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card card-tasks rounded-4">
-                        <div class="card-header ">
-                            <h4 class="card-title">Calon Siswa</h4>
-                            <p class="card-category">Calon Siswa 2024</p>
-                        </div>
-                        <div class="card-body ">
-                            <div class="table-full-width">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            {{-- <th>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </th> --}}
-                                            <th>Nama</th>
-                                            <th>Status Test</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($lulus as $item)
-                                        <tr>
-                                            {{-- <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input task-select" type="checkbox">
-                                                        <span class="form-check-sign"></span>
-                                                    </label>
-                                                </div>
-                                            </td> --}}
-                                            <td>{{$item->name}}</td>
-                                            <td>
-                                                <a href="" class="badge badge-success border-0">{{$item->status}}</a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                    <div class="col-md-6">
+                        <div class="card card-tasks rounded-4">
+                            <div class="card-header ">
+                                <h4 class="card-title">Calon Siswa {{ $generations->generasi }}</h4>
+                                <p class="card-category">Calon Siswa {{ $generations->generasi }}</p>
                             </div>
-                        </div>
-                        <div class="card-footer ">
-                            <div class="stats">
-                                @foreach ($users as $user)
-                                    @if($loop->last)
-                                        {{ $user->created_at }}
-                                    @endif
-                                @endforeach
+                            <div class="card-body ">
+                                <div class="table-full-width">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                {{-- <th>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                    </div>
+                                                </th> --}}
+                                                <th>Nama</th>
+                                                <th>Status Test</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($lulus as $item)
+                                            <tr>
+                                                {{-- <td>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input task-select" type="checkbox">
+                                                            <span class="form-check-sign"></span>
+                                                        </label>
+                                                    </div>
+                                                </td> --}}
+                                                <td>{{$item->name}}</td>
+                                                <td>
+                                                    <a href="" class="badge badge-success border-0">{{$item->status}}</a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <div class="stats">
+                                    @foreach ($users as $user)
+                                        @if($loop->first)
+                                            {{ $user->created_at }}
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -26,8 +26,7 @@
                     <input 
                         type="text" name="name"
                         placeholder="nama lengkap"
-                        class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('name')
-                        shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                        class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('name') appearance-none border border-red-500 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
                         @enderror" value="{{old('name')}}"
                     >
                     @error('name')
@@ -40,8 +39,7 @@
                         <input 
                             type="date" name="tanggal_lahir"
                             placeholder="62896XXXXXXXX"
-                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('tanggal_lahir')
-                            shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('tanggal_lahir') appearance-none border border-red-500 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
                             @enderror" value="{{old('tanggal_lahir')}}"
                         >
                         @error('tanggal_lahir')
@@ -77,8 +75,7 @@
                     <input 
                         type="tel" name="nomor"
                         placeholder="62896XXXXXXXX"
-                        class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('nomor')
-                        shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                        class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('nomor') appearance-none border border-red-500 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
                         @enderror" value="{{old('nomor')}}"
                     >
                     @error('nomor')
@@ -92,8 +89,7 @@
                         <input 
                             type="password" name="password"
                             placeholder="••••••••"
-                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('password')
-                            shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('password') appearance-none border border-red-500 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
                             @enderror" value="{{old('password')}}"
                         >
                         @error('password')
@@ -106,8 +102,7 @@
                         <input 
                             type="password" name="password_again"
                             placeholder="••••••••"
-                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('password_again')
-                            shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('password_again') appearance-none border border-red-500 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
                             @enderror" value="{{old('password_again')}}"
                         >
                         @error('password_again')
@@ -124,7 +119,7 @@
     </section>
 
     <!-- informasi -->
-    <section 
+    {{-- <section 
         class="bg-dasar py-16 px-20 flex flex-col items-center justify-center gap-y-2">
         <span class="inline-flex items-center rounded-[3rem] bg-emerald-200 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-700">B.L.O.G</span>
         <h1 class="text-3xl font-bold title">Information.</h1>
@@ -291,7 +286,7 @@
                 },
             });
         </script>
-    </section>
+    </section> --}}
 
 
     <!--Footer container-->

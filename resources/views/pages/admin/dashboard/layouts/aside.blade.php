@@ -70,12 +70,12 @@
 					<p>Lolos</p>
 				</a>
 			</li>
-			<li class="nav-item {{ Route::is('admin.document.*') ? 'active' : '' }}">
+			{{-- <li class="nav-item {{ Route::is('admin.document.*') ? 'active' : '' }}">
 				<a href="{{ route('admin.document.index') }}" class="py-1 px-3">
 					<i class="bi bi-file-earmark-person-fill"></i>
 					<p>Dokumen</p>
 				</a>
-			</li>
+			</li> --}}
 			<li class="nav-item {{ Route::is('admin.payment.*') ? 'active' : '' }}">
 				<a href="{{route('admin.payment.index')}}" class="py-1 px-3">
 					<i class="bi bi-credit-card"></i>
@@ -160,12 +160,12 @@
 
 			<h1 class="mb-0 fw-bolder text-body-tertiary text-uppercase ps-3" style="font-size: 10px">Lain-Lain</h1>
 
-			<li class="nav-item {{ Route::is('admin.generasi.*') ? 'active' : '' }}">
+			{{-- <li class="nav-item {{ Route::is('admin.generasi.*') ? 'active' : '' }}">
 				<a href="{{ route('admin.generasi.index') }}" class="py-1 px-3">
 					<i class="bi bi-person-fill-lock"></i>
 					<p>Generasi</p>
 				</a>
-			</li>
+			</li> --}}
 			<li class="nav-item {{ Route::is('admin.question.*') ? 'active' : '' }}">
 				<a href="{{ route('admin.question.index') }}" class="py-1 px-3">
 					<i class="bi bi-question-octagon"></i>

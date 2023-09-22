@@ -38,8 +38,8 @@
                           </div>
                           <div class="form-group">
                             <label for="nomor" class="d-inline">Photo Informasi</label>
-                            <img src="{{asset('/storage/'. $article['image'])}}" alt="" class="w-50 d-block">
-                            <input name="image" class="form-control" type="file">
+                            <img id="output" src="{{asset('/storage/'. $article['image'])}}" alt="" class="w-50 d-block" >
+                            <input name="image" class="form-control" type="file" onchange="loadFile(event)">
                           </div>
                         </div>
                       </div>
@@ -56,3 +56,11 @@
   </div>
 </div> 
 @endsection
+@push('add-script')
+<script>
+  var loadFile = function(event){
+      var outputs = document.getElementById('output');
+      outputs.src = URL.createObjectURL(event.target.files[0]);
+  }
+</script>
+@endpush
