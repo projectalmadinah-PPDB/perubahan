@@ -29,6 +29,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Lolos</div>
+                  <a href="{{route('admin.lolos.export')}}" class="btn btn-primary">Export Excel</a>
                 </div>
               </div>
               <div class="card-body">

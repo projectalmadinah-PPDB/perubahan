@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
     public function index()
     {
-        $payment = Payment::get();
+        // $payment = Payment::get();
+        $payment = User::whereHas('payment')->paginate(5);
         return view('pages.admin.dashboard.payment.index',compact('payment'));
     }
 
@@ -24,15 +26,15 @@ class PaymentController extends Controller
 
         return redirect()->route('admin.payment.index')->with('edit','Success Edit Status');
     }
+
     public function deleteAll(Request $request)
-{
-    $selectedIds = explode(',', $request->input('selectedIds'));
+    {
+        $ids = $request->id; // Ensure that $request->id is an array
 
-    // Lakukan penghapusan item berdasarkan $selectedIds
-    // Misalnya, jika Anda memiliki model 'Payment':
-    Payment::whereIn('id', $selectedIds)->delete();
+        // Use the "whereIn" method to delete multiple records by their IDs
+        Payment::where('id', $ids)->delete();
 
-    return response()->json(['message' => 'Item yang dipilih berhasil dihapus.']);
-}
+        return redirect()->route('admin.payment.index')->with('success', 'Data berhasil dihapus.');
+    }
 
 }

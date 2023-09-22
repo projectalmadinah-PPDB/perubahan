@@ -14,7 +14,6 @@
                         <form action="{{route('admin.peserta.coba.update')}}" method="POST">
                             @csrf
                             @method('PATCH')
-
                             @foreach ($student as $index => $item)
                             <div class="form-group">
                                 <label for="">Status Santri {{$item->name}}</label>

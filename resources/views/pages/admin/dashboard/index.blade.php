@@ -164,7 +164,43 @@
                 <div class="col-md-12">
                     <div class="card card-tasks rounded-4">
                         <div class="card-body">
-                            
+                            <div style="height: 450px;width:100%">
+                                <canvas id="myChart"></canvas>
+                              </div>
+                              
+                              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                              
+                              <script>
+                                const ctx = document.getElementById('myChart');
+                                Chart.defaults.backgroundColor = '#9BD0F5';
+                                new Chart(ctx, {
+                                  type: 'line',
+                                  data: {
+                                    labels: ['Pendaftar', 'Peserta', 'Informasi','Lulus'],
+                                    datasets: [{
+                                      label: 'Seluruh Data',
+                                      data: [{{$users->count()}}, {{$student->count()}}, {{$informasi->count()}},{{$lulus->count()}}],
+                                      borderColor: ["#03A9F5"],
+                                    }]
+                                  },
+                                  options: {
+                                    scales: {
+                                      y: {
+                                        display: true,
+                                        stacked: true,
+                                        ticks: {
+                                            beginAtZero: true,
+                                            steps: 10,
+                                            stepValue: 5,
+                                            min: 0,
+                                            max: 100,
+                                      }
+                                    }
+                                  }
+                                }
+                                });
+                              </script>
+                        </div>
                         </div>
                     </div>
                 </div>

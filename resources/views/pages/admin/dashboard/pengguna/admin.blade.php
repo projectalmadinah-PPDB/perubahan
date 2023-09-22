@@ -33,18 +33,15 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="{{route('admin.users.users')}}" method="get">
-                  <div class="d-flex mb-4">
-                      <select name="select" id="" class="form-select w-25">
-                        <option value="">Cari Berdasarkan Status</option>
-                        <option value="1">Aktif</option>
-                        <option value="0">Tidak Aktif</option>
-                      </select>
+                {{-- <form action="{{route('admin.lolos.index')}}" method="get">
+                  @csrf
+                  <div class="d-flex">
+                    <input type="text" name="search" class="form-control rounded-4 w-25 mb-3" >
                     <div>
-                      <button class="btn btn-primary border-start rounded-lg" type="submit">Find</button>
+                      <button class="btn btn-primary" type="submit">Find</button>
                     </div>
                   </div>
-                  </form>
+                  </form> --}}
                   <div class="table-responsive">
                   <table class="table table-bordered">
                     <thead>
@@ -58,9 +55,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $item => $user)
+                        @foreach ($users as $user)
                         <tr>
-                          <td>{{ $item + $users->firstItem() }}</td>
+                          <td>{{ $loop->iteration }}</td>
                           <td>{{ $user->name }}</td>
                           <td>{{ $user->email }}</td>
                           <td>{{ $user->nomor }}</td>
@@ -235,7 +232,6 @@
                         @endforeach
                     </tbody>
                   </table>
-                  {{$users->links()}}
                 </div>
               </div>
             </div>

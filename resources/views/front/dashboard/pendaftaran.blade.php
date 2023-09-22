@@ -7,7 +7,7 @@
     
     @include('front.layouts.include')
     @vite(['resources/css/real.css'])
-    <title>Document</title>
+    <title>Isi Data Diri</title>
 </head>
 <body class="overflow-y-scroll py-[42rem] bg-gradient-to-br from-dasar via-sky-50 to-sky-100">
     <!-- 

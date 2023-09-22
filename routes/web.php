@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GenerasiController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
 use App\Http\Controllers\Admin\PendaftarController;
 use App\Http\Controllers\Admin\PenggunaController;
@@ -107,6 +108,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       // peserta
       Route::get('/peserta',[PesertaController::class,'index'])->name('peserta.index');
 
+      Route::get('/peserta/export',[PesertaController::class,'export_data'])->name('peserta.export');
+
       Route::get('/peserta/edit/{id}',[PesertaController::class,'edit'])->name('peserta.edit');
 
       Route::put('/peserta/process/{id}',[PesertaController::class,'update'])->name('peserta.update');
@@ -135,8 +138,11 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::put('/wawancara/update/{id}',[WawancaraController::class,'update'])->name('wawancara.update');
 
       Route::delete('/wawancara/delete/{id}',[WawancaraController::class,'delete'])->name('wawancara.delete');
+      
       // siswa yang Lolos
       Route::get('/peserta/lolos',[LolosController::class,'index'])->name('lolos.index');
+
+      Route::get('/peserta/lolos/export',[LolosController::class,'export'])->name('lolos.export');
 
       Route::get('/peserta/lolos/edit/{id}',[LolosController::class,'edit'])->name('lolos.edit');
 
@@ -165,8 +171,10 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     
     //payment
     Route::get('/payment',[AdminPaymentController::class,'index'])->name('payment.index');
-    ROute::put('/payment/edit/{id}',[AdminPaymentController::class,'update'])->name('payment.update');
-    Route::delete('/delete-all', [AdminPaymentController::class,'deleteAll'])->name('delete-all');
+
+    Route::put('/payment/edit/{id}',[AdminPaymentController::class,'update'])->name('payment.update');
+
+    Route::post('/payment/delete-all', [AdminPaymentController::class,'deleteAll'])->name('delete-all');
     // profile admin
     Route::get('/profile',[SettingController::class,'profile'])->name('setting.profile.index');
 
@@ -196,6 +204,9 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       // document
       Route::resource('/document',DocumentController::class);
+
+      //laporan
+      Route::get('/laporan',[LaporanController::class,'index'])->name('laporan.index');
     });
   });
     

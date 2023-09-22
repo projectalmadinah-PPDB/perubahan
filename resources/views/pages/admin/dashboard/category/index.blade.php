@@ -33,8 +33,8 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="" method="get">
-                  @csrf
+                <form action="{{route('admin.category.index')}}" method="get">
+                  {{-- @csrf --}}
                   <div class="position-relative w-25" style="display: inline-flex">
                     <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
                     <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>

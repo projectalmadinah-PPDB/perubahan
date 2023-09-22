@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ExportLulus;
 use App\Models\User;
-use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Traits\Fonnte;
 
 class LolosController extends Controller
@@ -21,6 +22,11 @@ class LolosController extends Controller
         }
         
         return view('pages.admin.dashboard.lolos.index',compact('lolos'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new ExportLulus, 'Lulus.xlsx');
     }
 
     public function pengecekan(Request $request,$id)

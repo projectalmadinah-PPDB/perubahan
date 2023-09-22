@@ -17,9 +17,9 @@
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Peserta</div>
                   <div class="d-flex justify-content-between">
+                    <a href="{{route('admin.peserta.export')}}" class="btn btn-primary me-2">Download Excel</a>
                     <button class="btn btn-primary" onclick="edit()">Ubah Data</button>
                     <button class="btn btn-danger ms-2 float-end" onclick="destroy(event)">Delete</button>
-                    </a>
                 </div>
                 </div>
               </div>
@@ -62,9 +62,9 @@
                           {{-- <td>{{$item->tanggal_lahir}}</td>
                           <td>{{$item->jenis_kelamin}}</td> --}}
                           {{-- <td>{{$item->nik}}</td> --}}
-                          @if($item && $item->document)
+                          @if($item->student && $item->document)
                           <td><a class="badge badge-success border-0 text-white">Lengkap &#x2714;</a></td>
-                          @elseif ($item && !$item->document)
+                          @elseif ($item->student && !$item->document)
                           <td>
                             <a class="badge badge-success border-0 text-white">data &#x2714;
                             </a>
@@ -75,14 +75,12 @@
                             <button class="badge badge-danger border-0">Tidak Legkap</button></td>
                           @endif
                           <td>
-                            @if (!$item->payment)
+                            @if (!$item == 'pending')
                             <a class="badge badge-danger border-0 text-white">Belum Bayar</a>
                             @elseif($item->payment->status == 'berhasil')
                             <a class="badge badge-success border-0 text-white">Lunas</a>
-                            @elseif($item->paymnet->status == 'pending')
+                            @elseif($item->payment->status == 'expired')
                             <a class="badge badge-warning border-0 text-white">Pending</a>
-                            @else
-                            <a class="badge badge-danger border-0 text-white">Expired</a>
                             @endif
                           </td>
                           <td>
@@ -98,7 +96,7 @@
                           </td>
                           </form>
                           <td>
-                            @if(!$item)
+                            @if(!$item->student)
                             <a href="" class="badge badge-danger">Tidak Ada Data</a>
                             @else
                             <a href="{{route('admin.peserta.show',$item->id)}}" class="badge badge-primary">Data Pribadi</a>

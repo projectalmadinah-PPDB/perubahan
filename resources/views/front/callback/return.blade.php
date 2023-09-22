@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css"  rel="stylesheet" />
     <title>Terimakasih</title>
 </head>
 <body>
-    
     <div class="my-10">
         <figure class="max-w-screen-md h-screen mx-auto text-center">
             <img class="rounded-full w-96 h-96 mx-auto mb-5" src="ty.jpeg" alt="image description">
@@ -25,7 +25,16 @@
             </figcaption>
         </figure>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+    <script>
+    if(session('success')){
+        Swal.fire(
+            '{{session('success')}}!',
+            'You clicked the button!',
+            'success'
+            )
+    }
+    </script>
 </body>
 </html>

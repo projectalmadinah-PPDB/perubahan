@@ -23,6 +23,5 @@ class PaymentController extends Controller
         }else{
             return view('front.callback.return-cancel')->with('success','Gagal Membayar Biaya');
         }
-        return redirect()->with('success');
     }
 }

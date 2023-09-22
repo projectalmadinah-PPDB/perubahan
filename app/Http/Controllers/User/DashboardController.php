@@ -41,7 +41,13 @@ class DashboardController extends Controller
     {
         $pendaftaran = User::find($id);
         $phone = User::where('nomor',$pendaftaran->nomor)->first();
-
+        $status = 'pending';
+        if ($pendaftaran->payment->status == 'expired' && $pendaftaran->payment->no_invoice) {
+            $pendaftaran->payment->status = $status;
+            $pendaftaran->payment->save(); // Simpan perubahan status pembayaran
+            return back();
+        }
+        
         $payment = json_decode(json_encode($this->redirect_payment($id)),true);
         // dd($payment);
         $Transaction = Payment::create([

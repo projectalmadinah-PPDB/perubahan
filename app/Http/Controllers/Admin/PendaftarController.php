@@ -18,7 +18,7 @@ class PendaftarController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $users = User::where('role','user')->where('name','LIKE','%'.$request->search.'%')->paginate(5);
+            $users = User::where('role','user')->orderby('id','desc')->where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
             $users = User::where('role','user')->orderBy('id','desc')->with('student','document','payment')->paginate(5);

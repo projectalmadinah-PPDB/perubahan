@@ -80,7 +80,7 @@
                           <td>
                             <div class="d-flex">
                             @if($item->wawancara)
-                            <form action="{{route('admin.wawancara.update',$item->id)}}" method="post">
+                            <form action="{{route('admin.wawancara.update',$item->wawancara->id)}}" method="post">
                             @csrf
                             @method('PUT')
                             <button type="button" class="badge badge-primary border-0" data-bs-toggle="modal" data-bs-target="#exampleModal{{$item->id}}">

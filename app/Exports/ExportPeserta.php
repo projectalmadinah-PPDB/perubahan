@@ -2,15 +2,20 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Models\User;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Contracts\View\View;
 
-class ExportPeserta implements FromCollection
+class ExportPeserta implements FromView
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+    public function view(): View
     {
-        $peserta = User::where('role','user')->with('student','document')->get();
+        $data = User::whereHas('payment', function ($query) {
+            $query->where('status', 'berhasil');
+        })->get();
+        return view('pages.admin.dashboard.peserta.table',compact('data'));
     }
 }

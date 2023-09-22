@@ -4,32 +4,52 @@ namespace App\Http\Controllers\Admin;
 
 // use App\Models\User;
 // use App\Http\Middleware\User;
+
 use App\Models\User;
+use App\Models\Student;
+use App\Models\Document;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Exports\ExportPeserta;
 use App\Http\Controllers\Controller;
-use App\Models\Document;
-use App\Models\Student;
+use App\Models\Payment;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class PesertaController extends Controller
 {
     public function index(Request $request)
     {
         if($request->has('search')){
-            $data = User::where('name','LIKE','%'.$request->search.'%')->where('role','user')->paginate(5);
+            // $data = Payment::where('name','LIKE','%'.$request->search.'%')->where('status','berhasil')->paginate(5);
+            $data = User::whereHas('payment', function ($query) {
+                $query->where('status', 'berhasil');
+            })->where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $data = User::where('role','user')->paginate(5);
+            // $data = Payment::orderby('id','desc')->where('status','berhasil')->paginate(5);
+            $data = User::whereHas('payment', function ($query) {
+                $query->where('status', 'berhasil');
+            })->paginate(5);
         }
+        
         return view('pages.admin.dashboard.peserta.index',compact('data'));
     }
 
-    public function show($id){
-        // $pendaftaran = User::with('student')->findOrFail($id);
-        $pendaftaran = Student::findOrFail($id);
-
-        return view('pages.admin.dashboard.peserta.show',compact('pendaftaran'));
+    public function export_data()
+    {
+        $data = User::all();
+        return Excel::download(new ExportPeserta($data), 'peserta.xlsx');
     }
+
+
+    public function show($id){
+        $pendaftaran = User::with('student')->findOrFail($id);
+    
+        return view('pages.admin.dashboard.peserta.show', compact('pendaftaran'));
+    }
+    
 
     public function document($id)
     {
@@ -129,7 +149,7 @@ class PesertaController extends Controller
     public function coba(Request $request)
     {
         $status = $request->id;
-        $student = User::findOrFail($status);
+        $student = User::whereHas('payment')->findOrFail($status);
         return view('pages.admin.dashboard.peserta.edit-coba',compact('student'));
     }
 

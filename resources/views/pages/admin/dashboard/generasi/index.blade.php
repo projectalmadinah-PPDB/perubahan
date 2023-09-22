@@ -2,6 +2,7 @@
 
 @section('title','Generasi')
 @push('add-styles')
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
 @section('content')
@@ -125,28 +126,30 @@
                                  </div>
                                  </form>
                              </div>
+                            @if ($item->where('status', 'on')->count() > 0)
                             <div class="dropdown d-inline">
-                                <a class="dropdown-toggle" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <i class="bi bi-three-dots-vertical"></i>
-                                </a>
-                              
-                                <div class="dropdown-menu" aria-labelledby="customDropdown">
-                                  <form action="{{route('admin.generasi.status',$item->id)}}" method="post">
+                              <a class="dropdown-toggle" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                              </a>
+                            
+                              <div class="dropdown-menu" aria-labelledby="customDropdown">
+                                <form action="{{route('admin.generasi.status',$item->id)}}" method="post">
+                                  @csrf
+                                  @method('PUT')
+                                  <div class="d-flex flex-wrap">
+                                    <button type="submit" name="status" value="on" class="border-0 bg-success w-100 text-bold text-white" >On</button>
+                                    <button name="status" type="submit" class="border-0 bg-danger w-100 text-bold text-white" value="off">Off</button>
+                                  </div>
+                                  {{-- <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
                                     @csrf
-                                    @method('PUT')
-                                    <div class="d-flex flex-wrap">
-                                      <button type="submit" name="status" value="on" class="border-0 bg-success w-100 text-bold text-white" >On</button>
-                                      <button name="status" type="submit" class="border-0 bg-danger w-100 text-bold text-white" value="off">Off</button>
-                                    </div>
-                                    {{-- <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
-                                      @csrf
-                                      @method('POST')
-                                      <button type="submit" name="status" value="lolos" class="badge badge-success border-0">Lulus</button>
-                                      <button type="submit" name="status" value="gagal" class="badge badge-danger border-0">Gagal</button>
-                                    </form> --}}
-                                  </form>
-                                </div>
+                                    @method('POST')
+                                    <button type="submit" name="status" value="lolos" class="badge badge-success border-0">Lulus</button>
+                                    <button type="submit" name="status" value="gagal" class="badge badge-danger border-0">Gagal</button>
+                                  </form> --}}
+                                </form>
                               </div>
+                            </div>
+                            @endif
                         </td>
                     </tr>
                     @empty

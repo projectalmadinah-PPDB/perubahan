@@ -17,7 +17,9 @@ class DashboardController extends Controller
     {
         
         $users = User::where('role','user')->orderby('id','desc')->paginate(10);
-        $student = Student::all();
+        $student = User::whereHas('payment', function ($query) {
+            $query->where('status', 'berhasil');
+        })->get();;
         $lulus = User::where('status','Lulus')->where('role','user')->orderby('id','desc')->paginate(10);
         $informasi = Article::all();
         return view('pages.admin.dashboard.index',compact('users','informasi','student','lulus'));

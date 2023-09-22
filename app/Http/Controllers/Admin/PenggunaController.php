@@ -12,13 +12,17 @@ class PenggunaController extends Controller
     
     public function admins()
     {
-        $users = User::where('role', 'admin')->get();
-        return view('pages.admin.dashboard.pengguna.index', compact('users'));
+        $users = User::orderby('active',0)->where('role', 'admin')->paginate(10);
+        return view('pages.admin.dashboard.pengguna.admin', compact('users'));
     }
     
-    public function pesertas()
+    public function pesertas(Request $request)
     {
-        $users = User::where('role', 'user')->get();
+        if($request->has('select')){
+            $users = User::where('active','LIKE','%'.$request->select.'%')->orderby('id','asc')->where('role', 'user')->paginate(10);
+        }else{
+            $users = User::orderby('id','asc')->where('role', 'user')->paginate(10);
+        }
         return view('pages.admin.dashboard.pengguna.index', compact('users'));
     }
 
@@ -123,7 +127,7 @@ class PenggunaController extends Controller
 
     $user->update($data);
     
-    return redirect()->route('admin.users.index')->with('edit' , 'Data user Berhasil Di update');
+    return back()->with('edit' , 'Data user Berhasil Di update');
     }
 
     public function update_active(Request $request, $id)
@@ -143,7 +147,7 @@ class PenggunaController extends Controller
         $user->update(['active' => $activeStatus]);
 
 
-        return redirect()->route('admin.users.index')->with('active', $activeMsg);
+        return redirect()->route('admin.users.users')->with('active', $activeMsg);
     }
 
     public function delete_users($id)

@@ -69,7 +69,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Pembayaran Siswa</div>
-                  <button type="button" class="btn btn-danger m-0" id="delete-all-button">Delete All</button>
+                  <button class="btn btn-danger ms-2 float-end" onclick="destroy(event)">Delete</button>
                 </div>
               </div>
               <div class="card-body">
@@ -81,29 +81,34 @@
                   </div>
                   </form>
                 <div class="d-block">
-                  <form id="my-form" method="post" action="{{ route('admin.delete-all') }}">
+                  <form action="" id="form1" name="form1" method="POST">
                     @csrf
-                    @method('delete')
-                  <table class="table data">
+                  <table class="table table-bordered data">
                     <thead>
                       <tr>
-                        <th><input type="checkbox" name="" id="select-all"></th>
+                        <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Nomor Hp</th>
                         <th>Status</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       @foreach ($payment as $index => $item)
                       <tr>
-                        <td><input type="checkbox" class="checkbox-item" data-id="{{$item->id}}"></td>
+                        <td><input type="checkbox" name="id[{{$item->payment->id}}]" class="checkbox1" value="{{$item->payment->id}}"></td>
                         <td>{{$index + 1}}</td>
-                        <td>{{$item->user->name}}</td>
-                        <td>{{$item->user->nomor}}</td>
-                        <td>{{$item->status}}</td>
-                        <td></td>
+                        <td>{{$item->name}}</td>
+                        <td>{{$item->nomor}}</td>
+                        <td>
+                          @if ($item->payment->status == 'pending')
+                            <button class="badge badge-warning border-0">{{$item->payment->status}}</button>
+                          @elseif($item->payment->status == 'berhasil')
+                            <button class="badge badge-success border-0">{{$item->payment->status}}</button>
+                          @elseif($item->payment->status == 'expired')
+                            <button class="badge badge-danger border-0">{{$item->payment->status}}</button>
+                          @endif
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>
@@ -120,52 +125,61 @@
   </div>
 @endsection
 @push('add-script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  $(document).ready(function() {
-            // Event handler untuk tombol "Select All"
-            $('#select-all').change(function() {
-                var checkboxes = $('.checkbox-item'); // Mengambil semua checkbox item
-                checkboxes.prop('checked', this.checked); // Mengatur status semua checkbox item sesuai dengan "Select All"
-            });
-        });
-        $(document).ready(function() {
-        // Mengatur event handler untuk tombol "Delete All"
-        $('#delete-all-button').click(function() {
-            var selectedIds = [];
-
-            // Loop melalui checkbox item
-            $('.checkbox-item:checked').each(function() {
-                selectedIds.push($(this).data('id'));
-            });
-
-            if (selectedIds.length > 0) {
-                // Menyiapkan data yang akan dikirim dalam permintaan AJAX
-                var data = {
-                    _token: '{{ csrf_token() }}',
-                    _method: 'DELETE',
-                    selectedIds: selectedIds.join(',')
-                };
-
-                // Kirim permintaan AJAX untuk menghapus item yang dipilih
-                $.ajax({
-                    type: 'POST',
-                    url: '{{ route('admin.delete-all') }}',
-                    data: data,
-                    success: function(response) {
-                        // Tanggapi hasil penghapusan atau tampilkan pesan sukses
-                        console.log(response.message);
-                        // Refresh halaman atau lakukan tindakan lain yang sesuai
-                        window.location.reload(); // Refresh halaman
-                    },
-                    error: function(error) {
-                        console.error('Terjadi kesalahan:', error);
-                    }
-                });
-            } else {
-                alert('Pilih setidaknya satu item untuk dihapus.');
+  $(document).ready(function(){
+        $('#select_all').on('click',function(){
+            if(this.checked){
+                $('.checkbox1').each(function(){
+                    this.checked = true;
+                })
+            }else{
+                $('.checkbox1').each(function(){
+                    this.checked = false;
+                })
             }
-        });
+        })
+
+        $('.checkbox1'),on('click',function(){
+            if($('.checkbox1:checked').length == $('.checkbox1').length){
+                $('#select_all').prop('checked',true)
+            }else{
+                $('#select_all').prop('checked',false)
+            }
+        })
     });
+
+    function destroy(event) {
+      event.preventDefault()
+      if($('.checkbox1').is(':checked')){
+        Swal.fire({
+        title: 'Kamu Yakin?',
+        text: "Yakin Ingin Menghapus Banyak Data",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.form1.action = "/admin/payment/delete-all"
+          document.form1.submit()
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
+      }else{
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Select Data Yang Ingin Di Hapus Massal',
+      })
+      }
+    }
 </script>
 @endpush

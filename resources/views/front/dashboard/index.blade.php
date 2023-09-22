@@ -81,10 +81,10 @@
     <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
         <!-- status pendaftaran -->
         <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
-            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Silahkan Melakukan Pembayaran Administrasi Sebelum Melengkapi Data Diri</p>
-            <a href="{{route('user.pay',$user->id)}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                !Click Here!
+            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Anda Sedang Melalakukan Pembayaran {{$user->name}}!</h1>
+            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Pembayaran Anda Masi Dalam Proses/Anda Belum Membayar ? </p>
+            <a href="{{$user->payment->link}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                Silahkan Tekan Tombol Berikut
             </a>
         </div>
 
@@ -149,10 +149,10 @@
         <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
                 <!-- status pendaftaran -->
                 <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-                    <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
-                    <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Lengkapi Data diri kamu untuk melanjutkan proses pendaftaran, melalui tombol dibawah ini.</p>
+                    <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Halo {{$user->name}} Sepertinya Kamu Tidak Melakukan Pembayaran Lebih Dari 24Jam!</h1>
+                    <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Jika Ingin Melakukan Ulang Pembayaran Silahkan</p>
                     <a href="{{route('user.pay',$user->id)}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                        Pembayaran Anda Expire Silahkan Lakukan Pembayaran Untuk Melengkapi Data Diri 
+                        Lakukan Pembayaran Ulang Disini
                     </a>
                 </div>
 
@@ -465,30 +465,31 @@
 </main>
 @endsection
 @push('my-script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @if (session('pribadi'))
 <script>
   toastr.options = {
     "progressBar" : true,
     "closeButton" : true
-  }
+}
   toastr.success(" session('pribadi')");
 </script>
 @elseif(session('lengkapi'))
 <script>
-    toastr.options = {
-      "progressBar" : true,
-      "closeButton" : true
-    }
-    toastr.success(" session('lengkapi')");
+    Swal.fire(
+    '{{session('lengkapi')}}!',
+    'You clicked the button!',
+    'success'
+    )
   </script>
-@elseif(session('eror'))
+@elseif(session('success'))
 <script>
-toastr.options = {
-  "progressBar" : true,
-  "closeButton" : true
-}
-toastr.error("{{ session('error') }}");
+Swal.fire(
+    '{{session('success')}}!',
+    'You clicked the button!',
+    'success'
+    )
 </script>
 @else
 <script>
