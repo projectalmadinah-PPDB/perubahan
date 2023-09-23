@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
                 $this->send_message($phoneNumber,$message);
                 // Anda harus mengimplementasikan logika pengiriman pesan WhatsApp di sini.
             }
-        })->hourly(12);
+        })->everySixHours($minutes = 0);
     }
 
     /**

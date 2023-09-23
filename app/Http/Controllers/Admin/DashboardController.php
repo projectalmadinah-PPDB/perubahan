@@ -26,6 +26,38 @@ class DashboardController extends Controller
         $lulus = User::where('status','Lulus')->where('role','user')->orderby('id','desc')->paginate(10);
         $informasi = Article::all();
         $generations = Generasi::where('status','on')->first();
-        return view('pages.admin.dashboard.index',compact('users','informasi','student','lulus','generations','uang'));
+        $chart = Payment::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+                ->whereYear('created_at',date('Y'))
+                ->groupBy('month')
+                ->orderBy('month')
+                ->get();
+
+        $labels = [];
+        $data = [];
+        $colors = ['#FF6969','#FF6969','#FF6969','#FF6969','#FF6969','#FF6969',];
+
+        for($i=1; $i < 12; $i++){
+            $month = date('F',mktime(0,0,0,$i,1));
+            $count = 0;
+
+            foreach($chart as $user){
+                if($user->month == $i){
+                    $count = $user->count;
+                    break;
+                }
+            }
+
+            array_push($labels,$month);
+            array_push($data,$count);
+        }
+
+        $datasets = [
+           [
+                'label' => 'Uang Pendaftaran',
+                'data' => $data,
+                'backgroundColor' => $colors
+           ]
+        ];
+        return view('pages.admin.dashboard.index',compact('users','informasi','student','lulus','generations','uang','datasets','labels'));
     }
 }

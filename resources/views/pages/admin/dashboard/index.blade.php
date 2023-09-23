@@ -1,7 +1,51 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
 @section('title' , 'Dashboard')
+@push('add-styles')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const ctx1 = document.getElementById('chart').getContext('2d');
+        const userChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode($labels) !!},
+                datasets: {!! json_encode($datasets) !!}
+            },
+        });
 
+        const ctx2 = document.getElementById('myChart').getContext('2d');
+        Chart.defaults.backgroundColor = '#9BD0F5';
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pendaftar', 'Peserta', 'Informasi', 'Lulus'],
+                datasets: [{
+                    label: 'Seluruh Data',
+                    data: [{{$users->count()}}, {{$student->count()}}, {{$informasi->count()}}, {{$lulus->count()}}],
+                    borderColor: ["#7C81AD","#141E46","#F4E869","#D83F31",],
+                    backgroundColor: ["#7C81AD","#141E46","#F4E869","#D83F31",]
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        display: true,
+                        stacked: true,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 10,
+                            stepValue: 5,
+                            min: 0,
+                            max: 100,
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+@endpush
 @section('content')
 <div class="main-panel">
     <div class="content">
@@ -19,7 +63,7 @@
                                 </div>
                                 <div class="col-7 d-flex align-items-center">
                                     <div class="numbers">
-                                        <p class="card-category">Jumlah Pemasukan</p>
+                                        <p class="card-category">Jumlah Uang Pendaftaran</p>
                                         <h4 class="card-title">Rp {{ number_format($uang) }}</h4>
                                     </div>
                                 </div>
@@ -103,129 +147,38 @@
                         </div>
                     </div>
                 </div>
-<!-- 							<div class="col-md-3">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="la la-pie-chart text-warning"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 d-flex align-items-center">
-                                    <div class="numbers">
-                                        <p class="card-category">Number</p>
-                                        <h4 class="card-title">150GB</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center">
-                                        <i class="la la-bar-chart text-success"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 d-flex align-items-center">
-                                    <div class="numbers">
-                                        <p class="card-category">Revenue</p>
-                                        <h4 class="card-title">$ 1,345</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card card-stats">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center">
-                                        <i class="la la-times-circle-o text-danger"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 d-flex align-items-center">
-                                    <div class="numbers">
-                                        <p class="card-category">Errors</p>
-                                        <h4 class="card-title">23</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card card-stats">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center">
-                                        <i class="la la-heart-o text-primary"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 d-flex align-items-center">
-                                    <div class="numbers">
-                                        <p class="card-category">Followers</p>
-                                        <h4 class="card-title">+45K</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+                
             </div>
                 <div class="col-md-12">
                     <div class="card card-tasks rounded-4">
                         <div class="card-body">
-                            <div style="height: 450px;width:100%">
-                                <canvas id="myChart"></canvas>
-                              </div>
-                              
-                              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                              
-                              <script>
-                                const ctx = document.getElementById('myChart');
-                                Chart.defaults.backgroundColor = '#9BD0F5';
-                                new Chart(ctx, {
-                                  type: 'line',
-                                  data: {
-                                    labels: ['Pendaftar', 'Peserta', 'Informasi','Lulus'],
-                                    datasets: [{
-                                      label: 'Seluruh Data',
-                                      data: [{{$users->count()}}, {{$student->count()}}, {{$informasi->count()}},{{$lulus->count()}}],
-                                      borderColor: ["#03A9F5"],
-                                    }]
-                                  },
-                                  options: {
-                                    scales: {
-                                      y: {
-                                        display: true,
-                                        stacked: true,
-                                        ticks: {
-                                            beginAtZero: true,
-                                            steps: 10,
-                                            stepValue: 5,
-                                            min: 0,
-                                            max: 100,
-                                      }
-                                    }
-                                  }
-                                }
-                                });
-                              </script>
+                            <canvas id="chart"></canvas>
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+                        {{-- <script>
+                            const ctx = document.getElementById('chart').getContext('2d');
+                            const userChart = new Chart(ctx,{
+                                type:'bar',
+                                data:{
+                                    labels: {!! json_encode($labels) !!},
+                                    datasets: {!! json_encode($datasets) !!}
+                                },
+                            });
+                        </script> --}}
+                            
                         </div>
                         </div>
                     </div>
-                </div>
             </div>
             <div class="container">
                 <div class="row ms-3">
+                    <div class="col-md-6">
+                        <div class="card px-5">
+                            <div style="height: 580px;width:100%;">
+                                <h3 class="font-semibold text-secondary">Seluruh Data</h3>
+                                <canvas id="myChart" style="height: 200rem;margin-top:50px"></canvas>
+                              </div>
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="card card-tasks rounded-4">
                             <div class="card-header ">

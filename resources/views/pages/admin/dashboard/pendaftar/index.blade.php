@@ -69,7 +69,7 @@
                               <button class="badge badge-primary border-0">Belum Membayar</button>
                               @else
                                 @if ($item->payment->status == 'berhasil')
-                                  <button class="badge badge-success border-0">{{$item->payment->status}}</button>
+                                  <button class="badge badge-success border-0">Success</button>
                                 @elseif($item->payment->status == 'expired')
                                 <button class="badge badge-danger border-0">{{$item->payment->status}}</button>
                                 @else

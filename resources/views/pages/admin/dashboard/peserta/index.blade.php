@@ -18,7 +18,43 @@
                   <div class="card-title">Daftar Peserta</div>
                   <div class="d-flex justify-content-between">
                     <a href="{{route('admin.peserta.export')}}" class="btn btn-primary me-2">Download Excel</a>
-                    <button class="btn btn-primary" onclick="edit()">Ubah Data</button>
+                    {{-- <button class="btn btn-primary" onclick="edit(event)">Ubah Data</button> --}}
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-bs-whatever="@mdo" >Ubah Status</button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form id="form2" name="form2" method="POST">
+                              @csrf
+                              @method('PATCH')
+                      
+                              <div class="form-group">
+                                  <label for="status">Status Santri</label>
+                                  <select name="status" id="status" class="form-select">
+                                      <option value="Belum" disabled selected>Pilih Status</option>
+                                      <option value="Wawancara">Wawancara</option>
+                                      <option value="Gagal">Gagal</option>
+                                  </select>
+                              </div>
+                      
+                              @foreach ($data as $index => $item)
+                              <input type="hidden" name="ids[]" value="{{ $item->id }}">
+                              @endforeach
+                      
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="edit(event)">Send message</button>
+                              </div>
+                          </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <button class="btn btn-danger ms-2 float-end" onclick="destroy(event)">Delete</button>
                 </div>
                 </div>
@@ -177,9 +213,37 @@
         })
     });
 
-    function edit() {
-        document.form1.action = "/admin/peserta/coba/edit"
-        document.form1.submit()
+    function edit(event) {
+        // document.form1.action = "/admin/peserta/coba/edit"
+        // document.form1.submit()
+        event.preventDefault()
+        if($('.checkbox1').is(':checked')){
+          Swal.fire({
+        title: 'Kamu Yakin?',
+        text: "Yakin Ingin Mengedit Banyak Data",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Update it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.form2.action = "/admin/peserta/coba/update"
+          document.form2.submit()
+          Swal.fire(
+            'Edited!',
+            'Your file has been Edit.',
+            'success'
+          )
+        }
+      })
+      }else{
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Select Data Yang Ingin Di Edit Massal',
+      })
+      }
     }
 
     function destroy(event) {

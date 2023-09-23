@@ -137,7 +137,11 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       // wawancara
       Route::get('/wawancara',[WawancaraController::class,'index'])->name('wawancara.index');
 
+      Route::patch('/wawancara/massal',[WawancaraController::class,'editStatus'])->name('wawancara.edit_status');
+
       Route::post('/wawancara/{id}',[WawancaraController::class,'store'])->name('wawancara.create');
+
+      Route::post('/wawancara/massal/{id}',[WawancaraController::class,'store_massal'])->name('wawancara.insert');
 
       Route::put('/wawancara/update/{id}',[WawancaraController::class,'update'])->name('wawancara.update');
 
@@ -147,6 +151,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::get('/peserta/lolos',[LolosController::class,'index'])->name('lolos.index');
 
       Route::get('/peserta/lolos/export',[LolosController::class,'export'])->name('lolos.export');
+
+      Route::patch('/peserta/lolos/massal',[LolosController::class,'editMassal'])->name('lolos.massal');
 
       Route::get('/peserta/lolos/edit/{id}',[LolosController::class,'edit'])->name('lolos.edit');
 

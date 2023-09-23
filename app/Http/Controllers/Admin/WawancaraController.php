@@ -74,4 +74,44 @@ class WawancaraController extends Controller
 
         return redirect()->route('admin.wawancara.index')->with('edit','Berhasil Edit Waktu Wawancara Dan Link');
     }
+
+    public function editStatus(Request $request)
+    {
+        $status = $request->status; // Ambil nilai status dari input seleksi
+        
+        foreach ($request->ids as $key => $id) {
+            $data = array(
+                'status' => $status,
+            );
+
+            User::where('id', $id)
+                ->update($data);
+        }
+
+        return redirect()->route('admin.wawancara.index')->with('edit','Berhasil Mengedit Massal');
+    }
+
+    public function store_massal(Request $request)
+    {
+        // Validasi data yang dikirimkan melalui formulir
+    $validatedData = $request->validate([
+        'tanggal.*' => 'required|date',
+        'jam.*' => 'required|date_format:H:i',
+        'link.*' => 'required|url',
+    ]);
+
+    // Loop melalui data yang dikirimkan dari formulir
+    foreach ($validatedData['tanggal'] as $index => $tanggal) {
+        $wawancara = new Wawancara();
+        $wawancara->tanggal = $tanggal;
+        $wawancara->jam = $validatedData['jam'][$index];
+        $wawancara->link = $validatedData['link'][$index];
+        // Tambahkan pengguna ID atau informasi lain yang diperlukan
+        // $wawancara->user_id = ...
+        $wawancara->save();
+    }
+
+    // Redirect atau kirim respons sesuai kebutuhan
+    return redirect()->route('admin.wawancara.index')->with('success', 'Data Wawancara massal berhasil disimpan.');
+    }
 }

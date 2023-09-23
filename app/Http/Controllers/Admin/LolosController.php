@@ -74,4 +74,20 @@ class LolosController extends Controller
     
         return redirect()->route('admin.lolos.index');
     }
+
+    public function editMassal(Request $request)
+    {
+        $status = $request->status; // Ambil nilai status dari input seleksi
+        
+        foreach ($request->ids as $key => $id) {
+            $data = array(
+                'status' => $status,
+            );
+
+            User::where('id', $id)
+                ->update($data);
+        }
+
+        return redirect()->route('admin.lolos.index')->with('edit','Berhasil Mengedit Massal');
+    }
 }
