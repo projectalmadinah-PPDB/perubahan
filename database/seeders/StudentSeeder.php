@@ -41,7 +41,7 @@ class StudentSeeder extends Seeder
     public function run(): void
     {
         $users = User::skip(1)->take(25)->get();
-        $generations= Generasi::where('status','on')->first();
+        $generations= Generasi::orderBy('id','DESC')->first();
 
         
         foreach ($users as $user)

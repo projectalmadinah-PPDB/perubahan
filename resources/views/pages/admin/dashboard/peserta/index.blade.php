@@ -176,7 +176,7 @@
                     </tbody>
                   </table>
                   {{$data->links()}}
-                </form>
+                  </form>
                 </div>
               </div>
             </div>
@@ -198,6 +198,7 @@
                     this.checked = true;
                 })
             }else{
+              $('#editAll').attr('disabled', true);
                 $('.checkbox1').each(function(){
                     this.checked = false;
                 })

@@ -12,10 +12,6 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Exports\ExportPeserta;
 use App\Http\Controllers\Controller;
-use App\Models\Payment;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
 
 class PesertaController extends Controller
 {
@@ -49,9 +45,8 @@ class PesertaController extends Controller
     
         return view('pages.admin.dashboard.peserta.show', compact('pendaftaran'));
     }
-    
 
-    public function document($id)
+    public function docuent($id)
     {
         $document = Document::findOrFail($id);
 

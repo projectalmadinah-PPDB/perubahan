@@ -172,6 +172,12 @@
 					<p>Q&A</p>
 				</a>
 			</li>
+			<li class="nav-item {{ Route::is('admin.pengumuman.*') ? 'active' : '' }}">
+				<a href="{{ route('admin.pengumuman.index') }}" class="py-1 px-3">
+					<i class="bi bi-clipboard-data"></i>
+					<p>Pengumuman</p>
+				</a>
+			</li>
 			<li class="nav-item {{ Route::is('admin.laporan.*') ? 'active' : '' }}">
 				<a href="{{route('admin.laporan.index')}}" class="py-1 px-3">
 					<i class="bi bi-credit-card"></i>

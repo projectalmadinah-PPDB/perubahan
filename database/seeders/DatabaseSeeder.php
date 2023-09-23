@@ -27,8 +27,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             UserSeeder::class,
+            GenerasiSeeder::class,
             StudentSeeder::class,
-            // GenerasiSeeder::class,
+            QuestionSeeder::class,
         ]);
 
         Generasi::create([

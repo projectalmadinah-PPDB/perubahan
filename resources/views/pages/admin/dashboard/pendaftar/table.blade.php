@@ -1,4 +1,13 @@
 <div class="table-responsive">
+    <style>
+      @font-face {
+        font-family: 'Poppins';
+        src: url(dists/assets/font);
+      }
+      * {
+        font-family: 'Poppins';
+      }
+    </style>
     <form action="" name="form1" id="form1" method="POST">
       @csrf
     <table class="table table-bordered">

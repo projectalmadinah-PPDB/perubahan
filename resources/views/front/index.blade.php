@@ -983,9 +983,9 @@ class="relative section flex-col shadow-lg bg-[#23AA8A]/70 mx-20 md:mx-32 mt-10"
                 <!-- foreach here -->
             <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                 <div class="dropdown-title font-[600] p-2 px-5 text-[17px] flex justify-between items-center">
-                    <p class="tracking-wider">{{$item->question}}</p>
+                    <p class="tracking-wider select-none">{{$item->question}}</p>
                 </div>
-                <div class="dropdown-content pb-3 px-7 tracking-wide hidden">
+                <div class="dropdown-content pb-3 px-7 tracking-wide hidden select-none">
                     {{$item->answer}}
                 </div>
             </div>

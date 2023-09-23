@@ -18,8 +18,8 @@
                   <div class="card-title">Daftar Pendaftar</div>
                   {{-- <button class="btn btn-primary" onclick="edit()">Ubah Data</button> --}}
                   <div class="d-flex">
-                    <a href="{{route('admin.pendaftar.export')}}" class="btn btn-primary">Export Excel</a>
-                    <button class="btn btn-danger ms-2 float-end" onclick="destroy(event)">Delete</button>
+                    <a href="{{route('admin.pendaftar.export')}}" class="btn btn-primary rounded-4">Export Excel</a>
+                    <button class="btn btn-danger ms-2 float-end rounded-4" onclick="destroy(event)">Delete</button>
                   </div>
                 </div>
               </div>

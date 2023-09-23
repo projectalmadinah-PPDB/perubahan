@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('parents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('father_name');
-            $table->string('father_phone');
-            $table->string('father_job');
-            $table->string('mother_name');
-            $table->string('mother_phone');
-            $table->string('mother_job');
-            $table->string('parent_earning'); // penghasilan orang tua
-            $table->string('no_of_sibling'); //jumlah soudara
-            $table->string('child_no'); // anak ke
+            $table->string('father_name')->nullable();
+            $table->string('father_phone')->nullable();
+            $table->string('father_job')->nullable();
+            $table->string('mother_name')->nullable();
+            $table->string('mother_phone')->nullable();
+            $table->string('mother_job')->nullable();
+            $table->string('parent_earning')->nullable(); // penghasilan orang tua
+            $table->string('no_of_sibling')->nullable(); //jumlah soudara
+            $table->string('child_no')->nullable(); // anak ke
             $table->softDeletes();
             $table->timestamps();
         });
