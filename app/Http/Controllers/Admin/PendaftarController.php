@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\ExportPendaftar;
-use App\Models\User;
-use Maatwebsite\Excel\Facades\Excel;
 use Dotenv\Util\Str;
+use App\Models\User;
+use App\Traits\Fonnte;
+use App\Models\General;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use App\Exports\ExportPendaftar;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Traits\Fonnte;
 
 class PendaftarController extends Controller
 {
@@ -28,7 +29,7 @@ class PendaftarController extends Controller
 
     public function export()
     {
-        return Excel::download(new ExportPendaftar,"pendaftar.xlsx");
+        return Excel::download(new ExportPendaftar,"Pendaftar.xlsx");
     }
 
     public function show($id){

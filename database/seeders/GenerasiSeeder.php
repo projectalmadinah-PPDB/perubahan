@@ -52,5 +52,6 @@ class GenerasiSeeder extends Seeder
 
     public function run(): void
     {
+        
     }
 }

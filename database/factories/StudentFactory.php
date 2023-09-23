@@ -22,7 +22,7 @@ class StudentFactory extends Factory
             'hobby'              => $this->faker->word(),
             'ambition'           => $this->faker->sentence(),
             'last_graduate'      => $this->faker->randomElement(['TK', 'SD', 'SMP', 'SMA']),
-            'old_school'         => rand(1,20) . 'Negeri' . $this->faker->city(),
+            'old_school'         => rand(1,20) . ' Negeri ' . $this->faker->city(),
             'organization_exp'   => $this->faker->sentence(),
             'address'            => $this->faker->address(),
             'status'             => $this->faker->randomElement(['Belum', 'Verifikasi', 'TidakSah'])

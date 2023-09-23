@@ -82,14 +82,14 @@
                           @endif
                         </td>
                         <td>
-                            <div class="d-flex">
-                              <form action="{{route('admin.question.active',$item->id)}}" method="post">
+                            <div class="d-flex justify-content-center">
+                              <form action="{{route('admin.question.active',$item->id)}}" method="post" class="d-flex justify-content-center">
                                 @csrf
                                 @method('PUT')
                                 @if ($item->active == 'off')
-                                <button class="badge badge-primary border-0" type="submit" name="active" value="on">On</button>
+                                <button class="badge badge-primary border-0" type="submit" name="active" value="on">Aktifkan</button>
                                 @else
-                                <button class="badge badge-danger border-0" type="submit" name="active" value="off">Off</button>
+                                <button class="badge badge-danger border-0" type="submit" name="active" value="off">Nonaktifkan</button>
                                 @endif
                             </form>
                             @if (!$item->answer)

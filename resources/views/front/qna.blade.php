@@ -19,9 +19,9 @@
                 <!-- foreach here -->
             <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                 <div class="dropdown-title font-[600] p-3 px-7 text-[17px] flex justify-between items-center">
-                    <p class="tracking-wider">{{$item->question}}</p>
+                    <p class="tracking-wider select-none">{{$item->question}}</p>
                 </div>
-                <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
+                <div class="dropdown-content select-none pb-5 px-7 tracking-wide hidden">
                     {{$item->answer}}
                 </div>
             </div>

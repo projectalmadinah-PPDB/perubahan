@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\WawancaraController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\UsersController;
 use App\Models\Wawancara;
@@ -42,7 +43,7 @@ Route::get('/', [FrontController::class,'index'])->name('front');
 
 Route::get('/informasi',[FrontController::class,'informasi'])->name('informasi');
 
-Route::get('/qna', [FrontController::class,'qna'])->name('qna');
+Route::get('/question-answer', [FrontController::class,'qna'])->name('qna');
 
 Route::get('/about-us',[FrontController::class,'about'])->name('about');
 
@@ -118,6 +119,10 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::put('/peserta/process/{id}',[PesertaController::class,'update'])->name('peserta.update');
 
+      Route::get('/peserta/export', [PesertaController::class,'export'])->name('peserta.export');
+      
+      Route::get('/peserta/table', [PesertaController::class,'table'])->name('peserta.table');
+
       Route::put('/peserta/edit-all',[PesertaController::class,'updateSelectedStatus'])->name('peserta.edit-all');
 
       Route::get('/peserta/delete/{id}',[PesertaController::class,'destroy'])->name('peserta.destroy');
@@ -172,6 +177,14 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::put('/generasi/status/{id}',[GenerasiController::class,'status'])->name('generasi.status');
 
     Route::put('/generasi/update/{id}',[GenerasiController::class,'update'])->name('generasi.update');
+
+      //pengumuman
+    Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index'); 
+    Route::get('/pengumuman/create', [PengumumanController::class, 'create'])->name('pengumuman.create');
+    Route::post('/pengumuman/create/process', [PengumumanController::class, 'store'])->name('pengumuman.store');
+    Route::get('/pengumuman/edit/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
+    Route::put('/pengumuman/edit/{id}/process', [PengumumanController::class, 'update'])->name('pengumuman.update');
+    Route::put('/pengumuman/delete/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.delete');
     
     //payment
     Route::get('/payment',[AdminPaymentController::class,'index'])->name('payment.index');
@@ -219,6 +232,7 @@ Route::prefix('/user')->name('user.')->group(function(){
     Route::get('/apa', function(){ 
       return view('front.index');
     });
+
     Route::get('/verification', [UserController::class, 'verifyEmail'])->name('verification');
 
     Route::post('/verification/resend-email-verification', [UserController::class, 'resendEmailVerification'])->name('resend-email-verification');

@@ -9,6 +9,7 @@ use App\Models\Article;
 use App\Models\Payment;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
+use App\Models\Announcement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -22,7 +23,8 @@ class DashboardController extends Controller
         $user = User::with('student')->findOrFail($users);
         $userId = Payment::where('user_id',$users)->get();
         $informasi = Article::all();
-        return view('front.dashboard.index',compact('user','informasi','userId'));
+        $announcements = Announcement::get();
+        return view('front.dashboard.index',compact('user','informasi','userId','announcements'));
     }
 
     public function coba()
