@@ -35,7 +35,7 @@
                 <div class="table-responsive">
                   <form action="" name="form1" id="form1" method="POST">
                     @csrf
-                  <table class="table table-bordered data">
+                  <table class="table table-bordered data" id="table">
                     <thead>
                       <tr>
                         <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
@@ -53,7 +53,7 @@
                                 <input type="checkbox" name="id[{{$item->id}}]" class="checkbox1" value="{{$item->id}}">
                             </td>
                             <td>
-                                {{ $data->firstItem() + $index }}
+                                {{ $loop->iteration }}
                             </td>
                             <td>
                                 {{ $item->title }}
@@ -95,6 +95,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    $(document).ready(function(){
+      $('#table').DataTable();
+    });
     $(document).ready(function(){
         $('#select_all').on('click',function(){
             if(this.checked){

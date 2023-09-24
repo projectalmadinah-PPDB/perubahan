@@ -12,11 +12,19 @@ use App\Http\Controllers\Controller;
 class WawancaraController extends Controller
 {
     use Fonnte;
-    public function index()
+    public function index(Request $request)
     {
         // $wawancara = Wawancara::with('student');
         $data = User::where('status','Wawancara')->paginate(5);
         // $wawancara = Wawancara::find();
+        if($request->has('search')){
+            // $data = Payment::where('name','LIKE','%'.$request->search.'%')->where('status','berhasil')->paginate(5);
+            $data = User::where('status','Wawancara')->where('name','LIKE','%'.$request->search.'%')->paginate(5);
+        }
+        else{
+            // $data = Payment::orderby('id','desc')->where('status','berhasil')->paginate(5);
+            $data = User::where('status','Wawancara')->paginate(5);
+        }
         return view('pages.admin.dashboard.wawancara.index',compact('data'));
     }
 

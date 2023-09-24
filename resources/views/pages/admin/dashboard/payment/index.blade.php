@@ -47,22 +47,6 @@
     <div class="content">
       <div class="container-fluid">
         <h4 class="page-title">Pembayaran Siswa</h4>
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{session('success')}}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @elseif(session('delete'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          {{session('delete')}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @elseif(session('edit'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          {{session('edit')}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
         <div class="row">
           <div class="col-md-12">
             <div class="card rounded-4">
@@ -73,17 +57,10 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="{{route('admin.lolos.index')}}" method="get">
-                  @csrf
-                  <div class="position-relative w-25" style="display: inline-flex">
-                    <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
-                    <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
-                  </div>
-                  </form>
                 <div class="d-block">
                   <form action="" id="form1" name="form1" method="POST">
                     @csrf
-                  <table class="table table-bordered data">
+                  <table class="table table-bordered data" id="table">
                     <thead>
                       <tr>
                         <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
@@ -97,7 +74,7 @@
                       @foreach ($payment as $index => $item)
                       <tr>
                         <td><input type="checkbox" name="id[{{$item->payment->id}}]" class="checkbox1" value="{{$item->payment->id}}"></td>
-                        <td>{{$index + 1}}</td>
+                        <td>{{$loop->iteration}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->nomor}}</td>
                         <td>
@@ -129,6 +106,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+  $(document).ready(function(){
+      $('#table').DataTable();
+    });
   $(document).ready(function(){
         $('#select_all').on('click',function(){
             if(this.checked){

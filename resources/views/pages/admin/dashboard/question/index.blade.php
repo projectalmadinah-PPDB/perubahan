@@ -49,15 +49,8 @@
               </div>
             </div>
             <div class="card-body">
-              <form action="" method="get">
-                @csrf
-                <div class="position-relative w-25" style="display: inline-flex">
-                  <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
-                  <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
-                </div>
-                </form>
               <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="table">
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -71,7 +64,7 @@
                   <tbody>
                     @forelse ($question as $index => $item)
                     <tr>
-                        <td>{{$index + 1}}</td>
+                        <td>{{$loop->iteration}}</td>
                         <td>{{$item->question}}</td>
                         <td>{{$item->answer}}</td>
                         <td>
@@ -137,7 +130,12 @@
 </div>
 @endsection
 @push('add-script')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  $(document).ready(function(){
+    $('#table').DataTable();
+  });
+</script>
 @if (session('success'))
 <script>
   toastr.options = {

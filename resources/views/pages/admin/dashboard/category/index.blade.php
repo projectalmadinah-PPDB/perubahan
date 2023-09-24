@@ -33,15 +33,8 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="{{route('admin.category.index')}}" method="get">
-                  {{-- @csrf --}}
-                  <div class="position-relative w-25" style="display: inline-flex">
-                    <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
-                    <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
-                  </div>
-                  </form>
                 <div class="table-responsive">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered" id="table">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -53,7 +46,7 @@
                     <tbody>
                       @foreach ($category as $index => $item)
                         <tr>
-                          <td>{{$index + 1}}</td>
+                          <td>{{$loop->iteration}}</td>
                           <td>{{$item->name}}</td>
                           <td>{{$item->user->name}}</td>
                           <td>
@@ -105,3 +98,10 @@
     </div>
   </div>
 @endsection
+@push('add-script')
+  <script>
+    $(document).ready(function(){
+      $('#table').DataTable();
+    });
+  </script>
+@endpush

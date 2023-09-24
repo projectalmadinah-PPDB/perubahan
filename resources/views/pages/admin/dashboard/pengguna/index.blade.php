@@ -33,20 +33,8 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="{{route('admin.users.users')}}" method="get">
-                  <div class="d-flex mb-4">
-                      <select name="select" id="" class="form-select w-25">
-                        <option value="">Cari Berdasarkan Status</option>
-                        <option value="1">Aktif</option>
-                        <option value="0">Tidak Aktif</option>
-                      </select>
-                    <div>
-                      <button class="btn btn-primary border-start rounded-lg" type="submit">Find</button>
-                    </div>
-                  </div>
-                  </form>
                   <div class="table-responsive">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered" id="table">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -60,12 +48,12 @@
                     <tbody>
                         @foreach ($users as $item => $user)
                         <tr>
-                          <td>{{ $item + $users->firstItem() }}</td>
+                          <td>{{ $loop->iteration}}</td>
                           <td>{{ $user->name }}</td>
                           <td>{{ $user->email }}</td>
                           <td>{{ $user->nomor }}</td>
                           <td>
-                            @if($loop->first)
+                            @if(!$user->active == 1)
                             <span class="badge bg-info" style="cursor: pointer">Aktif</span>
                             @else
                             <form action="{{ route('admin.users.update_active', $user->id) }}" method="post">
@@ -235,7 +223,6 @@
                         @endforeach
                     </tbody>
                   </table>
-                  {{$users->links()}}
                 </div>
               </div>
             </div>
@@ -245,3 +232,10 @@
     </div>
   </div>
 @endsection
+@push('add-script')
+  <script>
+    $(document).ready(function(){
+      $('#table').DataTable();
+    });
+  </script>
+@endpush

@@ -24,20 +24,13 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="{{route('admin.pendaftar.index')}}" method="get">
-                  @csrf
-                  <div class="position-relative w-25" style="display: inline-flex">
-                    <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
-                    <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
-                  </div>
-                  </form>
                   <div class="table-responsive">
                     <form action="" name="form1" id="form1" method="POST">
                       @csrf
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="table">
                       <thead>
                         <tr>
-                          <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
+                          <th style="width: 25px"><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
                           <th>ID</th>
                           <th>Name</th>
                           <th>Nomor Hp</th>
@@ -53,7 +46,7 @@
                         @foreach ($users as $index => $item)
                           <tr>
                             <td><input type="checkbox" name="id[{{$item->id}}]" class="checkbox1" value="{{$item->id}}"></td>
-                            <td>{{$index + $users->firstItem()}}</td>
+                            <td>{{$loop->iteration}}</td>
                             <td>{{$item->name}}</td>
                             <td>{{$item->nomor}}</td>
                             {{-- <td>{{$item->tanggal_lahir}}</td>
@@ -99,7 +92,6 @@
                         @endforeach
                       </tbody>
                     </table>
-                    {!! $users->links() !!}
                   </div>
               </div>
             </div>
@@ -115,6 +107,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
   <script>
+    $(document).ready(function(){
+      $('#table').DataTable();
+    });
     $(document).ready(function(){
         $('#select_all').on('click',function(){
             if(this.checked){

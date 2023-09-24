@@ -91,17 +91,10 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="{{route('admin.lolos.index')}}" method="get">
-                  @csrf
-                  <div class="position-relative w-25" style="display: inline-flex">
-                    <input type="text" name="search" class="form-control w-100 mb-3 rounded-4" >
-                    <button class="btn btn-primary rounded-4 position-absolute top-0 end-0" type="submit">Find</button>
-                  </div>
-                  </form>
                 <div class="table-responsive">
                   <form action="" name="form1" id="form1" method="POST">
                     @csrf
-                  <table class="table table-bordered">
+                  <table class="table table-bordered" id="table">
                     <thead>
                       <tr>
                         <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
@@ -117,7 +110,7 @@
                         @foreach ($data as $index => $item)
                         <tr>
                           <td><input type="checkbox" name="id[{{$item->id}}]" class="checkbox1" value="{{$item->id}}"></td>
-                          <td>{{$index + 1}}</td>
+                          <td>{{$loop->iteration}}</td>
                           <td>{{$item->name}}</td>
                           <td>
                             @if ($item->wawancara)
@@ -139,7 +132,7 @@
                             @endif
                           </td>
                           <td>
-                            <div class="d-flex">
+                            <div class="">
                             @if($item->wawancara)
                             <form action="{{route('admin.wawancara.update',$item->wawancara->id)}}" method="post">
                             @csrf
@@ -236,6 +229,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+  $(document).ready(function(){
+      $('#table').DataTable();
+    });
     $(document).ready(function(){
         $('#select_all').on('click',function(){
             if(this.checked){

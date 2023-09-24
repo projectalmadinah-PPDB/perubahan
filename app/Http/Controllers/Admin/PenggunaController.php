@@ -12,17 +12,13 @@ class PenggunaController extends Controller
     
     public function admins()
     {
-        $users = User::orderby('active','desc')->where('role', 'admin')->paginate(10);
+        $users = User::where('role', 'admin')->get();
         return view('pages.admin.dashboard.pengguna.admin', compact('users'));
     }
     
     public function pesertas(Request $request)
     {
-        if($request->has('select')){
-            $users = User::where('active','LIKE','%'.$request->select.'%')->orderby('id','asc')->where('role', 'user')->paginate(10);
-        }else{
-            $users = User::orderby('id','asc')->where('role', 'user')->paginate(10);
-        }
+        $users = User::orderby('id','asc')->where('role', 'user')->get();
         return view('pages.admin.dashboard.pengguna.index', compact('users'));
     }
 
