@@ -45,6 +45,8 @@ Route::get('/informasi',[FrontController::class,'informasi'])->name('informasi')
 
 Route::get('/question-answer', [FrontController::class,'qna'])->name('qna');
 
+Route::get('/tutorial-pembayaran', [FrontController::class,'tutor_payment'])->name('tutor.payment');
+
 Route::get('/about-us',[FrontController::class,'about'])->name('about');
 
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');

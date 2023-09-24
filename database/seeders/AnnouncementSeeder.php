@@ -22,9 +22,6 @@ class AnnouncementSeeder extends Seeder
         //         'step'    => 1,
         //         'user_id' => 1
         //     ],
-        //     [
-                
-        //     ]
         // );
     }
 }

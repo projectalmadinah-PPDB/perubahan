@@ -17,6 +17,12 @@ class FrontController extends Controller
         return view('front.index',compact('article','qna'));
     }
 
+    public function tutor_payment()
+    {
+        $article = Article::all();
+        return view('front.detail_tutor_payment', compact('article'));
+    }
+
     public function informasi()
     {
         $article = Article::all();

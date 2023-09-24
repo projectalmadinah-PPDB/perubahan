@@ -3,20 +3,20 @@
 @section('title','Profile')
 
 @section('content')
-<main class="w-full min-h-screen h-auto">
+<main class="w-full min-h-screen h-auto bg-gradient-to-br from-dasar via-sky-50 to-sky-100">
     <div class="flex justify-center items-center w-full">
         @if (!$user->payment)
             <a href="{{route('user.pay',$user->id)}}" class="mt-40 text-xs md:text-sm py-3 px-7 rounded-full border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                Silahkan Lakukan Pembayaran <i class="font-bold">disini</i>
+                Silahkan Lakukan Pembayaran <i class="font-semibold tracking-wider">disini</i>
             </a>
         @elseif($user->payment->status == 'pending')
             <a href="{{route('user.pay',$user->id)}}" class="mt-40 text-xs md:text-sm py-3 px-7 rounded-full border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                Silahkan Lakukan Pembayaran <i class="font-bold">disini</i>
+                Silahkan Lakukan Pembayaran <i class="font-semibold tracking-wider">disini</i>
             </a>
         </div>
     @elseif ($user->payment->status == 'berhasil')
     <section class="w-full flex flex-wrap justify-center items-start px-10 md:px-20 pt-10 pb-14 gap-10">
-        @if (!$user->student)
+        @if (!$user->student || !$user->parents)
             <a href="{{route('user.kelengkapan')}}" class=" text-xs md:text-sm py-3 px-7 rounded-full border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
                 Silahkan Melengkapi Data Diri Anda
             </a>
@@ -139,51 +139,87 @@
                 <table class="w-full border-none text-sm text-slate-600">
                     <thead>
                         <tr class="border border-primer bg-primer text-white tracking-wide">
-                            <th class="py-3 font-semibold">Kartu Keluarga</th>
-                            <th class="py-3 font-semibold">Akte Kelahiran</th>
-                            <th class="py-3 font-semibold">Ijazah Pendidikan Terakhir</th>
-                            <th class="py-3 font-semibold">Rapor Pendidikan Terakhir</th>
+                            <th class="py-3 font-semibold">
+                                Kartu Keluarga
+                                @if ($user->document && $user->document->kk)
+                                <a href="{{ asset('storage/' . $user->document->kk) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                                    show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                                </a>
+                                @endif
+                            </th>
+                            <th class="py-3 font-semibold">
+                                Akte Kelahiran
+                                @if ($user->document && $user->document->akta)
+                                <a href="{{ asset('storage/' . $user->document->akte) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                                    show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                                </a>
+                                @endif
+                            </th>
+                            <th class="py-3 font-semibold">
+                                Ijazah Pendidikan Terakhir
+                                @if ($user->document && $user->document->ijazah)
+                                <a href="{{ asset('storage/' . $user->document->ijazah) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                                    show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                                </a>
+                                @endif
+                            </th>
+                            <th class="py-3 font-semibold">
+                                Rapor Pendidikan Terakhir
+                                @if ($user->document && $user->document->rapor)
+                                <a href="{{ asset('storage/' . $user->document->rapor) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                                    show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                                </a>
+                                @endif
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (!$user->document)
-                        <a href="{{route('user.document')}}" class="w-full text-center py-2 px-4 border-2 rounded-full font-semibold tracking-wider border-sekunder bg-sekunder hover:bg-sekunder/50 duration-200 ease-in-out text-white">!Silahkan Lengkapi Data Diri!</a> 
-                        @else
+                        <a href="{{route('user.document')}}" 
+                        class="w-full text-center py-2 px-4 border-2 rounded-full font-semibold tracking-wider border-sekunder bg-sekunder hover:bg-sekunder/50 duration-200 ease-in-out text-white">Silahkan upload dokumen persyaratan</a> 
+                        @endif
                         <tr class="border border-primer">
                             <td class="px-1 py-3 w-1/4">
                                 <!-- if (document) -->
+                                @if ($user->document && $user->document->kk)
                                 <object 
-                                    class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
+                                class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
                                 type="application/pdf" data="{{ asset('storage/' . $user->document->kk) }}"></object>
-                                <!-- else -->
-                                {{-- <p class="text-sm text-center italic">Belum mengupload dokumen</p> --}}
+                                @else
+                                <p class="text-sm text-center italic">Belum mengupload dokumen</p>
+                                @endif
                             </td>
                             <td class="px-1 py-3 w-1/4">
                                 <!-- if (document) -->
+                                @if ($user->document && $user->document->akta)
                                 <object 
-                                    class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
+                                class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
                                 type="application/pdf" data="{{ asset('storage/' . $user->document->akta) }}"></object> 
-                                <!-- else -->
-                                {{-- <p class="text-sm text-center italic">Belum mengupload dokumen</p> --}}
+                                @else
+                                <p class="text-sm text-center italic">Belum mengupload dokumen</p>
+                                @endif
                             </td>
                             <td class="px-1 py-3 w-1/4">
                                 <!-- if (document) -->
+                                @if ($user->document && $user->document->ijazah)
                                 <object 
-                                    class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
+                                class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
                                 type="application/pdf" data="{{ asset('storage/' . $user->document->ijazah) }}"></object>
-                                <!-- else -->
-                                {{-- <p class="text-sm text-center italic">Belum mengupload dokumen</p> --}}
+                                @else
+                                <p class="text-sm text-center italic">Belum mengupload dokumen</p>
+                                @endif
                             </td>
                             <td class="px-1 py-3 w-1/4">
                                 <!-- if (document) -->
+                                @if ($user->document && $user->document->rapor)
                                 <object 
-                                    class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
+                                class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
                                 type="application/pdf" data="{{ asset('storage/' . $user->document->rapor) }}"></object>
-                                <!-- else -->
-                                {{-- <p class="text-sm text-center italic">Belum mengupload dokumen</p> --}}
+                                @else
+                                <p class="text-sm text-center italic">Belum mengupload dokumen</p>
+                                @endif
                             </td>
                         </tr>
-                        @endif
                     </tbody>
                 </table>
             </div>

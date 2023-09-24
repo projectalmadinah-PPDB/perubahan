@@ -3,10 +3,10 @@
 @section('title','Informasi')
 
 @section('content')
-<main class="w-full pt-14">
+<main class="w-full min-h-screen h-auto bg-gradient-to-br from-dasar via-sky-50 to-sky-100">
     <span class="sr-only" id="listArticle">list artikel</span>
     <!-- list article -->
-    <section class="w-full pt-20 pb-16 px:10 md:px-20 flex flex-col justify-start items-center">
+    <section class="w-full pt-14 pb-16 px:10 md:px-20 flex flex-col justify-start items-center">
         <span
             class="inline-flex items-center rounded-[3rem] bg-emerald-200 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-700 mb-3"
         >Informasi</span>
@@ -36,6 +36,13 @@
     </section>
 
     <!-- kotak bantuan -->
-    
+    <section class="pt-5 pb-10 px-5 md:px-10 lg:px-60">
+        <div class="bg-sky-900 p-10 w-full text-dasar flex justify-center items-center flex-col text-center gap-y-3 rounded-xl">
+            <p class="3xl7g">Untuk informasi lebih lanjut, silahkan hubungi kami melalui tombol ini.
+            <a href="https://api.whatsapp.com/send?phone={{ App\Models\General::first()->school_phone }}&text=Assalamu%20Alaikum%20Admin." target="_blank" 
+            class="bg-sekunder ms-3 py-2 px-7 font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-sekunder/50 duration-200"
+            >Hubungi kami</a>
+        </div>
+    </section>
 </main>
 @endsection

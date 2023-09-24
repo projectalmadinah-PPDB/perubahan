@@ -128,8 +128,8 @@
         <div 
             class="bg-gradient-to-br from-dasar via-sky-50 to-sky-100 w-full min-h-screen font-poppins caret-sekunder accent-primer">
 
+            <!-- pesan status -->
             <section class="w-full py-7 px-10 lg:px-60 bg-transparent flex flex-col justify-center items-center gap-4">
-                <!-- status pendaftaran -->
                 <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
                     @php
                         $buttonStep = 'text-sm md:text-md py-2 px-7 rounded-full bg-sekunder hover:bg-sekunder/50 hover:font-semibold duration-200 text-dasar shadow-md hover:shadow-xl';
@@ -269,7 +269,7 @@
                                 $error    = 'rounded-full w-6 h-6 bg-larangan shadow-md ring-[3px] ring-offset-[4px] ring-larangan text-center'
                             @endphp
                             <div class="relative">
-                                <div class="{{ $sudah }}">
+                                <div class="@if (!$user->payment) {{ $sedang }} @else {{ $sudah }} @endif">
                                     <i class="bi bi-check-lg text-white"></i>
                                 </div>
                                 <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
@@ -309,7 +309,8 @@
                             </div>
                             <div class="relative">
                                 <div class="
-                                    @if (!$user->document) {{ $sedang }}
+                                    @if (!$user->document && $user->payment) {{ $sedang }}
+                                    @elseif (!$user->document && !$user->payment) {{ $belum }}
                                     @else {{ $sudah }} @endif
                                     ">
                                     @if ($user->document)
@@ -348,13 +349,10 @@
                 </div>
             </section>
 
-            <section
+            {{-- <section
                 class="pt-16 pb-10 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
-                <h1 class="mt-2 text-3xl mb-8 font-bold title">
-                    Informasi Singkat
-                </h1>
+                <h1 class="mt-2 text-3xl mb-8 font-bold title">Informasi Singkat</h1>
                 <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
-                    {{-- foreach --}}
                     <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                         <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
                             <p class="tracking-wide">Apa Aja Yang Disiapkan Ketika Ingin Membayar?</p>
@@ -368,86 +366,112 @@
                             </ul>
                         </div>
                     </div>
-                    {{-- endforeach --}}
                 </div>
+            </section> --}}
 
-            </section>
-        
-            <section 
-                class="pt-16 pb-10 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
-                <h1 class="mt-2 text-3xl mb-8 font-bold title">Informasi Untuk Membayar</h1>
-                <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
-                    <!-- foreach here -->
-                    <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
-                        <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                            <p class="tracking-wide">Apa Aja Yang Disiapkan Ketika Ingin Membayar?</p>
-                        </div>
-                        <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                            Yang Siapkan Untuk Membayar Uang Administrasi
-                            <ul>
-                                <li>1. Siapkan Uang Sebesar 100Ribu</li>
-                                <li>2. Memiliki Virtual Account</li>
-                                <li>3. Mengetahui Cara Membayar Online/Paymet Gateaway</li>
+            <section class="pt-16 pb-10 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
+                <h1 class="mt-2 text-3xl mb-8 font-bold title">Informasi Singkat.</h1>
+                <div class="flex justify-center items-start flex-wrap gap-4 w-full px-10 sm:px-18 md:px-32">
+                    <div class="py-7 px-6 border border-sekunder rounded-xl flex flex-col justify-center gap-y-1 items-center min-w-min w-full text-center min-h-[10rem]">
+                        <h1 class="leading-5 text-center text-lg font-semibold tracking-wide mb-4">
+                            Melakukan Proses Pembayaran
+                        </h1>
+                        <ul class="w-full tracking-wide leading-relaxed list-decimal text-start ps-5">
+                            <li>
+                                Pastikan Anda memiliki akun virtual,
+                            </li>
+                            <li>
+                                siapkan uang sebesar 100.000 Rupiah,
+                            </li>
+                            <li>
+                                dan lakukan pembayaran secara teratur.
+                            </li>
+                            <li>
+                                Anda dapat mengikuti tutorial pembayaran menggunakan 
+                                <a href="https://ipaymu.com/" target="_blank" class="font-semibold italic hover:underline hover:text-sky-800 text-sky-600 duration-200"
+                                >iPaymu</a>
+                                melalui 
+                                <a href="" class="font-medium italic hover:underline hover:text-sky-800 text-sky-600 duration-200"
+                                >link ini</a>.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="py-7 px-6 border border-sekunder rounded-xl flex flex-col justify-center gap-y-1 items-center min-w-min w-full text-center min-h-[10rem]">
+                        <h1 class="leading-5 text-center text-lg font-semibold tracking-wide mb-4">
+                            Mengisi Formulir Data Diri
+                        </h1>
+                        <p class="w-full tracking-wide leading-relaxed">
+                            Langkah berikutnya adalah mengisi formulir pendaftaran dengan benar dan teliti.
+                        </p>
+                        <p class="w-full tracking-wide leading-relaxed">
+                            Pastikan semua informasi yang Anda berikan akurat sesuai fakta.
+                        </p>
+                    </div>
+                    <div class="py-7 px-6 border border-sekunder rounded-xl flex flex-col justify-center gap-y-1 items-center min-w-min w-full text-center min-h-[10rem]">
+                        <h1 class="leading-5 text-center text-lg font-semibold tracking-wide mb-4">
+                            Mengupload Dokumen Persyaratan
+                        </h1>
+                        <p class="w-full tracking-wide leading-relaxed">
+                            Sebelum melanjutkan, pastikan menyiapkan dokumen persyaratan yang dibutuhkan, yaitu :
+                            <ul class="list-disc text-start">
+                                <li>Kartu Keluarga <i>(scan)</i></li>
+                                <li>Akte Kelahiran <i>(scan)</i></li>
+                                <li>Ijazah Sekolah Terakhir <i>(scan)</i></li>
+                                <li>Rapor Terakhir <i>(scan)</i></li>
                             </ul>
-                        </div>
+                            Kemudian upload dokumen tersebut sesuai dengan form yang tersedia.
+                        </p>
                     </div>
-                    <!-- endforeach here -->
-                    <!-- foreach here -->
-                    <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
-                        <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                            <p class="tracking-wide">Anda Kebigungan Dengan Alur Pembayaran?</p>
-                        </div>
-                        <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                            Silahkan Hubungi Kami Lewat Whatshapp
-                            <a href="https://web.whatsapp.com/+6282346739790" class="text-larangan">Silahkan Click +6282346739790</a>
-                        </div>
+                    <div class="py-7 px-6 border border-sekunder rounded-xl flex flex-col justify-center gap-y-1 items-center min-w-min w-full text-center min-h-[10rem]">
+                        <h1 class="leading-5 text-center text-lg font-semibold tracking-wide mb-4">
+                            Tunggu Instruksi Lebih Lanjut dari Admin
+                        </h1>
+                        <p class="w-full tracking-wide leading-relaxed">
+                            Setelah mengisi formulir dan mengunggah dokumen, tunggu instruksi selanjutnya dari admin.
+                        </p>
+                        <p class="w-full tracking-wide leading-relaxed">
+                            Admin akan memberikan informasi lebih lanjut mengenai proses selanjutnya.
+                        </p>
                     </div>
-                    <!-- endforeach here -->
-                    @foreach ($announcements as $announ)
-                    <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
-                        <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                            <p class="tracking-wide">{{ $announ->title }}</p>
-                        </div>
-                        <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                            {!! $announ->desc !!}
-                        </div>
+                    <div class="py-7 px-6 border border-sekunder rounded-xl flex flex-col justify-center gap-y-1 items-center min-w-min w-full text-center min-h-[10rem]">
+                        <h1 class="leading-5 text-center text-lg font-semibold tracking-wide mb-4">
+                            Tunggu Pengumuman Hasil Wawancara
+                        </h1>
+                        <p class="w-full tracking-wide leading-relaxed">
+                            Setelah proses wawancara, tunggu pengumuman hasilnya.
+                        </p>
+                        <p class="w-full tracking-wide leading-relaxed">
+                            Admin akan memberikan informasi mengenai kelulusan Anda.
+                        </p>
                     </div>
-                    @endforeach
-                    <!-- endforeach here -->
-                    <style>
-                        .dropdown-content ul li,
-                        .dropdown-content ol li {
-                            list-style-type: auto!important;
-                        }
-                    </style>
+                    <div class="py-7 px-6 border border-sekunder rounded-xl flex flex-col justify-center gap-y-1 items-center min-w-min w-full text-center min-h-[10rem]">
+                        <h1 class="leading-5 text-center text-lg font-semibold tracking-wide mb-4">
+                            Lihat Informasi Masuk Sekolah
+                        </h1>
+                        <p class="w-full tracking-wide leading-relaxed">
+                            Jika Anda dinyatakan lulus, lihat informasi mengenai masuk sekolah.
+                        </p>
+                        <p class="w-full tracking-wide leading-relaxed">
+                            Pastikan Anda membawa fotokopi dokumen persyaratan saat mendaftar.
+                        </p>
+                    </div>
+                    <div class="py-7 px-6 border border-sekunder rounded-xl flex flex-col justify-center gap-y-1 items-center min-w-min w-full text-center min-h-[10rem]">
+                        <h1 class="leading-5 text-center text-lg font-semibold tracking-wide mb-4">
+                            Proses Pendaftaran Selesai
+                        </h1>
+                        <p class="w-full tracking-wide leading-relaxed">
+                            Selamat! Proses pendaftaran Anda telah selesai. Anda sekarang bebas untuk memulai tahun ajaran baru.
+                        </p>
+                    </div>
                 </div>
-
-                <script>
-                    // accordion question
-                        const ItemHeaders = document.querySelectorAll('div.dropdown-title');
-                        
-                        ItemHeaders.forEach(ItemHeader => {
-                            ItemHeader.addEventListener('click', event => {
-                                ItemHeader.classList.toggle('show');
-                                
-                                const ItemBody = ItemHeader.nextElementSibling;
-                                
-                                if(ItemHeader.classList.contains('show')) {
-                                    ItemBody.classList.remove('hidden');
-                                } else {
-                                    ItemBody.classList.add('hidden');
-                                }
-                            })
-                        })
-                </script>
             </section>
             
             {{-- kotak bantuan --}}
             <section class="pt-5 pb-10 px-5 md:px-10 lg:px-60">
                 <div class="bg-sky-900 p-10 w-full text-dasar flex justify-center items-center flex-col text-center gap-y-3 rounded-xl">
-                    <p class="text-lg">Untuk informasi lebih lanjut, silahkan hubungi kami melalui link dibawah ini.</p>
+                    <p class="3xl7g">Untuk informasi lebih lanjut, silahkan hubungi kami melalui tombol ini.
                     <a href="https://api.whatsapp.com/send?phone={{ App\Models\General::first()->school_phone }}&text=Assalamu%20Alaikum%20Admin." target="_blank" 
-                    class="bg-sekunder py-2 px-7 font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-sekunder/50 duration-200"
+                    class="bg-sekunder ms-3 py-2 px-7 font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-sekunder/50 duration-200"
                     >Hubungi kami</a>
                 </div>
             </section>

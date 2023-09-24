@@ -3,12 +3,9 @@
 @section('title','Q&A')
 
 @section('content')
-<main class="w-full pt-14">
-
-    <span class="sr-only" id="listQna">list qna</span>
-    <!-- Q&A -->
+<main class="w-full pt-5 min-h-screen h-auto bg-gradient-to-br from-dasar via-sky-50 to-sky-100">
     <section 
-        class="bg-dasar py-16 px-20 flex flex-col justify-start items-center min-h-[75vh]">
+        class="py-10 px-20 flex flex-col justify-start items-center min-h-min">
         <span class="inline-flex items-center rounded-[3rem] bg-emerald-200 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-700">Q.&.A</span>
         <h1 class="mt-2 text-3xl font-bold title">Question and Answer.</h1>
         <p class="mt-2 mb-7 text-sm text-gray-700 tracking-wide">
