@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $userId = Payment::where('user_id',$users)->get();
         $informasi = Article::all();
         $announcements = Announcement::get();
-        return view('front.dashboard.index',compact('user','informasi','userId','announcements'));
+        return view('front.dashboard.index',compact('user','userId','informasi','announcements','users'));
     }
 
     public function coba()
@@ -45,14 +45,18 @@ class DashboardController extends Controller
 
     public function informasi()
     {
+        $users = Auth::user()->id;
+        $user = User::with('parents')->findOrFail($users);
         $article = Article::all();
-        return view('front.dashboard.informasi',compact('article'));
+        return view('front.dashboard.informasi',compact('article','user'));
     }
 
     public function qna()
     {
+        $users = Auth::user()->id;
+        $user = User::with('parents')->findOrFail($users);
         $question = Question::all();
-        return view('front.dashboard.qna',compact('question'));
+        return view('front.dashboard.qna',compact('question','user'));
     }
 
     public function pay($id)
