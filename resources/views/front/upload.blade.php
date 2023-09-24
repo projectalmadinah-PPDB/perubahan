@@ -31,7 +31,7 @@
                     <div class="flex justify-between items-end">
                         <div>
                             <h1 class="text-3xl md:text-4xl font-semibold me-3">Upload Dokumen</h1>
-                            <p># Fulan Fulaanan</p>
+                            <p># {{ Auth::user()->name }}</p>
                         </div>
                         <a href="{{route('user.profile')}}" class="py-1 px-3 text-sm rounded-[2rem] bg-emerald-600 dark:bg-slate-900 text-slate-100 border border-emerald-400 hover:bg-slate-950 hover:text-slate-300 duration-300">Back</a>
                     </div>

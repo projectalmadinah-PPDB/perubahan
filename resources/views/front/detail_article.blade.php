@@ -12,7 +12,7 @@
             <h1 
                 class="text-lg font-bold mb-0 leading-none p-4 flex items-center gap-x-2">
                 <img src="./images/logo_only_white.svg" alt="" class="w-7">
-                Sekolah Ar-Romusha.
+                Sekolah {{ App\Models\General::first()->school_name }}.
             </h1>
         </section>
     </div>
@@ -67,43 +67,13 @@
         </div>
     </section>
 
-    <!-- kotak bantuan -->
-    <section 
-        class="bg-gradient-to-t from-primer to-sky-900 py-16 px-10 md:px-20 flex flex-col justify-start text-dasar">
-        <div class="mx-auto text-center w-7/12 mb-8 gap-y-3">
-            <h1 class="text-4xl font-bold">Hubungi Kami.</h1>
-            <p class="text-sm tracking-wide font-light text-gray-400">
-                Kirim pertanyaan dan komentar kamu melalui form dibawah ini.
-            </p>
-        </div>
-
-        <div class="mx-auto w-7/12 text-primer">
-            <form class="space-y-2" action="#" method="POST">
-                <div class="mb-3">
-                    <label for="name" class="text-sm mb-2 dark:text-white">Nama Kamu</label>
-                    <input placeholder="nama kamu" type="text" id="name" class="border placeholder:italic placeholder:font-light py-2 px-5 rounded-full shadow-inner w-full placeholder:text-sm caret-primer focus:outline-none focus:border-sekunder focus:ring-2 focus:ring-sekunder" autocomplete="off">
-                </div>
-        
-                <div class="mb-3">
-                    <label for="email" class="text-sm mb-2 dark:text-white">Email Kamu</label>
-                    <input placeholder="email kamu" type="email" id="email" class="border placeholder:italic placeholder:font-light py-2 px-5 rounded-full shadow-inner w-full placeholder:text-sm caret-primer focus:outline-none focus:border-sekunder focus:ring-2 focus:ring-sekunder" autocomplete="off">
-                </div>
-        
-                <div class="mb-3">
-                    <label for="message" class="text-sm mb-2 dark:text-white">Pesan Kamu</label>
-                    <textarea placeholder="pesan kamu" id="message" rows="4" 
-                        style="min-height: 40px!important; max-height: 150px!important;" class="border placeholder:italic placeholder:font-light py-2 px-5 rounded-[30px] shadow-inner w-full placeholder:text-sm caret-primer focus:outline-none focus:border-sekunder focus:ring-2 focus:ring-sekunder"
-                    ></textarea>
-                </div>
-        
-                <div>
-                    <button type="submit" class="w-full mt-5 p-2 bg-emerald-500 hover:bg-emerald-300 border text-white hover:text-emerald-950 font-medium tracking-wide rounded-[30px] hover:-translate-y-1 shadow-sm hover:shadow-md hover:border-gray-900 dark:hover:border-emerald-200 dark:border-gray-900 duration-200 uppercase">Kirim</button>
-                </div>
-            </form>
-        
-            <p class="text-center mt-7 text-sm tracking-wide font-light text-gray-400">
-                kami berterima kasih atas masukan yang kamu berikan.
-            </p>
+    {{-- kotak bantuan --}}
+    <section class="py-16 px-5 md:px-10 lg:px-20">
+        <div class="bg-sky-900 p-10 w-full text-dasar flex justify-center items-center flex-col text-center gap-y-3 rounded-xl">
+            <p class="text-lg">Untuk informasi lebih lanjut, silahkan hubungi kami melalui link dibawah ini.</p>
+            <a href="https://api.whatsapp.com/send?phone={{ App\Models\General::first()->school_phone }}&text=Assalamu%20Alaikum%20Admin." target="_blank" 
+            class="bg-sekunder py-2 px-7 font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-sekunder/50 duration-200"
+            >Hubungi kami</a>
         </div>
     </section>
     
@@ -164,8 +134,8 @@
                 </svg>
                 </a>
 
-                <a href="#" class="w-20 mx-8">
-                    <img src="./images/logo_only_currentColor.svg">
+                <a href="{{ route('front') }}" class="w-20 mx-8">
+                    <img src="/dists/images/logo_only_currentColor.svg">
                 </a>
         
                 <!-- isntagram -->

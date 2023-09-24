@@ -14,13 +14,13 @@
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Lolos</div>
                   <div class="d-flex">
-                    <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <button type="button" class="btn btn-primary me-2 rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     data-bs-whatever="@mdo" >Ubah Status</button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Ubah Status</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
@@ -50,7 +50,7 @@
                         </div>
                       </div>
                     </div>
-                    <a href="{{route('admin.lolos.export')}}" class="btn btn-primary">Export Excel</a>
+                    <a href="{{route('admin.lolos.export')}}" class="btn btn-primary rounded-4">Export Excel</a>
                   </div>
                 </div>
               </div>

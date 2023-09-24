@@ -1,12 +1,12 @@
         <!-- navbar -->
         @if (!Route::is('user.index') && !Route::is('user.activication'))
         <nav 
-        class="z-[1000] w-full bg-white backdrop-blur-md px-5 sm:px-7 md:px-10 border-b border-sekunder/20 fixed flex justify-between items-center">
+        class="font-poppins z-[1000] w-full bg-white backdrop-blur-md px-5 sm:px-7 md:px-10 border-b border-sekunder/20 fixed flex justify-between items-center">
         <!-- logo -->
-        <a href="index.html"
+        <a href="{{ route('front') }}"
             class="p-2 flex gap-2 items-center">
             <img id="logo" class="h-8 md:h-9" src="/dists/images/logo_only.svg">
-            <span class="font-extrabold text-xl hidden sm:block text-primer">AR-ROMUSHA</span>
+            <span class="font-extrabold text-xl hidden sm:block text-primer uppercase">{{ App\Models\General::first()->school_name }}</span>
         </a>
 
         <!-- pc menu -->
@@ -15,11 +15,13 @@
             <a href="{{route('front')}}" 
                 class="text-sm p-2 {{Route::is('front') ? 'nav-active' : '' }}"
             >Home</a>
+            @if (!Auth::user())
             <a href="{{route('user.show')}}" 
-                class="text-sm p-2 {{Route::is('user.show') ? 'nav-active' : '' }}"
+            class="text-sm p-2 {{Route::is('user.show') ? 'nav-active' : '' }}"
             >Daftar</a>
+            @endif
             <a href="{{route('informasi')}}" 
-                class="text-sm p-2 {{Route::is('informasi') ? 'nav-active' : '' }}"
+                class="text-sm p-2 {{Route::is('informasi') || Route::is('user.informasi.detail') ? 'nav-active' : '' }}"
             >Informasi</a>
             <a href="{{route('about')}}" 
                 class="text-sm p-2 {{Route::is('about') ? 'nav-active' : '' }}"
@@ -27,9 +29,15 @@
             <a href="{{route('qna')}}" 
                 class="text-sm p-2 {{Route::is('qna') ? 'nav-active' : '' }}"
             >Q&A</a>
+            @if (!Auth::user())
             <a href="{{route('user.index')}}" 
-                class="text-sm p-2 border-[1.5px] border-sekunder text-sekunder font-semibold ms-3 hover:bg-sekunder hover:text-white duration-200 {{Route::is('user.index') ? 'nav-active' : '' }}"
+            class="text-sm p-2 border-[1.5px] border-sekunder text-sekunder font-semibold ms-3 hover:bg-sekunder hover:text-white duration-200"
             >Login</a>
+            @else
+            <a href="{{route('user.dashboard')}}" 
+            class="text-sm p-2 border-[1.5px] border-sekunder text-sekunder font-semibold ms-3 hover:bg-sekunder hover:text-white duration-200"
+            >Dashboard</a>
+            @endif
         </div>
         <!-- mobile menu button -->
         <label class="md:hidden pointer-events-auto" for="swapHamburger">

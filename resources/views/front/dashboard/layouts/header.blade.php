@@ -2,15 +2,15 @@
     <a href="{{ route('front') }}"
         class="p-2 flex gap-2 items-center group">
         <img id="logo" class="h-7 md:h-8" src="/dists/images/logo_only_white.svg">
-        <span class="font-extrabold text-xl hidden sm:block text-dasar group-hover:text-sekunder">{{ App\Models\General::first()->school_name }}</span>
+        <span class="font-extrabold uppercase text-xl hidden sm:block text-dasar group-hover:text-sekunder">{{ App\Models\General::first()->school_name }}</span>
     </a>
 
     {{-- pc navigator --}}
     <nav class="hidden md:flex items-center justify-center">
         <a href="{{ route('user.dashboard') }}" 
-            class="{{ Route::is('user.coba') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-dasar text-center text-sm tracking-wider relative duration-200">
+            class="{{ Route::is('user.dashboard') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-dasar text-center text-sm tracking-wider relative duration-200">
             Dashboard
-            <div class="{{ Route::is('user.coba') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
+            <div class="{{ Route::is('user.dashboard') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
         <a href="{{ route('user.profile') }}" 
             class="{{ Route::is('user.profile') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-dasar text-center text-sm tracking-wider relative duration-200">
@@ -18,14 +18,14 @@
             <div class="{{ Route::is('user.profile') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
         <a href="{{ route('user.informasi') }}" 
-            class="{{ Route::is('user.informasi.*') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-dasar text-center text-sm tracking-wider relative duration-200">
+            class="{{ Route::is('user.informasi') || Route::is('user.informasi.detail') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-dasar text-center text-sm tracking-wider relative duration-200">
             Informasi
-            <div class="{{ Route::is('user.informasi.*') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
+            <div class="{{ Route::is('user.informasi') || Route::is('user.informasi.detail') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
         <a href="{{ route('user.qna') }}" 
-            class="{{ Route::is('user.qna.*') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-dasar text-center text-sm tracking-wider relative duration-200">
+            class="{{ Route::is('user.qna') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-dasar text-center text-sm tracking-wider relative duration-200">
             Q&A
-            <div class="{{ Route::is('user.qna.*') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
+            <div class="{{ Route::is('user.qna') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
 
         <span class="px-2 py-1 ms-3 text-dasar text-center text-xl duration-200 hover:bg-sekunder rounded-full border border-sekunder group/account relative">
@@ -60,20 +60,20 @@
 
         <span id="navMenuMobile" class="w-0 duration-200 absolute top-[2.75rem] right-0 h-screen bg-sky-950 grid grid-cols-1 divide-y-2">
             <div class="flex flex-col">
-                    <a href="" 
-                    class="{{ Route::is('user.coba') ? 'font-semibold text-xl' : '' }} group/nav w-full px-7 py-4 text-dasar text-start tracking-wider relative duration-200 hover:bg-sky-900">
+                    <a href="{{ route('user.dashboard') }}" 
+                    class="{{ Route::is('user.dashboard') ? 'font-semibold text-xl' : '' }} group/nav w-full px-7 py-4 text-dasar text-start tracking-wider relative duration-200 hover:bg-sky-900">
                     Dashboard
                 </a>
-                <a href="" 
+                <a href="{{ route('user.profile') }}" 
                 class="{{ Route::is('user.profile') ? 'font-semibold text-xl' : '' }} group/nav w-full px-7 py-4 text-dasar text-start tracking-wider relative duration-200 hover:bg-sky-900">
                 Profil
                 </a>
-                <a href="" 
-                    class="{{ Route::is('user.informasi.*') ? 'font-semibold text-xl' : '' }} group/nav w-full px-7 py-4 text-dasar text-start tracking-wider relative duration-200 hover:bg-sky-900">
+                <a href="{{ route('user.informasi') }}" 
+                    class="{{ Route::is('user.informasi') || Route::is('user.informasi.detail') ? 'font-semibold text-xl' : '' }} group/nav w-full px-7 py-4 text-dasar text-start tracking-wider relative duration-200 hover:bg-sky-900">
                     Informasi
                 </a>
-                <a href=""  
-                    class="{{ Route::is('user.profile') ? 'font-semibold text-xl' : '' }} group/nav w-full px-7 py-4 text-dasar text-start tracking-wider relative duration-200 hover:bg-sky-900">
+                <a href="{{ route('user.qna') }}"  
+                    class="{{ Route::is('user.qna') ? 'font-semibold text-xl' : '' }} group/nav w-full px-7 py-4 text-dasar text-start tracking-wider relative duration-200 hover:bg-sky-900">
                     Q&A
                 </a>
             </div>

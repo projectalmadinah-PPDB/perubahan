@@ -3,20 +3,21 @@
 @section('title','Profile')
 
 @section('content')
-    @if (!$user->payment)
-        <a href="{{route('user.pay',$user->id)}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-            Silahkan Lakukan Pembayaran Untuk Melengkapi Data Diri 
-        </a>
-    @elseif($user->payment->status == 'pending')
-        <a href="{{route('user.pay',$user->id)}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-            Silahkan Lakukan Pembayaran Untuk Melengkapi Data Diri 
-        </a>
+<main class="w-full min-h-screen h-auto">
+    <div class="flex justify-center items-center w-full">
+        @if (!$user->payment)
+            <a href="{{route('user.pay',$user->id)}}" class="mt-40 text-xs md:text-sm py-3 px-7 rounded-full border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                Silahkan Lakukan Pembayaran <i class="font-bold">disini</i>
+            </a>
+        @elseif($user->payment->status == 'pending')
+            <a href="{{route('user.pay',$user->id)}}" class="mt-40 text-xs md:text-sm py-3 px-7 rounded-full border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                Silahkan Lakukan Pembayaran <i class="font-bold">disini</i>
+            </a>
+        </div>
     @elseif ($user->payment->status == 'berhasil')
-        <main class="w-full min-h-screen h-auto pt-12 md:pt-24">
-            <!-- content biodata -->
-        <section class="w-full flex flex-wrap justify-center items-start px-10 md:px-20 pt-10 pb-14 gap-10">
+    <section class="w-full flex flex-wrap justify-center items-start px-10 md:px-20 pt-10 pb-14 gap-10">
         @if (!$user->student)
-            <a href="{{route('user.kelengkapan')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+            <a href="{{route('user.kelengkapan')}}" class=" text-xs md:text-sm py-3 px-7 rounded-full border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
                 Silahkan Melengkapi Data Diri Anda
             </a>
         @else
@@ -187,7 +188,7 @@
                 </table>
             </div>
         @endif
-        </section>
+    </section>
     </main>
     @else
     <a href="{{route('user.pay',$user->id)}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">

@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-// use App\Models\User;
-// use App\Http\Middleware\User;
-
+ 
 use App\Models\User;
 use App\Models\Student;
 use App\Models\Document;
@@ -12,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Exports\ExportPeserta;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PesertaController extends Controller
 {
@@ -46,7 +44,7 @@ class PesertaController extends Controller
         return view('pages.admin.dashboard.peserta.show', compact('pendaftaran'));
     }
 
-    public function docuent($id)
+    public function document($id)
     {
         $document = Document::findOrFail($id);
 

@@ -8,12 +8,9 @@
         font-family: 'Poppins';
       }
     </style>
-    <form action="" name="form1" id="form1" method="POST">
-      @csrf
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
           <th>ID</th>
           <th>Name</th>
           <th>Nomor Hp</th>
@@ -24,13 +21,9 @@
       <tbody>
         @foreach ($users as $index => $item)
           <tr>
-            <td><input type="checkbox" name="id[{{$item->id}}]" class="checkbox1" value="{{$item->id}}"></td>
             <td>{{$index + 1}}</td>
             <td>{{$item->name}}</td>
             <td>{{$item->nomor}}</td>
-            {{-- <td>{{$item->tanggal_lahir}}</td>
-            <td>{{$item->jenis_kelamin}}</td> --}}
-            {{-- <td>{{$item->nik}}</td> --}}
             @if($item->student && $item->document)
             <td><button class="badge badge-success border-0">Lengkap</button></td>
             @else

@@ -119,7 +119,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::put('/peserta/process/{id}',[PesertaController::class,'update'])->name('peserta.update');
 
-      Route::get('/peserta/export', [PesertaController::class,'export'])->name('peserta.export');
+      Route::get('/peserta/export', [PesertaController::class,'export_data'])->name('peserta.export');
       
       Route::get('/peserta/table', [PesertaController::class,'table'])->name('peserta.table');
 
@@ -131,7 +131,6 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::get('/peserta/show-document/{id}',[PesertaController::class,'document'])->name('peserta.document');
 
-      // Route::get('/peserta/coba',[PesertaController::class,'coba'])->name('peserta.coba');
       Route::post('/peserta/coba/edit',[PesertaController::class,'coba'])->name('peserta.coba.edit');
 
       Route::patch('/peserta/coba/update',[PesertaController::class,'cobaUpdate'])->name('peserta.coba.update');

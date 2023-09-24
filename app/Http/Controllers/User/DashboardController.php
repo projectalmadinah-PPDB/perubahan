@@ -33,7 +33,8 @@ class DashboardController extends Controller
         $user = User::with('student')->findOrFail($users);
         $userId = Payment::where('user_id',$users)->get();
         $informasi = Article::all();
-        return view('front.dashboard.coba',compact('user','informasi','userId'));
+        $announcements = Announcement::get();
+        return view('front.dashboard.coba',compact('user','informasi','userId','announcements'));
     }
 
     public function profile()
@@ -64,7 +65,6 @@ class DashboardController extends Controller
         $pendaftaran = User::find($id);
         $phone = User::where('nomor',$pendaftaran->nomor)->first();
         $status = 'pending';
-        
         
         $payment = json_decode(json_encode($this->redirect_payment($id)),true);
         // dd($payment);

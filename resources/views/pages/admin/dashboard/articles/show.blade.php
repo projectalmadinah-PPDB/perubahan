@@ -14,6 +14,7 @@
             <div class="card-header">
               <div class="d-flex justify-content-between">
                 <div class="card-title">Article Table</div>
+                <a href="{{ route('admin.article.edit', $articles->slug) }}" class="btn btn-primary rounded-4">Edit</a>
               </div>
             </div>
             <div class="card-body">

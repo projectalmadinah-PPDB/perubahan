@@ -13,12 +13,12 @@ body::-webkit-scrollbar-thumb {
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/dists/assets/fonts/poppins.ttf');
+    src: url('../dists/assets/fonts/poppins.ttf');
 }
 
 @font-face {
     font-family: 'Evoria';
-    src: url('/dists/assets/fonts/Evoria.ttf');
+    src: url('../dists/assets/fonts/Evoria.ttf');
 }
 
 * {
@@ -84,7 +84,7 @@ body::-webkit-scrollbar-thumb {
 .title::after {
     content: '';
     position: absolute;
-    bottom: -3px;
+    bottom: -1px;
     left: 0;
 
     width: 6rem; height: 3px;

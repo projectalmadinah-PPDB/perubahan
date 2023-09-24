@@ -16,42 +16,7 @@
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Wawancara</div>
                   <div class="d-flex">
-                    {{-- <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModalss">Insert Massal</button>
-                      <div class="modal fade" id="exampleModalss" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Insert Massal</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form id="form3" name="form3" method="POST">
-                                @csrf
-                                @foreach ($data as $index => $item)
-                                <input type="hidden" name="ids[]" value="{{ $item->id }}">
-                                @endforeach
-                                <div class="mb-2">
-                                  <label for="">Tanggal Wawancara</label>
-                                  <input type="date" class="form-control" name="tanggal[]" >
-                                </div>
-                                <div class="mb-2">
-                                    <label for="">Waktu Wawancara</label>
-                                    <input type="time" class="form-control" name="jam[]">
-                                </div>
-                                <div class="mb-2">
-                                      <label for="">Link Wawancara</label>
-                                      <input type="text" class="form-control" name="link[]" >
-                                </div>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary" onclick="insert(event)">Save changes</button>
-                                </div>
-                              </form>
-                          </div>
-                        </div>
-                      </div> --}}
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <button type="button" class="btn btn-primary rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal"
                       data-bs-whatever="@mdo" >Ubah Status</button>
                       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">

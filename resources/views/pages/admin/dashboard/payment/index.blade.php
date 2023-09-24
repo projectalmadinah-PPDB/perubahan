@@ -2,7 +2,7 @@
 
 @section('title','Payment')
 
-@push('add-styles')
+{{-- @push('add-styles')
   <style>
     .dataTables_filter input {
       border-radius: 2rem!important;
@@ -40,7 +40,7 @@
       padding: .3rem .7rem!important;
     }
   </style>
-@endpush
+@endpush --}}
 
 @section('content')
     <div class="main-panel">
@@ -53,7 +53,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Pembayaran Siswa</div>
-                  <button class="btn btn-danger ms-2 float-end" onclick="destroy(event)">Delete</button>
+                  <button class="btn btn-danger rounded-4 ms-2 float-end" onclick="destroy(event)">Delete</button>
                 </div>
               </div>
               <div class="card-body">

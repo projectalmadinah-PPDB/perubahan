@@ -12,7 +12,7 @@
     <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
         <!-- status pendaftaran -->
         <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
-            <h1 class="text-2xl md:text-3xl tracking-wide font-semibold text-center title">Selamat Datang {{$user->name}}!</h1>
+            <h1 class="text-2xl md:text-3xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
             <p class="tracking-wide text-sm md:text-lg text-center">
                 Silahkan Melakukan Pembayaran Administrasi Sebelum Melengkapi Data Diri
             </p>
@@ -27,14 +27,8 @@
 
         <!-- alur pendaftaran dan status -->
     </section>
-    {{-- width:75%
-                                /* @if ($user->payment == 'Sudah')
-                                width:75%
-                                @elseif ($user->status == 'Sedang')
-                                width:25%
-                                @else
-                                width:50%
-                                @endif */ --}}
+
+    {{-- alur --}}
     <section id="alur" class="w-full py-16 select-none">
         <div class="mx-auto container">
             <div class="w-11/12 lg:w-1/2 mx-auto">
@@ -63,20 +57,6 @@
                             <span class="font-bold">Step 1 :</span><br>Mendaftar & Login
                         </p>
                     </div>
-                    {{-- contoh --}}
-                    {{-- <div class="relative">
-                        <div 
-                            class="
-                            @if ($user->status == 'Sudah') {{ $sudah }} 
-                            @elseif ($user->status == 'Sedang') {{ $sedang }} 
-                            @else {{ $belum }} @endif">
-                            <i class="bi bi-check-lg text-white"></i>
-                        </div>
-                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                            <span class="font-bold">Contoh :</span><br>Ini Cuma Contoh
-                        </p>
-                    </div> --}}
-                    {{-- end contoh --}}
                     <div class="relative">
                         <div class="rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center">
                             {{-- <i class="bi bi-check-lg text-white"></i> --}}
@@ -94,7 +74,7 @@
                         </p>
                     </div>
                     <div class="relative">
-                        <div class="rounded-full w-6 h-6 bg-dasar shadow-md text-center">
+                        <div class="rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center">
                             <i class="bi bi-check-lg text-white"></i>
                         </div>
                         <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
@@ -187,11 +167,11 @@
     </section>
     @else
     @if ($user->payment->status == 'pending')
-    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+    <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
         <!-- status pendaftaran -->
-        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Anda Sedang Melalakukan Pembayaran {{$user->name}}!</h1>
-            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Pembayaran Anda Masi Dalam Proses/Anda Belum Membayar ? </p>
+        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
+            <h1 class="text-2xl md:text-3xl tracking-wide font-semibold text-center">Anda Sedang Melakukan Pembayaran {{$user->name}}!</h1>
+            <p class="tracking-wide text-sm md:text-lg text-center">Pembayaran Anda Masi Dalam Proses/Anda Belum Membayar ? </p>
             <a href="{{$user->payment->link}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
                 Silahkan Tekan Tombol Berikut
             </a>
@@ -336,11 +316,11 @@
         </script>
     </section>
         @elseif ($user->payment->status == 'expired')
-        <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+        <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
                 <!-- status pendaftaran -->
-                <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-                    <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Halo {{$user->name}} Sepertinya Kamu Tidak Melakukan Pembayaran Lebih Dari 24Jam!</h1>
-                    <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Jika Ingin Melakukan Ulang Pembayaran Silahkan</p>
+                <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
+                    <h1 class="text-2xl md:text-3xl tracking-wider font-semibold text-center">Halo {{$user->name}}, Sepertinya Kamu Tidak Melakukan Pembayaran Lebih Dari 24 Jam!</h1>
+                    <p class="tracking-wide text-sm md:text-lg text-center">Jika Ingin Melakukan Ulang Pembayaran Silahkan</p>
                     <a href="{{route('user.pay',$user->id)}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
                         Lakukan Pembayaran Ulang Disini
                     </a>
@@ -486,11 +466,15 @@
         </section>
         @elseif($user->payment->status == 'berhasil')
             @if (!$user->student)
-                    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+                    <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
                         <!-- status pendaftaran -->
-                        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-                            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Anda Telah Melakukan Pembayaran Untuk PPDB {{$user->name}}!</h1>
-                            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Lengkapi Data diri kamu untuk melanjutkan proses pendaftaran, melalui tombol dibawah ini.</p>
+                        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
+                            <h1 class="text-2xl md:text-3xl tracking-wider font-semibold text-center">
+                                Selamat Anda Telah Melakukan Pembayaran Untuk PPDB {{$user->name}}!
+                            </h1>
+                            <p class="tracking-wide text-sm md:text-lg text-center">
+                                Lengkapi Data diri kamu untuk melanjutkan proses pendaftaran, melalui tombol dibawah ini.
+                            </p>
                             <a href="{{route('user.kelengkapan')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
                                 !Click! Untuk Lengkapi Data Diri 
                             </a>
@@ -596,12 +580,12 @@
                             <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
                                 Yang Siapkan Untuk Melengkapi Data Diri
                                 <ul>
-                                    <li>1. Data Data Tentang Diri Anda Dan Orang Tua</li>
-                                    <li>2. Kartu Keluarga</li>
-                                    <li>3. Kartu Ijazah <strong>Pendidikan Terakhir</strong></li>
-                                    <li>4. Rapor <strong>Pendidikan Terakhir</strong></li>
-                                    <li>5. Akte Anda</li>
-                                    <li>6. Silahkan Buat 4 File PDF , Seperti File Pertama Kartu Keluarga , Kedua Kartu Ijazah, Ketiga Rapor , Keempat Akte</li>
+                                    <li>Data Data Tentang Diri Anda Dan Orang Tua</li>
+                                    <li>Kartu Keluarga</li>
+                                    <li>Kartu Ijazah <strong>Pendidikan Terakhir</strong></li>
+                                    <li>Rapor <strong>Pendidikan Terakhir</strong></li>
+                                    <li>Akte Anda</li>
+                                    <li>Silahkan Buat 4 File PDF , Seperti File Pertama Kartu Keluarga , Kedua Kartu Ijazah, Ketiga Rapor , Keempat Akte</li>
                                 </ul>
                             </div>
                         </div>
@@ -650,11 +634,11 @@
                             </div>
                         </section>
                     @endif
-                    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+                    <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
                         <!-- status pendaftaran -->
-                        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-                            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Anda Telah Melengkapi Data Pribadi {{$user->name}}!</h1>
-                            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Anda Sudah Melengkapi Data Diri Dan Orang Tua Silahkan Masukkan Document Anda</p>
+                        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
+                            <h1 class="text-2xl md:text-3xl tracking-wider font-semibold text-center">Selamat Anda Telah Melengkapi Data Pribadi {{$user->name}}!</h1>
+                            <p class="tracking-wide text-sm md:text-lg text-center">Anda Sudah Melengkapi Data Diri Dan Orang Tua Silahkan Masukkan Document Anda</p>
                             <a href="{{route('user.document')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
                                 !Click! Untuk Lengkapi Document
                             </a>
@@ -814,11 +798,11 @@
                         </div>
                     </section>
                     @endif
-                    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+                    <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
                         <!-- status pendaftaran -->
-                        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
-                            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Data Sudah Semua Di Lengkapi {{$user->name}}!</h1>
-                            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Selamat Datang Kamu Sudah Melengkapi Semua Pendaftaran Silahkan Menunggu Pesan Dari Admin </p>
+                        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
+                            <h1 class="text-2xl md:text-3xl tracking-wider font-semibold text-center">Semua Data {{$user->name}} berhasil dilengkapi!</h1>
+                            <p class="tracking-wide text-sm md:text-lg text-center">Selamat Datang Kamu Sudah Melengkapi Semua Pendaftaran Silahkan Menunggu Pesan Dari Admin </p>
                             <a href="{{route('user.profile')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
                                 Halo Data Diri Saya {{$user->name}}
                             </a>

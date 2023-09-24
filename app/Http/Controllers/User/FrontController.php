@@ -6,6 +6,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
+use Illuminate\Support\Facades\Auth;
 
 class FrontController extends Controller
 {

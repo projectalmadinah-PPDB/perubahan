@@ -1,14 +1,14 @@
-    <style>
-      @font-face {
-        font-family: 'Poppins';
-        src: url(dists/assets/font);
-      }
-      * {
-        font-family: 'Poppins';
-        font-size: 12px;
-        text-align: center;
-      }
-    </style>
+<style>
+  @font-face {
+    font-family: 'Poppins';
+    src: url(dists/assets/font);
+  }
+  * {
+    font-family: 'Poppins';
+    font-size: 12px;
+    text-align: center;
+  }
+</style>
 <div class="table-responsive">
     <form action="" name="form1" id="form1" method="POST">
       @csrf

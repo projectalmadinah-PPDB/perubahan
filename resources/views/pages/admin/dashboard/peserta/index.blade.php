@@ -17,9 +17,8 @@
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Peserta</div>
                   <div class="d-flex justify-content-between">
-                    <a href="{{route('admin.peserta.export')}}" class="btn btn-primary me-2">Download Excel</a>
-                    {{-- <button class="btn btn-primary" onclick="edit(event)">Ubah Data</button> --}}
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <a href="{{route('admin.peserta.export')}}" class="btn btn-primary rounded-4 me-2">Export Excel</a>
+                    <button type="button" class="btn rounded-4 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     data-bs-whatever="@mdo" >Ubah Status</button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
@@ -55,7 +54,7 @@
                         </div>
                       </div>
                     </div>
-                    <button class="btn btn-danger ms-2 float-end" onclick="destroy(event)">Delete</button>
+                    <button class="btn btn-danger ms-2 float-end rounded-4" onclick="destroy(event)">Delete</button>
                 </div>
                 </div>
               </div>

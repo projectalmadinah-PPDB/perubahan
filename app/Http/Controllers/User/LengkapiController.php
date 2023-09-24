@@ -63,10 +63,10 @@ class LengkapiController extends Controller
     public function upload(Request $request)
     {
         $request->validate([
-            'kk' => 'required|mimes:pdf|max:2048', // Kartu Keluarga
-            'ijazah' => 'required|mimes:pdf|max:2048', // Ijazah
-            'akta' => 'required|mimes:pdf|max:2048', // Akta
-            'rapor' => 'required|mimes:pdf|max:2048', // lapor
+            'kk' => 'required|mimes:pdf|max:8192', // Kartu Keluarga
+            'ijazah' => 'required|mimes:pdf|max:8192', // Ijazah
+            'akta' => 'required|mimes:pdf|max:8192', // Akta
+            'rapor' => 'required|mimes:pdf|max:8192', // lapor
         ]);
     
         if ($request->hasFile('kk') && $request->hasFile('ijazah') && $request->hasFile('akta') && $request->hasFile('rapor')) {

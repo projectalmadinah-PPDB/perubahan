@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('desc');
+            $table->string('step');
             $table->foreignId('user_id');
             $table->softDeletes();
             $table->timestamps();

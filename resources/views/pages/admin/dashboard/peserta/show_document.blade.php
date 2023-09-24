@@ -18,30 +18,42 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <div>
-                    <label for="">Kartu Keluarga</label>
-                    <object data="{{ asset('storage/' . $document->kk) }}" type="application/pdf" width="100%" height="600px">
+                <div class="row">
+                  <div class="col-6">
+                    <label class="form-label fs-6 mb-2">
+                      Kartu Keluarga
+                      <a href="{{ asset('storage/' . $document->kk) }}" target="_blank" class="badge badge-info border-0 ms-2">Show <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+                    </label>
+                    <object class="rounded-4" data="{{ asset('storage/' . $document->kk) }}" type="application/pdf" width="100%" height="600px">
                       <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
-                  </object>
+                    </object>
                   </div>
-                  <div>
-                    <label for="">Ijazah</label>
-                    <object data="{{ asset('storage/' . $document->ijazah) }}" type="application/pdf" width="100%" height="600px">
+                  <div class="col-6">
+                    <label class="form-label fs-6 mb-2">
+                      Ijazah
+                      <a href="{{ asset('storage/' . $document->ijazah) }}" target="_blank" class="badge badge-info border-0 ms-2">Show <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+                    </label>
+                    <object class="rounded-4" data="{{ asset('storage/' . $document->ijazah) }}" type="application/pdf" width="100%" height="600px">
                       <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
-                  </object>
+                    </object>
                   </div>
-                  <div>
-                    <label for="">Akta</label>
-                    <object data="{{ asset('storage/' . $document->akta) }}" type="application/pdf" width="100%" height="600px">
+                  <div class="col-6">
+                    <label class="form-label fs-6 mb-2">
+                      Akta
+                      <a href="{{ asset('storage/' . $document->akta) }}" target="_blank" class="badge badge-info border-0 ms-2">Show <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+                    </label>
+                    <object class="rounded-4" data="{{ asset('storage/' . $document->akta) }}" type="application/pdf" width="100%" height="600px">
                       <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
-                  </object>
+                    </object>
                   </div>
-                  <div>
-                    <label for="">Rapor</label>
-                    <object data="{{ asset('storage/' . $document->rapor) }}" type="application/pdf" width="100%" height="600px">
+                  <div class="col-6">
+                    <label class="form-label fs-6 mb-2">
+                      Rapor
+                      <a href="{{ asset('storage/' . $document->rapor) }}" target="_blank" class="badge badge-info border-0 ms-2">Show <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+                    </label>
+                    <object class="rounded-4" data="{{ asset('storage/' . $document->rapor) }}" type="application/pdf" width="100%" height="600px">
                       <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
-                  </object>
+                    </object>
                   </div>
                 </div>
               </div>

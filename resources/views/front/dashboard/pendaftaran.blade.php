@@ -23,15 +23,15 @@
         
             begitu;
      -->
-    <div class=" w-full font-poppins caret-sekunder accent-primer">
-        <img src="../images/logo_only_currentColor.svg" draggable="false" class="fixed w-[70rem] opacity-20 -bottom-52">
+    <div class=" w-full font-poppins caret-sekunder accent-primer py-5">
+        <img src="../dists/images/logo_only_currentColor.svg" draggable="false" class="fixed w-[70rem] opacity-20 -bottom-52">
         <main class="w-full h-screen flex justify-center items-center">
             <!-- formulir kelengkapan data diri -->
             <section 
                 class="relative w-full flex flex-col justify-center items-center py-7 gap-y-5 tracking-wide">
                 <div class="bg-gradient-to-t from-primer to-sky-900 flex flex-col justify-center items-center gap-y-3 px-5 md:px-9 py-16 rounded-3xl text-dasar">
                     <div class="py-[16px] px-[14px] rounded-full absolute z-999 top-0 bg-dasar shadow-2xl">
-                        <img src="../images/logo_only.svg" alt="" class="w-10">
+                        <img src="../dists/images/logo_only.svg" alt="" class="w-10">
                     </div>
                     <h1 class="text-4xl font-bold text-center leading-none">Form Data Diri.</h1>
                     <p class="text-xs tracking-wide font-light text-gray-400 px-24 md:px-36">
