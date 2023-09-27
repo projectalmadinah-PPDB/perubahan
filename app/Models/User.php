@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'notify_id',
+        'generasi_id',
         'name' ,
         'email' ,
         'nomor',
@@ -94,5 +95,10 @@ class User extends Authenticatable
     public function notifys()
     {
         return $this->belongsTo(Notify::class,'notify_id');
+    }
+
+    public function generasi()
+    {
+        return $this->belongsTo(Generasi::class);
     }
 }

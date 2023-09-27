@@ -20,4 +20,9 @@ class Generasi extends Model
     {
         return $this->belongsTo(Student::class);
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

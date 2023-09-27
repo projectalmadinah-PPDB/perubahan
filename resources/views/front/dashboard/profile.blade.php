@@ -150,7 +150,7 @@
                             <th class="py-3 font-semibold">
                                 Akte Kelahiran
                                 @if ($user->document && $user->document->akta)
-                                <a href="{{ asset('storage/' . $user->document->akte) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                                <a href="{{ asset('storage/' . $user->document->akta) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
                                     show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
                                 </a>
                                 @endif

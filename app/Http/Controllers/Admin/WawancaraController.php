@@ -34,7 +34,6 @@ class WawancaraController extends Controller
         // $users = User::where('nomor',$request->id)->first();
         $notify = User::where('notify_id',1)->first();
         $student = User::find($request->id); // Mengambil objek Student berdasarkan ID
-        $studentId = $student->id; // Mengambil ID dari objek Student
 
         $data = $request->validate([
             'tanggal' => 'required',
@@ -42,7 +41,6 @@ class WawancaraController extends Controller
             'jam' => 'required'
         ]);
         $data['user_id'] = $user->id;
-        $data['student_id'] = $studentId;
 
         $messages = $notify->notifys->notif_info;
 
@@ -74,13 +72,20 @@ class WawancaraController extends Controller
         $data['user_id'] = $wawancara->user_id;
         $data['student_id'] = $wawancara->student_id;
         // Update data
-        $messages = $notify->notifys->notif_info . $request->tanggal . ' Pada Jam : ' . $request->jam . ' Silahkan Akses Link berikut: ' . "<a href='$request->link'>" . '</a>';
+        $messages = $notify->notifys->notif_wawancara . $request->tanggal . ' Pada Jam : ' . $request->jam . ' Silahkan Akses Link berikut: ' . "<a href='$request->link'>" . '</a>';
 
 
         $this->send_message($student->user->nomor,$messages);
         $wawancara->update($data);
 
         return redirect()->route('admin.wawancara.index')->with('edit','Berhasil Edit Waktu Wawancara Dan Link');
+    }
+
+    public function edit_massal(Request $request)
+    {
+        $status = $request->id;
+        $student = User::where('status','Wawancara')->findOrFail($status);
+        return view('pages.admin.dashboard.wawancara.edit-status',compact('student'));
     }
 
     public function editStatus(Request $request)
@@ -96,7 +101,7 @@ class WawancaraController extends Controller
                 ->update($data);
         }
 
-        return redirect()->route('admin.wawancara.index')->with('edit','Berhasil Mengedit Massal');
+        return redirect()->route('admin.wawancara.index')->with('edit_massal','Berhasil Mengedit Massal');
     }
 
     public function store_massal(Request $request)

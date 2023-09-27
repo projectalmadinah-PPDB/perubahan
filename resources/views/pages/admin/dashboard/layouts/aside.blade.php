@@ -160,12 +160,12 @@
 
 			<h1 class="mb-0 fw-bolder text-body-tertiary text-uppercase ps-3" style="font-size: 10px">Lain-Lain</h1>
 
-			{{-- <li class="nav-item {{ Route::is('admin.generasi.*') ? 'active' : '' }}">
+			<li class="nav-item {{ Route::is('admin.generasi.*') ? 'active' : '' }}">
 				<a href="{{ route('admin.generasi.index') }}" class="py-1 px-3">
 					<i class="bi bi-person-fill-lock"></i>
 					<p>Generasi</p>
 				</a>
-			</li> --}}
+			</li>
 			<li class="nav-item {{ Route::is('admin.question.*') ? 'active' : '' }}">
 				<a href="{{ route('admin.question.index') }}" class="py-1 px-3">
 					<i class="bi bi-question-octagon"></i>

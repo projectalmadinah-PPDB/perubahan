@@ -82,7 +82,7 @@ class SettingController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('admin.profile.index')->with('success','Berhasil Mengupdate Profile');
+        return redirect()->route('admin.setting.profile.index')->with('success','Berhasil Mengupdate Profile');
     }
     /**
      * Show the form for editing the specified resource.

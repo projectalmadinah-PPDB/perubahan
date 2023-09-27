@@ -15,18 +15,9 @@ class PesertaController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->has('search')){
-            // $data = Payment::where('name','LIKE','%'.$request->search.'%')->where('status','berhasil')->paginate(5);
-            $data = User::whereHas('payment', function ($query) {
-                $query->where('status', 'berhasil');
-            })->where('name','LIKE','%'.$request->search.'%')->paginate(5);
-        }
-        else{
-            // $data = Payment::orderby('id','desc')->where('status','berhasil')->paginate(5);
-            $data = User::whereHas('payment', function ($query) {
-                $query->where('status', 'berhasil');
-            })->paginate(5);
-        }
+        $data = User::whereHas('payment', function ($query) {
+            $query->where('status', 'berhasil');
+        })->orderBy('id','desc')->paginate(5);
         
         return view('pages.admin.dashboard.peserta.index',compact('data'));
     }
@@ -149,8 +140,9 @@ class PesertaController extends Controller
     public function cobaUpdate(Request $request)
     {
         $status = $request->status; // Ambil nilai status dari input seleksi
-        
-        foreach ($request->ids as $key => $id) {
+        $selectedIds = $request->input('ids'); // Ambil ID yang dipilih
+
+        foreach ($selectedIds as $id) {
             $data = array(
                 'status' => $status,
             );
@@ -159,7 +151,7 @@ class PesertaController extends Controller
                 ->update($data);
         }
 
-        return redirect()->route('admin.peserta.index')->with('edit','Berhasil Mengedit Massal');
+        return redirect()->route('admin.peserta.index')->with('edit_massal', 'Berhasil Mengedit Massal');
     }
 
 

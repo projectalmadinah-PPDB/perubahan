@@ -12,9 +12,13 @@ class Notify extends Model
     protected $fillable = [
         'notif_otp',
         'notif_pembayaran',
-        'notif_lolos',
-        'notif_gagal',
-        'notif_info'
+        'notif_wawancara',//pengumuman
+        'notif_lolos',//pengumuman
+        'notif_gagal',//pengumuman
+        'notif_info',//pengumuman
+        'notif_login',
+        'notif_mengisi_pribadi',
+        'notif_melengkapi'
     ];
 
     public function user()

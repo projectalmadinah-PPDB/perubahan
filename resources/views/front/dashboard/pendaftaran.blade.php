@@ -162,6 +162,16 @@
                             <span class="text-xs text-slate-500">Isi "tidak ada" jika piatu</span>
                         </div>
                         <div class="mb-3">
+                            <label for="" class="text-sm text-slate-200">Tahun Ajaran</label>
+                            <select name="generasi_id"
+                                class="shadow-inner tracking-wider rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-md placeholder:text-gray-500 bg-white/10">
+                                <option class="text-slate-300" hidden disabled selected>- Pilih penghasilan orangtuamu -</option>
+                                @foreach ($generasi as $index => $item)
+                                    <option class="text-primer" value="{{$item->id}}">{{$item->generasi}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label for="" class="text-sm text-slate-200">Penghasilan Orang Tua</label>
                             <select name="parent_earning"
                                 class="shadow-inner tracking-wider rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-md placeholder:text-gray-500 bg-white/10">

@@ -9,6 +9,7 @@ use App\Models\General;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Exports\ExportPendaftar;
+use App\Exports\ExportPrivate;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,12 @@ class PendaftarController extends Controller
     public function export()
     {
         return Excel::download(new ExportPendaftar,"Pendaftar.xlsx");
+    }
+
+    public function export_private($id)
+    {
+        $user = User::findOrFail($id);
+        return Excel::download(new ExportPrivate($user),"Data.$user->name.xlsx");
     }
 
     public function show($id){

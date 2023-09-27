@@ -18,42 +18,8 @@
                   <div class="card-title">Daftar Peserta</div>
                   <div class="d-flex justify-content-between">
                     <a href="{{route('admin.peserta.export')}}" class="btn btn-primary rounded-4 me-2">Export Excel</a>
-                    <button type="button" class="btn rounded-4 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    data-bs-whatever="@mdo" >Ubah Status</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <form id="form2" name="form2" method="POST">
-                              @csrf
-                              @method('PATCH')
-                      
-                              <div class="form-group">
-                                  <label for="status">Status Santri</label>
-                                  <select name="status" id="status" class="form-select">
-                                      <option value="Belum" disabled selected>Pilih Status</option>
-                                      <option value="Wawancara">Wawancara</option>
-                                      <option value="Gagal">Gagal</option>
-                                  </select>
-                              </div>
-                      
-                              @foreach ($data as $index => $item)
-                              <input type="hidden" name="ids[]" value="{{ $item->id }}">
-                              @endforeach
-                      
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="edit(event)">Send message</button>
-                              </div>
-                          </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <button type="button" class="btn rounded-4 btn-primary" 
+                    onclick="edit(event)">Ubah Status</button>
                     <button class="btn btn-danger ms-2 float-end rounded-4" onclick="destroy(event)">Delete</button>
                 </div>
                 </div>
@@ -94,13 +60,12 @@
                           <td><a class="badge badge-success border-0 text-white">Lengkap &#x2714;</a></td>
                           @elseif ($item->student && !$item->document)
                           <td>
-                            <a class="badge badge-success border-0 text-white">data &#x2714;
-                            </a>
-                            <a href="" class="badge badge-danger">Document &#x2715;</a>
+                            <button class="badge badge-danger border-0">Tidak Legkap</button>
                           </td>
                           @else
                           <td>
-                            <button class="badge badge-danger border-0">Tidak Legkap</button></td>
+                            <button class="badge badge-danger border-0">Tidak Legkap</button>
+                          </td>
                           @endif
                           <td>
                             @if (!$item == 'pending')
@@ -126,11 +91,10 @@
                           <td>
                             @if(!$item->student)
                             <a href="" class="badge badge-danger">Tidak Ada Data</a>
+                            @elseif($item->student && !$item->document)
+                            <a href="" class="badge badge-danger">Data Tidak Lengkap</a>
                             @else
                             <a href="{{route('admin.peserta.show',$item->id)}}" class="badge badge-primary">Data Pribadi</a>
-                            @endif
-                            @if ($item->document) 
-                            <a href="{{route('admin.peserta.document',$item->document->id)}}" class="badge badge-warning">Document</a>
                             @endif
                             <a href="{{route('admin.peserta.edit',$item->id)}}" class="badge badge-warning">Edit</a>
                             <form action="{{route('admin.peserta.destroy',$item->id)}}" method="post" class="d-inline">
@@ -149,7 +113,6 @@
                                   @csrf
                                   @method('POST')
                                   <div class="d-flex flex-wrap">
-                                    <button type="submit" name="status" value="Lulus" class="border-0 bg-success w-100 text-bold text-white" >Lolos Semua</button>
                                     <button name="status" type="submit" class="border-0 bg-danger w-100 text-bold text-white" value="Wawancara">Lanjut Wawancara</button>
                                     <button type="submit" name="status" value="Gagal" class="border-0 bg-warning w-100 text-bold text-white" >Gagal / Gugur</button>
                                   </div>
@@ -192,7 +155,6 @@
                     this.checked = true;
                 })
             }else{
-              $('#editAll').attr('disabled', true);
                 $('.checkbox1').each(function(){
                     this.checked = false;
                 })
@@ -223,13 +185,8 @@
         confirmButtonText: 'Yes, Update it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          document.form2.action = "/admin/peserta/coba/update"
-          document.form2.submit()
-          Swal.fire(
-            'Edited!',
-            'Your file has been Edit.',
-            'success'
-          )
+          document.form1.action = "/admin/peserta/coba/edit"
+          document.form1.submit()
         }
       })
       }else{
@@ -295,6 +252,14 @@
     "closeButton" : true
   }
   toastr.warning("{{ session('edit') }}");
+</script>
+@elseif(session('edit_massal'))
+<script>
+  Swal.fire(
+            'Edited!',
+            'Berhasil Edit Massal',
+            'success'
+          )
 </script>
 @endif
 @endpush

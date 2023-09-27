@@ -73,13 +73,10 @@
                             <td>
                               @if($item->student == NULL)
                               <a href="" class="badge badge-danger">Tidak Ada Data</a>
+                              @elseif($item->document == NULL)
+                              <a href="" class="badge badge-danger">Data Tidak Lengkap</a>
                               @else
                               <a href="{{route('admin.pendaftar.show',$item->id)}}" class="badge badge-primary">Data Pribadi</a>
-                              @endif
-                              @if ($item->document == NULL)
-                              <a href="" class="badge badge-danger">Tidak Ada Document</a>
-                              @else
-                              <a href="{{route('admin.pendaftar.show_document',$item->document->id)}}" class="badge badge-warning">Document</a>
                               @endif
                               <a href="{{route('admin.pendaftar.edit',$item->id)}}" class="badge badge-warning">Edit</a>
                               <form action="{{route('admin.pendaftar.destroy',$item->id)}}" method="post" class="d-inline">

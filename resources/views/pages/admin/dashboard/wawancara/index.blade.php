@@ -15,44 +15,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Wawancara</div>
-                  <div class="d-flex">
-                    <button type="button" class="btn btn-primary rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                      data-bs-whatever="@mdo" >Ubah Status</button>
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form id="form2" name="form2" method="POST">
-                                @csrf
-                                @method('PATCH')
-                        
-                                <div class="form-group">
-                                    <label for="status">Status Santri</label>
-                                    <select name="status" id="status" class="form-select">
-                                      <option value="Belum" disabled selected>Pilih Status</option>
-                                        <option value="Lulus">Lulus</option>
-                                        <option value="Gagal">Gagal</option>
-                                    </select>
-                                </div>
-                        
-                                @foreach ($data as $index => $item)
-                                <input type="hidden" name="ids[]" value="{{ $item->id }}">
-                                @endforeach
-                        
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary" onclick="edit(event)">Send message</button>
-                                </div>
-                            </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <button type="button" class="btn btn-primary rounded-4" onclick="edit(event)" >Ubah Status</button>
                 </div>
               </div>
               <div class="card-body">
@@ -219,39 +182,6 @@
         })
     });
 
-    function insert(event) {
-        // document.form1.action = "/admin/peserta/coba/edit"
-        // document.form1.submit()
-        event.preventDefault()
-        if($('.checkbox1').is(':checked')){
-          Swal.fire({
-        title: 'Kamu Yakin?',
-        text: "Yakin Ingin Mengedit Banyak Data",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Update it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          document.form3.action = "/admin/wawancara/insert"
-          document.form3.submit()
-          Swal.fire(
-            'Edited!',
-            'Your file has been Edit.',
-            'success'
-          )
-        }
-      })
-      }else{
-        Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Select Data Yang Ingin Di Edit Massal',
-      })
-      }
-    }
-
     function edit(event) {
         // document.form1.action = "/admin/peserta/coba/edit"
         // document.form1.submit()
@@ -267,13 +197,8 @@
         confirmButtonText: 'Yes, Update it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          document.form2.action = "/admin/wawancara/massal"
-          document.form2.submit()
-          Swal.fire(
-            'Edited!',
-            'Your file has been Edit.',
-            'success'
-          )
+          document.form1.action = "/admin/wawancara/edit"
+          document.form1.submit()
         }
       })
       }else{
@@ -339,6 +264,14 @@
     "closeButton" : true
   }
   toastr.warning("{{ session('edit') }}");
+</script>
+@elseif(session('edit_massal'))
+<script>
+  Swal.fire(
+            'Edited!',
+            'Berhasil Edit Massal',
+            'success'
+          )
 </script>
 @endif
 @endpush

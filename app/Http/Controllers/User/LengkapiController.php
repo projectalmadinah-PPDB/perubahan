@@ -8,20 +8,26 @@ use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Generasi;
+use App\Models\User;
+use App\Traits\Fonnte;
 use Illuminate\Support\Facades\Auth;
 
 class LengkapiController extends Controller
 {
+    use Fonnte;
     public function index()
     {
-        $generasi = Generasi::where('status','on')->first();
+        $generasi = Generasi::where('status','on')->get();
         return view('front.dashboard.pendaftaran',compact('generasi'));
     }
 
     public function store(Request $request)
     {
         $generasi_id = Generasi::where('status','on')->first();
+        $notif = User::where('notify_id',1)->first();
         $user = Auth::user()->id;
+        $userss = Auth::user();
+        $users = User::where('nomor',$userss->nomor)->first();
 
         $student = $request->validate([
             'birthplace' => 'required',
@@ -33,8 +39,8 @@ class LengkapiController extends Controller
             'old_school' => 'required',
             'organization_exp' => 'required',
             'address' => 'required',
+            'generasi_id' => 'required'
         ]);
-        $student['generasi_id'] = $generasi_id->id;
         $student['user_id'] = $user;
         Student::create($student);
 
@@ -51,6 +57,11 @@ class LengkapiController extends Controller
         ]);
         $parent['user_id'] = $user;
         Parents::create($parent);
+
+        $messages = $notif->notifys->notif_mengisi_pribadi;
+
+
+        $this->send_message($users->nomor,$messages);
         
         return redirect()->route('user.document')->with('pribadi','Kamu Sudah Memasukkan Data Pribadi Dan Org Tua Selanjutnya Data Document');
     }
@@ -62,6 +73,9 @@ class LengkapiController extends Controller
 
     public function upload(Request $request)
     {
+        $notif = User::where('notify_id',1)->first();
+        $userss = Auth::user();
+        $users = User::where('nomor',$userss->nomor)->first();
         $request->validate([
             'kk' => 'required|mimes:pdf|max:8192', // Kartu Keluarga
             'ijazah' => 'required|mimes:pdf|max:8192', // Ijazah
@@ -96,6 +110,11 @@ class LengkapiController extends Controller
             $data['user_id'] = Auth::user()->id;
             
             Document::create($data);
+
+            $messages = $notif->notifys->notif_melengkapi;
+
+
+            $this->send_message($users->nomor,$messages);
             
             return redirect()->route('user.dashboard')->with('lengkap', 'Semua Data Kamu Sudah Di Lengkapi');
         }

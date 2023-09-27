@@ -14,7 +14,10 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Detail Biodata {{$pendaftaran->name}}</div>
-                  <a href="{{route('admin.peserta.index')}}" class="btn btn-primary float-end text-white">Back</a>
+                  <div class="d-flex">
+                    <a href="{{route('admin.pendaftar.export_private',$pendaftaran->id)}}" class="btn btn-primary me-2 text-white">Export Data</a>
+                    <a href="{{route('admin.peserta.index')}}" class="btn btn-primary float-end text-white">Back</a>
+                  </div>
                 </div>
               </div>
               <div class="card-body">
@@ -23,99 +26,99 @@
                     <h5>Data Pribadi</h5>
                     <div class="mb-2">
                       <label for="">Nama Lengkap : </label>
-                      <strong>{{$pendaftaran->name}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->name}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Nomor Hp : </label>
-                      <strong>{{$pendaftaran->nomor}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->nomor}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Jenis Kelamin : </label>
-                      <strong>{{$pendaftaran->jenis_kelamin}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->jenis_kelamin}}" class="form-control">
                     </div>
                     <div>
                       <label for="">Tanggal Lahir : </label>
-                      <strong>{{$pendaftaran->tanggal_lahir}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->tanggal_lahir}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Tempat Lahir : </label>
-                      <strong>{{$pendaftaran->student->birthplace}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->student->birthplace}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">NIK : </label>
-                      <strong>{{$pendaftaran->student->nik}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->student->nik}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">NISN : </label>
-                      <strong>{{$pendaftaran->student->nisn}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->student->nisn}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Hobby : </label>
-                      <strong>{{$pendaftaran->student->hobby}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->student->hobby}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Cita - Cita : </label>
-                      <strong>{{$pendaftaran->student->ambition}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->student->ambition}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Asal Sekolah : </label>
-                      <strong>{{$pendaftaran->student->old_school}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->student->old_school}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Pendidikan Terakhir : </label>
-                      <strong>{{$pendaftaran->student->last_graduate}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->student->last_graduate}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Organisasi Yang Pernah Diikuti : </label>
-                      <strong>{{$pendaftaran->student->organization_exp}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->student->organization_exp}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Alamat : </label>
-                      <strong>{{$pendaftaran->student->address}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->student->address}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Status : </label>
-                      <strong>
-                      @if ($pendaftaran->status == 'tidak')
+                      <input type="text" disabled value="
+                      @if ($pendaftaran->student->status == 'tidak')
                         Belum Di Cek
-                      @elseif($pendaftaran->status == 'gagal')
+                      @elseif($pendaftaran->student->status == 'gagal')
                         Gagal
                       @else
                         Lolos
                       @endif
-                    </strong>
+                      " class="form-control">
                     </div>
                   </div>
                   <div class="col-6">
                     <h5>Data Org Tua</h5>
                     <div class="mb-2">
                       <label for="">Nama Ayah : </label>
-                      <strong>{{$pendaftaran->parents->father_name}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->parents->father_name}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Nomor Ayah : </label>
-                      <strong>{{$pendaftaran->parents->father_phone}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->parents->father_phone}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Nama Ibu : </label>
-                      <strong>{{$pendaftaran->parents->mother_name}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->parents->mother_name}}" class="form-control">
                     </div>
                     <div class="mb-2">
                       <label for="">Nomor Ibu : </label>
-                      <strong>{{$pendaftaran->parents->mother_phone}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->parents->mother_phone}}" class="form-control">
                     </div>
                     <div>
                       <label for="">Pekerjaan Ayah : </label>
-                      <strong>{{$pendaftaran->parents->father_job}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->parents->father_job}}" class="form-control">
                     </div>
                     <div>
                       <label for="">Pekerjaan Ibu : </label>
-                      <strong>{{$pendaftaran->parents->mother_job}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->parents->mother_job}}" class="form-control">
                     </div>
                     <div>
                       <label for="">Penghasilan Ayah Sebulan : </label>
-                      <strong>
-                        @if ($pendaftaran->parents->parent_earning == 'A')
+                      <select name="" id="" class="form-select">
+                        <option value="">@if ($pendaftaran->parents->parent_earning == 'A')
                           Kurang dari 1.000.000
                           @elseif($pendaftaran->parents->parent_earning == 'B')
                           1.000.000 - 5.000.000
@@ -124,17 +127,52 @@
                           @else
                           Lebih dari 10.000.000
                         @endif
-                          Rupiah
-                      </strong>
+                          Rupiah</option>
+                      </select>
                     </div>
                     <div>
                       <label for="">Anak Ke Berapa : </label>
-                      <strong>{{$pendaftaran->parents->child_no}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->parents->child_no}}" class="form-control">
                     </div>
                     <div>
                       <label for="">Dari Berapa Soudara : </label>
-                      <strong>{{$pendaftaran->parents->no_of_sibling}}</strong>
+                      <input type="text" disabled value="{{$pendaftaran->parents->no_of_sibling}}" class="form-control">
                     </div>
+                    @if (!$pendaftaran->document)
+
+                    @else
+                    <div>
+                      <h3>Document</h3>
+                      <div class="">
+                        <label for="">Document Kartu Keluarga</label>
+                        <a href="{{ asset('storage/' . $pendaftaran->document->kk) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                          show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                      </a>
+                      <input type="text" value="{{$pendaftaran->document->kk}}" class="form-control" disabled>
+                      </div>
+                      <div class="">
+                        <label for="">Document Kartu Akta Kelahiran</label>
+                        <a href="{{ asset('storage/' . $pendaftaran->document->akta) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                          show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                      </a>
+                      <input type="text" value="{{$pendaftaran->document->akta}}" class="form-control" disabled>
+                      </div>
+                      <div class="">
+                        <label for="">Document Kartu Rapor</label>
+                        <a href="{{ asset('storage/' . $pendaftaran->document->rapor) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                          show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                      </a>
+                      <input type="text" value="{{$pendaftaran->document->rapor}}" class="form-control" disabled>
+                      </div>
+                      <div class="">
+                        <label for="">Document Kartu Ijazah</label>
+                        <a href="{{ asset('storage/' . $pendaftaran->document->ijazah) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                          show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                      </a>
+                      <input type="text" value="{{$pendaftaran->document->ijazah}}" class="form-control" disabled>
+                      </div>
+                    </div>
+                    @endif
                   </div>
                 </div>
               </div>

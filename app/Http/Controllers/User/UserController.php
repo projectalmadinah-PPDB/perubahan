@@ -7,6 +7,7 @@ use App\Models\Notify;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Generasi;
 use App\Traits\Fonnte;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -122,14 +123,19 @@ class UserController extends Controller
         $credentials = $request->only('nomor', 'password');
         $user = User::where('nomor',$credentials)->first();
 
-        if($user->status == 'Belum'){
+        if(!$user->payment){
+            $notif = User::find($user->id);
+            $messages = $notif->notifys->notif_login . ' Silahkan Akses Link berikut: ' . "<a href='http://127.0.0.1:8000/user/dashboard'>" . '</a>';
+
+            $this->send_message($phone,$messages);
+        }elseif($user->payment->status == 'pending'){
             $notif = User::find($user->id);
 
-            $messages = $notif->notifys->notif_belum_verify;
+            $messages = $notif->notifys->notif_login . $user->payment->link;
 
             $this->send_message($phone,$messages);
         }else{
-            
+
         }
         if($user->active == 0){
             
@@ -173,8 +179,8 @@ class UserController extends Controller
 
     public function registerProcess(Request $request)
     {
-    $phone = $request->nomor;
-    if (Str::startsWith($phone, '0')) {
+        $phone = $request->nomor;
+        if (Str::startsWith($phone, '0')) {
         $phone = '62' . substr($phone, 1);
     }
     $existingUser = User::where('nomor', $phone)->first();
@@ -209,9 +215,13 @@ class UserController extends Controller
     $data['password'] = bcrypt($request->password);
     $data['token'] = rand(111111,999999);
     $data['nomor'] = $request->nomor;
-    
+    $generasi = Generasi::where('status', 'on')
+    ->orderBy('created_at', 'asc') // Mengurutkan berdasarkan waktu pendaftaran
+    ->first();
+    $data['generasi_id'] = $generasi->id;
+    // dd($data);
     $user = User::create($data);
-
+    
     $notif_otp = $notify->notif_otp;                                
     $messages = $notif_otp . $user->token;
         
@@ -227,15 +237,24 @@ class UserController extends Controller
 
     public function activication_process(Request $request)
     {
-        $user = User::where('token',$request->token)->first();
+        $user = User::where('token', $request->token)->first();
+        $notif = User::where('notify_id',1)->first();
 
-        if($user){
+        if ($user) {
             $user->update([
                 'active' => 1
             ]);
-            return redirect()->route('user.index')->with('success' ,'Yey Token Berhasil Di Masukkan');
+
+            // Setelah mengupdate status aktif, kita akan mencoba masuk
+            auth()->login($user);
+            $messages = $notif->notifys->notif_login;
+
+
+            $this->send_message($user->nomor,$messages);
+            return redirect()->route('user.dashboard');
         }
-        return redirect()->back()->with('error','Token Tidak Sesuai');
+
+        return redirect()->back()->with('error', 'Token Tidak Sesuai');
     }
     public function logout()
     {

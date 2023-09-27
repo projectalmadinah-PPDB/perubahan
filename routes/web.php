@@ -97,6 +97,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::get('/pendaftar/create',[PendaftarController::class,'create'])->name('pendaftar.create');
 
       Route::get('/pendaftar/export',[PendaftarController::class,'export'])->name('pendaftar.export');
+
+      Route::get('/pendaftar/export/{id}',[PendaftarController::class,'export_private'])->name('pendaftar.export_private');
       
       Route::post('/pendaftar/process',[PendaftarController::class,'store'])->name('pendaftar.store');
 
@@ -143,11 +145,13 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       // wawancara
       Route::get('/wawancara',[WawancaraController::class,'index'])->name('wawancara.index');
 
-      Route::patch('/wawancara/massal',[WawancaraController::class,'editStatus'])->name('wawancara.edit_status');
+      Route::post('/wawancara/edit',[WawancaraController::class,'edit_massal'])->name('wawancara.massal');
+
+      Route::patch('/wawancara/massal/proses',[WawancaraController::class,'editStatus'])->name('wawancara.edit_status');
 
       Route::post('/wawancara/{id}',[WawancaraController::class,'store'])->name('wawancara.create');
 
-      Route::post('/wawancara/massal/{id}',[WawancaraController::class,'store_massal'])->name('wawancara.insert');
+      // Route::post('/wawancara/massal/{id}',[WawancaraController::class,'store_massal'])->name('wawancara.insert');
 
       Route::put('/wawancara/update/{id}',[WawancaraController::class,'update'])->name('wawancara.update');
 
@@ -231,6 +235,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       //laporan
       Route::get('/laporan',[LaporanController::class,'index'])->name('laporan.index');
+
+      Route::get('/laporan/export/{id}',[LaporanController::class,'export'])->name('laporan.export');
     });
   });
     

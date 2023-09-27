@@ -126,52 +126,39 @@
                                  </div>
                                  </form>
                              </div>
-                            @if ($item->where('status', 'on')->count() > 0)
-                            <div class="dropdown d-inline">
-                              <a class="dropdown-toggle" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bi bi-three-dots-vertical"></i>
-                              </a>
                             
-                              <div class="dropdown-menu" aria-labelledby="customDropdown">
-                                <form action="{{route('admin.generasi.status',$item->id)}}" method="post">
-                                  @csrf
-                                  @method('PUT')
-                                  <div class="d-flex flex-wrap">
-                                    <button type="submit" name="status" value="on" class="border-0 bg-success w-100 text-bold text-white" >On</button>
-                                    <button name="status" type="submit" class="border-0 bg-danger w-100 text-bold text-white" value="off">Off</button>
-                                  </div>
-                                  {{-- <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
-                                    @csrf
-                                    @method('POST')
-                                    <button type="submit" name="status" value="lolos" class="badge badge-success border-0">Lulus</button>
-                                    <button type="submit" name="status" value="gagal" class="badge badge-danger border-0">Gagal</button>
-                                  </form> --}}
-                                </form>
-                              </div>
-                            </div>
+                            @if ($item->where('status','on')->count() == 1)
+                            <form action="{{route('admin.generasi.status',$item->id)}}" method="post" class="d-inline" name="form1" id="form1">
+                              @csrf
+                              @method('PUT')
+                                @if ($item->status == 'on')
+                                  <button name="status" type="button" class="badge badge-danger border-0" value="off" onclick="edit(event)">NonAktif</button>
+                                @else
+                                  <button type="submit" name="status" value="on" class="border-0 badge badge-primary">Aktifkan</button>
+                                @endif
+                              {{-- <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
+                                @csrf
+                                @method('POST')
+                                <button type="submit" name="status" value="lolos" class="badge badge-success border-0">Lulus</button>
+                                <button type="submit" name="status" value="gagal" class="badge badge-danger border-0">Gagal</button>
+                              </form> --}}
+                            </form>
                             @else
-                            <div class="dropdown d-inline">
-                              <a class="dropdown-toggle" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bi bi-three-dots-vertical"></i>
-                              </a>
-                            
-                              <div class="dropdown-menu" aria-labelledby="customDropdown">
-                                <form action="{{route('admin.generasi.status',$item->id)}}" method="post">
-                                  @csrf
-                                  @method('PUT')
-                                  <div class="d-flex flex-wrap">
-                                    <button type="submit" name="status" value="on" class="border-0 bg-success w-100 text-bold text-white" >On</button>
-                                    <button name="status" type="submit" class="border-0 bg-danger w-100 text-bold text-white" value="off">Off</button>
-                                  </div>
-                                  {{-- <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
-                                    @csrf
-                                    @method('POST')
-                                    <button type="submit" name="status" value="lolos" class="badge badge-success border-0">Lulus</button>
-                                    <button type="submit" name="status" value="gagal" class="badge badge-danger border-0">Gagal</button>
-                                  </form> --}}
-                                </form>
-                              </div>
-                            </div>
+                            <form action="{{route('admin.generasi.status',$item->id)}}" method="post" class="d-inline">
+                              @csrf
+                              @method('PUT')
+                                @if ($item->status == 'on')
+                                  <button name="status" type="submit" class="badge badge-danger border-0" value="off">NonAktif</button>
+                                @else
+                                  <button type="submit" name="status" value="on" class="border-0 badge badge-primary">Aktifkan</button>
+                                @endif
+                              {{-- <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
+                                @csrf
+                                @method('POST')
+                                <button type="submit" name="status" value="lolos" class="badge badge-success border-0">Lulus</button>
+                                <button type="submit" name="status" value="gagal" class="badge badge-danger border-0">Gagal</button>
+                              </form> --}}
+                            </form>
                             @endif
                         </td>
                     </tr>
@@ -190,6 +177,19 @@
 @endsection
 @push('add-script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function edit(event) {
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Anda Tidak Dapat Mematikan Seluruh Data Generasi',
+      })
+      }
+    
+</script>
 @if (session('success'))
 <script>
   toastr.options = {

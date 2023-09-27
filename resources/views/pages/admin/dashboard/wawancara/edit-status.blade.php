@@ -13,7 +13,7 @@
                                 Update Data
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('admin.peserta.coba.update') }}" method="POST">
+                                <form action="{{ route('admin.wawancara.edit_status') }}" method="POST">
                                     @csrf
                                     @method('PATCH')
                             
@@ -21,7 +21,7 @@
                                         <label for="status">Status Siswa</label>
                                         <select name="status" id="status" class="form-select">
                                             <option value="Belum" disabled>Belum Ada Status</option>
-                                            <option value="Wawancara">Wawancara</option>
+                                            <option value="Lulus">Lulus</option>
                                             <option value="Gagal">Gagal</option>
                                         </select>
                                     </div>

@@ -57,10 +57,9 @@ class DatabaseSeeder extends Seeder
             'notif_gagal' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Di nyatakan Gagal Seleksi Penyebabnya mungkin data pribadi anda tidak lengkap Terima kasih',
             'notif_info' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Harus Bersiap - siap Untuk Tes Wawancara Pada Tanggal ',
             'notif_wawancara' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Berhasil Melanjutkan Ke Tahap Wawancara Silahkan Mengggu Waktu Dan Link Dari Administrator ',
-            'notif_tidak_sah' => 'Halo Kami Dari Pondok Al-Romusa , Data Pribadi kamu Terlihat Palsu Atau Kamu Di Anggap Tidak Lulus Terima Kasih ',
-            'notif_verify' => 'Halo Kami Dari Pondok Al-Romusa , Akun Kamu Sudah Di Verifikasi Sama Penyelenggara Silahkan Masukkan Data Diri Anda Terima Kasih ',
-            'notif_belum_verify' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Telah Berhasil Login Silahkan Menunggu Jawaban Dari Penyelenggara PPDB Pondok Terima Kasih ',
-            'notif_gagal_otp' => 'Halo Kami Dari Pondok Al-Romusa , Pesan Otp Kamu Gagal Di Kirim silahkan Hubungi 082346739790 '
+            'notif_login' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Telah Berhasil Login Ke Halaman Pendaftaran Siswa Baru Silahkan Membayar Uang pendaftaran Dengan Menekan Tombol Yang Berada Di Halaman Pendaftaran / Disini ',
+            'notif_mengisi_pribadi' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Telah Melengkapi Data Pribadi Dan Data Orang Tua Silahkan Melengkapi Data Document Anda Dengan Mengiapkan Document Dalam File Pdf Seperti Ijazah,Akte,KK,Rapor Terima Kasih',
+            'notif_melengkapi' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Telah Melengkapi Semua Data Pribadi Kamu Silahkan Menunggu Pesan Pengumuman Test Dari Admin Terima kasih'
         ]);
 
     }
