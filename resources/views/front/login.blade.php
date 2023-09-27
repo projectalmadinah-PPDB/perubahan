@@ -1,6 +1,6 @@
 @extends('front.layouts.parent')
 
-@section('title','User | Login')
+@section('title','Login')
 
 @section('content')
   <div class="bg-gradient-to-br from-dasar via-sky-50 to-sky-200 w-full h-auto font-poppins caret-sekunder accent-primer">

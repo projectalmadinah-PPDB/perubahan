@@ -7,10 +7,10 @@
 
     {{-- pc navigator --}}
     <nav class="hidden md:flex items-center justify-center">
-        <a href="{{ route('user.dashboard') }}" 
-            class="{{ Route::is('user.dashboard') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-dasar text-center text-sm tracking-wider relative duration-200">
+        <a href="{{ route('user.coba') }}" 
+            class="{{ Route::is('user.coba') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-dasar text-center text-sm tracking-wider relative duration-200">
             Dashboard
-            <div class="{{ Route::is('user.dashboard') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
+            <div class="{{ Route::is('user.coba') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
         <a href="{{ route('user.profile') }}" 
             class="{{ Route::is('user.profile') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-dasar text-center text-sm tracking-wider relative duration-200">

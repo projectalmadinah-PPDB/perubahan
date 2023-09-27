@@ -83,7 +83,7 @@ class DashboardController extends Controller
             $pendaftaran->payment->save(); // Simpan perubahan status pembayaran
             return back();
         }
-        $messages = $pendaftaran->notifys->notif_pembayaran . $Transaction->link;
+        $messages = $pendaftaran->notifys->notif_pembayaran . ' ' . $Transaction->link;
 
         $this->send_message($phone,$messages);
         return Redirect::to($Transaction->link);
