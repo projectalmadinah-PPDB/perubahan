@@ -25,6 +25,14 @@
                             placeholder="Judul pengumuman" value="{{ $data->title }}">
                           </div>
                           <div class="form-group">
+                            <label for="title">Step</label>
+                            <select name="step" id="" class="form-select">
+                              <option value="Pembayaran">Pembayaran</option>
+                              <option value="Test">Test</option>
+                              <option value="Hasil">Hasil</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
                             <label for="desc">Deskripsi <span class="badge badge-danger border-0 py-1 mb-1 text-white">berlaku tag HTML</span></label>
                             <textarea name="desc" id="desc" rows="10" class="form-control rounded-4" 
                             placeholder="Deskripsi pengumuman">{{ $data->desc }}</textarea>

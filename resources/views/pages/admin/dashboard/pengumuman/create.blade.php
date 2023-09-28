@@ -1,7 +1,9 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
 @section('title' , 'Create Biodata')
-
+@push('add-styles')
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
+@endpush
 @section('content')
 <div class="main-panel">
   <div class="content">
@@ -25,6 +27,14 @@
                             placeholder="Judul pengumuman" value="{{ old('title') }}">
                           </div>
                           <div class="form-group">
+                            <label for="title">Step</label>
+                            <select name="step" id="" class="form-select">
+                              <option value="Pembayaran">Pembayaran</option>
+                              <option value="Test">Test</option>
+                              <option value="Hasil">Hasil</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
                             <label for="desc">Deskripsi <span class="badge badge-danger border-0 py-1 mb-1 text-white">berlaku tag HTML</span></label>
                             <textarea name="desc" id="desc" rows="10" class="form-control rounded-4" 
                             placeholder="Deskripsi pengumuman">{{ old('desc') }}</textarea>
@@ -42,3 +52,12 @@
   </div>
 </div> 
 @endsection
+@push('add-script')
+<script>
+  ClassicEditor
+      .create( document.querySelector( '#desc' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+</script>
+@endpush

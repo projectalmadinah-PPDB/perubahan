@@ -23,7 +23,7 @@ class LaporanController extends Controller
         // })->orderby('id','desc')->paginate(5);
         // $payment = Payment::orderby('id','desc')->paginate(5);
         // $lulus = User::where('role','user')->where('status','Lulus')->paginate(5);
-        $data = Generasi::where('status', 'on')->with('user')->get();
+        $data = Generasi::with('user')->get();
         return view('pages.admin.dashboard.laporan.index', compact('data'));
     }
 
@@ -32,6 +32,6 @@ class LaporanController extends Controller
         $generasi = Generasi::find($id);
         $user = User::where('id',$generasi->id)->first();
 
-        return Excel::download(new ExportLaporan($generasi), "Laporan Generasi $generasi->generasi.xlsx");
+        return Excel::download(new ExportLaporan($generasi->id), "Laporan Generasi $generasi->generasi.xlsx");
     }
 }

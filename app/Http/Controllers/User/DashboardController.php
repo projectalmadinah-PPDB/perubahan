@@ -24,7 +24,10 @@ class DashboardController extends Controller
         $userId = Payment::where('user_id',$users)->get();
         $informasi = Article::all();
         $announcements = Announcement::get();
-        return view('front.dashboard.index',compact('user','userId','informasi','announcements','users'));
+        $pengumuman_pembayaran = Announcement::where('step','Pembayaran')->get();
+        $pengumuman_test = Announcement::where('step','Test')->get();
+        $pengumuman_hasil = Announcement::where('step','Hasil')->get();
+        return view('front.dashboard.index',compact('user','userId','informasi','announcements','users','pengumuman_pembayaran','pengumuman_test','pengumuman_hasil'));
     }
 
     public function coba()

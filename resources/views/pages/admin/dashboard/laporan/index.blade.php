@@ -13,8 +13,14 @@
               <div class="card card-stats rounded-4 card-warning">
                   <div class="card-body ">
                       <div class="row">
-                          <div>
-                            <a href="{{route('admin.laporan.export',$item->id)}}">Download Laporan {{$item->generasi}}</a>
+                          <div class="">
+                            <div class="me-2">
+                            <h6 class="">Seluruh Laporan Angkatan {{$item->generasi}}</h6>
+                            </div>
+                            <div>
+                              <label for="" class="form-label text-white fs-6">Download</label>
+                              <a href="{{route('admin.laporan.export',$item->id)}}" class="badge badge-primary ms-2"><i class="bi bi-download"></i></a>
+                            </div>
                           </div>
                       </div>
                   </div>

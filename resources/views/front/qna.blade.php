@@ -22,7 +22,7 @@
                     <p class="tracking-wider select-none">{{$item->question}}</p>
                 </div>
                 <div class="dropdown-content select-none pb-5 px-7 tracking-wide hidden">
-                    {{$item->answer}}
+                    {!!$item->answer!!}
                 </div>
             </div>
             <!-- endforeach here -->

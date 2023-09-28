@@ -61,6 +61,9 @@
                             <div class="rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center">
                                 {{-- <i class="bi bi-check-lg text-white"></i> --}}
                             </div>
+                            <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
+                                <span class="font-bold text-sm">Kamu Disini!!</span>
+                            </p>
                             <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
                                 <span class="font-bold">Step 2 :</span><br>Membayar Registrasi
                             </p>
@@ -78,7 +81,7 @@
                                 <i class="bi bi-check-lg text-white"></i>
                             </div>
                             <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                <span class="font-bold">Step 4 :</span><br>Tunggu Pengumuman
+                                <span class="font-bold">Step 4 :</span><br> Pengumuman Test
                             </p>
                         </div>
                         <div class="relative">
@@ -86,11 +89,9 @@
                                 <i class="bi bi-check-lg text-white"></i>
                             </div>
                             <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                <span class="font-bold">Step 5 :</span><br>Membayar Biaya Pangkal
+                                <span class="font-bold">Step 5 :</span><br>Pengumuman Hasil Pendaftaran
                             </p>
-                            <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
-                                <span class="font-bold text-sm">Selamat!!</span>
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -229,6 +230,9 @@
                             <div class="rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center">
                                 {{-- <i class="bi bi-check-lg text-white"></i> --}}
                             </div>
+                            <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
+                                <span class="font-bold text-sm">Kamu Disini!!</span>
+                            </p>
                             <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
                                 <span class="font-bold">Step 2 :</span><br>Membayar Registrasi
                             </p>
@@ -246,7 +250,7 @@
                                 <i class="bi bi-check-lg text-white"></i>
                             </div>
                             <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                <span class="font-bold">Step 4 :</span><br>Tunggu Pengumuman
+                                <span class="font-bold">Step 4 :</span><br> Pengumuman Test
                             </p>
                         </div>
                         <div class="relative">
@@ -254,10 +258,7 @@
                                 <i class="bi bi-check-lg text-white"></i>
                             </div>
                             <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                <span class="font-bold">Step 5 :</span><br>Membayar Biaya Pangkal
-                            </p>
-                            <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
-                                <span class="font-bold text-sm">Selamat!!</span>
+                                <span class="font-bold">Step 5 :</span><br>Pengumuman Hasil Pendaftaran
                             </p>
                         </div>
                     </div>
@@ -378,6 +379,9 @@
                             <div class="rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center">
                                 {{-- <i class="bi bi-check-lg text-white"></i> --}}
                             </div>
+                            <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
+                                <span class="font-bold text-sm">Selamat!!</span>
+                            </p>
                             <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
                                 <span class="font-bold">Step 2 :</span><br>Membayar Registrasi
                             </p>
@@ -395,7 +399,7 @@
                                 <i class="bi bi-check-lg text-white"></i>
                             </div>
                             <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                <span class="font-bold">Step 4 :</span><br>Tunggu Pengumuman
+                                <span class="font-bold">Step 4 :</span><br> Pengumuman Test
                             </p>
                         </div>
                         <div class="relative">
@@ -403,11 +407,9 @@
                                 <i class="bi bi-check-lg text-white"></i>
                             </div>
                             <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                <span class="font-bold">Step 5 :</span><br>Membayar Biaya Pangkal
+                                <span class="font-bold">Step 5 :</span><br>Pengumuman Hasil Pendaftaran
                             </p>
-                            <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
-                                <span class="font-bold text-sm">Selamat!!</span>
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -541,6 +543,9 @@
                                         <div class="rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center">
                                             {{-- <i class="bi bi-check-lg text-white"></i> --}}
                                         </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
+                                            <span class="font-bold text-sm">Kamu Disini!!</span>
+                                        </p>
                                         <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
                                             <span class="font-bold">Step 3 :</span><br>Mengisi Form & Upload dokumen
                                         </p>
@@ -550,7 +555,7 @@
                                             <i class="bi bi-check-lg text-white"></i>
                                         </div>
                                         <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                            <span class="font-bold">Step 4 :</span><br>Tunggu Pengumuman
+                                            <span class="font-bold">Step 4 :</span><br> Pengumuman Test
                                         </p>
                                     </div>
                                     <div class="relative">
@@ -558,11 +563,9 @@
                                             <i class="bi bi-check-lg text-white"></i>
                                         </div>
                                         <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                            <span class="font-bold">Step 5 :</span><br>Membayar Biaya Pangkal
+                                            <span class="font-bold">Step 5 :</span><br>Pengumuman Hasil Pendaftaran
                                         </p>
-                                        <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
-                                            <span class="font-bold text-sm">Selamat!!</span>
-                                        </p>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -572,24 +575,6 @@
                     class="py-16 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
                     <h1 class="mt-2 text-3xl mb-8 font-bold title">Informasi Untuk Melengkapi Data Diri</h1>
                     <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
-                        <!-- foreach here -->
-                        <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
-                            <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                                <p class="tracking-wide">Apa Aja Yang Disiapkan Untuk Melengkapi Data Diri</p>
-                            </div>
-                            <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                                Yang Siapkan Untuk Melengkapi Data Diri
-                                <ul>
-                                    <li>Data Data Tentang Diri Anda Dan Orang Tua</li>
-                                    <li>Kartu Keluarga</li>
-                                    <li>Kartu Ijazah <strong>Pendidikan Terakhir</strong></li>
-                                    <li>Rapor <strong>Pendidikan Terakhir</strong></li>
-                                    <li>Akte Anda</li>
-                                    <li>Silahkan Buat 4 File PDF , Seperti File Pertama Kartu Keluarga , Kedua Kartu Ijazah, Ketiga Rapor , Keempat Akte</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- endforeach here -->
                         <!-- foreach here -->
                         <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                             <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
@@ -714,7 +699,7 @@
                                             <i class="bi bi-check-lg text-white"></i>
                                         </div>
                                         <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                            <span class="font-bold">Step 4 :</span><br>Tunggu Pengumuman
+                                            <span class="font-bold">Step 4 :</span><br> Pengumuman Test
                                         </p>
                                     </div>
                                     <div class="relative">
@@ -722,7 +707,7 @@
                                             <i class="bi bi-check-lg text-white"></i>
                                         </div>
                                         <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                            <span class="font-bold">Step 5 :</span><br>Membayar Biaya Pangkal
+                                            <span class="font-bold">Step 5 :</span><br>Pengumuman Hasil Pendaftaran
                                         </p>
                                         <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
                                             <span class="font-bold text-sm">Selamat!!</span>
@@ -814,6 +799,7 @@
 
                         <!-- alur pendaftaran dan status -->
                     </section>
+                    @if ($user->status == 'Wawancara')
                     <section id="alur" class="w-full py-16 select-none">
                         <div class="mx-auto container">
                             <div class="w-11/12 lg:w-1/2 mx-auto">
@@ -877,8 +863,14 @@
                                         <div class="rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center">
                                             {{-- <i class="bi bi-check-lg text-white"></i> --}}
                                         </div>
+                                        
+                                        
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
+                                            <span class="font-bold text-sm">Wawancara!!</span>
+                                        </p>
+                                        
                                         <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                            <span class="font-bold">Step 4 :</span><br>Tunggu Pengumuman
+                                            <span class="font-bold">Step 4 :</span><br> Pengumuman Test
                                         </p>
                                     </div>
                                     <div class="relative">
@@ -886,49 +878,204 @@
                                             <i class="bi bi-check-lg text-white"></i>
                                         </div>
                                         <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                            <span class="font-bold">Step 5 :</span><br>Membayar Biaya Pangkal
-                                        </p>
-                                        <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
-                                            <span class="font-bold text-sm">Selamat!!</span>
+                                            <span class="font-bold">Step 5 :</span><br>Pengumuman Hasil Pendaftaran
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
+                    @elseif($user->status == 'Belum')
+                    <section id="alur" class="w-full py-16 select-none">
+                        <div class="mx-auto container">
+                            <div class="w-11/12 lg:w-1/2 mx-auto">
+                                <div class="flex items-center justify-between bg-gray-200 h-1.5 relative">
+                                    <div class="absolute w-full">
+                                        <div class="overflow-hidden h-1.5 flex rounded bg-gray-200">
+                                            <div style="
+                                                width:75%
+                                                " 
+                                                class="shadow-none flex flex-col justify-center bg-sekunder"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                    @php
+                                        $sudah   = 'rounded-full w-6 h-6 bg-sekunder shadow-md text-center';
+                                        
+                                        $sedang  = 'rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center';
+                
+                                        $belum    = 'rounded-full w-6 h-6 bg-dasar shadow-md text-center';
+                                    @endphp
+                                    <div class="relative">
+                                        <div class="rounded-full w-6 h-6 bg-sekunder shadow-md text-center">
+                                            <i class="bi bi-check-lg text-white"></i>
+                                        </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Step 1 :</span><br>Mendaftar & Login
+                                        </p>
+                                    </div>
+                                    {{-- contoh --}}
+                                    {{-- <div class="relative">
+                                        <div 
+                                            class="
+                                            @if ($user->status == 'Sudah') {{ $sudah }} 
+                                            @elseif ($user->status == 'Sedang') {{ $sedang }} 
+                                            @else {{ $belum }} @endif">
+                                            <i class="bi bi-check-lg text-white"></i>
+                                        </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Contoh :</span><br>Ini Cuma Contoh
+                                        </p>
+                                    </div> --}}
+                                    {{-- end contoh --}}
+                                    
+                                    <div class="relative">
+                                        <div class="rounded-full w-6 h-6 bg-sekunder shadow-md text-center">
+                                            <i class="bi bi-check-lg text-white"></i>
+                                        </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Step 2 :</span><br>Membayar Registrasi
+                                        </p>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="rounded-full w-6 h-6 bg-sekunder shadow-md text-center">
+                                            <i class="bi bi-check-lg text-white"></i>
+                                        </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Step 3 :</span><br>Mengisi Form & Upload dokumen
+                                        </p>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center">
+                                            {{-- <i class="bi bi-check-lg text-white"></i> --}}
+                                        </div>
+                                        
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
+                                            <span class="font-bold text-sm">Tunggu Pengumuman!!</span>
+                                        </p>
+                                        
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Step 4 :</span><br> Pengumuman Test
+                                        </p>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="rounded-full w-6 h-6 bg-dasar shadow-md text-center">
+                                            <i class="bi bi-check-lg text-white"></i>
+                                        </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Step 5 :</span><br>Pengumuman Hasil Pendaftaran
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    @else
+                    <section id="alur" class="w-full py-16 select-none">
+                        <div class="mx-auto container">
+                            <div class="w-11/12 lg:w-1/2 mx-auto">
+                                <div class="flex items-center justify-between bg-gray-200 h-1.5 relative">
+                                    <div class="absolute w-full">
+                                        <div class="overflow-hidden h-1.5 flex rounded bg-gray-200">
+                                            <div style="
+                                                width:100%
+                                                " 
+                                                class="shadow-none flex flex-col justify-center bg-sekunder"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                    @php
+                                        $sudah   = 'rounded-full w-6 h-6 bg-sekunder shadow-md text-center';
+                                        
+                                        $sedang  = 'rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center';
+                
+                                        $belum    = 'rounded-full w-6 h-6 bg-dasar shadow-md text-center';
+                                    @endphp
+                                    <div class="relative">
+                                        <div class="rounded-full w-6 h-6 bg-sekunder shadow-md text-center">
+                                            <i class="bi bi-check-lg text-white"></i>
+                                        </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Step 1 :</span><br>Mendaftar & Login
+                                        </p>
+                                    </div>
+                                    {{-- contoh --}}
+                                    {{-- <div class="relative">
+                                        <div 
+                                            class="
+                                            @if ($user->status == 'Sudah') {{ $sudah }} 
+                                            @elseif ($user->status == 'Sedang') {{ $sedang }} 
+                                            @else {{ $belum }} @endif">
+                                            <i class="bi bi-check-lg text-white"></i>
+                                        </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Contoh :</span><br>Ini Cuma Contoh
+                                        </p>
+                                    </div> --}}
+                                    {{-- end contoh --}}
+                                    
+                                    <div class="relative">
+                                        <div class="rounded-full w-6 h-6 bg-sekunder shadow-md text-center">
+                                            <i class="bi bi-check-lg text-white"></i>
+                                        </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Step 2 :</span><br>Membayar Registrasi
+                                        </p>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="rounded-full w-6 h-6 bg-sekunder shadow-md text-center">
+                                            <i class="bi bi-check-lg text-white"></i>
+                                        </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Step 3 :</span><br>Mengisi Form & Upload dokumen
+                                        </p>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="rounded-full w-6 h-6 bg-sekunder shadow-md text-center">
+                                            <i class="bi bi-check-lg text-white"></i>
+                                        </div>
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Step 4 :</span><br> Pengumuman Test
+                                        </p>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center">
+                                            {{-- <i class="bi bi-check-lg text-white"></i> --}}
+                                        </div>
+                                        @if ($user->status == 'Lulus')
+                                            <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
+                                                <span class="font-bold text-sm">Kamu Lulus!!</span>
+                                            </p>
+                                        @elseif($user->status == 'Gagal')
+                                            <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
+                                                <span class="font-bold text-sm">Kamu Gagal!!</span>
+                                            </p>
+                                        @endif
+                                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                                            <span class="font-bold">Step 5 :</span><br>Pengumuman Hasil Pendaftaran
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    @endif
                     <section 
                     class="py-16 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
                     <h1 class="mt-2 text-3xl mb-8 font-bold title">Pengumuman</h1>
                     <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
-                        <!-- foreach here -->
-                        <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
-                            <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                                <p class="tracking-wide">Apa Aja Yang Disiapkan Ketika Ingin Melengkapi Data Diri</p>
+                        @foreach ($pengumuman_test as $item)
+                            <!-- foreach here -->
+                            <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
+                                <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
+                                    <p class="tracking-wide">{{$item->title}}</p>
+                                </div>
+                                <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
+                                    {{$item->desc}}
+                                </div>
                             </div>
-                            <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                                Yang Siapkan Untuk Melengkapi Data Diri
-                                <ul>
-                                    <li>1. Data Data Tentang Diri Anda Dan Orang Tua</li>
-                                    <li>2. Kartu Keluarga</li>
-                                    <li>3. Kartu Ijazah <strong>Pendidikan Terakhir</strong></li>
-                                    <li>4. Rapor <strong>Pendidikan Terakhir</strong></li>
-                                    <li>5. Akte Anda</li>
-                                    <li>6. Silahkan Buat 4 File PDF , Seperti File Pertama Kartu Keluarga , Kedua Kartu Ijazah, Ketiga Rapor , Keempat Akte</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- endforeach here -->
-                        <!-- foreach here -->
-                        <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
-                            <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                                <p class="tracking-wide">Anda Kebigungan Dengan Alur Lengkapi Data Diri?</p>
-                            </div>
-                            <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                                Silahkan Hubungi Kami Lewat Whatshapp
-                                <a href="https://web.whatsapp.com/+6282346739790" class="text-larangan">Silahkan Click +6282346739790</a>
-                            </div>
-                        </div>
-                        <!-- endforeach here -->
+                            <!-- endforeach here -->
+                        @endforeach
                     </div>
         
                     <script>

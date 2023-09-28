@@ -18,10 +18,13 @@ class DashboardController extends Controller
     public function index()
     {
         
-        $users = User::where('role','user')->orderby('id','desc')->paginate(10);
+        $users = User::whereHas('generasi', function ($query) {
+            $query->where('status', 'on');
+        })->where('role','user')->orderby('id','desc')->paginate(10);
         $student = User::whereHas('payment', function ($query) {
             $query->where('status', 'berhasil');
         })->get();;
+        // $generasi = Generasi::where('status','on')->first();
         $uang = Payment::where('status','berhasil')->sum('amount');
         $lulus = User::where('status','Lulus')->where('role','user')->orderby('id','desc')->paginate(10);
         $informasi = Article::all();

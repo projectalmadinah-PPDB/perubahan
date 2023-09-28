@@ -34,8 +34,10 @@ class PengumumanController extends Controller
     {
         $data = $request->validate([
             'title'            => 'string|required',
-            'desc'             => 'required'
+            'desc'             => 'required',
+            'step'             => 'required'
         ],[
+            'step'            => 'Step Mana',
             'title.required'   => 'Judul Pengumuman wajib diisi',
             'desc.required' => 'Deskripsi wajib diisi'
         ]);
@@ -73,10 +75,12 @@ class PengumumanController extends Controller
         $announcement = Announcement::findOrFail($id);
         $data = $request->validate([
             'title'            => 'string|required',
-            'desc'             => 'required'
+            'desc'             => 'required',
+            'step'             => 'required'
         ],[
             'title.required'   => 'Judul Pengumuman wajib diisi',
-            'desc.required' => 'Deskripsi wajib diisi'
+            'desc.required' => 'Deskripsi wajib diisi',
+            'step'     => 'Wajib Isi Step'
         ]);
 
         $data['user_id'] = Auth::user()->id;

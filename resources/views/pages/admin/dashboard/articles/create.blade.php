@@ -1,7 +1,9 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
 @section('title' , 'Create Article')
-
+@push('add-styles')
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
+@endpush
 @section('content')
 <div class="main-panel">
   <div class="content">
@@ -23,7 +25,7 @@
                 </div>
                 <div class="form-group">
                   <label for="email">Deskripsi</label>
-                  <textarea name="desc" id="" cols="30" rows="2" class="form-control rounded-4"></textarea>
+                  <textarea name="desc" id="desc" cols="30" rows="2" class="form-control rounded-4"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="email">Kategori</label>
@@ -51,3 +53,12 @@
   </div>
 </div> 
 @endsection
+@push('add-script')
+<script>
+  ClassicEditor
+      .create( document.querySelector( '#desc' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+</script>
+@endpush

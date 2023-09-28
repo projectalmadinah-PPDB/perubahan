@@ -42,6 +42,7 @@
                         <th>ID</th>
                         <th>Judul</th>
                         <th>Desc</th>
+                        <th>Step</th>
                         <th>Author</th>
                         <th>Action</th>
                       </tr>
@@ -65,6 +66,9 @@
                                 {{ $item->desc }}
                             </td>
                             <td>
+                              {{$item->step}}
+                            </td>
+                            <td>
                                 {{ $item->user->name }}
                             </td>
                             <td>
@@ -79,7 +83,6 @@
                         @endforeach
                     </tbody>
                   </table>
-                  {{ $data->links() }}
                   </form>
                 </div>
               </div>

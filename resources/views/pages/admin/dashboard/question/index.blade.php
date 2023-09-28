@@ -3,6 +3,7 @@
 @section('title','Question')
 @push('add-styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
 @endpush
 @section('content')
 <div class="main-panel">
@@ -33,9 +34,9 @@
                                  <label for="" class="form-label">Pertanyaan</label>
                                  <input type="text" name="question" class="form-control" >
                              </div>
-                             <div class="mb-3">
+                             <div class="mb-3" >
                                  <label for="" class="form-label">Jawaban</label>
-                                 <textarea type="text" name="answer" class="form-control" ></textarea>
+                                 <textarea type="text" name="answer" class="form-control" id="editor" rows="10" cols="50" ></textarea>
                              </div>
                              </div>
                              <div class="modal-footer">
@@ -100,7 +101,7 @@
                                       <div class="modal-body">
                                       <div class="mb-3">
                                           <label for="" class="form-label">Jawaban</label>
-                                          <textarea type="text" name="answer" class="form-control" ></textarea>
+                                          <textarea name="answer" ></textarea>
                                       </div>
                                       </div>
                                       <div class="modal-footer">
@@ -131,6 +132,13 @@
 @endsection
 @push('add-script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  ClassicEditor
+      .create( document.querySelector( '#editor' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+</script>
 <script>
   $(document).ready(function(){
     $('#table').DataTable();

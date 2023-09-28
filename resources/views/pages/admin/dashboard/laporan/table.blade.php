@@ -45,35 +45,37 @@
             <td>{{$item->nomor}}</td>
             <td>{{$item->jenis_kelamin}}</td>
             <td>{{$item->tanggal_lahir}}</td>
-           
-              <td>{{$item->student->nik}}</td>
-              <td>{{$item->student->nisn}}</td>
-              <td>{{$item->student->birthplace}}</td>
-              <td>{{$item->student->hobby}}</td>
-              <td>{{$item->student->old_school}}</td>
-              <td>{{$item->student->ambition}}</td>
-              <td>{{$item->student->last_graduate}}</td>
-              <td>{{$item->student->organization_exp}}</td>
-              <td>{{$item->student->address}}</td>
-              <td>{{$item->parents->father_name}}</td>
-              <td>{{$item->parents->father_phone}}</td>
-              <td>{{$item->parents->father_job}}</td>
-              <td>{{$item->parents->mother_name}}</td>
-              <td>{{$item->parents->mother_phone}}</td>
-              <td>{{$item->parents->mother_job}}</td>
+              
+              <td>{{ optional($item->student)->nik ?: '-' }}</td>
+              <td>{{ optional($item->student)->nisn ?: '-' }}</td>
+              <td>{{ optional($item->student)->birthplace ?: '-' }}</td>
+              <td>{{ optional($item->student)->hobby ?: '-' }}</td>
+              <td>{{ optional($item->student)->old_school ?: '-' }}</td>
+              <td>{{ optional($item->student)->ambition ?: '-' }}</td>
+              <td>{{ optional($item->student)->last_graduate ?: '-' }}</td>
+              <td>{{ optional($item->student)->organization_exp ?: '-' }}</td>
+              <td>{{ optional($item->student)->address ?: '-' }}</td>
+              <td>{{ optional($item->parents)->father_name ?: '-' }}</td>
+              <td>{{ optional($item->parents)->father_phone ?: '-' }}</td>
+              <td>{{ optional($item->parents)->father_job ?: '-' }}</td>
+              <td>{{ optional($item->parents)->mother_name ?: '-' }}</td>
+              <td>{{ optional($item->parents)->mother_phone ?: '-' }}</td>
+              <td>{{ optional($item->parents)->mother_job ?: '-' }}</td>
               <td>
-                @if ($item->parents->parent_earning == 'A')
+                @if (optional($item->parents)->parent_earning === 'A')
                   Kurang dari 1.000.000
-                @elseif ($item->parents->parent_earning == 'B')
+                @elseif (optional($item->parents)->parent_earning === 'B')
                   1.000.000 - 5.000.000
-                @elseif ($item->parents->parent_earning == 'C')
+                @elseif (optional($item->parents)->parent_earning === 'C')
                   5.000.000 - 10.000.000
+                @elseif (empty(optional($item->parents)->parent_earning))
+                  -
                 @else
                   Lebih dari 10.000.000
                 @endif
-              </td>
-              <td>{{$item->parents->child_no}}</td>
-              <td>{{$item->parents->no_of_sibling}}</td>
+              </td>              
+              <td>{{optional($item->parents)->child_no ?: '-' }}</td>
+              <td>{{optional($item->parents)->no_of_sibling ?: '-' }}</td>
             
             <td>
               @if (!$item->payment)
