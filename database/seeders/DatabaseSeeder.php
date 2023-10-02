@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             UserSeeder::class,
             GenerasiSeeder::class,
-            StudentSeeder::class,
             QuestionSeeder::class,
         ]);
 

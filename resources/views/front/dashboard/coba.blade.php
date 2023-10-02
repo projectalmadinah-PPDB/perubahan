@@ -309,9 +309,9 @@
                             </div>
                             <div class="relative">
                                 <div class="
-                                    @if (!$user->document && $user->payment) {{ $sedang }}
-                                    @elseif (!$user->document && !$user->payment) {{ $belum }}
-                                    @else {{ $sudah }} @endif
+                                    @if (!$user->document && $user->payment && $user->payment->status == 'berhasil') {{ $sedang }}
+                                    @elseif (!$user->document && (!$user->payment || $user->payment && ($user->payment->status == 'expired' || $user->payment->status == 'pending'))) {{ $belum }}
+                                    @elseif ($user->document) {{ $sudah }} @endif
                                     ">
                                     @if ($user->document)
                                         <i class="bi bi-check-lg text-white"></i>

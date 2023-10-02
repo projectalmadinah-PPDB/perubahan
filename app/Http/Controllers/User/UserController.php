@@ -223,7 +223,7 @@ class UserController extends Controller
     $user = User::create($data);
     
     $notif_otp = $notify->notif_otp;                                
-    $messages = $notif_otp . $user->token;
+    $messages = $notif_otp . ' ' . $user->token;
         
     $this->send_message($user->nomor, $messages);
      
