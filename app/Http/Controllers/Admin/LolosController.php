@@ -75,6 +75,13 @@ class LolosController extends Controller
         return redirect()->route('admin.lolos.index');
     }
 
+    public function edit_status(Request $request)
+    {
+        $status = $request->id;
+        $student = User::where('status','Lulus')->findOrFail($status);
+        return view('pages.admin.dashboard.lolos.edit-status',compact('student'));
+    }
+
     public function editMassal(Request $request)
     {
         $status = $request->status; // Ambil nilai status dari input seleksi
@@ -90,4 +97,5 @@ class LolosController extends Controller
 
         return redirect()->route('admin.lolos.index')->with('edit','Berhasil Mengedit Massal');
     }
+    
 }

@@ -144,12 +144,14 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       // wawancara
       Route::get('/wawancara',[WawancaraController::class,'index'])->name('wawancara.index');
+      
+      Route::get('/wawancara/{id}',[WawancaraController::class,'create'])->name('wawancara.create');
+
+      Route::post('/wawancara/process/{id}',[WawancaraController::class,'store'])->name('wawancara.create.process');
 
       Route::post('/wawancara/edit',[WawancaraController::class,'edit_massal'])->name('wawancara.massal');
 
       Route::patch('/wawancara/massal/proses',[WawancaraController::class,'editStatus'])->name('wawancara.edit_status');
-
-      Route::post('/wawancara/{id}',[WawancaraController::class,'store'])->name('wawancara.create');
 
       // Route::post('/wawancara/massal/{id}',[WawancaraController::class,'store_massal'])->name('wawancara.insert');
 
@@ -162,7 +164,9 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::get('/peserta/lolos/export',[LolosController::class,'export'])->name('lolos.export');
 
-      Route::patch('/peserta/lolos/massal',[LolosController::class,'editMassal'])->name('lolos.massal');
+      Route::post('/peserta/lolos/edit/massal',[LolosController::class,'edit_status'])->name('lolos.massal');
+
+      Route::patch('/peserta/lolos/massal',[LolosController::class,'editMassal'])->name('lolos.edit_massal');
 
       Route::get('/peserta/lolos/edit/{id}',[LolosController::class,'edit'])->name('lolos.edit');
 

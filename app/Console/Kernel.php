@@ -15,11 +15,14 @@ class Kernel extends ConsoleKernel
     use Fonnte;
     protected $commands = [
         Commands\PaymentCron::class,
+        Commands\Expired::class,
     ];
+    
 
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command("app:payment-cron")->dailyAt("00:00");
+        $schedule->command("app:expired")->daily();
     }
 
     /**

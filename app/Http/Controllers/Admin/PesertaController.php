@@ -56,78 +56,82 @@ class PesertaController extends Controller
         if (Str::startsWith($phone, '0')) {
             $phone = '62' . substr($phone, 1);
         }
-        $user = User::findorFail($id);
-        $parents = $user->parents; // Tidak perlu tanda kurung
-        $student = $user->student;
-        $data = $request->validate([
-            'name' => 'required|string',
-            'nomor' => 'required|unique:users,nomor,' . $user->id,
-            'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
-        ]);
-        $students = $request->validate([
-            'birthplace' => 'required|string',
-            'nik' => 'required|string',
-            'nisn' => 'required|string',
-            'hobby' => 'required|string',
-            'ambition' => 'required',
-            'last_graduate' => 'required',
-            'old_school' => 'required',
-            'organization_exp' => 'required',
-            'address' => 'required',
-            'status' => 'required'
-        ]);
-        $student->update($students);
-        $parent = $request->validate([
-            'father_name' => 'required|string',
-            'father_phone' => 'required',
-            'father_job' => 'required|string',
-            'mother_name' => 'required',
-            'mother_phone' => 'required',
-            'mother_job' => 'required',
-            'parent_earning' => 'required',
-            'child_no' => 'required',
-            'no_of_sibling' => 'required',
-        ]);
-        $document = $user->document;
+        $user = User::findOrFail($id);
 
-        // $document_validate = $request->validate([
-        //     'kk' => 'required',
-        //     'ijazah' => 'required',
-        //     'rapor' => 'required',
-        //     'akta' => 'required'
-        // ]);
-        // // Update document files if uploaded
-        // if ($request->hasFile('kk')) {
-        //     $kkFile = $request->file('kk');
-        //     $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
-        //     $kkFile->storeAs('public/pdf', $kkFileName);
-        //     $document->kk = 'pdf/' . $kkFileName;
-        // }
-        // if ($request->hasFile('ijazah')) {
-        //     $ijazahFile = $request->file('ijazah');
-        //     $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
-        //     $ijazahFile->storeAs('public/pdf', $ijazahFileName);
-        //     $document->ijazah = 'pdf/' . $ijazahFileName;
-        // }
-        // if ($request->hasFile('akta')) {
-        //     $aktaFile = $request->file('akta');
-        //     $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
-        //     $aktaFile->storeAs('public/pdf', $aktaFileName);
-        //     $document->akta = 'pdf/' . $aktaFileName;
-        // }
-        // if ($request->hasFile('rapor')) {
-        //     $raporFile = $request->file('rapor');
-        //     $raporFileName = time() . '_rapor_' . $raporFile->getClientOriginalName();
-        //     $raporFile->storeAs('public/pdf', $raporFileName);
-        //     $document->akta = 'pdf/' . $raporFileName;
-        // }
-        $user->update($data);
-        $parents->update($parent);
-        // $document->update($document_validate);
-        return redirect()->route('admin.peserta.index')->with('edit',"Data Pendaftaran Sudah Di Ganti");
-        
-        // return redirect()->route('admin.pendaftaran.index')->with('edit',"Data Pendaftaran Sudah Di Ganti");
+    // Memeriksa apakah ada file yang diunggah untuk setiap jenis dokumen dan hanya mengunggah jika ada
+    if ($request->hasFile('kk')) {
+        // Upload dan ganti file Kartu Keluarga jika ada yang diunggah
+        $kkFile = $request->file('kk');
+        $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
+        $kkFile->storeAs('public/pdf', $kkFileName);
+        $user->document->kk = 'pdf/' . $kkFileName;
+    }
+
+    if ($request->hasFile('ijazah')) {
+        // Upload dan ganti file Ijazah jika ada yang diunggah
+        $ijazahFile = $request->file('ijazah');
+        $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
+        $ijazahFile->storeAs('public/pdf', $ijazahFileName);
+        $user->document->ijazah = 'pdf/' . $ijazahFileName;
+    }
+
+    if ($request->hasFile('akta')) {
+        // Upload dan ganti file Akta jika ada yang diunggah
+        $aktaFile = $request->file('akta');
+        $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
+        $aktaFile->storeAs('public/pdf', $aktaFileName);
+        $user->document->akta = 'pdf/' . $aktaFileName;
+    }
+
+    if ($request->hasFile('rapor')) {
+        // Upload dan ganti file Rapor jika ada yang diunggah
+        $raporFile = $request->file('rapor');
+        $raporFileName = time() . '_rapor_' . $raporFile->getClientOriginalName();
+        $raporFile->storeAs('public/pdf', $raporFileName);
+        $user->document->rapor = 'pdf/' . $raporFileName;
+    }
+
+    // Validasi data pribadi
+    $data = $request->validate([
+        'name' => 'required|string|max:255',
+        'nomor' => 'required|unique:users,nomor,' . $user->id,
+        'tanggal_lahir' => 'required',
+        'jenis_kelamin' => 'required',
+    ]);
+
+    $students = $request->validate([
+        'birthplace' => 'required|string',
+        'nik' => 'required|string',
+        'nisn' => 'required|string',
+        'hobby' => 'required|string',
+        'ambition' => 'required',
+        'last_graduate' => 'required',
+        'old_school' => 'required',
+        'organization_exp' => 'required',
+        'address' => 'required',
+    ]);
+
+    $parent = $request->validate([
+        'father_name' => 'required|string|max:255',
+        'father_phone' => 'required',
+        'father_job' => 'required|string',
+        'mother_name' => 'required|max:255',
+        'mother_phone' => 'required',
+        'mother_job' => 'required',
+        'parent_earning' => 'required',
+        'child_no' => 'required',
+        'no_of_sibling' => 'required',
+    ]);
+
+    // Perbarui data pribadi
+    $user->update($data);
+    $user->student->update($students);
+    $user->parents->update($parent);
+
+    // Perbarui data dokumen
+    $user->document->save();
+
+    return redirect()->route('admin.peserta.index')->with('edit', 'Data Pendaftar Berhasil Di Edit');
     }
 
     public function coba(Request $request)

@@ -15,21 +15,20 @@ class WawancaraController extends Controller
     public function index(Request $request)
     {
         // $wawancara = Wawancara::with('student');
-        $data = User::where('status','Wawancara')->paginate(5);
-        // $wawancara = Wawancara::find();
-        if($request->has('search')){
-            // $data = Payment::where('name','LIKE','%'.$request->search.'%')->where('status','berhasil')->paginate(5);
-            $data = User::where('status','Wawancara')->where('name','LIKE','%'.$request->search.'%')->paginate(5);
-        }
-        else{
-            // $data = Payment::orderby('id','desc')->where('status','berhasil')->paginate(5);
-            $data = User::where('status','Wawancara')->paginate(5);
-        }
+        $data = User::where('status','Wawancara')->get();
+        
         return view('pages.admin.dashboard.wawancara.index',compact('data'));
+    }
+
+    public function create($id)
+    {
+        $wawancara = User::find($id);
+        return view('pages.admin.dashboard.wawancara.create',compact('wawancara'));
     }
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $user = User::where('id',$request->id)->first();
         // $users = User::where('nomor',$request->id)->first();
         $notify = User::where('notify_id',1)->first();
