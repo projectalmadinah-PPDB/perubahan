@@ -12,9 +12,10 @@ class FrontController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
         $article = Article::all();
         $qna = Question::where('active','on')->get();
-        return view('front.index',compact('article','qna'));
+        return view('front.index',compact('article','qna','user'));
     }
 
     public function tutor_payment()

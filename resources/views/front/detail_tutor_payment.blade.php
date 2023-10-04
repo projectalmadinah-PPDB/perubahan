@@ -20,7 +20,7 @@
     <!-- artikel -->
     <section class="w-full px-7 md:px-40 py-10">
         <article class="prose prose-sm md:prose-lg prose-slate !max-w-[90ch]">
-            <h1 class="!mb-4 !text-4xl title">Tutorial Pembayaran menggunakan iPaymu</h1>
+            <h1 class="!mb-4 !text-4xl title">Tutorial Pembayaran Menggunakan iPaymu</h1>
             <div class="flex justify-start items-center gap-x-2">
                 <span class="ring-1 ring-sekunder py-1 px-3 italic rounded-full text-sekunder bg-dasar text-xs transition-all duration-200 hover:ring-offset-2 font-medium"
                         >Created By : Admin</span>
@@ -28,9 +28,47 @@
                     Date : <span class="font-medium italic">kapan hari</span>
                 </span>
             </div>
-            <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur voluptas cumque quia mollitia eveniet autem fugit, expedita soluta non voluptatum ad reiciendis optio, dolorem nulla, placeat accusamus iusto! Ea harum possimus quisquam corporis veritatis autem cumque excepturi! Perspiciatis ex, vero similique natus earum quod soluta accusamus totam eum nesciunt in, quasi, dolore laborum eaque non voluptatem mollitia? Iure cumque ad, tenetur expedita iusto sed labore. Consectetur temporibus corrupti at excepturi? Ratione, tenetur? Vitae commodi hic labore. Quidem eaque soluta, doloremque porro quae obcaecati blanditiis ea aperiam suscipit repudiandae sequi? Dicta neque veniam perspiciatis expedita velit ut facere, architecto maiores optio eligendi cum et, accusantium laborum ad voluptatem perferendis voluptates consectetur omnis totam culpa. Dignissimos dolorem id, unde laboriosam sapiente voluptates, blanditiis optio labore culpa in suscipit atque tempore eos ipsa iste velit quod ea omnis debitis expedita iure ipsam, nulla rerum minus. Molestiae provident id voluptatem nisi eos, est inventore a dolore ab ullam? Numquam aut quos vero nihil rem, quae accusantium vitae voluptatem recusandae totam consectetur nesciunt laborum quas possimus, ea inventore delectus officia sint consequuntur quia itaque. Molestias, facilis dolor dolore, dignissimos quod sapiente, architecto eaque maxime quae odit alias quisquam unde rerum vel aspernatur repudiandae a? In.
-            </p>
+            <div class="tracking-wide leading-loose">
+                <!-- Table of Contents -->
+                
+                <!-- end of Table of Contents -->
+
+                <p class="indent-10">
+                    Proses pendaftaran online semakin mudah dengan bantuan <a href="https://ipaymu.com/" target="_blank" class="text-sky-600 hover:text-sky-800 duration-200 font-semibold italic">iPaymu</a> sebagai metode pembayaran yang handal dan aman. Dengan <a href="https://ipaymu.com/" target="_blank" class="text-sky-600 hover:text-sky-800 duration-200 font-semibold italic">iPaymu</a>, kamu dapat melakukan pembayaran biaya pendaftaran dalam hitungan menit, menghemat waktu berharga Anda. Panduan ini akan mengajarkan kamu terkait langkah-langkah simpel untuk menyelesaikan pembayaran pendaftaran secara efisien menggunakan platform <a href="https://ipaymu.com/" target="_blank" class="text-sky-600 hover:text-sky-800 duration-200 font-semibold italic">iPaymu</a>, sehingga kamu dapat fokus pada langkah selanjutnya dalam proses pendaftaran Anda.
+                </p>
+            
+                <h3>Langkah-langkah:</h3>
+            
+                <h4>1. Lakukan Pendaftaran terlebih dahulu</h4>
+                <img src="link_gambar_langkah1.jpg" alt="Langkah 1">
+                <p>Pastikan kamu sudah melakukan pendaftaran peserta didik baru pada formulir yang sudah disediakan di halaman <a class="text-sky-600 hover:text-sky-800 duration-200 italic" href="{{ route('user.show') }}">Daftar</a>.</p>
+            
+                <h4>2. Mengakses Link Pembayaran</h4>
+                <img src="link_gambar_langkah2.jpg" alt="Langkah 2">
+                <p>Setelah mendaftar, pastikan kamu berada di halaman beranda Calon Siswa seperti gambar diatas, lalu tekan tombol "Bayar Disini" untuk mengarahkan kamu ke halaman detail pembayaran yang akan kamu lakukan.</p>
+            
+                <h4>3. Melihat Detail Pembayaran</h4>
+                <img src="link_gambar_langkah3.jpg" alt="Langkah 3">
+                <p>Anda akan melihat halaman dengan detail biaya administrasi dan instruksi pembayaran. Pastikan untuk mencatat nomor rekening dan jumlah biaya.</p>
+            
+                <h4>4. Menggunakan Tombol "Bayar Sekarang"</h4>
+                <img src="link_gambar_langkah4.jpg" alt="Langkah 4">
+                <p>Klik tombol "Bayar Sekarang dengan iPaymu" untuk melanjutkan proses pembayaran.</p>
+            
+                <h4>5. Melakukan Pembayaran di iPaymu</h4>
+                <img src="link_gambar_langkah5.jpg" alt="Langkah 5">
+                <p>Anda akan diarahkan ke halaman pembayaran iPaymu. Masukkan informasi yang diperlukan dan pilih metode pembayaran yang diinginkan.</p>
+            
+                <h4>6. Verifikasi Pembayaran</h4>
+                <p>Setelah melakukan pembayaran, kamu akan menerima email konfirmasi dari iPaymu. Pastikan untuk menyimpan bukti pembayaran sebagai referensi.</p>
+                
+                <h3>Kesimpulan:</h3>
+                <p>
+                    Dengan mengikuti langkah-langkah di atas, kamu dapat dengan mudah melakukan pembayaran administrasi untuk pendaftaran PPDB online menggunakan iPaymu. Jika kamu mengalami kendala, jangan ragu untuk menghubungi tim dukungan kami.
+                </p>
+            
+                <p>Semoga sukses dalam pendaftaran!</p>
+            </div>
         </article>
     </section>
 

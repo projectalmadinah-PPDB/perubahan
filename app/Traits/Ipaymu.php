@@ -74,7 +74,7 @@ trait Ipaymu {
         $body['price'][]    = 100000;
         $body['referenceId']    = 'ID'.rand(1111,9999);
         $body['returnUrl']    = route('callback.return');
-        $body['notifyUrl']    = 'https://6601-149-108-81-34.ngrok-free.app/callback/notify';
+        $body['notifyUrl']    = 'https://90c4-139-0-84-63.ngrok-free.app/callback/notify';
         $body['cancelUrl']    = route('callback.cancel');
         $body['paymentChannel'] = 'qris';
         $body['expired']    = 24;

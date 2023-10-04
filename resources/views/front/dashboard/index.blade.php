@@ -20,7 +20,7 @@
                     Silahkan Melakukan Pembayaran Administrasi Sebelum Melengkapi Data Diri
                 </p>
                 <a href="{{route('user.pay',$user->id)}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                    !Click Here!
+                    Click Here
                 </a>
             </div>
 
@@ -347,20 +347,6 @@
                                 <span class="font-bold">Step 1 :</span><br>Mendaftar & Login
                             </p>
                         </div>
-                        {{-- contoh --}}
-                        {{-- <div class="relative">
-                            <div 
-                                class="
-                                @if ($user->status == 'Sudah') {{ $sudah }} 
-                                @elseif ($user->status == 'Sedang') {{ $sedang }} 
-                                @else {{ $belum }} @endif">
-                                <i class="bi bi-check-lg text-white"></i>
-                            </div>
-                            <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
-                                <span class="font-bold">Contoh :</span><br>Ini Cuma Contoh
-                            </p>
-                        </div> --}}
-                        {{-- end contoh --}}
                         <div class="relative">
                             <div class="rounded-full w-6 h-6 bg-sekunder shadow-md ring-[3px] ring-offset-[3px] ring-sekunder text-center">
                                 {{-- <i class="bi bi-check-lg text-white"></i> --}}
@@ -1219,8 +1205,7 @@
                     
                     @endif
             @endif
-        @endif
-        <!-- pengumuman -->
+    @endif
     
         <!-- footer -->
         <footer

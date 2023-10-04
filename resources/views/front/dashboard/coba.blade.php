@@ -141,8 +141,7 @@
                         <p class="tracking-wide text-sm md:text-lg text-center">
                             Silahkan melakukan Pembayaran Administrasi melalui tombol dibawah ini
                         </p>
-                        <a href="{{route('user.pay',$user->id)}}" 
-                            class="{{ $buttonStep }}">
+                        <a href="{{route('user.pay', $user->id)}}" class="{{ $buttonStep }}">
                             Tekan Disini
                         </a>
                     @else
@@ -414,10 +413,10 @@
                         <p class="w-full tracking-wide leading-relaxed">
                             Sebelum melanjutkan, pastikan menyiapkan dokumen persyaratan yang dibutuhkan, yaitu :
                             <ul class="list-disc text-start">
-                                <li>Kartu Keluarga <i>(scan)</i></li>
-                                <li>Akte Kelahiran <i>(scan)</i></li>
-                                <li>Ijazah Sekolah Terakhir <i>(scan)</i></li>
-                                <li>Rapor Terakhir <i>(scan)</i></li>
+                                <li>Kartu Keluarga <i>(scan pdf)</i></li>
+                                <li>Akte Kelahiran <i>(scan pdf)</i></li>
+                                <li>Ijazah Sekolah Terakhir <i>(scan pdf)</i></li>
+                                <li>Rapor Terakhir <i>(scan pdf)</i></li>
                             </ul>
                             Kemudian upload dokumen tersebut sesuai dengan form yang tersedia.
                         </p>

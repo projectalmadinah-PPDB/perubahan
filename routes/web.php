@@ -47,6 +47,8 @@ Route::get('/question-answer', [FrontController::class,'qna'])->name('qna');
 
 Route::get('/informasi/tutorial-pembayaran', [FrontController::class,'tutor_payment'])->name('tutor.payment');
 
+Route::get('/informasi/{slug}',[FrontController::class,'detail_informasi'])->name('user.informasi.detail');
+
 Route::get('/about-us',[FrontController::class,'about'])->name('about');
 
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
@@ -279,7 +281,7 @@ Route::prefix('/user')->name('user.')->group(function(){
       Route::get('/profile',[UserDashboardController::class,'profile'])->name('profile');
       Route::get('/informasi',[UserDashboardController::class,'informasi'])->name('informasi');
       Route::get('/qna',[UserDashboardController::class,'qna'])->name('qna');
-      Route::get('/detail-informasi/{slug}',[FrontController::class,'detail_informasi'])->name('informasi.detail');
+      Route::get('payment/detail', [UserDashboardController::class, 'payment_detail'])->name('payment.detail');
     });
     Route::middleware(['payment'])->group(function(){
       Route::get('/kelengkapan' ,[LengkapiController::class,'index'])->name('kelengkapan');

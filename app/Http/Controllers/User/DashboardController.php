@@ -55,7 +55,7 @@ class DashboardController extends Controller
         $article = Article::all();
         return view('front.dashboard.informasi',compact('article','user'));
     }
-
+    
     public function qna()
     {
         $users = Auth::user()->id;
@@ -63,10 +63,21 @@ class DashboardController extends Controller
         $question = Question::all();
         return view('front.dashboard.qna',compact('question','user'));
     }
+    
+    public function payment_detail()
+    {
+        // $users = Auth::user()->id;
+        // $user = User::with('student')->findOrFail($users);
+        $user = Auth::user();
+        
+        $payment = Payment::where('user_id', $user->id)->first();
+        return view('front.dashboard.payment', compact('user','payment'));
+    }
 
     public function pay($id)
     {
         $pendaftaran = User::find($id);
+        // dd($pendaftaran);
         $phone = User::where('nomor',$pendaftaran->nomor)->first();
         $status = 'pending';
         
@@ -86,7 +97,13 @@ class DashboardController extends Controller
         }
         $messages = $pendaftaran->notifys->notif_pembayaran . ' ' . $Transaction->link;
 
+        $userPayment = Payment::where('user_id', $pendaftaran->id)->first();
+
         $this->send_message($phone,$messages);
         return Redirect::to($Transaction->link);
+        // return redirect()->route('user.payment.detail')
+        //         ->with('user', $pendaftaran)
+        //         ->with('payment', $userPayment)
+        //         ->with('transaction', $Transaction);
     }
 }

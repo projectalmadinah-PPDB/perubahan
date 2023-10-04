@@ -11,7 +11,7 @@
 </head>
 <body>
     @include('front.layouts.header')
-    <div class="bg-dasar w-full h-screen font-poppins caret-sekunder accent-primer">
+    <div class="bg-dasar w-full min-h-screen font-poppins caret-sekunder accent-primer">
         @yield('content')
     </div>
     {{-- @include('front.layouts.footer') --}}
