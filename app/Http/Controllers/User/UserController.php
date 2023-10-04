@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Generasi;
+use App\Models\Payment;
 use App\Traits\Fonnte;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -125,13 +126,13 @@ class UserController extends Controller
 
         if(!$user->payment){
             $notif = User::find($user->id);
-            $messages = $notif->notifys->notif_login . ' Silahkan Akses Link berikut: ' . "<a href='http://127.0.0.1:8000/user/dashboard'>" . '</a>';
+            $messages = $notif->notifys->notif_pembayaran . ' Silahkan Akses Link berikut: ' . "<a href='http://127.0.0.1:8000/user/dashboard'>" . '</a>';
 
             $this->send_message($phone,$messages);
         }elseif($user->payment->status == 'pending'){
             $notif = User::find($user->id);
 
-            $messages = $notif->notifys->notif_login . $user->payment->link;
+            $messages = $notif->notifys->notif_pembayaran . $user->payment->link;
 
             $this->send_message($phone,$messages);
         }else{
@@ -238,6 +239,7 @@ class UserController extends Controller
     public function activication_process(Request $request)
     {
         $user = User::where('token', $request->token)->first();
+        $payment = User::where('payment',$request->id)->first();
         $notif = User::where('notify_id',1)->first();
 
         if ($user) {
@@ -247,10 +249,11 @@ class UserController extends Controller
 
             // Setelah mengupdate status aktif, kita akan mencoba masuk
             auth()->login($user);
-            $messages = $notif->notifys->notif_login;
+           
+                $messages = $notif->notifys->notif_login;
 
-
-            $this->send_message($user->nomor,$messages);
+                $this->send_message($user->nomor,$messages);
+            
             return redirect()->route('user.dashboard');
         }
 

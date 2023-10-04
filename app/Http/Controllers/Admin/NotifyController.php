@@ -24,10 +24,9 @@ class NotifyController extends Controller
             'notif_pembayaran' => 'required',
             'notif_info' => 'required',
             'notif_wawancara' => 'required',
-            'notif_verify' => 'required',
-            'notif_belum_verify' => 'required',
-            'notif_tidak_sah' => 'required',
-            'notif_gagal_otp' => 'required'
+            'notif_login' => 'required',
+            'notif_mengisi_pribadi' => 'required',
+            'notif_melengkapi' => 'required'
         ]);
 
         $notify->update($notifys);

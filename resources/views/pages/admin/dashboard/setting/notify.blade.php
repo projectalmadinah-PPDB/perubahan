@@ -38,27 +38,27 @@
                         <div class="col-md-6">
                             <div class="mb-2">
                                 <label for="" class="form-label">Notifikasi OTP</label>
-                                <textarea class="form-control rounded-4" rows="5" name="notif_otp">{{$notif->notif_otp}}</textarea>
+                                <textarea class="form-control rounded-4" id="otp" rows="5" name="notif_otp">{{$notif->notif_otp}}</textarea>
                             </div>
                             <div class="mb-2">
                               <label for="" class="form-label">Notifikasi Login Berhasil</label>
-                              <textarea class="form-control rounded-4" rows="5" name="notif_login">{{$notif->notif_login}}</textarea>
+                              <textarea class="form-control rounded-4" id="login" rows="5" name="notif_login">{{$notif->notif_login}}</textarea>
                             </div>
                             <div class="mb-2">
                                 <label for="" class="form-label">Notifikasi Lolos Test</label>
-                                <textarea name="notif_lolos" rows="5" id="" class="form-control rounded-4">{{$notif->notif_lolos}}</textarea>
+                                <textarea name="notif_lolos" rows="5" id="lolos" class="form-control rounded-4">{{$notif->notif_lolos}}</textarea>
                             </div>
                             <div class="mb-2">
                                 <label for="" class="form-label">Notifikasi Gagal Test</label>
-                                <textarea name="notif_gagal" rows="5" id="" class="form-control rounded-4">{{$notif->notif_gagal}}</textarea>
+                                <textarea name="notif_gagal" rows="5" id="gagal" class="form-control rounded-4">{{$notif->notif_gagal}}</textarea>
                             </div>
                             <div class="mb-2">
                               <label for="" class="form-label">Notifikasi Telah Melengkapi Data Diri <strong>*Belum Document</strong></label>
-                              <textarea name="notif_mengisi_pribadi" rows="5" id="" class="form-control rounded-4">{{$notif->notif_mengisi_pribadi}}</textarea>
+                              <textarea name="notif_mengisi_pribadi" rows="5" id="lengkapi" class="form-control rounded-4">{{$notif->notif_mengisi_pribadi}}</textarea>
                             </div>
                             <div class="mb-2">
                               <label for="" class="form-label">Notifikasi Telah Melengkapi Semua Data Diri</label>
-                              <textarea name="notif_melengkapi" rows="5" id="" class="form-control rounded-4">{{$notif->notif_melengkapi}}</textarea>
+                              <textarea name="notif_melengkapi" rows="5" id="lengkap" class="form-control rounded-4">{{$notif->notif_melengkapi}}</textarea>
                             </div>
                             <div class="mb-2">
                                 <button type="submit" class="btn btn-primary px-4">Submit</button>

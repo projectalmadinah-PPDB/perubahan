@@ -9,10 +9,12 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Exports\ExportPeserta;
 use App\Http\Controllers\Controller;
+use App\Traits\Fonnte;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PesertaController extends Controller
 {
+    use Fonnte;
     public function index(Request $request)
     {
         $data = User::whereHas('payment', function ($query) {
@@ -153,12 +155,32 @@ class PesertaController extends Controller
 
             User::where('id', $id)
                 ->update($data);
+
+            $notif = User::find($id);
+
+            $messages = $notif->notifys->notif_info . $notif->payment->link;
+    
+            $this->send_message($notif->nomor,$messages);
         }
 
         return redirect()->route('admin.peserta.index')->with('edit_massal', 'Berhasil Mengedit Massal');
     }
 
+    public function destroy($id)
+    {     
+        // Hapus user
+        $user = User::findOrFail($id);
 
+        $user->document()->delete();
+        
+        $user->payment()->delete();
+
+        $user->student()->delete();
+
+        $user->delete();
+
+        return redirect()->route('admin.peserta.index')->with('delete',"Berhasil Menghapus Pendaftaran $user->name");
+    }
 
     public function delete_all(Request $request)
 {

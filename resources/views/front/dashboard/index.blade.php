@@ -4,6 +4,9 @@
 
 @push('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- CKEditor 5 CDN -->
+<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.1.0/classic/ckeditor.css">
+
 @endpush
 @section('content')
 <main class="w-full min-h-screen h-auto">
@@ -102,20 +105,17 @@
             class="py-16 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
             <h1 class="mt-2 text-3xl mb-8 font-bold title">Informasi Untuk Membayar</h1>
             <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
-                <!-- foreach here -->
+                <!-- endforeach here -->
+                @foreach ($pengumuman_pembayaran as $announ)
                 <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                     <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                        <p class="tracking-wide">Apa Aja Yang Disiapkan Ketika Ingin Membayar?</p>
+                        <p class="tracking-wide">{{ $announ->title }}</p>
                     </div>
                     <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                        Yang Siapkan Untuk Membayar Uang Administrasi
-                        <ul>
-                            <li>1. Siapkan Uang Sebesar 100Ribu</li>
-                            <li>2. Memiliki Virtual Account</li>
-                            <li>3. Mengetahui Cara Membayar Online/Paymet Gateaway</li>
-                        </ul>
+                        {!! $announ->desc !!}
                     </div>
                 </div>
+                @endforeach
                 <!-- endforeach here -->
                 <!-- foreach here -->
                 <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
@@ -127,18 +127,7 @@
                         <a href="https://web.whatsapp.com/+6282346739790" class="text-larangan">Silahkan Click +6282346739790</a>
                     </div>
                 </div>
-                <!-- endforeach here -->
-                @foreach ($announcements as $announ)
-                <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
-                    <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                        <p class="tracking-wide">{{ $announ->title }}</p>
-                    </div>
-                    <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                        {!! $announ->desc !!}
-                    </div>
-                </div>
-                @endforeach
-                <!-- endforeach here -->
+                
                 <style>
                     .dropdown-content ul li,
                     .dropdown-content ol li {
@@ -269,21 +258,18 @@
             class="py-16 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
             <h1 class="mt-2 text-3xl mb-8 font-bold title">Informasi Untuk Membayar</h1>
             <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
-                <!-- foreach here -->
+                @foreach ($pengumuman_pembayaran as $item)
+                    <!-- foreach here -->
                 <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                     <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                        <p class="tracking-wide">Apa Aja Yang Disiapkan Ketika Ingin Membayar?</p>
+                        <p class="tracking-wide">{{$item->title}}</p>
                     </div>
                     <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                        Yang Siapkan Untuk Membayar Uang Administrasi
-                        <ul>
-                            <li>1. Siapkan Uang Sebesar 100Ribu</li>
-                            <li>2. Memiliki Virtual Account</li>
-                            <li>3. Mengetahui Cara Membayar Online/Paymet Gateaway</li>
-                        </ul>
+                        {!! $item->desc !!}
                     </div>
                 </div>
                 <!-- endforeach here -->
+                @endforeach
                 <!-- foreach here -->
                 <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                     <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
@@ -575,6 +561,18 @@
                     class="py-16 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
                     <h1 class="mt-2 text-3xl mb-8 font-bold title">Informasi Untuk Melengkapi Data Diri</h1>
                     <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
+                        @foreach ($pengumuman_data as $item)
+                            <!-- foreach here -->
+                        <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
+                            <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
+                                <p class="tracking-wide">{{$item->title}}</p>
+                            </div>
+                            <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
+                                {{ $item->desc }}
+                            </div>
+                        </div>
+                        <!-- endforeach here -->
+                        @endforeach
                         <!-- foreach here -->
                         <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                             <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
@@ -721,24 +719,18 @@
                     class="py-16 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
                     <h1 class="mt-2 text-3xl mb-8 font-bold title">Informasi Untuk Melengkapi Data Diri</h1>
                     <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
-                        <!-- foreach here -->
+                        @foreach ($pengumuman as $item)
+                            <!-- foreach here -->
                         <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                             <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
-                                <p class="tracking-wide">Apa Aja Yang Disiapkan Ketika Ingin Melengkapi Data Diri</p>
+                                <p class="tracking-wide">{{$item->title}}</p>
                             </div>
                             <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                                Yang Siapkan Untuk Melengkapi Data Diri
-                                <ul>
-                                    <li>1. Data Data Tentang Diri Anda Dan Orang Tua</li>
-                                    <li>2. Kartu Keluarga</li>
-                                    <li>3. Kartu Ijazah <strong>Pendidikan Terakhir</strong></li>
-                                    <li>4. Rapor <strong>Pendidikan Terakhir</strong></li>
-                                    <li>5. Akte Anda</li>
-                                    <li>6. Silahkan Buat 4 File PDF , Seperti File Pertama Kartu Keluarga , Kedua Kartu Ijazah, Ketiga Rapor , Keempat Akte</li>
-                                </ul>
+                                {{$item->desc}}
                             </div>
                         </div>
                         <!-- endforeach here -->
+                        @endforeach
                         <!-- foreach here -->
                         <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                             <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
@@ -783,22 +775,75 @@
                         </div>
                     </section>
                     @endif
-                    <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
-                        <!-- status pendaftaran -->
-                        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
-                            <h1 class="text-2xl md:text-3xl tracking-wider font-semibold text-center">Semua Data {{$user->name}} berhasil dilengkapi!</h1>
-                            <p class="tracking-wide text-sm md:text-lg text-center">Selamat Datang Kamu Sudah Melengkapi Semua Pendaftaran Silahkan Menunggu Pesan Dari Admin </p>
-                            <a href="{{route('user.profile')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                                Halo Data Diri Saya {{$user->name}}
-                            </a>
-                        </div>
+                    @if ($user->status == 'Belum')
+                        <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
+                            <!-- status pendaftaran -->
+                            <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
+                                <h1 class="text-2xl md:text-3xl tracking-wider font-semibold text-center">Semua Data {{$user->name}} berhasil dilengkapi!</h1>
+                                <p class="tracking-wide text-sm md:text-lg text-center">Semua Data Kamu Sudah Di Amankan / DiLengkapi</p>
+                                <a href="{{route('user.profile')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                                    Halo Data Diri Saya {{$user->name}}
+                                </a>
+                            </div>
 
-                        <!-- cta ikuti tes -->
-                        <div class="flex flex-col justify-center items-center gap-4">
-                        </div>
+                            <!-- cta ikuti tes -->
+                            <div class="flex flex-col justify-center items-center gap-4">
+                            </div>
 
-                        <!-- alur pendaftaran dan status -->
-                    </section>
+                            <!-- alur pendaftaran dan status -->
+                        </section>
+                    @elseif($user->status == 'Wawancara')
+                        <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
+                            <!-- status pendaftaran -->
+                            <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
+                                <h1 class="text-2xl md:text-3xl tracking-wider font-semibold text-center">Silahkan Menunggu Pesan Test Wawancara {{$user->name}}!</h1>
+                                <p class="tracking-wide text-sm md:text-lg text-center">Yey Kamu Sudah Wawancara Sedikit Lagi Nih !!</p>
+                                <a href="{{route('user.profile')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                                    Halo Data Diri Saya {{$user->name}}
+                                </a>
+                            </div>
+
+                            <!-- cta ikuti tes -->
+                            <div class="flex flex-col justify-center items-center gap-4">
+                            </div>
+
+                            <!-- alur pendaftaran dan status -->
+                        </section>
+                    @elseif($user->status == 'Lulus')
+                        <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
+                            <!-- status pendaftaran -->
+                            <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
+                                <h1 class="text-2xl md:text-3xl tracking-wider font-semibold text-center">Semua Telah Selesai Test Dan Kamu DI nyatakan Lulus {{$user->name}}!</h1>
+                                <p class="tracking-wide text-sm md:text-lg text-center">Yey Kamu Sudah Lulus Nih Silahkan Menunggu Informasi Lagi Nih !!</p>
+                                <a href="{{route('user.profile')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                                    Halo Data Diri Saya {{$user->name}}
+                                </a>
+                            </div>
+
+                            <!-- cta ikuti tes -->
+                            <div class="flex flex-col justify-center items-center gap-4">
+                            </div>
+
+                            <!-- alur pendaftaran dan status -->
+                        </section>
+                    @elseif($user->status == 'Gagal')
+                        <section class="w-full py-7 px-10 lg:px-60 bg-dasar flex flex-col justify-center items-center gap-4">
+                            <!-- status pendaftaran -->
+                            <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-sky-900 text-dasar rounded-xl shadow-xl border-2 border-primer">
+                                <h1 class="text-2xl md:text-3xl tracking-wider font-semibold text-center">Semua Telah Selesai Test Dan Kamu DI nyatakan Gagal / Gugur {{$user->name}} Maaf!</h1>
+                                <p class="tracking-wide text-sm md:text-lg text-center">Mungkin Tahun Depan Bisa Di Coba Lagi !!</p>
+                                <a href="{{route('user.profile')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                                    Halo Data Diri Saya {{$user->name}}
+                                </a>
+                            </div>
+
+                            <!-- cta ikuti tes -->
+                            <div class="flex flex-col justify-center items-center gap-4">
+                            </div>
+
+                            <!-- alur pendaftaran dan status -->
+                        </section>
+                    @endif
                     @if ($user->status == 'Wawancara')
                     <section id="alur" class="w-full py-16 select-none">
                         <div class="mx-auto container">
@@ -885,6 +930,43 @@
                             </div>
                         </div>
                     </section>
+                    <section 
+                    class="py-16 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
+                    <h1 class="mt-2 text-3xl mb-8 font-bold title">Pengumuman</h1>
+                    <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
+                        @foreach ($pengumuman_test as $item)
+                            <!-- foreach here -->
+                            <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
+                                <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
+                                    <p class="tracking-wide">{{$item->title}}</p>
+                                </div>
+                                <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
+                                    {!! $item->desc !!}
+                                </div>
+                            </div>
+                            <!-- endforeach here -->
+                        @endforeach
+                    </div>
+        
+                    <script>
+                        // accordion question
+                            const ItemHeaders = document.querySelectorAll('div.dropdown-title');
+                            
+                            ItemHeaders.forEach(ItemHeader => {
+                                ItemHeader.addEventListener('click', event => {
+                                    ItemHeader.classList.toggle('show');
+                                    
+                                    const ItemBody = ItemHeader.nextElementSibling;
+                                    
+                                    if(ItemHeader.classList.contains('show')) {
+                                        ItemBody.classList.remove('hidden');
+                                    } else {
+                                        ItemBody.classList.add('hidden');
+                                    }
+                                })
+                            })
+                    </script>
+                </section>
                     @elseif($user->status == 'Belum')
                     <section id="alur" class="w-full py-16 select-none">
                         <div class="mx-auto container">
@@ -970,6 +1052,43 @@
                             </div>
                         </div>
                     </section>
+                    <section 
+                    class="py-16 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
+                    <h1 class="mt-2 text-3xl mb-8 font-bold title">Pengumuman</h1>
+                    <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
+                        @foreach ($pengumuman_test as $item)
+                            <!-- foreach here -->
+                            <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
+                                <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
+                                    <p class="tracking-wide">{{$item->title}}</p>
+                                </div>
+                                <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
+                                    {!! $item->desc !!}
+                                </div>
+                            </div>
+                            <!-- endforeach here -->
+                        @endforeach
+                    </div>
+        
+                    <script>
+                        // accordion question
+                            const ItemHeaders = document.querySelectorAll('div.dropdown-title');
+                            
+                            ItemHeaders.forEach(ItemHeader => {
+                                ItemHeader.addEventListener('click', event => {
+                                    ItemHeader.classList.toggle('show');
+                                    
+                                    const ItemBody = ItemHeader.nextElementSibling;
+                                    
+                                    if(ItemHeader.classList.contains('show')) {
+                                        ItemBody.classList.remove('hidden');
+                                    } else {
+                                        ItemBody.classList.add('hidden');
+                                    }
+                                })
+                            })
+                    </script>
+                </section>
                     @else
                     <section id="alur" class="w-full py-16 select-none">
                         <div class="mx-auto container">
@@ -1059,19 +1178,18 @@
                             </div>
                         </div>
                     </section>
-                    @endif
                     <section 
                     class="py-16 px-5 md:px-10 lg:px-20 flex flex-col justify-start items-center">
                     <h1 class="mt-2 text-3xl mb-8 font-bold title">Pengumuman</h1>
                     <div class="flex flex-col justify-start items-center gap-y-2 w-full px-10 sm:px-18 md:px-32">
-                        @foreach ($pengumuman_test as $item)
+                        @foreach ($pengumuman_hasil as $item)
                             <!-- foreach here -->
                             <div class="dropdown w-full shadow-md rounded-[20px] border border-emerald-400">
                                 <div class="dropdown-title font-medium p-3 px-7 text-xl flex justify-between items-center">
                                     <p class="tracking-wide">{{$item->title}}</p>
                                 </div>
                                 <div class="dropdown-content pb-5 px-7 tracking-wide hidden">
-                                    {{$item->desc}}
+                                    {!! $item->desc !!}
                                 </div>
                             </div>
                             <!-- endforeach here -->
@@ -1097,6 +1215,8 @@
                             })
                     </script>
                 </section>
+                    @endif
+                    
                     @endif
             @endif
         @endif

@@ -67,8 +67,8 @@ trait Ipaymu {
 
         $user = User::find($id);
 
-        $body['name'] = $user->name;
-        $body['phone'] = $user->nomor;
+        // $body['name'] = $user->name;
+        // $body['phone'] = $user->nomor;
         $body['product'][] = 'Pendaftaran';
         $body['qty'][]    = 1;
         $body['price'][]    = 100000;

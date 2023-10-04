@@ -41,7 +41,6 @@
                         <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
                         <th>ID</th>
                         <th>Judul</th>
-                        <th>Desc</th>
                         <th>Step</th>
                         <th>Author</th>
                         <th>Action</th>
@@ -61,9 +60,6 @@
                                 @if ($item->updated_at)
                                   <i class="badge badge-info border-0 py-1">edited</i>
                                 @endif
-                            </td>
-                            <td class="text-truncate" style="max-width: 300px;">
-                                {{ $item->desc }}
                             </td>
                             <td>
                               {{$item->step}}

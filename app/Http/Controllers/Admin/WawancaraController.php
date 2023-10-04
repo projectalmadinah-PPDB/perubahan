@@ -41,10 +41,10 @@ class WawancaraController extends Controller
         ]);
         $data['user_id'] = $user->id;
 
-        $messages = $notify->notifys->notif_info;
+        Wawancara::create($data);
+        $messages = $notify->notifys->notif_wawancara . $request->tanggal . ' Pada Jam : ' . $request->jam . ' Silahkan Akses Link berikut: ' . $request->link;
 
         $this->send_message($user->nomor,$messages);
-        Wawancara::create($data);
         // $wawancara = Wawancara::find($request->id);
 
         return redirect()->route('admin.wawancara.index')->with('success','Berhasil Menambahkan Jadwal Dan Link Wawancara');

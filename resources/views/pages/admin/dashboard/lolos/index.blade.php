@@ -134,7 +134,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Mengarahkan formulir ke rute yang tepat dengan metode POST
-                document.form1.action = "{{ route('admin.lolos.massal') }}";
+                document.form1.action = "/admin/peserta/lolos/edit/massal";
                 document.form1.submit();
             }
         })
@@ -165,11 +165,11 @@
 </script>
 @elseif(session('edit'))
 <script>
-  toastr.options = {
-    "progressBar" : true,
-    "closeButton" : true
-  }
-  toastr.warning("{{ session('edit') }}");
+  Swal.fire(
+            'Edited!',
+            'Berhasil Edit Massal',
+            'success'
+          )
 </script>
 @endif
 @endpush

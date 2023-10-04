@@ -129,7 +129,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::put('/peserta/edit-all',[PesertaController::class,'updateSelectedStatus'])->name('peserta.edit-all');
 
-      Route::get('/peserta/delete/{id}',[PesertaController::class,'destroy'])->name('peserta.destroy');
+      Route::delete('/peserta/delete/{id}',[PesertaController::class,'destroy'])->name('peserta.destroy');
 
       Route::get('/peserta/show/{id}',[PesertaController::class,'show'])->name('peserta.show');
 
