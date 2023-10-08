@@ -27,15 +27,30 @@
                         <tbody>
                             <tr>
                                 <td class="font-semibold py-4">Nama</td>
-                                <td class="font-light tracking-wide py-4">{{$user->name}}</td>
+                                <td class="font-light tracking-wide py-4 capitalize">{{$user->name}}</td>
                             </tr>
                             <tr>
                                 <td class="font-semibold py-4">Usia</td>
-                                <td class="font-light tracking-wide py-4">10</td>
+                                <td class="font-light tracking-wide py-4">
+                                    @php
+                                        // Hitung usia berdasarkan tanggal lahir
+                                        $tanggalLahir = $user->tanggal_lahir;
+                                        $usia = date_diff(date_create($tanggalLahir), date_create('now'))->y;
+                                        echo $usia;
+                                    @endphp Tahun
+                                </td>
                             </tr>
                             <tr>
                                 <td class="font-semibold py-4">Tanggal Lahir</td>
-                                <td class="font-light tracking-wide py-4">{{$user->tanggal_lahir}}</td>
+                                {{-- <td class="font-light tracking-wide py-4">{{$user->tanggal_lahir}}</td> --}}
+                                <td class="font-light tracking-wide py-4 capitalize">
+                                    {{ $user->student->birthplace }}, 
+                                    @php
+                                        date_default_timezone_set('Asia/Jakarta');
+                                        $tanggalLahirLengkap = date('d F Y', strtotime($user->tanggal_lahir));
+                                        echo $tanggalLahirLengkap;
+                                    @endphp
+                                </td>
                             </tr>
                             <tr>
                                 <td class="font-semibold py-4">Jenis Kelamin</td>
@@ -86,23 +101,23 @@
                         <tbody>
                             <tr>
                                 <td class="font-semibold py-4">Nama Ayah</td>
-                                <td class="font-light tracking-wide py-4">{{$user->parents->father_name}}</td>
+                                <td class="font-light tracking-wide py-4 capitalize">{{$user->parents->father_name}}</td>
                             </tr>
                             <tr>
                                 <td class="font-semibold py-4">No. Whatsapp Ayah</td>
                                 <td class="font-light tracking-wide py-4">{{$user->parents->father_phone}}</td>
                             </tr>
                             <tr>
+                                <td class="font-semibold py-4">Pekerjaan Ayah</td>
+                                <td class="font-light tracking-wide py-4">{{$user->parents->father_job}}</td>
+                            </tr>
+                            <tr>
                                 <td class="font-semibold py-4">Nama Ibu</td>
-                                <td class="font-light tracking-wide py-4">{{$user->parents->mother_name}}</td>
+                                <td class="font-light tracking-wide py-4 capitalize">{{$user->parents->mother_name}}</td>
                             </tr>
                             <tr>
                                 <td class="font-semibold py-4">No. Whatsapp Ibu</td>
                                 <td class="font-light tracking-wide py-4">{{$user->parents->mother_phone}}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-semibold py-4">Pekerjaan Ayah</td>
-                                <td class="font-light tracking-wide py-4">{{$user->parents->father_job}}</td>
                             </tr>
                             <tr>
                                 <td class="font-semibold py-4">Pekerjaan Ibu</td>

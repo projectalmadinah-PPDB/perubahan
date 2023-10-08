@@ -29,6 +29,7 @@ class User extends Authenticatable
         'status',
         'token',
         'active',
+        'role',
         'email_verified_at',
     ];
 
@@ -100,5 +101,15 @@ class User extends Authenticatable
     public function generasi()
     {
         return $this->belongsTo(Generasi::class);
+    }
+
+    public function sections()
+    {
+        return $this->hasMany(Section::class);
+    }
+
+    public function home()
+    {
+        return $this->hasOne(Home::class);
     }
 }

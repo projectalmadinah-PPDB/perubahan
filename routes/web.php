@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\WawancaraController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\UsersController;
 use App\Models\Wawancara;
@@ -195,6 +196,13 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
     Route::put('/generasi/update/{id}',[GenerasiController::class,'update'])->name('generasi.update');
 
+    // section
+    Route::get('/section', [SectionController::class,'index'])->name('section.index');
+    Route::put('/section/update/home', [SectionController::class,'updateHome'])->name('update.home');
+    Route::post('section/create', [SectionController::class, 'store'])->name('section.create');
+    Route::put('/section/update/{id}', [SectionController::class, 'update'])->name('section.update');
+    Route::delete('/section/delete/{id}',[SectionController::class, 'destroy'])->name('section.delete');
+
       //pengumuman
     Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index'); 
     Route::get('/pengumuman/create', [PengumumanController::class, 'create'])->name('pengumuman.create');
@@ -225,7 +233,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::put('/settings/update', [SettingController::class,'update_general'])->name('settings.update_general');
 
       // user database
-      Route::get('/admins', [PenggunaController::class, 'admins'])->name('users.index');
+      Route::get('/admin', [PenggunaController::class, 'admins'])->name('users.index');
       Route::get('/users', [PenggunaController::class, 'pesertas'])->name('users.users');
 
       Route::get('/users/create', [PenggunaController::class, 'create_users'])->name('users.create');
@@ -246,7 +254,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     });
   });
     
-Route::prefix('/user')->name('user.')->group(function(){
+Route::prefix('/user')->name('user.')->group(function() {
 
     Route::get('/apa', function(){ 
       return view('front.index');

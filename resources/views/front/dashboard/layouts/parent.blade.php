@@ -12,8 +12,10 @@
 <body>
     <div class="bg-gradient-to-br from-dasar via-sky-50 to-sky-200 w-full h-auto font-poppins caret-sekunder accent-primer">
         @include('front.dashboard.layouts.header')
-        <div class="bg-dasar w-full h-screen font-poppins caret-sekunder accent-primer">
+        <div class="w-full min-h-screen font-poppins caret-sekunder accent-primer">
             @yield('content')
+            
+        @include('front.dashboard.layouts.footer')
         </div>
         {{-- @include('front.layouts.footer') --}}
         @include('front.dashboard.layouts.script')

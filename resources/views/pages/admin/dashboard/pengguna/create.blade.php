@@ -67,7 +67,7 @@
                           </div>
                           <div class="form-group">
                             <label for="role">Role</label>
-                            <select name="role" id="" class="form-select rounded-4 @error('role') is-invalid @enderror">
+                            <select name="role" id="role" class="form-select rounded-4 @error('role') is-invalid @enderror">
                               <option disabled selected>-- Pilih Role --</option>
                               <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                               <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>

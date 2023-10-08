@@ -7,7 +7,9 @@ namespace Database\Seeders;
 use App\Models\Announcement;
 use App\Models\General;
 use App\Models\Generasi;
+use App\Models\Home;
 use App\Models\Notify;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AdminSeeder;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +43,7 @@ class DatabaseSeeder extends Seeder
         ]);
         General::create([
             'school_name' => 'Ar-Romusha',
-            'school_logo' => 'logo\9ZvJ5Vsa1yncP9zqNcoaeI98mIjccgA0zvF5WcsS.svg',
+            'school_logo' => 'https://ppdb.sman1cisaat.sch.id/wp-content/uploads/2023/05/Main-Logo-PPDB-2023-Color.png',
             'school_phone' => '123456789',
             'school_email' => 'arrhomusha@mail.com',
             'school_address' => fake()->address,
@@ -59,6 +61,13 @@ class DatabaseSeeder extends Seeder
             'notif_login' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Telah Berhasil Login Ke Halaman Pendaftaran Siswa Baru Silahkan Membayar Uang pendaftaran Dengan Menekan Tombol Yang Berada Di Halaman Pendaftaran / Disini ',
             'notif_mengisi_pribadi' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Telah Melengkapi Data Pribadi Dan Data Orang Tua Silahkan Melengkapi Data Document Anda Dengan Mengiapkan Document Dalam File Pdf Seperti Ijazah,Akte,KK,Rapor Terima Kasih',
             'notif_melengkapi' => 'Halo Kami Dari Pondok Al-Romusa , Kamu Telah Melengkapi Semua Data Pribadi Kamu Silahkan Menunggu Pesan Pengumuman Test Dari Admin Terima kasih'
+        ]);
+
+        Home::create([
+            'title' => 'Selamat Datang di Sekolah Ar-Romusha',
+            'desc' => fake()->paragraph(),
+            'image' => '',
+            'user_id' => User::where('role', 'admin')->first()->id
         ]);
 
     }

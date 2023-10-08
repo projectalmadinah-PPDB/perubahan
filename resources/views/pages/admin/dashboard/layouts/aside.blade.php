@@ -211,7 +211,7 @@
 						</a>
 					</li>
 					<li class="py-1 ps-3 child-nav">
-						<a href="" class="nav-link link-secondary fw-bold">
+						<a href="{{ route('admin.section.index') }}" class="nav-link link-secondary fw-bold {{ Route::is('admin.section.index') ? 'text-primary' : '' }}">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Halaman Home</span>
 						</a>

@@ -101,9 +101,5 @@ class DashboardController extends Controller
 
         $this->send_message($phone,$messages);
         return Redirect::to($Transaction->link);
-        // return redirect()->route('user.payment.detail')
-        //         ->with('user', $pendaftaran)
-        //         ->with('payment', $userPayment)
-        //         ->with('transaction', $Transaction);
     }
 }

@@ -39,9 +39,9 @@
             <section 
                 class="relative w-full flex justify-center items-center py-7 tracking-wide px-10 sm:px-20 md:px-40 lg:px-80">
                 <div class="bg-gradient-to-t from-primer to-sky-900 flex flex-col justify-center items-center gap-y-3 px-5 md:px-10 pt-14 pb-7 rounded-3xl text-dasar">
-                    <div class="py-[16px] px-[14px] rounded-full absolute z-999 top-0 bg-dasar shadow-2xl">
+                    <a href="{{ route('user.dashboard') }}" class="py-[16px] px-[14px] rounded-full absolute z-999 top-0 bg-dasar shadow-2xl">
                         <img src="/dists/images/logo_only.svg" alt="" class="w-10">
-                    </div>
+                    </a>
                     <h1 class="text-2xl font-bold text-center leading-none">Upload Dokumen.</h1>
                     <p class="text-sm text-center tracking-wide font-light text-gray-400">
                         Upload dokumen persyaratan melalui form dibawah ini.

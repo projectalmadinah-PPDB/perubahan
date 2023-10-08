@@ -97,7 +97,7 @@ class ArticleController extends Controller
         ]);
         $data['slug'] = Str::slug($request->title);
         if($request->image){
-            $image = $request->file('image')->store('assets' , 'public');
+            $image = $request->file('image')->store('assets', 'public');
             $data['image'] = $image;
             
         }else{

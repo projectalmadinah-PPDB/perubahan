@@ -6,8 +6,8 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Nomor Hp</th>
-            <th>Status Kelulusan</th>
+            <th>Nomor HP</th>
+            <th>Status Nikah</th>
         </tr>
       </thead>
       <tbody>

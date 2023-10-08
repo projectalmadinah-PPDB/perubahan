@@ -20,31 +20,36 @@ class FrontController extends Controller
 
     public function tutor_payment()
     {
+        $user = Auth::user();
         $article = Article::all();
-        return view('front.detail_tutor_payment', compact('article'));
+        return view('front.detail_tutor_payment', compact('article', 'user'));
     }
 
     public function informasi()
     {
+        $user = Auth::user();
         $article = Article::all();
-        return view('front.article',compact('article'));
+        return view('front.article',compact('article', 'user'));
     }
 
     public function detail_informasi($slug)
     {
+        $user = Auth::user();
         $articles = Article::where('slug', $slug)->firstOrFail();
         $article = Article::all();
-        return view('front.detail_article', compact('articles','article'));
+        return view('front.detail_article', compact('articles','article', 'user'));
     
     }
 
     public function about()
     {
-        return view('front.about');
+        $user = Auth::user();
+        return view('front.about', compact('user'));
     }
 
     // public function kelengkapan(Request $request)
     // {
+    //     $user = Auth::user();
     //     $validate = $request->validate([
     //         'nik' => 'required|integer',
     //         'nama_ayah' => 'required',
@@ -61,7 +66,8 @@ class FrontController extends Controller
     
     public function qna()
     {
+        $user = Auth::user();
         $qna = Question::where('active', 'on')->get();
-        return view('front.qna', compact('qna'));
+        return view('front.qna', compact('qna', 'user'));
     }
 }

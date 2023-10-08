@@ -50,7 +50,7 @@ class PenggunaController extends Controller
         'jenis_kelamin.required' => 'Jenis Kelamin Kamu Harus Diisi',
         'tanggal_lahir.required' => 'Tanggal Lahir Kamu Berapa?',
         'password.required' => 'Password Wajib Diisi',
-        'password.min' => 'Password Minimal :min Angka/Huruf',
+        'password.min' => 'Password Minimal :min karakter',
         'role.required' => 'Role harap dipilih'
     ];
     $data = $request->validate([
@@ -67,6 +67,7 @@ class PenggunaController extends Controller
     $data['token'] = rand(111111,999999);
     $data['nomor'] = $phone;
     $data['active'] = 1;
+    $data['role'] = $request->role;
     
     $user = User::create($data);  
      
@@ -120,6 +121,7 @@ class PenggunaController extends Controller
 
     $data['token'] = rand(111111,999999);
     $data['active'] = 1;
+    $data['role'] = $request->role;
 
     $user->update($data);
     

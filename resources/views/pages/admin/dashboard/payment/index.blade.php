@@ -79,11 +79,11 @@
                         <td>{{$item->nomor}}</td>
                         <td>
                           @if ($item->payment->status == 'pending')
-                            <button class="badge badge-warning border-0">{{$item->payment->status}}</button>
+                            <button type="button" class="badge badge-warning border-0">{{$item->payment->status}}</button>
                           @elseif($item->payment->status == 'berhasil')
-                            <button class="badge badge-success border-0">{{$item->payment->status}}</button>
+                            <button type="button" class="badge badge-success border-0">{{$item->payment->status}}</button>
                           @elseif($item->payment->status == 'expired')
-                            <button class="badge badge-danger border-0">{{$item->payment->status}}</button>
+                            <button type="button" class="badge badge-danger border-0">{{$item->payment->status}}</button>
                           @endif
                         </td>
                       </tr>

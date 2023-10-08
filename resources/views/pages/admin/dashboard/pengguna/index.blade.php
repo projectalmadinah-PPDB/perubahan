@@ -180,30 +180,44 @@
                                                   <h1 class="modal-title fs-5" id="updateUser{{ $user->id }}Label">Detail Pengguna</h1>
                                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                               </div>
-                                              <div id="detailForm{{ $user->id }}" class="modal-body">
-                                                <div class="mb-2">
-                                                  <p class="">Nama : {{ $user->name }}</p>
-                                                </div>
-                                                <div class="mb-2">
-                                                  <p class="">Email : {{ $user->email }}</p>
-                                                </div>
-                                                <div class="mb-2">
-                                                  <p class="">No. Whatsapp : {{ $user->nomor }}</p>
-                                                </div>
-                                                <div class="mb-2">
-                                                  <p class="">Role : {{ $user->role }}</p>
-                                                </div>
-                                                <div class="mb-2">
-                                                  <p class="">Jenis Kelamin : {{ $user->jenis_kelamin }}</p>
-                                                </div>
-                                                <div class="mb-2">
-                                                  <p class="">Tanggal Lahir : {{ $user->tanggal_lahir }}</p>
-                                                </div>
-                                                <div class="mb-2">
-                                                  <p class="">Aktif : {{ $user->active == 1 ? 'Ya' : 'Tidak' }}</p>
-                                                </div>
+                                              <div id="detailForm{{$user->id}}" class="modal-body">
+                                                <table class="table table-borderless">
+                                                  <tbody>
+                                                    <tr>
+                                                      <th>Nama</th>
+                                                      <td>{{ $user->name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Email</th>
+                                                      <td>{{ $user->email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>No. Whatsapp</th>
+                                                      <td>{{ $user->nomor }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Role</th>
+                                                      <td>{{ $user->role }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Jenis Kelamin</th>
+                                                      <td>{{ $user->jenis_kelamin }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Tanggal Lahir</th>
+                                                      <td>{{ $user->tanggal_lahir }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th>Status</th>
+                                                      <td>{{ $user->active == 1 ? 'Ya' : 'Tidak' }}</td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
                                               </div>
                                               <div class="modal-footer">
+                                                  <button type="button" data-bs-toggle="modal" data-bs-target="#updateUser{{ $user->id }}" class="btn btn-primary">
+                                                    Edit
+                                                </button>
                                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                               </div>
                                           </div>
@@ -219,7 +233,7 @@
                                   </button>
                               </form>
                           </td>
-                      </tr>
+                        </tr>
                         @endforeach
                     </tbody>
                   </table>

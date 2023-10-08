@@ -63,7 +63,7 @@ class LengkapiController extends Controller
 
         $this->send_message($users->nomor,$messages);
         
-        return redirect()->route('user.document')->with('pribadi','Kamu Sudah Memasukkan Data Pribadi Dan Org Tua Selanjutnya Data Document');
+        return redirect()->route('user.document')->with('pribadi','Data diri berhasil dilengkapi, silahkan upload dokumen persyaratan yang dibutuhkan.');
     }
 
     public function document()
