@@ -23,21 +23,30 @@
               </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.update.home') }}" method="post">
+                <form action="{{ route('admin.update.home') }}" method="post" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
                     <div class="mb-2">
                         <label for="title" class="form-label">Judul</label>
                         <input type="text" value="{{ $home->title }}" name="title" id="title" class="form-control rounded-4">
+                        @error('title')
+                          <h5>eror</h5>
+                        @enderror
                     </div>
                     <div class="mb-2">
                         <label for="image" class="form-label">Hero Image</label>
-                        <img src="{{ 'storage/' . $home->image }}" alt="">
-                        <input type="file" name="image" id="image" class="form-control rounded-4">
+                        <img id="output" src="{{ asset('storage/' . $home['image'])}}" style="width:150px;height:100px;display:block" class="rounded-0" alt="">
+                        <input type="file" name="image" id="image" class="form-control rounded-4" onchange="loadFile(event)">
+                        @error('image')
+                          <h5>eror</h5>
+                        @enderror
                     </div>
                     <div class="mb-2">
                         <label for="desc" class="form-label">Deskripsi</label>
                         <textarea name="desc" id="desc" rows="5" class="form-control rounded-4">{{ $home->desc }}</textarea>
+                        @error('desc')
+                          <h5>eror</h5>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-success rounded-4">Save</button>
                 </form>
@@ -52,7 +61,7 @@
             </div>
             <div class="card-body mb-2" id="sectionContainer">
                 @forelse ($sections as $index => $section)
-                  <form class="@if ($index !== 0) mt-3 pt-3 border-top border-success @endif" action="{{ route('admin.section.update', $section->id) }}" method="POST">
+                  <form class="@if ($index !== 0) mt-3 pt-3 border-top border-success @endif" action="{{ route('admin.section.update', $section->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="d-flex justify-content-between align-items-center">
@@ -69,7 +78,7 @@
                     <div class="mb-2">
                       <label for="image" class="form-label">Hero Image</label>
                       <img src="{{ asset('storage/' . $section['image']) }}" class="w-25 mb-2 d-block rounded-4 border border-5 border-primary" draggable="false">
-                      <input type="file" name="image" id="image" class="form-control rounded-4">
+                      <input name="image" class="form-control" type="file" onchange="loadFile(event)">
                     </div>
                     <div class="mb-2">
                       <label for="desc" class="form-label">Deskripsi</label>
@@ -98,7 +107,7 @@
             
             <!-- Kode Template Form Baru -->
             <div id="newSectionTemplate" class="mt-1" style="display:none;">
-              <form action="{{ route('admin.section.create') }}" method="post">
+              <form action="{{ route('admin.section.create') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('post')
                 <div class="d-flex justify-content-between align-items-center">
@@ -170,6 +179,12 @@
   $(document).ready(function(){
     $('#table').DataTable();
   });
+</script>
+<script>
+  var loadFile = function(event){
+      var outputs = document.getElementById('output');
+      outputs.src = URL.createObjectURL(event.target.files[0]);
+  }
 </script>
 @if (session('success'))
   <script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Home;
 use App\Models\Section;
 use Illuminate\Http\Request;
@@ -21,25 +22,23 @@ class SectionController extends Controller
 
     public function updateHome(Request $request, Home $home)
     {
+        $homes = Home::where('id',1)->first();
         $data = $request->validate([
             'title' => 'required|string',
-            'image' => 'required',
             'desc' => 'required',
         ]);
-
+    
         $data['user_id'] = Auth::user()->id;
-
-        if($request->hasFile('image')){
+    
+        if ($request->hasFile('image')) {
             $image = $request->file('image')->store('assets', 'public');
             $data['image'] = $image;
-        } else {
-            $data['image'] = $home->image;
         }
-
-        $home->update($data);
-
-        return redirect()->route('admin.section.index')->with('Update hero section berhasil', 'Anda berhasil mengubah Hero Section Homepage!');
-    }
+        
+        $homes->update($data);
+    
+        return redirect()->route('admin.section.index')->with('success', 'Anda berhasil mengubah Hero Section Homepage!');
+    }    
 
     /**
      * Show the form for creating a new resource.
@@ -54,22 +53,23 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {   
+        // dd($request->all());
         $data = $request->validate([
-            'title' => 'string',
-            'desc' => '',
-            'image' => 'required|image',
+            'title' => 'required',
+            'desc' => 'required',
+            'image' => 'required'
         ],
         [
             'title.string' => 'Harus berupa string',
-            'image.required' => 'Gambar Wajib Diisi',
+            'desc.required' => 'Desc Wajib Diisi',
         ]);
 
         $data['user_id'] = Auth::user()->id;
 
         // upload dan simpan gambar
-        if($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('assets', 'public');
-            $data['image'] = $imagePath;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('assets', 'public');
+            $data['image'] = $image;
         }
 
         Section::create($data);
@@ -96,29 +96,34 @@ class SectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Section $section)
+    public function update(Request $request,$id)
     {
+        // dd($request->all());
+        $sections = Section::findorFail($id);
         $data = $request->validate([
-            'title' => 'string',
-            'desc' => '',
-            'image' => 'required|image',
+            'title' => 'string|required',
+            'desc' => 'required',
+            // 'image' => 'required'
         ],
         [
             'title.string' => 'Harus berupa string',
-            'image.required' => 'Gambar Wajib Diisi',
+            'desc.required' => 'desc Wajib Diisi',
+            // 'image.required' => 'Image Wajib Diisi'
         ]);
 
         $data['user_id'] = Auth::user()->id;
-
-        // upload dan simpan gambar
-        if($request->image) {
-            $imagePath = $request->file('image')->store('assets', 'public');
-            $data['image'] = $imagePath;
+        // dd($request->image);
+        // upload dan simpan gambar jika ada file yang diunggah
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('assets', 'public');
+            $data['image'] = $image;
         } else {
-            $data['image'] = $section->image;
+            // Jika tidak ada file yang diunggah, gunakan nilai yang ada di database
+            // $data['image'] = $sections->image;
+            dd($request->image);
         }
 
-        $section->update($data);
+        $sections->update($data);
 
         return redirect()->route('admin.section.index')->with('Tambah section berhasil', 'Anda berhasil menambahkan section baru!');
     }

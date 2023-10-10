@@ -239,7 +239,7 @@ class UserController extends Controller
     public function activication_process(Request $request)
     {
         $user = User::where('token', $request->token)->first();
-        $payment = User::where('payment',$request->id)->first();
+        // $payment = User::where('payment',$request->id)->first();
         $notif = User::where('notify_id',1)->first();
 
         if ($user) {
