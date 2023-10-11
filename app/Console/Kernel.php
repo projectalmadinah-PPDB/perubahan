@@ -21,8 +21,8 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command("app:payment-cron")->dailyAt("00:00");
-        $schedule->command("app:expired")->daily();
+        // $schedule->command("app:payment-cron")->dailyAt("00:00");
+        // $schedule->command("app:expired")->daily();
     }
 
     /**

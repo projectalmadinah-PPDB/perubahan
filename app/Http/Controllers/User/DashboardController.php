@@ -66,40 +66,40 @@ class DashboardController extends Controller
     
     public function payment_detail()
     {
-        // $users = Auth::user()->id;
-        // $user = User::with('student')->findOrFail($users);
         $user = Auth::user();
-        
         $payment = Payment::where('user_id', $user->id)->first();
-        return view('front.dashboard.payment', compact('user','payment'));
+
+        // return view('front.dashboard.payment', compact('user','payment'));
+        return Redirect::to($payment->link);
     }
 
     public function pay($id)
     {
-        $pendaftaran = User::find($id);
-        // dd($pendaftaran);
-        $phone = User::where('nomor',$pendaftaran->nomor)->first();
+        $user = User::find($id);
+        // dd($user);
+        $phone = User::where('nomor',$user->nomor)->first();
         $status = 'pending';
         
-        $payment = json_decode(json_encode($this->redirect_payment($id)),true);
-        // dd($payment);
+        $createPayment = json_decode(json_encode($this->redirect_payment($id)),true);
+        // dd($createPayment);
         $Transaction = Payment::create([
-            'user_id' => $pendaftaran->id,
+            'user_id' => $user->id,
             'status' => 'pending',
-            'no_invoice' => $payment['Data']['SessionID'],
-            'link' => $payment['Data']['Url'],
+            'no_invoice' => $createPayment['Data']['SessionID'],
+            'link' => $createPayment['Data']['Url'],
             'amount' => 100000
         ]);
-        if ($pendaftaran->payment->status == 'expired' && $pendaftaran->payment->no_invoice) {
-            $pendaftaran->payment->status = $status;
-            $pendaftaran->payment->save(); // Simpan perubahan status pembayaran
+        if ($user->payment->status == 'expired' && $user->payment->no_invoice) {
+            $user->payment->status = $status;
+            $user->payment->save(); // Simpan perubahan status pembayaran
             return back();
         }
-        $messages = $pendaftaran->notifys->notif_pembayaran . ' ' . $Transaction->link;
+        $messages = $user->notifys->notif_pembayaran . ' ' . $Transaction->link;
 
-        $userPayment = Payment::where('user_id', $pendaftaran->id)->first();
+        $payment = Payment::where('user_id', $user->id)->first();
 
         $this->send_message($phone,$messages);
-        return Redirect::to($Transaction->link);
+        // return Redirect::to($Transaction->link);
+        return view('front.dashboard.payment', compact('user','payment'));
     }
 }

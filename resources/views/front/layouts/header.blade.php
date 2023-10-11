@@ -13,12 +13,25 @@
             Home
             <div class="{{ Route::is('front') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
-        @if (!Auth::user())
+        @php
+            $gen = App\Models\Generasi::orderBy('id', 'DESC')->where('status', 'on')->first();
+            $gen_on = false;
+            if ($gen && now()->greaterThan($gen->end_at)) {
+                $gen_on = true;
+            }
+        @endphp
+        @if (!Auth::user() && (now()->greaterThan($gen->start_at) && now()->lessThan($gen->end_at) ))
             <a href="{{ route('user.show') }}" 
             class="{{ Route::is('user.show') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">
             Daftar
             <div class="{{ Route::is('user.show') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
+        @endif
+        @if ($gen_on)
+        <a href="{{ route('kelulusan') }}" 
+        class="{{ Route::is('kelulusan') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">
+        PSB
+        <div class="{{ Route::is('kelulusan') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.15rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         @endif
         <a href="{{ route('informasi') }}" 
             class="{{ Route::is('informasi') || Route::is('user.informasi.detail') ? 'font-semibold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">

@@ -48,6 +48,8 @@ Route::get('/question-answer', [FrontController::class,'qna'])->name('qna');
 
 Route::get('/informasi/tutorial-pembayaran', [FrontController::class,'tutor_payment'])->name('tutor.payment');
 
+Route::get('/informasi/kelulusan', [FrontController::class, 'kelulusan'])->name('kelulusan');
+
 Route::get('/informasi/{slug}',[FrontController::class,'detail_informasi'])->name('user.informasi.detail');
 
 Route::get('/about-us',[FrontController::class,'about'])->name('about');
@@ -199,7 +201,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     // section
     Route::get('/section', [SectionController::class,'index'])->name('section.index');
     Route::put('/section/update/home', [SectionController::class,'updateHome'])->name('update.home');
-    Route::post('section/create', [SectionController::class, 'store'])->name('section.create');
+    Route::post('/section/create', [SectionController::class, 'store'])->name('section.create');
     Route::put('/section/update/{id}', [SectionController::class, 'update'])->name('section.update');
     Route::delete('/section/delete/{id}',[SectionController::class, 'destroy'])->name('section.delete');
 

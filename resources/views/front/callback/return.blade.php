@@ -22,7 +22,7 @@
             </p>
             <figcaption class="flex items-center justify-center mt-6 space-x-3">
                 <div class="flex items-center divide-x-2 divide-slate-500">
-                    <a href="{{route('user.coba')}}" class="px-3 text-sm text-slate-500 hover:text-slate-800"
+                    <a href="{{route('user.dashboard')}}" class="px-3 text-sm text-slate-500 hover:text-slate-800"
                     >Kembali ke <span class="font-semibold">DASHBOARD</span></a>
                     <a href="{{route('front')}}" class="px-3 text-sm text-slate-500 font-semibold hover:text-slate-800 uppercase">Home</a>
                 </div>

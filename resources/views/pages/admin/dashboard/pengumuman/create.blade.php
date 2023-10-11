@@ -33,6 +33,7 @@
                               <option value="Data">Data Diri</option>
                               <option value="Test">Test</option>
                               <option value="Hasil">Hasil Pendaftaran</option>
+                              <option value="Lulus">Lulus</option>
                             </select>
                           </div>
                           <div class="form-group">
@@ -41,7 +42,7 @@
                             placeholder="Deskripsi pengumuman">{{ old('desc') }}</textarea>
                           </div>
                     <div class="card-action">
-                      <button class="btn btn-success px-4" type="submit">Submit</button>
+                      <button class="btn btn-success px-4 me-2" type="submit">Submit</button>
                       <a href="{{ route('admin.pengumuman.index') }}" class="btn btn-warning" type="button">Back</a>
                     </div>  
                 </div>

@@ -180,13 +180,12 @@
 </script>
 <script>
     function edit(event) {
-        Swal.fire({
+      Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Anda Tidak Dapat Mematikan Seluruh Data Generasi',
       })
-      }
-    
+    }
 </script>
 @if (session('success'))
 <script>

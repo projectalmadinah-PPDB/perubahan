@@ -22,7 +22,7 @@ class SectionController extends Controller
 
     public function updateHome(Request $request, Home $home)
     {
-        $homes = Home::where('id',1)->first();
+        $homes = Home::orderBy('id','DESC')->first();
         $data = $request->validate([
             'title' => 'required|string',
             'desc' => 'required',
@@ -119,8 +119,8 @@ class SectionController extends Controller
             $data['image'] = $image;
         } else {
             // Jika tidak ada file yang diunggah, gunakan nilai yang ada di database
-            // $data['image'] = $sections->image;
-            dd($request->image);
+            $data['image'] = $sections->image;
+            // dd($request->image);
         }
 
         $sections->update($data);

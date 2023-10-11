@@ -13,8 +13,8 @@
     @include('front.layouts.header')
     <div class="bg-dasar w-full min-h-[75vh] h-auto font-poppins caret-sekunder accent-primer">
         @yield('content')
+        @include('front.layouts.contact')
     </div>
-    @include('front.layouts.contact')
     @include('front.layouts.footer')
     @include('front.layouts.script')
     @stack('my-script')

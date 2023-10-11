@@ -43,7 +43,7 @@
                                 <tr class="">
                                     <td class="w-1/3 font-semibold py-2">Nama Lengkap</td>
                                     <td class="px-3">:</td>
-                                    <td class="w-2/3">{{ $user->name }}</td>
+                                    <td class="w-2/3 capitalize">{{ $user->name }}</td>
                                 </tr>
                                 <tr class="">
                                     <td class="w-1/3 font-semibold py-2">Nomor Telepon</td>
@@ -53,12 +53,12 @@
                                 <tr class="">
                                     <td class="w-1/3 font-semibold py-2">No. Invoice</td>
                                     <td class="px-3">:</td>
-                                    {{-- <td class="w-2/3">{{ $user->payment->no_invoice }}</td> --}}
+                                    <td class="w-2/3">{{ $user->payment->no_invoice }}</td>
                                 </tr>
                                 <tr class="">
                                     <td class="w-1/3 font-semibold py-2">Status</td>
                                     <td class="px-3">:</td>
-                                    {{-- <td class="w-2/3">{{ $user->payment->status }}</td> --}}
+                                    <td class="w-2/3">{{ $user->payment->status }}</td>
                                 </tr>
                                 <tr class="">
                                     <td class="w-1/3 font-semibold py-2">Tipe Pembayaran</td>
@@ -72,19 +72,37 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="flex gap-x-2 items-center mb-4">
+
+                        <!-- modal invoice -->
+                        {{-- <div class="fixed w-full h-screen flex justify-center items-center top-0 left-0 backdrop-blur-sm z-50 bg-slate-900/50">
+                            <div class="w-1/3 h-auto min-h-min py-5 px-7 bg-dasar rounded-xl text-primer">
+                                <!-- header card modal -->
+                                <header class="flex justify-between items-center">
+                                    <p>Detail No. Invoice</p>
+                                    <button 
+                                        class="py-0.5 px-2.5 text-3xl text-dasar rounded-xl bg-sky-950 duration-200 hover:bg-sky-900"
+                                    >&times;</button>
+                                </header>
+                                <section>
+
+                                </section>
+                            </div>
+                        </div> --}}
+
+                        <div class="flex gap-x-2 items-center mb-4 pt-4">
                             <input type="checkbox" class="accent-sekunder" id="checkBill">
-                            <label for="" class="text-sm text-slate-400">Dana sebesar 100.000 rupiah sudah siap</label>
+                            <label for="checkBill" class="text-sm text-slate-400">Dana sebesar 100.000 rupiah sudah siap</label>
                         </div>
                         {{-- @dd($user->id) --}}
                         <div class="w-full flex">
-                            <a class="w-full" href="">
+                            <a class="w-full" id="paymentLink">
                                 <button type="button" id="nextStep" class="w-full text-center py-2 mt-3 border-2 rounded-full font-semibold tracking-wider border-sekunder bg-transparent hover:bg-teal-600/20 duration-200 ease-in-out shadow-md hover:shadow-lg relative text-white/50">Selanjutnya <i class="bi bi-arrow-right group-hover:ms-2 duration-200"></i></button>
                             </a>
                         </div>
                         <script>
                             var chk = document.getElementById("checkBill");
                             var nextStep = document.getElementById("nextStep");
+                            var paymentLink = document.getElementById("paymentLink");
 
                             var nextTrue = "w-full text-center group py-2 mt-3 border-2 rounded-full font-semibold tracking-wider border-sekunder bg-transparent hover:bg-sekunder/50 duration-200 ease-in-out shadow-md hover:shadow-lg relative";
                             var nextFalse = "w-full text-center py-2 mt-3 border-2 rounded-full font-semibold tracking-wider border-sekunder bg-transparent hover:bg-teal-600/20 duration-200 ease-in-out shadow-md hover:shadow-lg relative text-white/50";
@@ -93,9 +111,11 @@
                                 if (chk.checked) {
                                     nextStep.setAttribute("type", "submit");
                                     nextStep.setAttribute("class", nextTrue);
+                                    paymentLink.setAttribute("href", "{{ $user->payment->link }}");
                                 } else {
                                     nextStep.setAttribute("type", "button");
                                     nextStep.setAttribute("class", nextFalse);
+                                    paymentLink.removeAttribute("href");
                                 }
                             });
                         </script>
