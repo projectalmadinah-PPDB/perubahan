@@ -3,7 +3,7 @@
 @section('title','Informasi')
 
 @section('content')
-<main class="w-full pt-14">
+<main class="w-full pt-14 pb-2">
     <!-- list article -->
     <section class="w-full pt-16 pb-10 px-10 md:px-20 flex flex-col justify-start items-center min-h-[50vh] h-auto">
         <span

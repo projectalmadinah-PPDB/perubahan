@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="col-7 d-flex align-items-center">
                                     <div class="numbers">
-                                        <p class="card-category">Jumlah Uang Pendaftaran</p>
+                                        <p class="card-category">Biaya Uang Pendaftaran</p>
                                         <h4 class="card-title">Rp {{ number_format($uang) }}</h4>
                                     </div>
                                 </div>
@@ -172,7 +172,7 @@
             <div class="container">
                 <div class="row ms-3">
                     <div class="col-md-6">
-                        <div class="card px-5">
+                        <div class="card px-5 rounded-4">
                             <div style="height: 580px;width:100%;">
                                 <h3 class="font-semibold text-secondary">Seluruh Data</h3>
                                 <canvas id="myChart" style="height: 200rem;margin-top:50px"></canvas>

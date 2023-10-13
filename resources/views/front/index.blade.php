@@ -21,7 +21,7 @@
             >Pelajari Lebih Lanjut</a>
             @if (!Auth::user())
             <a href="{{route('user.show')}}" 
-            class="text-sm p-2 px-4 tracking-wider border-2 rounded-lg hover:font-bold border-sekunder bg-sekunder hover:bg-sekunder/50 text-white duration-200"
+            class="text-sm p-2 px-4 tracking-wider border-2 rounded-lg hover:font-bold border-sekunder backdrop-blur-md bg-sekunder hover:bg-sekunder/50 text-white duration-200"
             >Daftar</a>
             @endif
         </div>
