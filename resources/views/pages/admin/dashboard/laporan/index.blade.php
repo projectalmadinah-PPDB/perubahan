@@ -46,15 +46,18 @@
           <div class="col-12 col-md-12 px-2">
             {{-- catatan aktivitas --}}
             <div class="card rounded-4">
-              <div class="card-header">
-                <p class="card-title mb-0 fw-bold">Pendaftar Terbaru</p>
-                @php
-                  $tahunAjaran = App\Models\Generasi::where('status','on')->orderBy('id','DESC')->first();
-                  $generasi = (int) $tahunAjaran->generasi;
-                @endphp
-                <small class="fw-light">
-                  Aktivitas pendaftaran terbaru Tahun Ajaran {{ $generasi }} / {{ $generasi+1 }}
-                </small>
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="">
+                  <p class="card-title mb-0 fw-bold">Pendaftar Terbaru</p>
+                  @php
+                    $tahunAjaran = App\Models\Generasi::where('status','on')->orderBy('id','DESC')->first();
+                    $generasi = (int) $tahunAjaran->generasi;
+                  @endphp
+                  <small class="fw-light">
+                    Aktivitas pendaftaran terbaru Tahun Ajaran {{ $generasi }} / {{ $generasi+1 }}
+                  </small>
+                </div>
+                <a href="{{ route('admin.pendaftar.export') }}" class="btn btn-primary rounded-4">Export Excel</a>
               </div>
               <div class="card-body ps-2">
                 <table class="table table-borderless table-hover">
