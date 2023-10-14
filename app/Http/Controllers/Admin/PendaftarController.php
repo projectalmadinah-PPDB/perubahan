@@ -19,12 +19,8 @@ class PendaftarController extends Controller
     use Fonnte;
     public function index(Request $request)
     {
-        if($request->has('search')){
-            $users = User::where('role','user')->orderby('id','desc')->where('name','LIKE','%'.$request->search.'%')->get();
-        }
-        else{
-            $users = User::where('role','user')->orderBy('id','desc')->with('student','document','payment')->get();
-        }
+        $users = User::where('role','user')->orderBy('id','desc')->with('student','document','payment')->get();
+
         return view('pages.admin.dashboard.pendaftar.index',compact('users'));
     }
 

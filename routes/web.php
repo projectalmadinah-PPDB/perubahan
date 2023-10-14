@@ -196,6 +196,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
     Route::put('/generasi/update/{id}',[GenerasiController::class,'update'])->name('generasi.update');
 
+
     // section
     Route::get('/section', [SectionController::class,'index'])->name('section.index');
     Route::put('/section/update/home', [SectionController::class,'updateHome'])->name('update.home');
@@ -213,6 +214,9 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     
     //payment
     Route::get('/payment',[AdminPaymentController::class,'index'])->name('payment.index');
+    // Route::get('/payment',function(){
+    //   return view('pages.admin.dashboard.payment.index');
+    // })->name('payment.index');
 
     Route::put('/payment/edit/{id}',[AdminPaymentController::class,'update'])->name('payment.update');
 

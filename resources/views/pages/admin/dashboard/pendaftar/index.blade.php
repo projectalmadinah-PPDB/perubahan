@@ -23,6 +23,16 @@
                   </div>
                 </div>
               </div>
+              {{-- <form action="{{route('admin.pendaftar.destroy',$item->id)}}" method="post" class="d-inline">
+                @csrf
+                @method('DELETE')
+              </form> --}}
+              @foreach ($users as $item)
+              <form id="remove{{$item->id}}" action="{{route('admin.pendaftar.destroy',$item->id)}}" method="post" class="d-inline">
+                  @csrf
+                  @method('DELETE')
+              </form>
+              @endforeach
               <div class="card-body">
                   <div class="table-responsive">
                     <form action="" name="form1" id="form1" method="POST">
@@ -79,11 +89,8 @@
                               <a href="{{route('admin.pendaftar.show',$item->id)}}" class="badge badge-primary">Data Pribadi</a>
                               @endif
                               <a href="{{route('admin.pendaftar.edit',$item->id)}}" class="badge badge-warning">Edit</a>
-                              <form action="{{route('admin.pendaftar.destroy',$item->id)}}" method="post" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="badge badge-danger border-0">Delete</button>
-                              </form>
+                              <button onclick="confirm('anda yakin ingin menghapus data') ? setAttribute('type','submit') : '' " type="button" form="remove{{$item->id}}"
+                                class="badge badge-danger">Remove</button>
                             </td>
                           </tr>
                         @endforeach
