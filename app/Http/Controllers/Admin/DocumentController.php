@@ -15,7 +15,7 @@ class DocumentController extends Controller
             $document = Document::where('title','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $document = Document::orderBy('id', 'desc')->paginate(5);
+            $document = Document::orderBy('id', 'desc')->get();
         }
         return view('pages.admin.dashboard.documents.index',compact('document'));
     }

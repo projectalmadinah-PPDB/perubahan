@@ -70,12 +70,12 @@
 					<p>Lolos</p>
 				</a>
 			</li>
-			{{-- <li class="nav-item {{ Route::is('admin.document.*') ? 'active' : '' }}">
+			<li class="nav-item {{ Route::is('admin.document.*') ? 'active' : '' }}">
 				<a href="{{ route('admin.document.index') }}" class="py-1 px-3">
 					<i class="bi bi-file-earmark-person-fill"></i>
 					<p>Dokumen</p>
 				</a>
-			</li> --}}
+			</li>
 			<li class="nav-item {{ Route::is('admin.payment.*') ? 'active' : '' }}">
 				<a href="{{route('admin.payment.index')}}" class="py-1 px-3">
 					<i class="bi bi-credit-card"></i>

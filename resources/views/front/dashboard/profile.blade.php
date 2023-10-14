@@ -6,12 +6,12 @@
 <main class="w-full min-h-screen h-auto bg-gradient-to-br from-dasar via-sky-50 to-sky-100">
     <div class="flex justify-center items-center w-full">
         @if (!$user->payment)
-            <a href="{{route('user.pay',$user->id)}}" class="mt-40 text-xs md:text-sm py-3 px-7 rounded-full border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                Silahkan Lakukan Pembayaran <i class="font-semibold tracking-wider">disini</i>
+            <a href="{{route('user.pay',$user->id)}}" class="mt-40 text-xs md:text-sm hover:font-bold py-3 px-7 rounded-xl border border-sekunder backdrop-md bg-sekunder duration-200 text-white tracking-wide shadow-sm hover:shadow-lg shadow-emerald-200 hover:shadow-emerald-100">
+                Lakukan Pembayaran Administrasi
             </a>
         @elseif($user->payment->status == 'pending')
-            <a href="{{route('user.pay',$user->id)}}" class="mt-40 text-xs md:text-sm py-3 px-7 rounded-full border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
-                Silahkan Lakukan Pembayaran <i class="font-semibold tracking-wider">disini</i>
+            <a href="{{route('user.pay',$user->id)}}" class="mt-40 text-xs md:text-sm hover:font-bold py-3 px-7 rounded-xl border border-sekunder backdrop-md bg-sekunder duration-200 text-white tracking-wide shadow-sm hover:shadow-lg shadow-emerald-200 hover:shadow-emerald-100">
+                Lanjutkan Proses Pembayaran
             </a>
         </div>
     @elseif ($user->payment->status == 'berhasil')

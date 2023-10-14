@@ -36,7 +36,7 @@ class PaymentCron extends Command
             $phoneNumber = $payment->user->nomor; // Gantilah dengan kolom yang sesuai dalam tabel pengguna
             $message = "Halo " . $payment->user->name . ",\n\n"
             . "Apakah kamu yakin tidak ingin melanjutkan pembayaran kamu? Jika tidak, kami akan membatalkan proses pembayaran kamu.\n\n"
-            . "Jika kamu ingin melanjutkan, silakan klik link berikut: .\n\n"
+            . "Jika kamu ingin melanjutkan proses pendaftaran, silakan klik link berikut: .\n\n"
             . "$payment->link"; // Sesuaikan dengan pesan yang ingin Anda kirim
             // Gunakan API WhatsApp yang telah Anda konfigurasi untuk mengirim pesan
             $this->send_message($phoneNumber,$message);

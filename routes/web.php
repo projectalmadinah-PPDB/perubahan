@@ -57,16 +57,21 @@ Route::get('/about-us',[FrontController::class,'about'])->name('about');
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 
 Route::prefix('/admin')->name('admin.')->group(function(){
+
     Route::get('/login', [AdminController::class,'index'])->name('index');
 
     Route::post('login/proses', [AdminController::class,'login'])->name('login');
-    // Route::get('/register',[AdminController::class,'show'])->name('show');
-    // Route::post('register/proses', [AdminController::class,'register'])->name('register');
+    
     Route::get('/logout', [AdminController::class,'logout'])->name('logout');
+    
+    // Route::get('/register',[AdminController::class,'show'])->name('show');
+
+    // Route::post('register/proses', [AdminController::class,'register'])->name('register');
 
     // dashboard admin
     Route::middleware(['auth','role:admin'])->group(function(){
-        Route::get('/dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
+
+      Route::get('/dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
 
       // article dashboard
       Route::get('/article' , [ArticleController::class,'index'])->name('article.index');
@@ -189,6 +194,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::put('/question/active/{id}',[QuestionController::class,'active'])->name('question.active');
 
       Route::put('/question/jawab/{id}',[QuestionController::class,'jawab'])->name('question.jawab');
+
       //generasi
       Route::get('/generasi',[GenerasiController::class,'index'])->name('generasi.index');
 
@@ -196,35 +202,45 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::put('/generasi/status/{id}',[GenerasiController::class,'status'])->name('generasi.status');
 
-    Route::put('/generasi/update/{id}',[GenerasiController::class,'update'])->name('generasi.update');
+      Route::put('/generasi/update/{id}',[GenerasiController::class,'update'])->name('generasi.update');
 
-    // section
-    Route::get('/section', [SectionController::class,'index'])->name('section.index');
-    Route::put('/section/update/home', [SectionController::class,'updateHome'])->name('update.home');
-    Route::post('/section/create', [SectionController::class, 'store'])->name('section.create');
-    Route::put('/section/update/{id}', [SectionController::class, 'update'])->name('section.update');
-    Route::delete('/section/delete/{id}',[SectionController::class, 'destroy'])->name('section.delete');
+      // section
+      Route::get('/section', [SectionController::class,'index'])->name('section.index');
+
+      Route::put('/section/update/home', [SectionController::class,'updateHome'])->name('update.home');
+
+      Route::post('/section/create', [SectionController::class, 'store'])->name('section.create');
+
+      Route::put('/section/update/{id}', [SectionController::class, 'update'])->name('section.update');
+
+      Route::delete('/section/delete/{id}',[SectionController::class, 'destroy'])->name('section.delete');
 
       //pengumuman
-    Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index'); 
-    Route::get('/pengumuman/create', [PengumumanController::class, 'create'])->name('pengumuman.create');
-    Route::post('/pengumuman/create/process', [PengumumanController::class, 'store'])->name('pengumuman.store');
-    Route::get('/pengumuman/edit/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
-    Route::put('/pengumuman/edit/{id}/process', [PengumumanController::class, 'update'])->name('pengumuman.update');
-    Route::put('/pengumuman/delete/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.delete');
-    
-    //payment
-    Route::get('/payment',[AdminPaymentController::class,'index'])->name('payment.index');
+      Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index'); 
 
-    Route::put('/payment/edit/{id}',[AdminPaymentController::class,'update'])->name('payment.update');
+      Route::get('/pengumuman/create', [PengumumanController::class, 'create'])->name('pengumuman.create');
 
-    Route::post('/payment/delete-all', [AdminPaymentController::class,'deleteAll'])->name('delete-all');
-    // profile admin
-    Route::get('/profile',[SettingController::class,'profile'])->name('setting.profile.index');
+      Route::post('/pengumuman/create/process', [PengumumanController::class, 'store'])->name('pengumuman.store');
+
+      Route::get('/pengumuman/edit/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
+
+      Route::put('/pengumuman/edit/{id}/process', [PengumumanController::class, 'update'])->name('pengumuman.update');
+
+      Route::put('/pengumuman/delete/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.delete');
+      
+      //payment
+      Route::get('/payment',[AdminPaymentController::class,'index'])->name('payment.index');
+
+      Route::put('/payment/edit/{id}',[AdminPaymentController::class,'update'])->name('payment.update');
+
+      Route::post('/payment/delete-all', [AdminPaymentController::class,'deleteAll'])->name('delete-all');
+
+      // profile admin
+      Route::get('/profile',[SettingController::class,'profile'])->name('setting.profile.index');
 
       Route::put('/profile/edit',[SettingController::class,'update_profile'])->name('setting.profile.update');
 
-      // notify setting
+      // notify settings
       Route::get('/notify',[NotifyController::class,'index'])->name('setting.notify.index');
 
       Route::put('/notify/update',[NotifyController::class,'update'])->name('setting.notify.update');
@@ -236,12 +252,15 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       // user database
       Route::get('/admin', [PenggunaController::class, 'admins'])->name('users.index');
+
       Route::get('/users', [PenggunaController::class, 'pesertas'])->name('users.users');
 
       Route::get('/users/create', [PenggunaController::class, 'create_users'])->name('users.create');
+
       Route::post('/users/create/process', [PenggunaController::class, 'create_users_process'])->name('users.store');
 
       Route::put('/users/update/{id}', [PenggunaController::class, 'update_users'])->name('users.update');
+
       Route::put('/users/update/active/{id}', [PenggunaController::class, 'update_active'])->name('users.update_active');
 
       Route::delete('/users/delete/{id}', [PenggunaController::class, 'delete_users'])->name('users.delete');
@@ -257,10 +276,6 @@ Route::prefix('/admin')->name('admin.')->group(function(){
   });
     
 Route::prefix('/user')->name('user.')->group(function() {
-
-    Route::get('/apa', function(){ 
-      return view('front.index');
-    });
 
     Route::get('/verification', [UserController::class, 'verifyEmail'])->name('verification');
 
@@ -285,27 +300,52 @@ Route::prefix('/user')->name('user.')->group(function() {
     Route::post('/activication/process',[UserController::class,'activication_process'])->name('activication.process');
 
     Route::middleware(['auth','role:user'])->group(function(){
+
       Route::get('/coba', [UserDashboardController::class, 'coba'])->name('coba');
+
       Route::get('/dashboard', [UserDashboardController::class,'index'])->name('dashboard');
+      
       Route::get('/payment/{id}',[UserDashboardController::class,'pay'])->name('pay');
+
       Route::get('/profile',[UserDashboardController::class,'profile'])->name('profile');
+
       Route::get('/informasi',[UserDashboardController::class,'informasi'])->name('informasi');
+
       Route::get('/qna',[UserDashboardController::class,'qna'])->name('qna');
+
       Route::get('payment/detail', [UserDashboardController::class, 'payment_detail'])->name('payment.detail');
+
     });
+
     Route::middleware(['payment'])->group(function(){
+
       Route::get('/kelengkapan' ,[LengkapiController::class,'index'])->name('kelengkapan');
+
       Route::post('/kelengkapan/process' ,[LengkapiController::class,'store'])->name('kelengkapan.process');
+
       Route::get('/document',[LengkapiController::class,'document'])->name('document');
+
       Route::post('/document/process',[LengkapiController::class,'upload'])->name('document.process');
+
     });
+
   });
-  Route::prefix('/callback')->name('callback.')->group(function(){
+
+  Route::prefix('/callback')->name('callback.')->group(function() {
+
     Route::get('/return',function(){
+
       return view('front.callback.return');
+
     })->name('return');
+
     Route::get('/cancel',function(){
+
       return view('front.callback.return-cancel');
+
     })->name('cancel');
+
     Route::post('/notify',[PaymentController::class,'notify'])->name('notify');
+
   });
+

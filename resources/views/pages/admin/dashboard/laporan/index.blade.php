@@ -18,7 +18,7 @@
                             <h6 class="">Data Pendaftar Angkatan {{$item->generasi}}</h6>
                             </div>
                             <div class="d-flex justify-content-center align-items-center">
-                              <label for="" class="form-label text-white fs-6">Download</label>
+                              <label class="form-label text-white fs-6">Download</label>
                               <a href="{{route('admin.laporan.export',$item->id)}}" class="badge badge-primary ms-2"><i class="bi bi-download"></i></a>
                             </div>
                           </div>
@@ -34,7 +34,8 @@
             {{-- grafik pendaftar perbulan --}}
             <div class="card rounded-4">
               <div class="card-header">
-                <p class="fs-5 mb-0 fw-bold">Grafik Pendaftar <span class="text-danger fs-6">/ bulan</span></p>
+                <p class="card-title fw-bold">Grafik Pendaftar</p>
+                <small>menampilkan alur grafik pendaftaran perbulannya</small>
               </div>
               <div class="card-body">
                 <canvas id="grafikPendaftar" style="height: 20rem;margin-top:50px"></canvas>
@@ -45,10 +46,33 @@
             {{-- catatan aktivitas --}}
             <div class="card rounded-4">
               <div class="card-header">
-                <p class="fs-5 mb-0 fw-bold">Log Aktivitas</p>
+                <p class="card-title fw-bold">Log Aktivitas</p>
               </div>
               <div class="card-body">
+                <table class="table table-borderless table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nama</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        Lorem
+                      </td>
+                      <td>
+                        Lulus
+                      </td>
+                      <td>
 
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -63,7 +87,6 @@
                 <p style="font-size: 17px;" class="mb-0 fw-bold">Usia Pendaftar</p>
               </div>
               <div class="card-body">
-                
               </div>
             </div>
           </div>
@@ -98,9 +121,39 @@
             <div class="card rounded-4">
               <div class="card-header">
                 <p style="font-size: 17px;" class="mb-0 fw-bold">Data Lengkap</p>
+                <small>proses pendaftaran telah diselesaikan, menunggu proses wawancara</small>
               </div>
               <div class="card-body">
+                <table class="table table-borderless table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nama</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse ($users->where('status', 'Wawancara')->take(5) as $item)  
+                    <tr>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>
+                        {{ $item->name }}
+                      </td>
+                      <td>
+                        {{ $item->status }}
+                      </td>
+                      <td>
 
+                      </td>
+                    </tr>
+                    @empty
+                    <tr>
+                      <td colspan="4" class="text-center">Tidak ada data terkait</td>
+                    </tr>
+                    @endforelse
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -109,9 +162,39 @@
             <div class="card rounded-4">
               <div class="card-header">
                 <p style="font-size: 17px;" class="mb-0 fw-bold">Data Belum Lengkap</p>
+                <small>proses pendaftaran belum terselesaikan</small>
               </div>
               <div class="card-body">
-
+                <table class="table table-borderless table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nama</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse ($users->where('status', 'Belum')->take(5) as $item)  
+                    <tr>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>
+                        {{ $item->name }}
+                      </td>
+                      <td>
+                        {{ $item->status }}
+                      </td>
+                      <td>
+                        
+                      </td>
+                    </tr>
+                    @empty
+                    <tr>
+                      <td colspan="4" class="text-center">Tidak ada data terkait</td>
+                    </tr>
+                    @endforelse
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -120,9 +203,39 @@
             <div class="card rounded-4">
               <div class="card-header">
                 <p style="font-size: 17px;" class="mb-0 fw-bold">Pembayaran Terbaru</p>
+                <small>aktivitas proses pembayaran terbaru</small>
               </div>
               <div class="card-body">
-
+                <table class="table table-borderless table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nama</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse ($payment->take(5) as $item)  
+                    <tr>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>
+                        {{ $item->user->name }}
+                      </td>
+                      <td>
+                        {{ $item->status }}
+                      </td>
+                      <td>
+                        
+                      </td>
+                    </tr>
+                    @empty
+                    <tr>
+                      <td colspan="4" class="text-center">Tidak ada data terkait</td>
+                    </tr>
+                    @endforelse
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -131,9 +244,39 @@
             <div class="card rounded-4">
               <div class="card-header">
                 <p style="font-size: 17px;" class="mb-0 fw-bold">Dokumen Terbaru</p>
+                <small>aktivitas upload dokumen terbaru</small>
               </div>
               <div class="card-body">
-                
+                <table class="table table-borderless table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nama</th>
+                      <th>Status Verifikasi</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse ($users->take(5) as $item)
+                    <tr>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>
+                        {{ $item->name }}
+                      </td>
+                      <td>
+                        
+                      </td>
+                      <td>
+                        
+                      </td>
+                    </tr>
+                    @empty
+                    <tr>
+                      <td colspan="4" class="text-center">Tidak ada data terkait</td>
+                    </tr>
+                    @endforelse
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

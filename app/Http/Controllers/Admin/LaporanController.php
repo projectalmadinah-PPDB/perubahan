@@ -19,13 +19,13 @@ class LaporanController extends Controller
     public function index()
     {
         // data pendaftar
-        $data = User::where('role','user')->with('student')->orderby('id','desc')->get();
+        $users = User::where('role','user')->with('student')->with('document')->orderby('id','desc')->get();
 
         // perhitungan rata-rata umur pendaftar
         $totalUmur = 0;
-        $jumlahPeserta = count($data);
+        $jumlahPeserta = count($users);
 
-        foreach ($data as $user) {
+        foreach ($users as $user) {
             $tanggalLahir = date_create($user->tanggal_lahir);
             $umur = date_diff(date_create(), $tanggalLahir)->y;
             $totalUmur += $umur;
@@ -39,13 +39,13 @@ class LaporanController extends Controller
         // panggil {{ $raRataUmur }}
 
         // rata-rata jenis kelamin
-            // $pria = count($data->where('jenis_kelamin', 'Laki-Laki'));
-            // $wanita = count($data->where('jenis_kelamin', 'Perempuan'));
+            // $pria = count($users->where('jenis_kelamin', 'Laki-Laki'));
+            // $wanita = count($users->where('jenis_kelamin', 'Perempuan'));
 
         // rata-rata pendidikan terakhir
-            // $jumlahTK = count($data->where('asal_sekolah', 'TK'));
-            // $jumlahSD = count($data->where('asal_sekolah', 'SD'));
-            // $jumlahSMP = count($data->where('asal_sekolah', 'SMP'));
+            // $jumlahTK = count($users->where('asal_sekolah', 'TK'));
+            // $jumlahSD = count($users->where('asal_sekolah', 'SD'));
+            // $jumlahSMP = count($users->where('asal_sekolah', 'SMP'));
 
         // data pendaftar yang udah mbayar
         $peserta = User::whereHas('payment', function ($query) {
@@ -53,12 +53,12 @@ class LaporanController extends Controller
         })->orderby('id','desc');
 
         // data pembayaran yang dilakukan
-        $payment = Payment::orderBy('updated_at','desc')->take(7);
+        $payment = Payment::orderBy('id','desc')->with('user')->get();
 
         // data seluruh pendaftar mengacu pada tiap generasi
         $generasi = Generasi::with('user')->get();
 
-        return view('pages.admin.dashboard.laporan.index', compact('generasi','data','rataRataUmur','peserta','payment'));
+        return view('pages.admin.dashboard.laporan.index', compact('generasi','users','rataRataUmur','peserta','payment'));
     }
 
     public function export($id)

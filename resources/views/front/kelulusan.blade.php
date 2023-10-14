@@ -58,7 +58,7 @@
                         <tr class="mt-3">
                             <th class="p-3 rounded-md shadow-md text-center" scope="row">#{{ $loop->iteration }}</th>
                             <td class="p-3 rounded-md shadow-md text-center">
-                                {{-- {{ $item->student->nisn }} --}}
+                                {{ $item->student->nisn }}
                             </td>
                             <td class="p-3 px-5 rounded-md shadow-md">
                                 {{ $item->name }}

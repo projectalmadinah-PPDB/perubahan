@@ -11,7 +11,7 @@
         <a href="{{ route('front') }}" 
             class="{{ Route::is('front') ? 'font-bold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">
             Home
-            <div class="{{ Route::is('front') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.2rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
+            <div class="{{ Route::is('front') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.18rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
         @php
             $gen = App\Models\Generasi::orderBy('id', 'DESC')->where('status', 'on')->first();
@@ -24,39 +24,39 @@
             <a href="{{ route('user.show') }}" 
             class="{{ Route::is('user.show') ? 'font-bold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">
             Daftar
-            <div class="{{ Route::is('user.show') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.2rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
+            <div class="{{ Route::is('user.show') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.18rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
         @endif
         @if ($gen_on && now()->lessThan(now()->endOfYear()))
         <a href="{{ route('kelulusan') }}" 
         class="{{ Route::is('kelulusan') ? 'font-bold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">
         PSB
-        <div class="{{ Route::is('kelulusan') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.2rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
+        <div class="{{ Route::is('kelulusan') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.18rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         @endif
         <a href="{{ route('informasi') }}" 
             class="{{ Route::is('informasi') || Route::is('user.informasi.detail') ? 'font-bold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">
             Informasi
-            <div class="{{ Route::is('informasi') || Route::is('user.informasi.detail') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.2rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
+            <div class="{{ Route::is('informasi') || Route::is('user.informasi.detail') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.18rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
         <a href="{{ route('about') }}" 
             class="{{ Route::is('about') ? 'font-bold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">
             About
-            <div class="{{ Route::is('about') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.2rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
+            <div class="{{ Route::is('about') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.18rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
         <a href="{{ route('qna') }}" 
             class="{{ Route::is('qna') ? 'font-bold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">
             Q&A
-            <div class="{{ Route::is('qna') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.2rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
+            <div class="{{ Route::is('qna') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.18rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
 
         @if (Auth::user())
-            <span class="@if (Auth::user()->role !== 'admin') px-2 py-1 @endif ms-3 text-primer text-center duration-200 hover:bg-sekunder rounded-full border border-sekunder group/account relative hover:shadow-lg">
+            <span class="hover:bg-sekunder group/account relative hover:shadow-lg font-medium tracking-wider px-2 py-1 ms-3 text-primer text-center text-sm duration-200 hover:bg-sekunder hover:text-white hover:font-bold rounded-md border border-sekunder">
                 @if (Auth::user()->role == 'admin')
-                <a href="{{ route('admin.admin.dashboard') }}" class="select-none w-full block text-sm p-3 text-primer font-bold">Dashboard</a>
+                <a href="{{ route('admin.admin.dashboard') }}" class="select-none w-full text-sm">Dashboard</a>
                 @else
-                <a href="{{ route('user.dashboard') }}" class="select-none w-full block text-sm p-3 text-primer font-bold">Dashboard</a>
+                <a href="{{ route('user.dashboard') }}" class="select-none w-full text-sm">Dashboard</a>
                 @endif
-                <div class="hidden group-hover/account:block duration-200 absolute pt-4 top-8 right-0 min-w-52 w-52">
+                <div class="hidden group-hover/account:block duration-200 absolute pt-6 top-6 right-0 min-w-52 w-52">
                     <div class="w-full bg-dasar shadow-lg rounded-xl grid grid-cols-1 divide-y border border-sekunder">
                         <span class="select-none w-full block text-sm p-3 text-primer font-medium">{{ $user->name }}</span>
                         <a href="{{ route('user.logout') }}" class="w-full text-sm p-3 text-primer font-semibold hover:text-emerald-500 duration-200 flex items-center justify-center">
