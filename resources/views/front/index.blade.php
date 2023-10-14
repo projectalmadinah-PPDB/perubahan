@@ -44,7 +44,7 @@
     
     {{-- alur --}}
     <div class="flex justify-center">
-        <h1 class="mb-5 pt-5 mx-auto text-center text-3xl font-bold title">Alur Pendaftaran Siswa Baru.</h1>
+        <h1 class="mb-5 pt-10 mx-auto text-center text-3xl font-bold title">Alur Pendaftaran Siswa Baru.</h1>
     </div>
     @auth
         <section id="alur" class="w-full h-52 pt-16 select-none">
