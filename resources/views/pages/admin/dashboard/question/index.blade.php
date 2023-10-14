@@ -55,11 +55,10 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Pertanyaan</th>
-                      {{-- <th>Photo</th> --}}
-                      <th>Jawaban</th>
+                      <th style="max-width: 300px;">Pertanyaan</th>
+                      <th style="max-width: 350px;">Jawaban</th>
                       <th>Status Aktif</th>
-                      <th>Action</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -75,45 +74,53 @@
                             <button class="badge badge-danger border-0">{{$item->active}}</button>
                           @endif
                         </td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                              <form action="{{route('admin.question.active',$item->id)}}" method="post" class="d-flex justify-content-center">
+                        <td class="">
+                          <button role="button" class="badge badge-primary rounded-4 border-0" data-bs-toggle="modal" data-bs-target="#exampleModall{{ $item->id }}">Edit</button>
+                        
+                          <form action="{{route('admin.question.active',$item->id)}}" class="d-inline-block" method="post">
+                            @csrf
+                            @method('PUT')
+                            @if ($item->active == 'off')
+                              <button class="badge badge-primary border-0" type="submit" name="active" value="on">Aktifkan</button>
+                            @else
+                              <button class="badge badge-danger border-0" type="submit" name="active" value="off">Nonaktifkan</button>
+                            @endif
+                          </form>
+
+                          <form action="{{route('admin.question.destroy',$item->id)}}" class="d-inline-block" method="post">
+                            @csrf
+                            @method('DELETE')
+                              <button class="badge badge-danger border-0" type="button" onclick="confirm('Yakin ingin menghapus data?')?setAttribute('type','submit') : ''">delete</button>
+                          </form>
+
+
+                            <div class="modal fade" id="exampleModall{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $item->id }}" aria-hidden="true">
+                              <form action="{{route('admin.question.jawab',$item->id)}}" method="post">
                                 @csrf
                                 @method('PUT')
-                                @if ($item->active == 'off')
-                                <button class="badge badge-primary border-0" type="submit" name="active" value="on">Aktifkan</button>
-                                @else
-                                <button class="badge badge-danger border-0" type="submit" name="active" value="off">Nonaktifkan</button>
-                                @endif
-                            </form>
-                            @if (!$item->answer)
-                            <button type="button" class="badge badge-primary rounded-4 border-0" data-bs-toggle="modal" data-bs-target="#exampleModall">Jawab</button>
-                            <div class="modal fade" id="exampleModall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <form action="{{route('admin.question.jawab',$item->id)}}" method="post">
-                              @csrf
-                              @method('PUT')
-                              <div class="modal-dialog">
+                                <div class="modal-dialog">
                                   <div class="modal-content">
-                                      <div class="modal-header">
+                                    <div class="modal-header">
                                       <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                      </div>
-                                      <div class="modal-body">
+                                    </div>
+                                    <div class="modal-body">
                                       <div class="mb-3">
-                                          <label for="" class="form-label">Jawaban</label>
-                                          <textarea name="answer" ></textarea>
+                                        <label for="" class="form-label">Judul</label>
+                                        <input type="text" name="question" id="question" class="form-control rounded-4" value="{{ $item->question }}">
                                       </div>
+                                      <div class="mb-3">
+                                        <label for="" class="form-label">Jawaban</label>
+                                        <textarea name="answer" id="answer" class="form-control">{{ $item->answer }}</textarea>
                                       </div>
-                                      <div class="modal-footer">
+                                    </div>
+                                    <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                       <button type="submit" class="btn btn-primary">Save Changes</button>
-                                      </div>
+                                    </div>
                                   </div>
-                              </div>
+                                </div>
                               </form>
-                          </div>
-                            @else
-                            @endif
                             </div>
                         </td>
                     </tr>

@@ -8,12 +8,12 @@
 <div class="main-panel">
   <div class="content">
     <div class="container-fluid">
-      <h4 class="page-title">Pengumuman</h4>
+      <h4 class="page-title">Wawancara</h4>
       <div class="row">
         <div class="col-md-12">
           <div class="card rounded-4">
             <div class="card-header">
-              <div class="card-title">Tambah Pengumuman</div>
+              <div class="card-title">Buat Wawancara</div>
             </div>
             <form action="{{ route('admin.wawancara.create.process',$wawancara->id) }}" method="POST">
                 @csrf

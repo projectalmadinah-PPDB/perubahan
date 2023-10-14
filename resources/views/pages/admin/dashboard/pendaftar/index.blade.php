@@ -71,11 +71,11 @@
                               <button class="badge badge-info border-0">Tidak Ada</button>
                               @else
                                 @if ($item->payment->status == 'berhasil')
-                                  <button class="badge badge-success border-0">Sukses</button>
+                                  <button class="badge text-capitalize badge-success border-0">Sukses</button>
                                 @elseif($item->payment->status == 'expired')
-                                <button class="badge badge-info border-0">{{$item->payment->status}}</button>
+                                <button class="badge text-capitalize badge-info border-0">{{$item->payment->status}}</button>
                                 @else
-                                <button class="badge badge-warning border-0">{{$item->payment->status}}</button>
+                                <button class="badge text-capitalize badge-warning border-0">{{$item->payment->status}}</button>
                                 @endif
                               @endif
                             </td>

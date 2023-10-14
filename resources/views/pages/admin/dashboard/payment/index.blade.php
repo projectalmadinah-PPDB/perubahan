@@ -78,6 +78,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->nomor}}</td>
+                        <td>{{$item->payment->no_invoice}}</td>
                         <td>
                           @if ($item->payment->status == 'pending')
                             <button type="button" class="badge badge-warning border-0">{{$item->payment->status}}</button>

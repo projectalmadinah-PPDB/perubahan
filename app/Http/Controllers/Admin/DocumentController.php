@@ -18,7 +18,9 @@ class DocumentController extends Controller
         else{
             $document = Document::orderBy('id', 'desc')->get();
         }
-        return view('pages.admin.dashboard.documents.index',compact('document'));
+
+        $user = User::whereHas('document')->with('document')->get();
+        return view('pages.admin.dashboard.documents.index',compact('document','user'));
     }
 
     /**
@@ -98,6 +100,7 @@ class DocumentController extends Controller
     public function update(Request $request,$id)
     {
         $document = Document::find($id);
+        
         // Update document files if uploaded
         if ($request->hasFile('kk')) {
             $kkFile = $request->file('kk');
@@ -139,6 +142,17 @@ class DocumentController extends Controller
         return view('front.upload');
     }
 
+    public function verify_process(Request $request, $id) 
+    {
+        $user = User::with('document')->find($id);
+
+        $user->update([
+            'status' => 'Wawancara',
+        ]);
+
+        return redirect()->route('admin.document.index')->with('verify','Dokumen berhasil diverifikasi');
+    }
+
     public function unggah_document(Request $request)
     {
         $request->validate([
@@ -159,7 +173,7 @@ class DocumentController extends Controller
             $kkFile->storeAs('public/pdf', $kkFileName);
             $ijazahFile->storeAs('public/pdf', $ijazahFileName);
             $aktaFile->storeAs('public/pdf', $aktaFileName);
-    
+            
             // Proses penyimpanan informasi ke database
             $data = [
                 'kk' => 'pdf/' . $kkFileName,

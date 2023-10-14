@@ -3,6 +3,7 @@ namespace App\Traits;
 
 // use GuzzleHttp\Psr7\Request;
 
+use App\Models\Payment;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -62,38 +63,40 @@ trait Ipaymu {
     {
         $va           = $this->va; //get on iPaymu dashboard
         $url          = 'https://sandbox.ipaymu.com/api/v2/payment'; // for development mode     
-        $method       = 'POST'; //method     
+        $method       = 'POST'; //method
         $timestamp    = Date('YmdHis');
 
-        $user = User::find($id);
+        $user         = User::find($id);
 
-        // $body['name'] = $user->name;
-        // $body['phone'] = $user->nomor;
-        $body['product'][] = 'Pendaftaran';
-        $body['qty'][]    = 1;
-        $body['price'][]    = 100000;
-        $body['referenceId']    = 'ID'.rand(1111,9999);
-        $body['returnUrl']    = route('callback.return');
-        $body['notifyUrl']    = 'https://c212-149-108-82-66.ngrok-free.app/callback/notify';
-        $body['cancelUrl']    = route('callback.cancel');
-        $body['paymentChannel'] = 'qris';
-        $body['expired']    = 24;
-        $body['buyerName']   = Auth::user()->name;
+        // $body['name']         = $user->name;
+        // $body['phone']        = $user->nomor;
+        $body['product'][]       = 'Pendaftaran';
+        $body['qty'][]           = 1;
+        $body['price'][]         = 100000;
+        $body['referenceId']     = 'ID-PPDB-'.rand(1111,9999);
 
-        $signature    = $this->signature($body,$method);
+        $body['returnUrl']       = route('callback.return');
+        $body['notifyUrl']       = 'https://3d62-149-108-82-66.ngrok-free.app/callback/notify';
+        $body['cancelUrl']       = route('callback.cancel');
+        $body['paymentChannel']  = 'qris';
+        $body['expired']         = 24;
+        $body['buyerName']       = $user->name;
+        $body['buyerPhone']      = $user->nomor;
+        if ($user->email) {
+            $body['buyerEmail']  = $user->email;
+        }
+        
+        $signature               = $this->signature($body,$method);
 
         $headers = array(
-            'Content-Type' => 'application/json',
-            'signature' => $signature,
-            'va' => $va,
-            'timestamp' => $timestamp
+            'Content-Type'       => 'application/json',
+            'signature'          => $signature,
+            'va'                 => $va,
+            'timestamp'          => $timestamp
         );
 
-        $data_request = Http::withHeaders(
-            $headers
-        )->post($url,$body);
-
-        $response = $data_request->object();
+        $data_request = Http::withHeaders($headers)->post($url,$body);
+        $response     = $data_request->object();
 
         return $response;
     }

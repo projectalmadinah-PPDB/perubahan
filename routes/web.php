@@ -143,7 +143,11 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::get('/peserta/show/{id}',[PesertaController::class,'show'])->name('peserta.show');
 
-      Route::get('/peserta/show-document/{id}',[PesertaController::class,'document'])->name('peserta.document');
+      Route::get('/peserta/verify/document/{id}',[PesertaController::class,'document'])->name('peserta.document');
+
+      Route::delete('/document/delete/{id}',[PesertaController::class,'destroy'])->name('document.destroy');
+
+      Route::put('/peserta/verify/document/process/{id}',[DocumentController::class, 'verify_process'])->name('peserta.verify_process');
 
       Route::post('/peserta/coba/edit',[PesertaController::class,'coba'])->name('peserta.coba.edit');
 
@@ -194,6 +198,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::put('/question/active/{id}',[QuestionController::class,'active'])->name('question.active');
 
       Route::put('/question/jawab/{id}',[QuestionController::class,'jawab'])->name('question.jawab');
+
+      Route::delete('/question/delete/{id}',[QuestionController::class,'destroy'])->name('question.destroy');
 
       //generasi
       Route::get('/generasi',[GenerasiController::class,'index'])->name('generasi.index');

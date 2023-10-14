@@ -19,7 +19,7 @@ class PesertaController extends Controller
     {
         $data = User::whereHas('payment', function ($query) {
             $query->where('status', 'berhasil');
-        })->orderBy('id','desc')->paginate(5);
+        })->orderBy('id','desc')->get();
         
         return view('pages.admin.dashboard.peserta.index',compact('data'));
     }
@@ -39,9 +39,9 @@ class PesertaController extends Controller
 
     public function document($id)
     {
-        $document = Document::findOrFail($id);
+        $user = User::whereHas('document')->findOrFail($id);
 
-        return view('pages.admin.dashboard.peserta.show_document',compact('document'));
+        return view('pages.admin.dashboard.peserta.show_document',compact('user'));
     }
 
     public function edit($id)

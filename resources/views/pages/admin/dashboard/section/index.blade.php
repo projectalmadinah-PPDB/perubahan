@@ -65,7 +65,7 @@
                     <div class="card-title">List Section</div>
                     <div class="d-flex gap-2">
                       <a href="{{ route('front') }}" class="btn btn-warning rounded-4">Show <i class="bi bi-box-arrow-up-right"></i></a>
-                      <button type="button" class="btn btn-primary addSectionBtn rounded-4">Add +</button>
+                      <button type="button" class="btn btn-primary addSectionBtn rounded-4" @if ($sections) disabled @endif>Add +</button>
                     </div>
                 </div>
             </div>

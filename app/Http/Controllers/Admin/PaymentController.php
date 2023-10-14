@@ -11,7 +11,6 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        // $payment = Payment::get();
         $payment = User::whereHas('payment')->get();
         return view('pages.admin.dashboard.payment.index',compact('payment'));
     }

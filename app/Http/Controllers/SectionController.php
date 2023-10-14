@@ -60,8 +60,9 @@ class SectionController extends Controller
             'image' => 'required'
         ],
         [
-            'title.string' => 'Harus berupa string',
+            'title.string' => 'Judul Wajib Diisi',
             'desc.required' => 'Desc Wajib Diisi',
+            'image.required' => 'Gambar Wajib Diisi',
         ]);
 
         $data['user_id'] = Auth::user()->id;
@@ -101,14 +102,14 @@ class SectionController extends Controller
         // dd($request->all());
         $sections = Section::findorFail($id);
         $data = $request->validate([
-            'title' => 'string|required',
+            'title' => 'required',
             'desc' => 'required',
-            // 'image' => 'required'
+            'image' => 'required'
         ],
         [
-            'title.string' => 'Harus berupa string',
-            'desc.required' => 'desc Wajib Diisi',
-            // 'image.required' => 'Image Wajib Diisi'
+            'title.required' => 'Judul Wajib Diisi',
+            'desc.required' => 'Desc Wajib Diisi',
+            'image.required' => 'Image Wajib Diisi'
         ]);
 
         $data['user_id'] = Auth::user()->id;

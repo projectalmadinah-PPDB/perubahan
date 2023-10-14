@@ -9,6 +9,7 @@ use App\Models\Document;
 use App\Models\Generasi;
 use App\Models\Payment;
 use App\Models\Question;
+use App\Models\Student;
 use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
@@ -38,14 +39,19 @@ class LaporanController extends Controller
         }
         // panggil {{ $raRataUmur }}
 
+        $oldest = User::where('role','user')->orderBy('tanggal_lahir', 'ASC')->first();
+        $youngest = User::where('role','user')->orderBy('tanggal_lahir', 'DESC')->first();
+
         // rata-rata jenis kelamin
-            // $pria = count($users->where('jenis_kelamin', 'Laki-Laki'));
-            // $wanita = count($users->where('jenis_kelamin', 'Perempuan'));
+        $pria = count($users->where('jenis_kelamin', 'Laki-Laki'));
+        $wanita = count($users->where('jenis_kelamin', 'Perempuan'));
+
+        $student = Student::orderBy('id', 'DESC')->with('user')->get();
 
         // rata-rata pendidikan terakhir
-            // $jumlahTK = count($users->where('asal_sekolah', 'TK'));
-            // $jumlahSD = count($users->where('asal_sekolah', 'SD'));
-            // $jumlahSMP = count($users->where('asal_sekolah', 'SMP'));
+        $jumlahTK = count($student->where('last_graduate', 'TK'));
+        $jumlahSD = count($student->where('last_graduate', 'SD'));
+        $jumlahSMP = count($student->where('last_graduate', 'SMP'));
 
         // data pendaftar yang udah mbayar
         $peserta = User::whereHas('payment', function ($query) {
@@ -58,7 +64,8 @@ class LaporanController extends Controller
         // data seluruh pendaftar mengacu pada tiap generasi
         $generasi = Generasi::with('user')->get();
 
-        return view('pages.admin.dashboard.laporan.index', compact('generasi','users','rataRataUmur','peserta','payment'));
+        return view('pages.admin.dashboard.laporan.index', 
+        compact('generasi','users','rataRataUmur','peserta','payment','oldest','youngest','pria','wanita','jumlahTK','jumlahSD','jumlahSMP'));
     }
 
     public function export($id)

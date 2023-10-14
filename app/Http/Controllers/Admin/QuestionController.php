@@ -31,12 +31,13 @@ class QuestionController extends Controller
     {
         $jawab = Question::find($id);
         $data = $request->validate([
+            'question' => 'required',
             'answer' => 'required'
         ]);
 
         $jawab->update($data);
 
-        return redirect()->route('admin.question.index')->with('success','Berhasil Mejawab Pertanyaan');
+        return redirect()->route('admin.question.index')->with('success','Berhasil mengubah data');
     }
 
     public function active(Request $request,$id)
@@ -47,7 +48,7 @@ class QuestionController extends Controller
         ]);
 
         if(!$question->answer){
-            return redirect()->route('admin.question.index')->with('delete',"Harus Ada Jawaban Jika Ingin Aktif");
+            return redirect()->route('admin.question.index')->with('delete',"Wajib memiliki jawaban jika ingin diaktifkan");
         }else{
             if($question->active == 'off')
             {
@@ -58,8 +59,16 @@ class QuestionController extends Controller
                 $data['active'] == 'off';
                 $question->update($data);
             }
-            return redirect()->route('admin.question.index')->with('success',"Berhasil Menganti Status");
+            return redirect()->route('admin.question.index')->with('success',"Berhasil mengganti status");
         }
 
+    }
+
+    public function destroy($id)
+    {
+        $question = Question::find($id);
+        $question->delete();
+
+        return redirect()->route('admin.question.index')->with('delete','Berhasil menghapus pertanyaan');
     }
 }

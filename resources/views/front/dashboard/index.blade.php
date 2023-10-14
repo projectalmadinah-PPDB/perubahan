@@ -237,6 +237,7 @@
                     <div class="relative">
                         <div class="
                             @if ($user->document && $user->status == 'Belum') {{ $sedang }}
+                            @elseif ($user->status == 'Wawancara') {{ $sedang }}
                             @elseif ($user->status == 'Gagal' || $user->status == 'Lulus') {{ $sudah }}
                             @else {{ $belum }}
                             @endif

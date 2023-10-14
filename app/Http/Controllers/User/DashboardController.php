@@ -117,8 +117,10 @@ class DashboardController extends Controller
         
         $createPayment = json_decode(json_encode($this->redirect_payment($id)),true);
         // dd($createPayment);
+
         $Transaction = Payment::create([
             'user_id' => $user->id,
+            // 'reference_id' => ,
             'status' => 'pending',
             'no_invoice' => $createPayment['Data']['SessionID'],
             'link' => $createPayment['Data']['Url'],

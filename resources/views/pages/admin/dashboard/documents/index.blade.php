@@ -43,7 +43,7 @@
                           <th>ID</th>
                           <th>Name</th>
                           <th>Nomor Hp</th>
-                          <th>Status Kelulusan</th>
+                          <th>Status Verifikasi</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -54,18 +54,27 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$item->user->name}}</td>
                             <td>{{$item->user->nomor}}</td>
-                            <td><button class="badge badge-success border-0">{{$item->status}}</button></td>
+                            <td>
+                              @if ($item->user->status == 'Belum')
+                              <button class="badge badge-info border-0">Belum Terverifikasi</button>
+                              @else
+                              <button class="badge badge-success border-0">Terverifikasi</button>
+                              @endif
+                            </td>
                             <td>
                               <a href="{{ route('admin.document.show', $item->user->id) }}" class="badge badge-primary border-0">
                                 Detail
                               </a>
-                              <button type="button" class="badge badge-warning border-0" data-bs-toggle="modal" data-bs-target="#exampleModall">
-                                Verify
-                              </button>
-                              <form action="{{route('admin.document.destroy',$item->id)}}" method="post" class="d-inline">
+                              @if ($item->user->status == 'Belum')
+                                <a href="{{ route('admin.peserta.document', $item->user->id) }}" class="badge badge-warning border-0">
+                                  Verify
+                                </a>
+                              @endif
+                              <form action="{{ route('admin.document.destroy', $item->id) }}" method="post" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="badge badge-danger border-0">
+                                <button type="button" onclick="confirm('Yakin ingin menghapus dokumen?') ? setAttribute('type', 'submit') : ''" 
+                                class="badge badge-danger border-0">
                                   Delete
                                 </button>
                               </form>
@@ -75,7 +84,7 @@
                       </tbody>
                     </table>
                   </form>
-                  @foreach ($document as $item)
+                  {{-- @foreach ($document as $item)
                     <form action="" method="post">
                       @csrf
                       @method('PUT')
@@ -84,16 +93,30 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Verifikasi Dokumen</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <label for="status">Status</label>
-                              <select name="status" id="status" class="form-select">
-                                  <option disabled selected>Pilih Status</option>
-                                  <option value="Wawancara">Wawancara</option>
-                                  <option value="Gagal">Gagal</option>
-                              </select>
+                              <div class="mb-2">
+                                <label for="name">Nama</label>
+                                <input type="text" name="name" value="{{ $item->user->name }}" disabled class="form-control text-capitalize">
+                              </div>
+                              <div class="mb-2">
+                                <label for="name">NIK</label>
+                                <input type="text" name="name" value="{{ $item->user->student->nik }}" disabled class="form-control text-capitalize">
+                              </div>
+                              <div class="mb-2">
+                                <label for="name">NISN</label>
+                                <input type="text" name="name" value="{{ $item->user->student->nisn }}" disabled class="form-control text-capitalize">
+                              </div>
+                              <div class="mb-2">
+                                <label for="name">Asal Sekolah</label>
+                                <input type="text" name="name" value="{{ $item->user->student->old_school }}" disabled class="form-control text-capitalize">
+                              </div>
+                              <div class="mb-2">
+                                <label for="name">Pendidikan Terakhir</label>
+                                <input type="text" name="name" value="{{ $item->user->student->last_graduate }}" disabled class="form-control text-capitalize">
+                              </div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -103,7 +126,7 @@
                         </div>
                       </div>
                     </form>
-                  @endforeach
+                  @endforeach --}}
                 </div>
               </div>
             </div>

@@ -15,7 +15,10 @@
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Detail Biodata {{$pendaftaran->name}}</div>
                   <div class="d-flex">
-                    <a href="{{route('admin.pendaftar.export_private',$pendaftaran->id)}}" class="btn rounded-4 btn-primary me-2 text-white">Export Data</a>
+                    <a href="{{route('admin.pendaftar.export_private',$pendaftaran->id)}}" class="btn rounded-4 btn-primary me-2">Export Data</a>
+                    @if ($pendaftaran->status == 'Belum' && $pendaftaran->document)
+                    <a href="{{route('admin.peserta.document',$pendaftaran->id)}}" title="verifikasi dokumen" class="btn rounded-4 btn-outline-warning me-2">Verify</a>
+                    @endif
                     <a href="{{route('admin.peserta.index')}}" class="btn rounded-4 btn-outline-primary float-end">Back</a>
                   </div>
                 </div>
