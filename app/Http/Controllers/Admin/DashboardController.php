@@ -17,24 +17,36 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        
+        // user yg punya generasi
         $users = User::whereHas('generasi', function ($query) {
             $query->where('status', 'on');
         })->where('role','user')->orderby('id','desc')->paginate(10);
+
+        // user yg melakukan pembayaran
         $student = User::whereHas('payment', function ($query) {
             $query->where('status', 'berhasil');
-        })->get();;
-        // $generasi = Generasi::where('status','on')->first();
+        })->get();
+
+        // daftar pembayaran yang dilakukan
         $uang = Payment::where('status','berhasil')->sum('amount');
+
+        // user yang lulus pendaftaran
         $lulus = User::where('status','Lulus')->where('role','user')->orderby('id','desc')->paginate(10);
+
+        // data artikel
         $informasi = Article::all();
-        $generations = Generasi::where('status','on')->first();
+
+        // data generasi dengan status on
+        $generations = Generasi::where('status','on')->orderBy('id', 'DESC')->first();
+
+        // data pembayaran untuk grafik
         $chart = Payment::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
                 ->whereYear('created_at',date('Y'))
                 ->groupBy('month')
                 ->orderBy('month')
                 ->get();
 
+        // sistem chart JS
         $labels = [];
         $data = [];
         $colors = ['#FF6969','#FF6969','#FF6969','#FF6969','#FF6969','#FF6969',];
@@ -61,6 +73,7 @@ class DashboardController extends Controller
                 'backgroundColor' => $colors
            ]
         ];
+        
         return view('pages.admin.dashboard.index',compact('users','informasi','student','lulus','generations','uang','datasets','labels'));
     }
 }

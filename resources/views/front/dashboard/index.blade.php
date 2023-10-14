@@ -48,7 +48,7 @@
                     Silahkan melakukan Pembayaran Administrasi melalui tombol dibawah ini
                 </p>
                 <a href="{{route('user.pay', $user->id)}}" class="{{ $buttonStep }}">
-                    Tekan Disini
+                    Bayar Disini
                 </a>
             @else
                 @if ($user->payment->status == 'pending')
@@ -58,8 +58,7 @@
                     <p class="tracking-wide text-sm md:text-lg text-center">
                         Lengkapi proses pembayaran anda melalui tombol dibawah ini
                     </p>
-                    <a href="{{$user->payment->link}}" 
-                        class="{{ $buttonStep }}">
+                    <a href="{{$user->payment->link}}" class="{{ $buttonStep }}">
                         Lanjutkan Proses
                     </a>
                 @elseif ($user->payment->status == 'expired')
@@ -69,8 +68,7 @@
                     <p class="tracking-wide text-sm md:text-lg text-center">
                         Untuk melakukan pembayaran ulang, tekan tombol dibawah ini
                     </p>
-                    <a href="{{route('user.pay',$user->id)}}" 
-                        class="{{ $buttonStep }}">
+                    <a href="{{route('user.pay',$user->id)}}" class="{{ $buttonStep }}">
                         Bayar Ulang
                     </a>
                 @elseif ($user->payment->status == 'berhasil')
@@ -82,8 +80,7 @@
                             {{-- Tekan tombol dibawah ini untuk melengkapi data diri anda --}}
                             Lengkapi data diri anda melalui tombol dibawah ini.
                         </p>
-                        <a href="{{route('user.kelengkapan')}}" 
-                        class="{{ $buttonStep }}">
+                        <a href="{{route('user.kelengkapan')}}" class="{{ $buttonStep }}">
                             Lengkapi Data Diri
                         </a>
                     @elseif (!$user->document)
@@ -228,7 +225,7 @@
                                 <i class="bi bi-check-lg text-white"></i>
                             @endif
                         </div>
-                        @if ($user->payment && !$user->student)
+                        @if ($user->payment && $user->payment->status == 'berhasil' && (!$user->student || !$user->document))
                         <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
                             <span class="font-medium text-sm">Kamu Disini!!</span>
                         </p>

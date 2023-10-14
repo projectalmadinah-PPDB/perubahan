@@ -28,8 +28,10 @@
                             <label for="title">Step</label>
                             <select name="step" id="" class="form-select">
                               <option value="Pembayaran">Pembayaran</option>
+                              <option value="Data">Data Diri</option>
                               <option value="Test">Test</option>
-                              <option value="Hasil">Hasil</option>
+                              <option value="Hasil">Hasil Pendaftaran</option>
+                              <option value="Lulus">Lulus</option>
                             </select>
                           </div>
                           <div class="form-group">

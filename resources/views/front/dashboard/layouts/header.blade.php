@@ -38,6 +38,9 @@
                         <i class="bi bi-box-arrow-left text-emerald-600 text-lg me-2"></i>
                         <span>Logout</span>
                     </a>
+                    <a href="{{ route('user.change') }}" class="w-full text-sm p-3 text-primer font-semibold hover:text-emerald-500 duration-200 flex items-center justify-center">
+                        Change Password
+                    </a>
                 </div>
             </div>
         </span>

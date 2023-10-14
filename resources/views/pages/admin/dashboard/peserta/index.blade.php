@@ -14,11 +14,14 @@
           <div class="col-md-12">
             <div class="card rounded-4">
               <div class="card-header">
-                <div class="d-flex justify-content-between">
-                  <div class="card-title">Daftar Peserta</div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="card-title">
+                    Daftar Peserta
+                    <small class="d-block">daftar user yang telah melakukan pembayaran</small>
+                  </div>
                   <div class="d-flex justify-content-between">
                     <a href="{{route('admin.peserta.export')}}" class="btn btn-primary rounded-4 me-2">Export Excel</a>
-                    <button type="button" class="btn rounded-4 btn-primary" 
+                    <button type="button" class="btn rounded-4 btn-outline-primary" 
                     onclick="edit(event)">Ubah Status</button>
                     <button class="btn btn-danger ms-2 float-end rounded-4" onclick="destroy(event)">Delete</button>
                 </div>
@@ -38,10 +41,7 @@
                         <th>Nomor Hp</th>
                         <th>Biodata</th>
                         <th>Status Pembayaran</th>
-                        <th>Status Test</th>
-                        {{-- <th>Tanggal Lahir</th>
-                        <th>Jenis Kelamin</th> --}}
-                        {{-- <th>NIK</th> --}}
+                        <th>Status Tes</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -53,34 +53,40 @@
                           <td>{{$loop->iteration}}</td>
                           <td>{{$item->name}}</td>
                           <td>{{$item->nomor}}</td>
-                          {{-- <td>{{$item->tanggal_lahir}}</td>
-                          <td>{{$item->jenis_kelamin}}</td> --}}
-                          {{-- <td>{{$item->nik}}</td> --}}
+
                           @if($item->student && $item->document)
-                          <td><a class="badge badge-success border-0 text-white">Lengkap &#x2714;</a></td>
-                          @elseif ($item->student && !$item->document)
                           <td>
-                            <button class="badge badge-danger border-0">Tidak Legkap</button>
+                            <a href="{{ route('admin.peserta.show', $item->id) }}" class="badge badge-success border-0">Lengkap</a>
+                          </td>
+                          @elseif($item->student && !$item->document)
+                          <td>
+                            <a href="{{ route('admin.peserta.show', $item->id) }}" class="badge badge-info border-0">Tidak Lengkap</a>
                           </td>
                           @else
                           <td>
-                            <button class="badge badge-danger border-0">Tidak Legkap</button>
+                            <a href="{{ route('admin.peserta.show', $item->id) }}" class="badge badge-info border-0">Tidak Ada</a>
                           </td>
                           @endif
+
                           <td>
-                            @if (!$item == 'pending')
-                            <a class="badge badge-danger border-0 text-white">Belum Bayar</a>
-                            @elseif($item->payment->status == 'berhasil')
-                            <a class="badge badge-success border-0 text-white">Lunas</a>
-                            @elseif($item->payment->status == 'expired')
-                            <a class="badge badge-warning border-0 text-white">Pending</a>
+                            @if (!$item->payment)
+                              <button class="badge badge-info border-0">Tidak Ada</button>
+                            @else
+                              @if ($item->payment->status == 'berhasil')
+                                <button class="badge badge-success border-0">Sukses</button>
+                              @elseif($item->payment->status == 'expired')
+                              <button class="badge badge-info border-0">{{$item->payment->status}}</button>
+                              @else
+                              <button class="badge badge-warning border-0">{{$item->payment->status}}</button>
+                              @endif
                             @endif
                           </td>
+
                           <td>
                             @if ($item->status == 'Belum')
-                                <a class="badge badge-danger border-0 text-white">Tidak Ada Status</a>
+                                <a class="badge badge-info border-0 text-white">Tidak Ada Status</a>
                             @elseif($item->status == 'Gagal')
-                                <a class="badge badge-danger border-0 text-white">Tidak Lulus</a>
+                                <a class="badge badge-info border-0 text-white">Tidak Lulus</a>
                             @elseif($item->status == 'Wawancara')
                                 <a class="badge badge-primary border-0 text-white">Wawancara</a>
                             @elseif($item->status == 'Lulus')
@@ -89,32 +95,28 @@
                           </td>
                           </form>
                           <td>
-                            @if(!$item->student)
-                            <a href="" class="badge badge-danger">Tidak Ada Data</a>
-                            @elseif($item->student && !$item->document)
-                            <a href="" class="badge badge-danger">Data Tidak Lengkap</a>
-                            @else
-                            <a href="{{route('admin.peserta.show',$item->id)}}" class="badge badge-primary">Data Pribadi</a>
-                            @endif
+                            <a href="{{route('admin.peserta.show',$item->id)}}" class="badge badge-primary">Detail</a>
                             <a href="{{route('admin.peserta.edit',$item->id)}}" class="badge badge-warning">Edit</a>
+
                             <form action="{{route('admin.peserta.destroy',$item->id)}}" method="post" class="d-inline">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="badge badge-danger border-0">Delete</button>
                             </form>
                             
+                            {{-- add-action --}}
                             <div class="dropdown d-inline">
-                              <a class="dropdown-toggle" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <a class="dropdown-toggle" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bi bi-three-dots-vertical"></i>
                               </a>
                             
-                              <div class="dropdown-menu" aria-labelledby="customDropdown">
+                              <div class="dropdown-menu py-0 rounded-4 overflow-hidden mb-2" aria-labelledby="customDropdown">
                                 <form action="{{route('admin.pengecekan',$item->id)}}" method="post">
                                   @csrf
                                   @method('POST')
-                                  <div class="d-flex flex-wrap">
-                                    <button name="status" type="submit" class="border-0 bg-danger w-100 text-bold text-white" value="Wawancara">Lanjut Wawancara</button>
-                                    <button type="submit" name="status" value="Gagal" class="border-0 bg-warning w-100 text-bold text-white" >Gagal / Gugur</button>
+                                  <div class="d-flex flex-column">
+                                    <button name="status" type="submit" class="border-0 bg-warning w-100 text-bold text-white" value="Wawancara">Lanjut Wawancara</button>
+                                    <button type="submit" name="status" value="Gagal" class="border-0 bg-danger w-100 text-bold text-white" >Gagal</button>
                                   </div>
                                   {{-- <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
                                     @csrf
@@ -193,7 +195,7 @@
         Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Select Data Yang Ingin Di Edit Massal',
+        text: 'Pilih data yang ingin Dihapus Massal',
       })
       }
     }
@@ -215,7 +217,7 @@
           document.form1.submit()
           Swal.fire(
             'Deleted!',
-            'Your file has been deleted.',
+            'Beberapa data berhasil dihapus.',
             'success'
           )
         }
@@ -224,7 +226,7 @@
         Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Select Data Yang Ingin Di Hapus Massal',
+        text: 'Pilih data yang ingin dihapus Massal',
       })
       }
     }

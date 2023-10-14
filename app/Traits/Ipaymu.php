@@ -74,10 +74,11 @@ trait Ipaymu {
         $body['price'][]    = 100000;
         $body['referenceId']    = 'ID'.rand(1111,9999);
         $body['returnUrl']    = route('callback.return');
-        $body['notifyUrl']    = 'https://082b-139-0-89-39.ngrok-free.app/callback/notify';
+        $body['notifyUrl']    = 'https://c212-149-108-82-66.ngrok-free.app/callback/notify';
         $body['cancelUrl']    = route('callback.cancel');
         $body['paymentChannel'] = 'qris';
         $body['expired']    = 24;
+        $body['buyerName']   = Auth::user()->name;
 
         $signature    = $this->signature($body,$method);
 

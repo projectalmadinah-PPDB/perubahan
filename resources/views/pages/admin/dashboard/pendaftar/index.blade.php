@@ -14,8 +14,11 @@
           <div class="col-md-12">
             <div class="card rounded-4">
               <div class="card-header">
-                <div class="d-flex justify-content-between">
-                  <div class="card-title">Daftar Pendaftar</div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="card-title">
+                    Daftar Pendaftar
+                    <small class="d-block">Daftar user yang melakukan pendaftaran</small>
+                  </div>
                   {{-- <button class="btn btn-primary" onclick="edit()">Ubah Data</button> --}}
                   <div class="d-flex">
                     <a href="{{route('admin.pendaftar.export')}}" class="btn btn-primary rounded-4">Export Excel</a>
@@ -44,11 +47,8 @@
                           <th>ID</th>
                           <th>Name</th>
                           <th>Nomor Hp</th>
-                          <th>Biodata</th>
+                          <th>Status Biodata</th>
                           <th>Status Pembayaran</th>
-                          {{-- <th>Tanggal Lahir</th>
-                          <th>Jenis Kelamin</th> --}}
-                          {{-- <th>NIK</th> --}}
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -59,35 +59,28 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$item->name}}</td>
                             <td>{{$item->nomor}}</td>
-                            {{-- <td>{{$item->tanggal_lahir}}</td>
-                            <td>{{$item->jenis_kelamin}}</td> --}}
-                            {{-- <td>{{$item->nik}}</td> --}}
                             @if($item->student && $item->document)
                             <td><button class="badge badge-success border-0">Lengkap</button></td>
+                            @elseif($item->student && !$item->document)
+                            <td><button class="badge badge-info border-0">Tidak Lengkap</button></td>
                             @else
-                            <td><button class="badge badge-danger border-0">Tidak Legkap</button></td>
+                            <td><button class="badge badge-info border-0">Tidak Ada</button></td>
                             @endif
                             <td>
                               @if (!$item->payment)
-                              <button class="badge badge-primary border-0">Belum Membayar</button>
+                              <button class="badge badge-info border-0">Tidak Ada</button>
                               @else
                                 @if ($item->payment->status == 'berhasil')
-                                  <button class="badge badge-success border-0">Success</button>
+                                  <button class="badge badge-success border-0">Sukses</button>
                                 @elseif($item->payment->status == 'expired')
-                                <button class="badge badge-danger border-0">{{$item->payment->status}}</button>
+                                <button class="badge badge-info border-0">{{$item->payment->status}}</button>
                                 @else
                                 <button class="badge badge-warning border-0">{{$item->payment->status}}</button>
                                 @endif
                               @endif
                             </td>
                             <td>
-                              @if($item->student == NULL)
-                              <a href="" class="badge badge-danger">Tidak Ada Data</a>
-                              @elseif($item->document == NULL)
-                              <a href="" class="badge badge-danger">Data Tidak Lengkap</a>
-                              @else
-                              <a href="{{route('admin.pendaftar.show',$item->id)}}" class="badge badge-primary">Data Pribadi</a>
-                              @endif
+                              <a href="{{route('admin.pendaftar.show',$item->id)}}" class="badge badge-primary">Detail</a>
                               <a href="{{route('admin.pendaftar.edit',$item->id)}}" class="badge badge-warning">Edit</a>
                               <button onclick="confirm('anda yakin ingin menghapus data') ? setAttribute('type','submit') : '' " type="button" form="remove{{$item->id}}"
                                 class="badge badge-danger">Remove</button>

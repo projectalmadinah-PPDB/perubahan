@@ -12,6 +12,7 @@ use App\Models\Payment;
 use App\Traits\Fonnte;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -259,6 +260,68 @@ class UserController extends Controller
 
         return redirect()->back()->with('error', 'Token Tidak Sesuai');
     }
+
+    public function forgot()
+    {
+        return view('front.forgot');
+    }
+
+    public function forgotProcess(Request $request)
+    {
+        // Validasi nomor telepon
+        $request->validate([
+            'nomor' => 'required|exists:users,nomor',
+        ]);
+
+        // Temukan pengguna berdasarkan nomor telepon
+        $user = User::where('nomor', $request->nomor)->first();
+
+        // Generate kode verifikasi baru
+        $newVerificationCode = rand(111111,999999);
+
+        // Simpan kode verifikasi baru ke dalam model User
+        $user->token = $newVerificationCode;
+        $user->save();
+
+        $messages = "Sepertinya Kamu Melupa Password Ya Silahkan Masukkan Kode Berikut " . $newVerificationCode . " Kode Tersebut Dapat Di Gunakan Untuk Verifikasi Ulang Atau Jika Anda Ingin Mengganti Password Silahkan Login Terlebih Dahulu Menggunakan Kode Yang Di Berikan Dan Ganti Password Di Halaman Dashboard Anda" . $user->name;                                
+            
+        $this->send_message($user, $messages);
+        // Kirim kode verifikasi baru ke nomor telepon pengguna
+        // Misalnya, Anda dapat menggunakan layanan SMS Gateway atau kirim email sesuai preferensi
+
+        // Beri tahu pengguna bahwa kode verifikasi baru telah dikirim
+
+        return redirect()->route('user.token.forgot')->with('verif', 'Kode verifikasi baru telah dikirim ke nomor telepon Anda.');
+    }
+
+    public function token_forgot()
+    {
+        return view('front.token-forgot');
+    }
+
+    public function token_forgotProcess(Request $request)
+    {
+        $request->validate([
+            'token' => 'required|exists:users,token',
+        ]);
+
+        // Temukan pengguna berdasarkan nomor telepon
+        $user = User::where('token', $request->token)->first();
+
+        if($user == false){
+            return redirect()->route('user.token.forgot');
+        }else{
+            return redirect()->route('user.change.index',compact('user'));
+        }
+    }
+
+    public function change(Request $request)
+    {
+        $user = User::where('token', $request->token)->first();
+        return view('front.change',compact('user'));
+    }
+
+
     public function logout()
     {
         Auth::logout();

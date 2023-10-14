@@ -18,8 +18,9 @@
         <div class="col-md-12">
           <div class="card rounded-4">
             <div class="card-header">
-              <div class="d-flex justify-content-between">
+              <div class="d-flex justify-content-between align-items-center">
                 <div class="card-title">Hero Section</div>
+                <a href="{{ route('front') }}" class="btn btn-warning rounded-4">Show <i class="bi bi-box-arrow-up-right"></i></a>
               </div>
             </div>
             <div class="card-body">
@@ -30,23 +31,29 @@
                         <label for="title" class="form-label">Judul</label>
                         <input type="text" value="{{ $home->title }}" name="title" id="title" class="form-control rounded-4">
                         @error('title')
-                          <h5>eror</h5>
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
                         @enderror
                     </div>
                     <div class="mb-2">
                         <label for="image" class="form-label">Hero Image</label>
-                        <img id="output" src="{{ asset('storage/' . $home['image'])}}" style="width:150px;height:100px;display:block" class="rounded-0" alt="">
+                        <img id="output" src="{{ asset('storage/' . $home['image'])}}"  class="w-25 mb-2 d-block rounded-4 border border-5 border-primary" draggable="false">
                         <input type="file" name="image" id="image" class="form-control rounded-4" onchange="loadFile(event)">
                         @error('image')
-                          <h5>eror</h5>
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
                         @enderror
                     </div>
                     <div class="mb-2">
                         <label for="desc" class="form-label">Deskripsi</label>
-                        <textarea name="desc" id="desc" rows="5" class="form-control rounded-4">{{ $home->desc }}</textarea>
+                        <textarea name="desc" id="descHome" rows="5" class="form-control rounded-4">{{ $home->desc }}</textarea>
                         @error('desc')
-                          <h5>eror</h5>
-                        @enderror
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
                     <button type="submit" class="btn btn-success rounded-4">Save</button>
                 </form>
@@ -56,7 +63,10 @@
             <div class="card-header">
                 <div id="toolSection" class="d-flex justify-content-between">
                     <div class="card-title">List Section</div>
-                    <button type="button" class="btn btn-primary addSectionBtn rounded-4">Add +</button>
+                    <div class="d-flex gap-2">
+                      <a href="{{ route('front') }}" class="btn btn-warning rounded-4">Show <i class="bi bi-box-arrow-up-right"></i></a>
+                      <button type="button" class="btn btn-primary addSectionBtn rounded-4">Add +</button>
+                    </div>
                 </div>
             </div>
             <div class="card-body mb-2" id="sectionContainer">
@@ -77,12 +87,12 @@
                     </div>
                     <div class="mb-2">
                       <label for="image" class="form-label">Hero Image</label>
-                      <img src="{{ asset('storage/' . $section['image']) }}" class="w-25 mb-2 d-block rounded-4 border border-5 border-primary" draggable="false">
+                      <img src="{{ asset('storage/' . $section['image']) }}" class="w-25 mb-2 d-block rounded-4 border border-5 border-primary" draggable="false" alt="">
                       <input name="image" class="form-control" type="file" onchange="loadFile(event)">
                     </div>
                     <div class="mb-2">
                       <label for="desc" class="form-label">Deskripsi</label>
-                      <textarea name="desc" rows="3" class="form-control rounded-4">{{ $section->desc }}</textarea>
+                      <textarea name="desc" id="descSection" rows="5" class="form-control rounded-4">{{ $section->desc }}</textarea>
                     </div>
                     <div class="d-flex gap-2">
                       <button type="submit" class="btn rounded-4 btn-success">Save</button>
@@ -113,7 +123,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex justify-content-start align-items-center gap-1">
                         <div class="bg-danger d-inline-block rounded-circle" style="width: 1rem; height: 1rem;"></div>
-                        <span>Section Baru</span>
+                        <b class="fs-6">Buat Section Baru</b>
                     </div>
                 </div>
                 <div class="mb-2">
@@ -136,7 +146,7 @@
                 </div>
                 <div class="mb-2">
                     <label for="desc" class="form-label">Deskripsi</label>
-                    <textarea name="desc" rows="3" class="form-control rounded-4">{{ old('desc') }}</textarea>
+                    <textarea name="desc" id="descAdd" rows="5" class="form-control rounded-4"></textarea>
                     @error('desc')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -157,16 +167,37 @@
                   var newSectionForm = document.getElementById('newSectionTemplate').cloneNode(true);
                   // Hilangkan atribut style "display:none;" dari form baru
                   newSectionForm.removeAttribute('style');
-                  newSectionForm.setAttribute('class', 'mt-3 border-top pt-3 border-success');
+                  newSectionForm.setAttribute('class', 'mb-3 border-bottom pb-3 border-success');
                   // Tambahkan form baru ke dalam kontainer section
-                  document.getElementById('sectionContainer').appendChild(newSectionForm);
+                  // document.getElementById('sectionContainer').appendChild(newSectionForm);
+                  var sectionContainer = document.getElementById('sectionContainer');
+                  sectionContainer.insertBefore(newSectionForm, sectionContainer.firstChild);
 
                   this.disabled = true;
               });
 
+              // CK EDITOR HERO HOME
+              ClassicEditor
+              .create( document.querySelector( '#descHome' ) )
+              .catch( error => {
+                    console.error( error );
+              });
+
+              // CK EDITOR DATA SECTION
+              ClassicEditor
+              .create( document.querySelector( '#descSection' ) )
+              .catch( error => {
+                    console.error( error );
+              });
+
+              // CK EDITOR SECTION BARU
+              ClassicEditor
+              .create( document.querySelector( '#descAdd' ) )
+              .catch( error => {
+                    console.error( error );
+              });
           </script>
         
-          
         </div> 
       </div>
     </div>

@@ -1,4 +1,4 @@
-@extends('front.layouts.parent')
+@extends('front.dashboard.layouts.parent')
 
 @section('title','Change Password')
 

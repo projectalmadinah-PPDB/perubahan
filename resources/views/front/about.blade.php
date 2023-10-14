@@ -10,19 +10,19 @@
         <p class="text-sm tracking-wide font-medium text-gray-400 mb-10">
             Ingin berkonsultasi dengan kami ?
         </p>
-        <article class="prose !max-w-full pt-8 pb-20 px-20">
-            <blockquote>
-                {{ App\Models\General::first()->desc }}
+        <article class="prose !max-w-full pt-8 pb-20 px-20 md:px-36">
+            <blockquote class="tracking-wider">
+                {!! $general->desc !!}
             </blockquote>
         </article>
-        <div class="flex flex-col md:flex-row justify-start md:justify-center items-center gap-10">
+        <div class="flex flex-col md:flex-row justify-start md:justify-center items-center gap-10 tracking-wider">
             <div class="min-w-[21rem] h-fit py-5 px-7 ring-2 ring-sekunder ring-offset-2 hover:ring-offset-8  hover:rounded-3xl duration-200">
                 <div class="flex items-center justify-center gap-x-3 mb-3">
                     
                     <h3 class="text-lg font-semibold">Email</h3>
                 </div>
                 <p class="tracking-wide text-slate-600">
-                    {{ App\Models\General::first()->school_email }}
+                    {{ $general->school_email }}
                 </p>
             </div>
             <div class="min-w-[21rem] h-fit py-5 px-7 ring-2 ring-sekunder ring-offset-2 hover:ring-offset-8 hover:rounded-3xl duration-200">
@@ -31,7 +31,7 @@
                     <h3 class="text-lg font-semibold">Alamat</h3>
                 </div>
                 <p class="tracking-wide text-slate-600 text-sm">
-                    {{ App\Models\General::first()->school_address }}
+                    {{ $general->school_address }}
                 </p>
             </div>
             <div class="min-w-[21rem] h-fit py-5 px-7 ring-2 ring-sekunder ring-offset-2 hover:ring-offset-8  hover:rounded-3xl duration-200">
@@ -40,7 +40,7 @@
                     <h3 class="text-lg font-semibold">Telepon</h3>
                 </div>
                 <p class="tracking-wide text-slate-600">
-                    {{ App\Models\General::first()->school_phone }}  
+                    {{ $general->school_phone }}  
                 </p>
             </div>
         </div>

@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card rounded-4">
                             <div class="card-header">
                                 Update Data
                             </div>
@@ -32,6 +32,7 @@
                             
                                     <div class="form-group">
                                         <button class="btn btn-primary btn-sm" type="submit">Update</button>
+                                        <a href="{{route('admin.wawancara.index')}}" class="btn btn-primary btn-sm">Back</a>
                                     </div>
                                 </form>
                             </div>

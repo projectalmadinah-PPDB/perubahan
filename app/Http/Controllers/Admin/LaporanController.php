@@ -10,6 +10,7 @@ use App\Models\Generasi;
 use App\Models\Payment;
 use App\Models\Question;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -17,14 +18,47 @@ class LaporanController extends Controller
 {
     public function index()
     {
-        // $data = User::where('role','user')->orderby('id','desc')->paginate(5);
-        // $peserta = User::whereHas('payment', function ($query) {
-        //     $query->where('status', 'berhasil');
-        // })->orderby('id','desc')->paginate(5);
-        // $payment = Payment::orderby('id','desc')->paginate(5);
-        // $lulus = User::where('role','user')->where('status','Lulus')->paginate(5);
-        $data = Generasi::with('user')->get();
-        return view('pages.admin.dashboard.laporan.index', compact('data'));
+        // data pendaftar
+        $users = User::where('role','user')->with('student')->with('document')->orderby('id','desc')->get();
+
+        // perhitungan rata-rata umur pendaftar
+        $totalUmur = 0;
+        $jumlahPeserta = count($users);
+
+        foreach ($users as $user) {
+            $tanggalLahir = date_create($user->tanggal_lahir);
+            $umur = date_diff(date_create(), $tanggalLahir)->y;
+            $totalUmur += $umur;
+        }
+
+        if ($jumlahPeserta > 0) {
+            $rataRataUmur = $totalUmur / $jumlahPeserta;
+        } else {
+            $rataRataUmur = 0;
+        }
+        // panggil {{ $raRataUmur }}
+
+        // rata-rata jenis kelamin
+            // $pria = count($users->where('jenis_kelamin', 'Laki-Laki'));
+            // $wanita = count($users->where('jenis_kelamin', 'Perempuan'));
+
+        // rata-rata pendidikan terakhir
+            // $jumlahTK = count($users->where('asal_sekolah', 'TK'));
+            // $jumlahSD = count($users->where('asal_sekolah', 'SD'));
+            // $jumlahSMP = count($users->where('asal_sekolah', 'SMP'));
+
+        // data pendaftar yang udah mbayar
+        $peserta = User::whereHas('payment', function ($query) {
+            $query->where('status', 'berhasil');
+        })->orderby('id','desc');
+
+        // data pembayaran yang dilakukan
+        $payment = Payment::orderBy('id','desc')->with('user')->get();
+
+        // data seluruh pendaftar mengacu pada tiap generasi
+        $generasi = Generasi::with('user')->get();
+
+        return view('pages.admin.dashboard.laporan.index', compact('generasi','users','rataRataUmur','peserta','payment'));
     }
 
     public function export($id)

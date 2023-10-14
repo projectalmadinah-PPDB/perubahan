@@ -60,13 +60,49 @@
                             @endif
                           </td>
                           <td>
-                            <a class="badge badge-primary" href="{{route('admin.wawancara.create',$item->id)}}">Isi Jadwal</a>
+                            @if (!$item->wawancara)
+                              <a class="badge badge-primary" href="{{route('admin.wawancara.create',$item->id)}}">Isi Jadwal</a>
+                            @else
+                              <a class="badge badge-primary" href="{{route('admin.wawancara.create',$item->id)}}">Isi Jadwal</a>
+                              <button type="button" class="badge badge-warning border-0" data-bs-toggle="modal" data-bs-target="#exampleModall">
+                                Edit Status
+                              </button>
+                            @endif
                         </td>
                         </tr>
                         @endforeach
                     </tbody>
                   </table>
                   </form>
+                  @foreach ($data as $item)
+                    <form action="{{route('admin.update.status',$item->id)}}" method="post">
+                      @csrf
+                      @method('PUT')
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah Status</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <label for="email">Status</label>
+                              <select name="status" id="" class="form-select">
+                                  <option disabled selected>Pilih Status</option>
+                                  <option value="Lulus" {{$item->status == 'Lulus' ? 'selected' : ''}}>Lulus</option>
+                                  <option value="Gagal" {{$item->status == 'Gagal' ? 'selected' : ''}}>Gagal</option>
+                              </select>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  @endforeach
                 </div>
               </div>
             </div>

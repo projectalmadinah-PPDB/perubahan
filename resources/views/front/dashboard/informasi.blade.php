@@ -24,7 +24,7 @@
                         <span class="ring-1 ring-sekunder py-0.5 px-2 italic rounded-full text-sekunder bg-dasar text-xs group-hover:bg-emerald-400 group-hover:text-dasar transition-all duration-200 hover:ring-offset-2">Kategori</span>
                     </div>
                     <p class="line-clamp-4 tracking-tight text-sm">
-                       {{$item->desc}}
+                        {!! $item->desc !!}
                     </p>
                 </div>
             </a>

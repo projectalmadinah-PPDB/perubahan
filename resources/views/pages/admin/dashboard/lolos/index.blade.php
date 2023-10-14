@@ -14,9 +14,9 @@
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Daftar Lolos</div>
                   <div class="d-flex">
-                    <button type="button" class="btn btn-primary me-2 rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <a href="{{route('admin.lolos.export')}}" class="btn me-2 btn-primary rounded-4">Export Excel</a>
+                    <button type="button" class="btn btn-outline-primary rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     data-bs-whatever="@mdo" onclick="edit(event)">Ubah Status</button>
-                    <a href="{{route('admin.lolos.export')}}" class="btn btn-primary rounded-4">Export Excel</a>
                   </div>
                 </div>
               </div>
@@ -24,63 +24,63 @@
                 <div class="table-responsive">
                   <form action="" name="form1" id="form1" method="POST">
                     @csrf
-                  <table class="table table-bordered" id="table">
-                    <thead>
-                      <tr>
-                        <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Nomor Hp</th>
-                        <th>Status Kelulusan</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($lolos as $index => $item)
+                    <table class="table table-bordered" id="table">
+                      <thead>
                         <tr>
-                          <td><input type="checkbox" name="id[{{$item->id}}]" class="checkbox1" value="{{$item->id}}"></td>
-                          <td>{{$loop->iteration}}</td>
-                          <td>{{$item->name}}</td>
-                          <td>{{$item->nomor}}</td>
-                          <td><button class="badge badge-success border-0">{{$item->status}}</button></td>
-                          <td>
-                            <button type="button" class="badge badge-warning border-0" data-bs-toggle="modal" data-bs-target="#exampleModall">
-                              Edit Status
-                            </button>
-                          </td>
+                          <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
+                          <th>ID</th>
+                          <th>Nama</th>
+                          <th>Nomor Hp</th>
+                          <th>Status Kelulusan</th>
+                          <th>Action</th>
                         </tr>
-                        @endforeach
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                          @foreach ($lolos as $index => $item)
+                          <tr>
+                            <td><input type="checkbox" name="id[{{$item->id}}]" class="checkbox1" value="{{$item->id}}"></td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->nomor}}</td>
+                            <td><button class="badge badge-success border-0">{{$item->status}}</button></td>
+                            <td>
+                              <button type="button" class="badge badge-warning border-0" data-bs-toggle="modal" data-bs-target="#exampleModall">
+                                Edit Status
+                              </button>
+                            </td>
+                          </tr>
+                          @endforeach
+                      </tbody>
+                    </table>
                   </form>
                   @foreach ($lolos as $item)
-                  <form action="{{route('admin.lolos.update',$item->id)}}" method="post">
-                    @csrf
-                    @method('PUT')
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <label for="email">Status</label>
-                          <select name="status" id="" class="form-select">
-                              <option disabled selected>Pilih Status</option>
-                              <option value="Wawancara" {{$item->status == 'Wawancara' ? 'selected' : ''}}>Wawancara</option>
-                              <option value="Gagal" {{$item->status == 'Gagal' ? 'selected' : ''}}>Gagal</option>
-                          </select>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Save changes</button>
+                    <form action="{{route('admin.lolos.update',$item->id)}}" method="post">
+                      @csrf
+                      @method('PUT')
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah Status</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <label for="email">Status</label>
+                              <select name="status" id="" class="form-select">
+                                  <option disabled selected>Pilih Status</option>
+                                  <option value="Wawancara" {{$item->status == 'Wawancara' ? 'selected' : ''}}>Wawancara</option>
+                                  <option value="Gagal" {{$item->status == 'Gagal' ? 'selected' : ''}}>Gagal</option>
+                              </select>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </form>
+                    </form>
                   @endforeach
                 </div>
               </div>

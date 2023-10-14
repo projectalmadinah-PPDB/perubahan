@@ -65,9 +65,10 @@
                       <tr>
                         <th><input type="checkbox" name="select_all" class="select_all" id="select_all"></th>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Nomor Hp</th>
-                        <th>Status</th>
+                        <th>Nama</th>
+                        <th>Nomor HP</th>
+                        <th>Invoice</th>
+                        {{-- <th>Status</th> --}}
                       </tr>
                     </thead>
                     <tbody>

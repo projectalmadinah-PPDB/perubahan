@@ -1,5 +1,5 @@
 <!--Footer container-->
-<footer class="w-full bg-primer text-center text-white"
+<footer class="w-full bg-primer text-center text-white font-poppins"
     style="box-shadow: 0px -5px 10px 2px rgba(0, 45, 90, 0.1);"
     >
     <div class="px-6">
@@ -116,7 +116,7 @@
 
     <!--Copyright section-->
     <div
-        class="p-4 text-center text-xs bg-black/50">
+        class="p-2 text-center text-xs bg-black/50">
         © {{ App\Models\General::first()->created_at->format('Y') }} - 
         <a class="text-white tracking-wide" href="{{ route('front') }}"
             >Sekolah {{ App\Models\General::first()->school_name }}</a

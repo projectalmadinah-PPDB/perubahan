@@ -126,4 +126,15 @@ class WawancaraController extends Controller
     // Redirect atau kirim respons sesuai kebutuhan
     return redirect()->route('admin.wawancara.index')->with('success', 'Data Wawancara massal berhasil disimpan.');
     }
+
+    public function updateStatus(Request $request,$id)
+    {
+        $lolos = User::where('status','Wawancara')->findOrFail($id);
+        $data = $request->validate([
+            'status' => 'required'
+        ]);
+        $lolos->update($data);
+
+        return redirect()->route('admin.lolos.index')->with('edit',"Berhasil Mengupdate Status Siswa");
+    }
 }

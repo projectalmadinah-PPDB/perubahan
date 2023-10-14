@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Document;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,7 @@ class DocumentController extends Controller
             $document = Document::where('title','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $document = Document::orderBy('id', 'desc')->paginate(5);
+            $document = Document::orderBy('id', 'desc')->get();
         }
         return view('pages.admin.dashboard.documents.index',compact('document'));
     }
@@ -79,7 +80,7 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        $document = Document::find($id);
+        $document = User::whereHas('document')->find($id);
         return view('pages.admin.dashboard.documents.show', compact('document'));
     }
 

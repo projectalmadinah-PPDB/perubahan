@@ -31,6 +31,6 @@ class NotifyController extends Controller
 
         $notify->update($notifys);
 
-        return redirect()->route('admin.setting.notify.index')->with('edit','Berhasil Mengganti/Mengubah Pesan notif Whatshap');
+        return redirect()->route('admin.setting.notify.index')->with('edit','Anda berhasil mengubah pesan notifikasi Whatsapp');
     }
 }

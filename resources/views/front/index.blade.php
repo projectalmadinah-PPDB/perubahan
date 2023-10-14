@@ -6,52 +6,41 @@
 <main class="w-full pt-14">
     <!-- hero section -->
     <section 
-        class="w-full h-[30rem] bg-primer bg-cover bg-center flex flex-col justify-center items-center gap-y-4 text-center text-white"
+        class="w-full h-[30rem] bg-primer bg-cover bg-center flex tracking-wide flex-col justify-center items-center gap-y-4 text-center text-white"
         style="background-image: url('{{ 'storage/' . App\Models\Home::first()->image }}');">
         <h1 
-            class="text-3xl md:text-5xl font-bold mb-0 leading-none title w-5/12">
+            class="text-3xl md:text-4xl font-bold mb-0 leading-none w-5/12">
             {{ App\Models\Home::first()->title }}
         </h1>
-        <p class="w-1/3">
-            {{ App\Models\Home::first()->desc }}
-        </p>
+        <div class="w-1/3 break-words">
+            {!! App\Models\Home::first()->desc !!}
+        </div>
         <div class="flex flex-row-reverse gap-x-4 mt-5">
             <a href="{{ route('informasi') }}" 
-                class="text-sm p-2 px-4 tracking-wider border-2 rounded-md hover:font-bold border-sekunder hover:bg-sekunder/50 text-white duration-200"
+                class="text-sm p-2 px-4 tracking-wider border-2 rounded-lg hover:font-bold border-sekunder backdrop-blur-md hover:bg-sekunder/50 text-white duration-200"
             >Pelajari Lebih Lanjut</a>
             @if (!Auth::user())
             <a href="{{route('user.show')}}" 
-            class="text-sm p-2 px-4 tracking-wider border-2 rounded-md hover:font-bold border-sekunder bg-sekunder hover:bg-sekunder/50 text-white duration-200"
+            class="text-sm p-2 px-4 tracking-wider border-2 rounded-lg hover:font-bold border-sekunder backdrop-blur-md bg-sekunder hover:bg-sekunder/50 text-white duration-200"
             >Daftar</a>
             @endif
         </div>
     </section>
 
     <!-- section -->
-    <section class="w-full bg-dasar flex justify-around items-center py-14 px-20">
-        <div class="w-5/12">
-            <h1 class="text-3xl font-bold title">Lorem Ipsum.</h1>
-            <p class="leading-6 mt-6 tracking-wider">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum consequatur, molestias, laborum facere quasi tempora rerum, deleniti dicta inventore praesentium voluptate quo quaerat adipisci labore. Dolores quam natus expedita veniam?
-            </p>
+    @foreach ($sections as $index => $section)
+    <section class="w-full bg-dasar @if ($index % 2 !== 0) flex-row-reverse @endif flex justify-around items-center py-14 px-20">
+        <div class="w-5/12 px-5">
+            <h1 class="text-3xl font-bold title">{{ $section->title }}</h1>
+            <div class="leading-6 mt-6 tracking-wider text-justify">
+                {!! $section->desc !!}
+            </div>
         </div>
         <div class="w-5/12">
-            <img src="dists/images/read.jpg" alt="" class="w-full">
-        </div>
-    </section>
-
-    <!-- section -->
-    <section class="w-full bg-dasar flex flex-row-reverse justify-around items-center py-14 px-20">
-        <div class="w-5/12">
-            <h1 class="text-3xl font-bold title">Lorem Ipsum.</h1>
-            <p class="leading-6 mt-6 tracking-wider">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum consequatur, molestias, laborum facere quasi tempora rerum, deleniti dicta inventore praesentium voluptate quo quaerat adipisci labore. Dolores quam natus expedita veniam?
-            </p>
-        </div>
-        <div class="w-5/12">
-            <img src="dists/images/read.jpg" alt="" class="w-full">
+            <img src="{{ asset('storage/' . $section['image']) }}" class="w-full rounded-xl ring-2 ring-emerald-400 ring-offset-4">
         </div>
     </section>
+    @endforeach
     
     {{-- alur --}}
     <div class="flex justify-center">
