@@ -12,7 +12,6 @@ use App\Models\Payment;
 use App\Traits\Fonnte;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -308,17 +307,12 @@ class UserController extends Controller
         // Temukan pengguna berdasarkan nomor telepon
         $user = User::where('token', $request->token)->first();
 
-        if($user == false){
-            return redirect()->route('user.token.forgot');
+        if($user == true){
+            auth()->login($user);
+            return redirect()->route('user.dashboard');
         }else{
-            return redirect()->route('user.change.index',compact('user'));
+            return back();
         }
-    }
-
-    public function change(Request $request)
-    {
-        $user = User::where('token', $request->token)->first();
-        return view('front.change',compact('user'));
     }
 
 

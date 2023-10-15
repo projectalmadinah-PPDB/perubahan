@@ -109,6 +109,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::get('/pendaftar/export',[PendaftarController::class,'export'])->name('pendaftar.export');
 
       Route::get('/pendaftar/export/{id}',[PendaftarController::class,'export_private'])->name('pendaftar.export_private');
+
+      Route::get('/pendaftar/private/{id}',[PendaftarController::class,'private'])->name('pendaftar.private');
       
       Route::post('/pendaftar/process',[PendaftarController::class,'store'])->name('pendaftar.store');
 
@@ -119,6 +121,15 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::get('/pendaftar/show/{id}',[PendaftarController::class,'show'])->name('pendaftar.show');
 
       Route::get('/pendaftar/document/{id}',[PendaftarController::class,'show_document'])->name('pendaftar.show_document');
+
+      Route::get('/pendaftar/private-ijazah/{id}',[PendaftarController::class,'download_pdf_ijazah'])->name('document.ijazah');
+
+      Route::get('/pendaftar/private-akta/{id}',[PendaftarController::class,'download_pdf_akta'])->name('document.akta');
+
+      Route::get('/pendaftar/private-kk/{id}',[PendaftarController::class,'download_pdf_kk'])->name('document.kk');
+
+      Route::get('/pendaftar/private-rapor/{id}',[PendaftarController::class,'download_pdf_rapor'])->name('document.rapor');
+
 
       Route::delete('/pendaftar/delete/{id}',[PendaftarController::class,'destroy'])->name('pendaftar.destroy');
 
@@ -312,7 +323,7 @@ Route::prefix('/user')->name('user.')->group(function() {
 
     Route::post('/activication/process',[UserController::class,'activication_process'])->name('activication.process');
 
-    Route::middleware(['auth','role:user'])->group(function(){
+    Route::middleware(['user'])->group(function(){
 
       Route::get('/coba', [UserDashboardController::class, 'coba'])->name('coba');
 

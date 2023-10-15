@@ -20,13 +20,13 @@
                 $gen_on = true;
             }
         @endphp
-        @if (!Auth::user() && (now()->greaterThan($gen->start_at) && now()->lessThan($gen->end_at) ))
+        {{-- @if (!Auth::user() && (now()->greaterThan($gen->start_at) && now()->lessThan($gen->end_at) )) --}}
             <a href="{{ route('user.show') }}" 
             class="{{ Route::is('user.show') ? 'font-bold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">
             Daftar
             <div class="{{ Route::is('user.show') ? 'w-8' : 'w-0' }} duration-200 group-hover/nav:w-10 h-[.18rem] bg-sekunder rounded-full absolute bottom-4 left-1/2 right-1/2 -translate-x-1/2"></div>
         </a>
-        @endif
+        {{-- @endif --}}
         @if ($gen_on && now()->lessThan(now()->endOfYear()))
         <a href="{{ route('kelulusan') }}" 
         class="{{ Route::is('kelulusan') ? 'font-bold' : '' }} group/nav px-4 py-5 text-primer text-center text-sm tracking-wider relative duration-200">

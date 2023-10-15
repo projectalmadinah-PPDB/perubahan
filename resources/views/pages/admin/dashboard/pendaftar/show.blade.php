@@ -153,12 +153,18 @@
                           <a href="{{ asset('storage/' . $pendaftaran->document->kk) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
                             show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
                         </a>
+                        <a href="{{route('admin.document.kk',$pendaftaran->id)}}" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                          Download <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                        </a>
                         <input type="text" value="{{$pendaftaran->document->kk}}" class="form-control rounded-4" disabled>
                         </div>
                         <div class="mb-2">
                           <label for="">Document Kartu Akta Kelahiran</label>
                           <a href="{{ asset('storage/' . $pendaftaran->document->akta) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
                             show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                        </a>
+                        <a href="{{route('admin.document.akta',$pendaftaran->id)}}" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                          Download <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
                         </a>
                         <input type="text" value="{{$pendaftaran->document->akta}}" class="form-control rounded-4" disabled>
                         </div>
@@ -167,12 +173,18 @@
                           <a href="{{ asset('storage/' . $pendaftaran->document->rapor) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
                             show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
                         </a>
+                        <a href="{{route('admin.document.rapor',$pendaftaran->id)}}" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                          Download <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                        </a>
                         <input type="text" value="{{$pendaftaran->document->rapor}}" class="form-control rounded-4" disabled>
                         </div>
                         <div class="mb-2">
                           <label for="">Document Kartu Ijazah</label>
                           <a href="{{ asset('storage/' . $pendaftaran->document->ijazah) }}" target="_blank" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
                             show <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
+                        </a>
+                        <a href="{{route('admin.document.ijazah',$pendaftaran->id)}}" class="py-0.5 px-2 rounded-full text-xs bg-sekunder italic hover:bg-sekunder/50 duration-200">
+                          Download <i class="bi bi-box-arrow-up-right ms-0.5 font-bold"></i>
                         </a>
                         <input type="text" value="{{$pendaftaran->document->ijazah}}" class="form-control rounded-4" disabled>
                         </div>

@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PendaftarController extends Controller
 {
@@ -31,8 +32,47 @@ class PendaftarController extends Controller
 
     public function export_private($id)
     {
+        $logo = General::first();
         $user = User::findOrFail($id);
-        return Excel::download(new ExportPrivate($user),"Data.$user->name.xlsx");
+        $pdf = Pdf::loadView('pages.admin.dashboard.pendaftar.table_private', compact('user','logo'));
+        return $pdf->download("data-pribadi-$user->name.pdf");
+        // return Excel::download(new ExportPrivate($user),"Data.$user->name.xlsx");
+    }
+
+    public function download_pdf_ijazah(Request $request ,$id)
+    {
+        $data = Document::where('user_id',$id)->first();
+        $path = public_path('/storage/'.$data->ijazah);
+        if(file_exists($path)){
+            return response()->download($path);
+        }
+    }
+
+    public function download_pdf_akta(Request $request ,$id)
+    {
+        $data = Document::where('user_id',$id)->first();
+        $path = public_path('/storage/'.$data->akta);
+        if(file_exists($path)){
+            return response()->download($path);
+        }
+    }
+
+    public function download_pdf_kk(Request $request ,$id)
+    {
+        $data = Document::where('user_id',$id)->first();
+        $path = public_path('/storage/'.$data->kk);
+        if(file_exists($path)){
+            return response()->download($path);
+        }
+    }
+
+    public function download_pdf_rapor(Request $request ,$id)
+    {
+        $data = Document::where('user_id',$id)->first();
+        $path = public_path('/storage/'.$data->rapor);
+        if(file_exists($path)){
+            return response()->download($path);
+        }
     }
 
     public function show($id){

@@ -74,7 +74,6 @@ trait Ipaymu {
         $body['qty'][]           = 1;
         $body['price'][]         = 100000;
         $body['referenceId']     = 'ID-PPDB-'.rand(1111,9999);
-
         $body['returnUrl']       = route('callback.return');
         $body['notifyUrl']       = 'https://3d62-149-108-82-66.ngrok-free.app/callback/notify';
         $body['cancelUrl']       = route('callback.cancel');

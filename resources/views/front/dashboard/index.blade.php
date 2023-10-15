@@ -145,7 +145,7 @@
     {{-- alur --}}
     <section id="alur" class="w-full py-16 select-none">
         <div class="mx-auto container">
-            <div class="w-11/12 lg:w-1/2 mx-auto">
+            <div class="w-11/12 lg:w-2/3 mx-auto">
                 <div class="flex items-center justify-between bg-gray-200 h-1.5 relative">
                     <div class="absolute w-full">
                         <div class="overflow-hidden h-1.5 flex rounded bg-gray-200">
@@ -259,7 +259,7 @@
                         <div class="
                             @if ($user->status == 'Wawancara') {{ $sedang }}
                             @elseif ($user->status == 'Gagal') {{ $error }}
-                            @elseif ($user->status == 'Sudah') {{ $sudah }}
+                            @elseif ($user->status == 'Lulus') {{ $sudah }}
                             @else {{ $belum }}  @endif">
                             @if ($user->status == 'Lulus')
                                 <i class="bi bi-check-lg text-white"></i>
@@ -267,6 +267,31 @@
                         </div>
                         <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
                             <span class="font-bold">Step 5 :</span><br>Menunggu Pengumuman
+                        </p>
+                        @if ($user->status == 'Gagal' || $user->status == 'Lulus')
+                            <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">
+                                <span class="font-medium text-sm">
+                                    @if ($user->status == 'Lulus')
+                                    Selamat!!
+                                    @else
+                                    Kamu Disini!!
+                                    @endif
+                                </span>
+                            </p>
+                        @endif
+                    </div>
+                    <div class="relative">
+                        <div class="
+                            @if ($user->status == 'Lulus' && $user->payment_in) {{ $sudah }}
+                            @elseif ($user->status == 'Gagal') {{ $error }}
+                            @elseif ($user->status == 'Lulus') {{ $sudah }}
+                            @else {{ $belum }}  @endif">
+                            @if ($user->status == 'Lulus')
+                                <i class="bi bi-check-lg text-white"></i>
+                            @endif
+                        </div>
+                        <p class="absolute text-center left-1/2 -translate-x-1/2 top-10 text-sekunder w-32 rounded-md bg-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2">
+                            <span class="font-bold">Step 6 :</span><br>Pembayaran Masuk
                         </p>
                         @if ($user->status == 'Gagal' || $user->status == 'Lulus')
                             <p class="absolute text-center left-1/2 -translate-x-1/2 -top-12 bg-sekunder w-32 rounded-full text-dasar shadow-lg text-xs tracking-wide leading-4 py-1 p-2 border border-sekunder ring-2 ring-offset-2 ring-sekunder">

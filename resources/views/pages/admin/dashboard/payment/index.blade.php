@@ -68,7 +68,7 @@
                         <th>Nama</th>
                         <th>Nomor HP</th>
                         <th>Invoice</th>
-                        {{-- <th>Status</th> --}}
+                        <th>Status</th>
                       </tr>
                     </thead>
                     <tbody>
