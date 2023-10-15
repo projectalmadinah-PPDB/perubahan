@@ -21,15 +21,23 @@
                   </div>
                   {{-- <button class="btn btn-primary" onclick="edit()">Ubah Data</button> --}}
                   <div class="d-flex">
-                    <a href="{{route('admin.pendaftar.export')}}" class="btn btn-primary rounded-4">Export Excel</a>
+                    <form action="{{route('admin.pendaftar.export')}}" method="post" class="d-flex justify-content-end align-items-center">
+                      @csrf
+                      @method('GET')
+                      <select name="filterExport" class="form-select rounded-end-0 rounded-start-4">
+                        <option value="all">Semua Angkatan</option>
+                        @foreach($generasi as $item)
+                          <option value="{{ $item->id }}">{{ $item->generasi }}</option>
+                        @endforeach
+                      </select>
+                      <button type="submit" class="btn btn-primary rounded-start-0 rounded-end-4">
+                        Export <i class="bi bi-file-earmark-arrow-down"></i>
+                      </button>
+                    </form>
                     <button class="btn btn-danger ms-2 float-end rounded-4" onclick="destroy(event)">Delete</button>
                   </div>
                 </div>
               </div>
-              {{-- <form action="{{route('admin.pendaftar.destroy',$item->id)}}" method="post" class="d-inline">
-                @csrf
-                @method('DELETE')
-              </form> --}}
               @foreach ($users as $item)
               <form id="remove{{$item->id}}" action="{{route('admin.pendaftar.destroy',$item->id)}}" method="post" class="d-inline">
                   @csrf
@@ -83,7 +91,7 @@
                               <a href="{{route('admin.pendaftar.show',$item->id)}}" class="badge badge-primary">Detail</a>
                               <a href="{{route('admin.pendaftar.edit',$item->id)}}" class="badge badge-warning">Edit</a>
                               <button onclick="confirm('anda yakin ingin menghapus data') ? setAttribute('type','submit') : '' " type="button" form="remove{{$item->id}}"
-                                class="badge badge-danger">Remove</button>
+                                class="badge badge-danger border-0">Remove</button>
                             </td>
                           </tr>
                         @endforeach

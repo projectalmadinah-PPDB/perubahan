@@ -104,7 +104,6 @@ class DashboardController extends Controller
         $user = Auth::user();
         $payment = Payment::where('user_id', $user->id)->first();
 
-        // return view('front.dashboard.payment', compact('user','payment'));
         return Redirect::to($payment->link);
     }
 

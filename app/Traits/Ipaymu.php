@@ -54,28 +54,24 @@ trait Ipaymu {
 
         $responser = $data_request->object();
 
-        // $balance = json_decode($responser);
-
         return $responser;
     }
 
     public function redirect_payment($id)
     {
+        $user         = User::find($id);
+
         $va           = $this->va; //get on iPaymu dashboard
         $url          = 'https://sandbox.ipaymu.com/api/v2/payment'; // for development mode     
         $method       = 'POST'; //method
         $timestamp    = Date('YmdHis');
 
-        $user         = User::find($id);
-
-        // $body['name']         = $user->name;
-        // $body['phone']        = $user->nomor;
         $body['product'][]       = 'Pendaftaran';
         $body['qty'][]           = 1;
         $body['price'][]         = 100000;
         $body['referenceId']     = 'ID-PPDB-'.rand(1111,9999);
         $body['returnUrl']       = route('callback.return');
-        $body['notifyUrl']       = 'https://3d62-149-108-82-66.ngrok-free.app/callback/notify';
+        $body['notifyUrl']       = 'https://ee7f-149-108-82-66.ngrok-free.app/callback/notify';
         $body['cancelUrl']       = route('callback.cancel');
         $body['paymentChannel']  = 'qris';
         $body['expired']         = 24;

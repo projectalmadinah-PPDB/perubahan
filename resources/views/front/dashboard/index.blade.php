@@ -257,7 +257,7 @@
                     </div>
                     <div class="relative">
                         <div class="
-                            @if ($user->status == 'Wawancara') {{ $sedang }}
+                            @if ($user->status == 'Lulus') {{ $sedang }}
                             @elseif ($user->status == 'Gagal') {{ $error }}
                             @elseif ($user->status == 'Lulus') {{ $sudah }}
                             @else {{ $belum }}  @endif">
